@@ -1,0 +1,9 @@
+# Local CLI binaries
+dify-plugin.exe
+dify-plugin-windows-amd64.exe
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
