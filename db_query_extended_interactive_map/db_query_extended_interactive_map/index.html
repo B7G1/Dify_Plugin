@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>db_query_extended · 交互式复现地图</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#overview" class="brand">db_query_extended <span>0.0.1</span></a>
+    <nav>
+      <a href="#workbench">复现工作台</a>
+      <a href="#explorer">文件树</a>
+      <a href="#graph">调用图</a>
+      <a href="#references">证据</a>
+    </nav>
+  </header>
+  <main>
+    <section id="overview" class="hero">
+      <p class="eyebrow">INTERACTIVE REPRODUCTION MAP · STEP 1-24</p>
+      <h1>从模板到 Dify 平台联调，再到 Plugin Core Freeze 的交互地图</h1>
+      <p>这张地图继承 2026-06-23 的 12 步复现地图，并继续追加 Step 13-24。它不是静态报告：每一步都能点文件、看快照、看 Diff、看平台场景和调用关系。</p>
+      <div class="quick">
+        <a href="#workbench">01 构建工作台</a>
+        <a href="#explorer">02 文件与代码</a>
+        <a href="#graph">03 自动调用图</a>
+        <a href="../../reports/html_reports/2026-06-24/project_dashboard.html">Project Cockpit</a>
+      </div>
+    </section>
+
+    <section id="workbench" class="section">
+      <p class="eyebrow">01 · STEP-BY-STEP REPRODUCTION</p>
+      <h2>每一步的文件变化都能点开查看</h2>
+      <p class="muted">选择右侧滚轮步骤；左侧文件树、Change Log 和代码 Diff 会同步更新。黄色表示本步骤修改，绿色表示新增，红色表示删除或缺失。</p>
+      <div class="workbench">
+        <div class="preview-column">
+          <div class="window">
+            <div class="window-bar">
+              <i></i><i></i><i></i>
+              <b>db_query_extended · 模拟工作区</b>
+              <button class="preview-tab active" data-preview="files">文件浏览器</button>
+              <button class="preview-tab" data-preview="platform">平台场景</button>
+              <span id="step-summary">选择一步开始</span>
+            </div>
+            <div id="source-tree" class="source-tree"></div>
+            <div class="platform-title">Dify 平台侧对象</div>
+            <div id="platform-objects" class="platform-objects"></div>
+          </div>
+          <div id="hover-tip" class="hover-tip"></div>
+        </div>
+
+        <aside class="control-column">
+          <div class="step-wheel">
+            <button id="step-prev" aria-label="上一步">‹</button>
+            <div id="step-list" class="step-list"></div>
+            <button id="step-next" aria-label="下一步">›</button>
+          </div>
+          <article id="step-card" class="step-card"></article>
+          <article class="change-panel">
+            <div class="panel-title"><b>Change Log</b><span>本步改动记录</span></div>
+            <div id="change-log" class="change-log"></div>
+          </article>
+        </aside>
+      </div>
+
+      <div id="explorer" class="developer-dock">
+        <section class="dock-files">
+          <p class="eyebrow">SOURCE EXPLORER</p>
+          <h3>插件结构与报告结构</h3>
+          <p class="muted">点击文件会打开代码编辑器。即使处在平台步骤，也可以切回文件浏览器查看此前已出现的完整源码。</p>
+          <div id="file-explorer" class="file-explorer"></div>
+          <aside id="file-detail" class="detail-card">
+            <p class="eyebrow">FILE DETAIL</p>
+            <h3>选择文件或文件夹</h3>
+            <p>查看来源、类别、作用、运行影响和首次出现步骤。</p>
+          </aside>
+        </section>
+        <div class="editor-shell">
+          <div class="editor-tabs" id="editor-tabs"></div>
+          <div class="editor-head">
+            <span id="editor-title">选择步骤或文件</span>
+            <span id="editor-source"></span>
+          </div>
+          <pre id="code-editor" class="code-editor"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="graph" class="section">
+      <p class="eyebrow">03 · INTERNAL CALL GRAPH</p>
+      <h2>Provider、Tool、公共核心、验证与报告入口</h2>
+      <p class="muted">连线由 DOM 节点位置自动计算。悬停节点会高亮相关边并弱化无关节点；点击节点可打开对应文件快照。</p>
+      <div id="call-graph" class="call-graph">
+        <svg id="edge-layer" aria-hidden="true"></svg>
+        <div class="graph-grid">
+          <div class="graph-lane provider-lane">
+            <div class="lane-label">Provider / 配置</div>
+            <button class="graph-node provider" data-id="manifest">manifest.yaml</button>
+            <button class="graph-node provider" data-id="provider-yaml">provider yaml</button>
+            <button class="graph-node provider" data-id="provider-py">provider py</button>
+            <button class="graph-node provider" data-id="workflow">Workflow 证据</button>
+          </div>
+          <div class="graph-lane shared-lane">
+            <div class="lane-label">Shared utils</div>
+            <button class="graph-node shared" data-id="validation">utils/validation.py</button>
+            <button class="graph-node shared" data-id="sql-validator">utils/sql_validator.py</button>
+            <button class="graph-node shared" data-id="database">utils/database.py</button>
+            <button class="graph-node shared" data-id="formatter">utils/formatter.py</button>
+          </div>
+          <div class="graph-lane tool-lane">
+            <div class="lane-label">Tool / 验证</div>
+            <button class="graph-node tool" data-id="tool-yaml">tools yaml</button>
+            <button class="graph-node tool" data-id="tool-py">tools py</button>
+            <button class="graph-node tool" data-id="matrix">phase2_matrix.py</button>
+          </div>
+          <div class="graph-lane runtime-lane">
+            <div class="lane-label">Reports / 目标</div>
+            <button class="graph-node dependency" data-id="database-target">MySQL / PostgreSQL</button>
+            <button class="graph-node dependency" data-id="verification">Verification</button>
+            <button class="graph-node dependency" data-id="documentation">Documentation</button>
+            <button class="graph-node dependency" data-id="cockpit">Project Cockpit</button>
+          </div>
+        </div>
+        <div class="graph-insights">
+          <article><b>Provider 路径</b><span>表单 -> validate_credentials -> validation -> database -> SELECT 1</span></article>
+          <article><b>Tool 路径</b><span>Workflow 参数 -> 只读 SQL 校验 -> database -> formatter -> JSON 结果</span></article>
+          <article><b>运行边界</b><span>当前稳定支持 MySQL / PostgreSQL；DM / KingbaseES 仍是后续适配范围。</span></article>
+        </div>
+        <div id="graph-tip" class="graph-tip"></div>
+      </div>
+    </section>
+
+    <section id="references" class="section">
+      <p class="eyebrow">INDEX · EVIDENCE</p>
+      <h2>来源与边界</h2>
+      <div class="quick">
+        <a href="../../reports/verification/2026-06-25/">2026-06-25 平台联调证据</a>
+        <a href="../../reports/verification/2026-06-26/">2026-06-26 核心冻结证据</a>
+        <a href="../../reports/documentation/README.md">Documentation</a>
+        <a href="docs/interactive_map_update_log.md">本地图更新日志</a>
+      </div>
+    </section>
+  </main>
+  <footer>蓝：Provider / 配置 · 紫：Tool · 绿：shared utils / 新增 · 黄：修改 · 红：删除 · 灰：依赖 / 平台对象</footer>
+  <script src="assets/timeline-data.js"></script>
+  <script src="assets/file-metadata.js"></script>
+  <script src="assets/code-snapshots.generated.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

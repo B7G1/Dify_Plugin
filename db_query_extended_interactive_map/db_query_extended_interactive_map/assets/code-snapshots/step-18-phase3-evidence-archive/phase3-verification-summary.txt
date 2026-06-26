@@ -1,0 +1,1 @@
+Phase 3 final baseline: verify_plugin.ps1 reported 57 PASS / 0 FAIL / 0 SKIP. MySQL Workflow UI, PostgreSQL Workflow UI, Workflow API, and wrong-password path passed.

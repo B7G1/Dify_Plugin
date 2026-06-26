@@ -1,0 +1,27 @@
+2026-06-25 Dify API evidence excerpts
+=====================================
+
+Console initialization issue observed:
+
+- Setup account failed
+- opendal.exceptions.PermissionDenied
+- path: privkeys/.../private.pem
+- Source: Permission denied (os error 13)
+
+Resolution:
+
+- /app/api/storage ownership was corrected for the Dify API runtime user.
+- Storage write probe returned STORAGE_WRITE_PASS.
+- /console/api/setup later returned {"step":"not_started","setup_at":null}, allowing setup to continue.
+
+Plugin and workflow evidence:
+
+- GET plugin_daemon management endpoints returned HTTP/1.1 200 OK.
+- POST plugin_daemon /dispatch/tool/validate_credentials returned HTTP/1.1 200 OK.
+- POST plugin_daemon /dispatch/tool/invoke returned HTTP/1.1 200 OK.
+- on_tool_execution logged Tool: db_query_extended.
+- Tool output included JSON rows from plugin_test_users with row_count=5.
+
+Source:
+
+- docker logs dify-api-1 --tail 120

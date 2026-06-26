@@ -1,0 +1,1 @@
+Workflow App Plu_Test was created and published. It became the fixed UI/API verification target for MySQL and PostgreSQL.

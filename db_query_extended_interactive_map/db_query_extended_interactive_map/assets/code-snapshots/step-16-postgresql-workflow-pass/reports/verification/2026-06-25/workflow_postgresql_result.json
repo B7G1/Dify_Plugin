@@ -1,0 +1,37 @@
+{
+  "date": "2026-06-25",
+  "target": "postgresql",
+  "status": "PASS",
+  "app": "Plu_Test",
+  "workflow_app_id": "1ced7307-32eb-49c3-af30-be381b206d90",
+  "workflow_chain": [
+    "Dify Workflow",
+    "Tool Node",
+    "Provider Credential",
+    "db_query_extended",
+    "SQL Tool",
+    "PostgreSQL",
+    "JSON Result",
+    "Workflow Output"
+  ],
+  "credential": {
+    "database_type": "PostgreSQL",
+    "host": "host.docker.internal",
+    "port": 5432,
+    "username": "plugin_test_user",
+    "database": "plugin_test",
+    "schema": "public or empty",
+    "ssl_mode": "disable"
+  },
+  "sql": "SELECT * FROM plugin_test_users LIMIT 5",
+  "ui_result_excerpt": {
+    "status": "SUCCESS",
+    "elapsed_time": "about 1.107s"
+  },
+  "notes": [
+    "PostgreSQL test database container confirmed as dify-plugin-test-postgres.",
+    "Docker port mapping confirmed as 0.0.0.0:5432->5432/tcp.",
+    "PostgreSQL role confirmed as plugin_test_user.",
+    "Manual Dify Workflow UI validation was reported completed by the operator."
+  ]
+}

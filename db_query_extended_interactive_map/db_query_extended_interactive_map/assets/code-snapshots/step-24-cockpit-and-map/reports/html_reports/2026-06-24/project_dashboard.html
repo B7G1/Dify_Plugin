@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>db_query_extended 项目驾驶舱 · 2026-06-26</title>
+  <link rel="stylesheet" href="assets/dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home">db_query_extended <span>项目驾驶舱 · 2026-06-26</span></a>
+    <nav aria-label="项目导航">
+      <a href="#home">总览</a>
+      <a href="#architecture">架构</a>
+      <a href="#timeline">时间线</a>
+      <a href="#documentation">文档</a>
+      <a href="#verification-hub">验证</a>
+      <a href="../2026-06-26_interactive_step_map/project_map.html">步骤地图</a>
+      <a href="#assets">资产</a>
+      <a href="#knowledge">知识库</a>
+      <a href="#recovery">恢复</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero cockpit-hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">PROJECT COCKPIT · 当前状态</p>
+        <h1>MySQL / PostgreSQL 已真实跑通，插件进入 <em>公共核心冻结</em> 状态。</h1>
+        <p class="subtitle">这里是 db_query_extended 的统一入口：新人可以从这里理解项目阶段、架构边界、验证证据、文档体系和下一步计划。Documentation 给人读，Verification 给验收看，Cockpit 把它们串起来。</p>
+        <div class="hero-actions">
+          <a href="#documentation">阅读阶段文档</a>
+          <a class="ghost" href="#verification-hub">查看验证证据</a>
+          <a class="ghost" href="#timeline">浏览项目时间线</a>
+          <a class="ghost" href="../2026-06-26_interactive_step_map/project_map.html">打开步骤地图</a>
+        </div>
+      </div>
+
+      <aside class="cockpit-panel reveal">
+        <div class="panel-title">
+          <span class="pulse"></span>
+          <div>
+            <p>当前状态</p>
+            <h2>Phase 4 Plugin Core Freeze 已完成</h2>
+          </div>
+        </div>
+        <div id="status-grid" class="status-grid"></div>
+      </aside>
+    </section>
+
+    <section class="section compact-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">00 · 进度</p>
+          <h2>项目进度仪表盘</h2>
+        </div>
+        <p>按核心开发、平台联调和数据库扩展分别追踪，不再只看一个笼统百分比。</p>
+      </div>
+      <div id="progress-bars" class="progress-bars"></div>
+    </section>
+
+    <section id="progress" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 · 里程碑</p>
+          <h2>阶段完成情况</h2>
+        </div>
+        <p>点击卡片可以跳到相关区域。已完成的部分保留证据，未来范围保持清楚边界。</p>
+      </div>
+      <div id="milestone-grid" class="milestone-grid"></div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 · 架构</p>
+          <h2>插件执行链路</h2>
+        </div>
+        <p>从 Dify Workflow 到 Provider、Tool、校验、数据库连接和结果格式化，边界已经在 Phase 4 固化。</p>
+      </div>
+      <div id="architecture-flow" class="architecture-flow" aria-label="项目架构链路"></div>
+    </section>
+
+    <section id="timeline" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 · 时间线</p>
+          <h2>项目推进过程</h2>
+        </div>
+        <p>按阶段和日期记录：做了什么、留下哪些文件、对应哪些文档和证据。</p>
+      </div>
+      <div id="timeline-list" class="timeline-list"></div>
+    </section>
+
+    <section id="documentation" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">04 · Documentation</p>
+          <h2>给人读的阶段文档</h2>
+        </div>
+        <p>导师、新成员和维护者从这里理解项目故事、架构变化、踩坑总结和下一步计划。</p>
+      </div>
+      <div id="documentation-grid" class="evidence-grid"></div>
+    </section>
+
+    <section id="verification-hub" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">05 · Verification</p>
+          <h2>给验收看的机器证据</h2>
+        </div>
+        <p>这里只放 JSON、日志、自动化验证、API 返回、Docker 输出、plugin-daemon 输出和 Workflow 输出。</p>
+      </div>
+      <div id="verification-hub-grid" class="evidence-grid"></div>
+    </section>
+
+    <section id="stats" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">06 · 统计</p>
+          <h2>当前工程数字</h2>
+        </div>
+        <p>用少量数字快速判断项目所处阶段和验证状态。</p>
+      </div>
+      <div id="statistics-grid" class="statistics-grid"></div>
+    </section>
+
+    <section id="verification" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">07 · 验证矩阵</p>
+          <h2>MySQL / PostgreSQL 验证状态</h2>
+        </div>
+        <p>记录 Provider、Workflow、查询矩阵、JSON 输出、错误路径和 SQL 安全拦截的验收结果。</p>
+      </div>
+      <div id="verification-matrix" class="verification-matrix"></div>
+    </section>
+
+    <section id="evidence" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">08 · 证据入口</p>
+          <h2>关键证据索引</h2>
+        </div>
+        <p>保留历史证据，不覆盖 2026-06-25 的真实 Workflow 验证结果。</p>
+      </div>
+      <div id="evidence-grid" class="evidence-grid"></div>
+    </section>
+
+    <section id="assets" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">09 · 资产</p>
+          <h2>工程资产树</h2>
+        </div>
+        <p>查看报告、插件源码、本地测试库和归档产物之间的关系。</p>
+      </div>
+      <div class="asset-cockpit">
+        <div class="tree-card">
+          <div id="asset-breadcrumb" class="breadcrumb">E:\Dify_Plugin</div>
+          <div id="asset-tree" class="asset-tree" role="tree"></div>
+        </div>
+        <aside id="asset-drawer" class="asset-drawer">
+          <p class="eyebrow">资产详情</p>
+          <h3>选择一个文件或目录</h3>
+          <p>点击左侧资产节点后，这里会显示简介、作用、创建日期、关联文件和链接。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="risks" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">10 · 技术债</p>
+          <h2>稳定能力与未来范围</h2>
+        </div>
+        <p>明确哪些已经稳定，哪些正在跟进，哪些只是为后续 DM / KingbaseES 预留。</p>
+      </div>
+      <div id="debt-board" class="debt-board"></div>
+    </section>
+
+    <section id="commands" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">11 · 命令</p>
+          <h2>常用命令中心</h2>
+        </div>
+        <p>验证、打开报告和查看仓库状态的常用命令。</p>
+      </div>
+      <div id="command-grid" class="command-grid"></div>
+    </section>
+
+    <section id="knowledge" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">12 · 知识库</p>
+          <h2>项目知识沉淀</h2>
+        </div>
+        <p>把重要原则写在这里，减少后续接手成本。</p>
+      </div>
+      <div id="knowledge-base" class="knowledge-base"></div>
+    </section>
+
+    <section id="recovery" class="section recovery">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">13 · 恢复</p>
+          <h2>恢复与复验入口</h2>
+        </div>
+        <p>新环境或换人接手时，可以按这里的命令恢复数据库、复跑验证、打开文档和证据。</p>
+      </div>
+      <div id="recovery-grid" class="recovery-grid"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">已复制</div>
+
+  <script id="cockpit-data" type="application/json">
+  {
+    "status": [
+      {"name": "插件核心冻结", "state": "PASS"},
+      {"name": "MySQL 工作流", "state": "PASS"},
+      {"name": "PostgreSQL 工作流", "state": "PASS"},
+      {"name": "文档体系整理", "state": "PASS"},
+      {"name": "验证证据归档", "state": "PASS"},
+      {"name": "DM 适配", "state": "待开始"},
+      {"name": "KingbaseES 适配", "state": "未来范围"}
+    ],
+    "progress": [
+      {"name": "总体进度", "value": 88, "note": "MySQL/PostgreSQL 已完成真实工作流验证；核心已冻结。"},
+      {"name": "核心开发", "value": 100, "note": "Provider、Tool、数据库层、格式化层和只读校验已稳定。"},
+      {"name": "平台联调", "value": 100, "note": "Dify Console、plugin-daemon、Workflow UI/API 均已通过验证。"},
+      {"name": "数据库扩展", "value": 45, "note": "MySQL/PostgreSQL 已完成；DM/KingbaseES 尚未开始。"}
+    ],
+    "milestones": [
+      {"name": "Phase 1 环境与研究", "status": "done", "target": "documentation"},
+      {"name": "Phase 2 插件开发", "status": "done", "target": "documentation"},
+      {"name": "Phase 3 平台联调", "status": "done", "target": "verification-hub"},
+      {"name": "Phase 4 核心冻结", "status": "done", "target": "verification-hub"},
+      {"name": "报告体系整理", "status": "done", "target": "documentation"},
+      {"name": "DM 适配", "status": "todo", "target": "risks"},
+      {"name": "KingbaseES 适配", "status": "todo", "target": "risks"}
+    ],
+    "architecture": [
+      {"name": "Dify Workflow", "description": "真实工作流应用 Plu_Test 已创建并发布，用于验证插件在 Dify 平台中的实际执行路径。"},
+      {"name": "Provider", "description": "负责数据库类型、主机、端口、账号、密码、连接超时和 SSL 模式等凭据校验。"},
+      {"name": "Tool", "description": "负责读取用户 SQL 参数，调用校验、数据库执行和结果格式化模块，返回稳定 JSON。"},
+      {"name": "SQL 只读校验", "description": "只允许单条 SELECT 或 WITH 查询，拦截写操作、多语句、事务控制、过程调用和注释绕过。"},
+      {"name": "数据库连接层", "description": "集中生成 SQLAlchemy URL、connect_args 和 Engine 参数；当前使用短生命周期 NullPool。"},
+      {"name": "结果格式化层", "description": "统一输出 columns、rows、row_count、truncated、max_rows，并处理日期、Decimal、bytes 等类型。"},
+      {"name": "Verification", "description": "保存 JSON、日志、Docker 输出、plugin-daemon 输出和 Workflow 输出，作为验收证据。"},
+      {"name": "Documentation", "description": "按阶段保存给人阅读的总结、架构说明、踩坑记录和下一步计划。"}
+    ],
+    "documentationHub": [
+      {"title": "文档总入口", "status": "稳定", "path": "reports/documentation/README.md", "detail": "按阶段组织的人读报告，适合导师、新成员和后续维护者阅读。"},
+      {"title": "Phase 1 环境搭建", "status": "稳定", "path": "reports/documentation/Phase1_Project_Setup/README.md", "detail": "项目初始化、插件机制研究和第一版架构边界。"},
+      {"title": "Phase 2 插件开发", "status": "稳定", "path": "reports/documentation/Phase2_Plugin_Development/README.md", "detail": "Provider、Tool、本地数据库和验证矩阵的实现过程。"},
+      {"title": "Phase 3 平台联调", "status": "稳定", "path": "reports/documentation/Phase3_Platform_Integration/README.md", "detail": "Dify Console、plugin-daemon、Workflow UI/API 与错误路径验证。"},
+      {"title": "Phase 4 核心冻结", "status": "稳定", "path": "reports/documentation/Phase4_Core_Freeze/README.md", "detail": "整理公共核心，为 DM/KingbaseES 适配留出稳定扩展点。"},
+      {"title": "Phase 5 DM 适配", "status": "未来范围", "path": "reports/documentation/Phase5_DM_Adapter/README.md", "detail": "尚未开始，仅保留规划入口。"},
+      {"title": "Phase 6 KingbaseES 适配", "status": "未来范围", "path": "reports/documentation/Phase6_KingbaseES_Adapter/README.md", "detail": "未来国产数据库适配阶段。"}
+    ],
+    "verificationHub": [
+      {"title": "验证证据总入口", "status": "PASS", "path": "reports/verification/README.md", "detail": "只放机器证据、自动化结果、日志、API 返回和 Workflow 输出。"},
+      {"title": "2026-06-25 平台联调证据", "status": "PASS", "path": "reports/verification/2026-06-25/README.md", "detail": "MySQL/PostgreSQL Workflow、plugin-daemon、API 和错误密码路径证据。"},
+      {"title": "2026-06-26 核心冻结证据", "status": "PASS", "path": "reports/verification/2026-06-26/README.md", "detail": "插件验证矩阵 74 PASS / 0 FAIL / 1 SKIP 与本地双库验收输出。"}
+    ],
+    "timeline": [],
+    "statistics": [
+      {"label": "阶段文档", "value": 6},
+      {"label": "验证日期目录", "value": 2},
+      {"label": "已完成阶段", "value": 4},
+      {"label": "待适配数据库", "value": 2},
+      {"label": "插件验证 PASS", "value": 74},
+      {"label": "插件验证 FAIL", "value": 0},
+      {"label": "工作流数据库", "value": 2},
+      {"label": "核心模块", "value": 4}
+    ],
+    "verificationMatrix": [
+      {"item": "Provider Credential", "mysql": "PASS", "postgresql": "PASS"},
+      {"item": "Workflow UI", "mysql": "PASS", "postgresql": "PASS"},
+      {"item": "Workflow API", "mysql": "PASS", "postgresql": "PASS"},
+      {"item": "本地数据库验收", "mysql": "PASS", "postgresql": "PASS"},
+      {"item": "查询矩阵", "mysql": "PASS", "postgresql": "PASS"},
+      {"item": "JSON 输出契约", "mysql": "PASS", "postgresql": "PASS"},
+      {"item": "错误密码路径", "mysql": "PASS", "postgresql": "PASS"},
+      {"item": "危险 SQL 拦截", "mysql": "PASS", "postgresql": "PASS"}
+    ],
+    "evidenceCards": [
+      {"title": "Phase 3 Workflow 证据", "status": "PASS", "path": "reports/verification/2026-06-25/", "detail": "包含 MySQL/PostgreSQL Workflow 结果、plugin-daemon 日志、API 日志和最终验证矩阵。"},
+      {"title": "Phase 4 核心冻结证据", "status": "PASS", "path": "reports/verification/2026-06-26/", "detail": "包含插件验证 JSON、本地双库验收输出和核心冻结说明。"},
+      {"title": "报告体系入口", "status": "稳定", "path": "reports/README.md", "detail": "说明 Documentation、Verification 与 Project Cockpit 三条线的关系。"}
+    ],
+    "technicalDebt": {
+      "stable": [
+        {"name": "MySQL/PostgreSQL 工作流", "priority": "P0", "impact": "已在真实 Dify Workflow 中通过验证。", "status": "稳定"},
+        {"name": "公共核心", "priority": "P0", "impact": "数据库连接、格式化、只读校验和 Tool 边界已整理。", "status": "稳定"},
+        {"name": "报告体系", "priority": "P1", "impact": "Documentation 与 Verification 已分流，Cockpit 作为统一入口。", "status": "稳定"}
+      ],
+      "progress": [
+        {"name": "Workflow API 复跑", "priority": "P2", "impact": "2026-06-26 因未设置 API 环境变量跳过，2026-06-25 已有真实证据。", "status": "待验证"}
+      ],
+      "future": [
+        {"name": "DM Adapter", "priority": "P2", "impact": "下一阶段按公共核心扩展数据库适配层。", "status": "未来范围"},
+        {"name": "KingbaseES Adapter", "priority": "P2", "impact": "DM 路径稳定后再进入 KingbaseES。", "status": "未来范围"},
+        {"name": "真实连接池生命周期", "priority": "P3", "impact": "目前仍使用短生命周期 NullPool，未实现复杂池化。", "status": "未来范围"}
+      ]
+    },
+    "commands": [
+      {"category": "验证", "title": "本地双数据库验收", "command": "Set-Location E:\\Dify_Plugin\\local_test_db\n.\\verification\\verify.ps1"},
+      {"category": "验证", "title": "插件级验证矩阵", "command": "Set-Location E:\\Dify_Plugin\\db_query_extended\n.\\verify_plugin.ps1"},
+      {"category": "报告", "title": "打开 Project Cockpit", "command": "E:\\Dify_Plugin\\reports\\html_reports\\2026-06-24\\project_dashboard.html"},
+      {"category": "Git", "title": "查看仓库状态", "command": "git -c safe.directory=E:/Dify_Plugin status --short --branch"}
+    ],
+    "knowledgeBase": [
+      {"category": "报告体系", "items": [{"title": "Documentation 与 Verification 的区别", "body": "Documentation 给人读，解释项目为什么这样做；Verification 给机器和验收看，保存 JSON、日志和自动化输出。"}]},
+      {"category": "插件边界", "items": [{"title": "Provider 与 Tool 的职责", "body": "Provider 校验连接凭据，Tool 读取参数并调用校验、数据库和格式化模块，不直接堆数据库细节。"}]},
+      {"category": "数据库扩展", "items": [{"title": "为什么暂不直接做 DM", "body": "MySQL/PostgreSQL 已经跑通，先冻结公共核心可以减少后续适配国产数据库时的重复改动。"}]},
+      {"category": "验证基线", "items": [{"title": "当前通过状态", "body": "2026-06-25 真实 Workflow 验证通过；2026-06-26 插件级验证为 74 PASS / 0 FAIL / 1 SKIP。"}]}
+    ],
+    "recovery": [
+      {"title": "恢复本地数据库并验收", "body": "启动并检查 MySQL/PostgreSQL 测试库。", "command": "Set-Location E:\\Dify_Plugin\\local_test_db\n.\\verification\\verify.ps1"},
+      {"title": "复跑插件验证", "body": "执行 Provider、SQL 安全、格式化、数据库矩阵和可选 Workflow API 检查。", "command": "Set-Location E:\\Dify_Plugin\\db_query_extended\n.\\verify_plugin.ps1"},
+      {"title": "查看人读文档", "body": "从阶段文档入口理解项目演进。", "command": "E:\\Dify_Plugin\\reports\\documentation\\README.md"},
+      {"title": "查看机器证据", "body": "从验证入口检查真实输出和日志。", "command": "E:\\Dify_Plugin\\reports\\verification\\README.md"}
+    ],
+    "assetTree": {
+      "name": "E:\\Dify_Plugin",
+      "type": "root",
+      "summary": "项目根目录",
+      "purpose": "保存插件源码、测试库、报告、验证证据和归档产物",
+      "children": [
+        {
+          "name": "reports",
+          "type": "folder",
+          "summary": "报告体系",
+          "purpose": "包含 Documentation、Verification 与 HTML Cockpit",
+          "children": [
+            {"name": "documentation", "type": "folder", "summary": "给人阅读的阶段报告", "purpose": "解释项目过程、架构变化、踩坑和下一步", "links": ["reports/documentation/README.md"]},
+            {"name": "verification", "type": "folder", "summary": "机器验证和日志证据", "purpose": "保存 JSON、日志、Workflow 输出和自动化验证结果", "links": ["reports/verification/README.md"]},
+            {"name": "html_reports", "type": "folder", "summary": "HTML 项目驾驶舱", "purpose": "统一入口，帮助新人快速理解项目", "links": ["reports/html_reports/2026-06-24/project_dashboard.html"]}
+          ]
+        },
+        {"name": "db_query_extended", "type": "folder", "summary": "插件源码", "purpose": "Dify 只读 SQL 查询插件实现", "links": ["db_query_extended/README.md"]},
+        {"name": "local_test_db", "type": "folder", "summary": "本地测试数据库", "purpose": "MySQL/PostgreSQL 可复现验证环境", "links": ["local_test_db/README.md"]},
+        {"name": "archive", "type": "folder", "summary": "归档产物", "purpose": "保存插件包和历史产物"}
+      ]
+    }
+  }
+  </script>
+  <script id="cockpit-update-2026-06-26" type="application/json">
+  {
+    "timelineAppend": [
+      {"date": "2026-06-17", "title": "Phase 1 项目研究与环境准备", "items": ["研究 Dify 插件结构", "梳理 Provider 与 Tool 边界", "确定只读 SQL 查询插件方向"], "files": ["analysis/", "docs/"], "docs": ["reports/documentation/Phase1_Project_Setup/README.md"], "screenshots": [], "milestone": "项目方向明确"},
+      {"date": "2026-06-22", "title": "Phase 2 插件骨架初始化", "items": ["初始化 db_query_extended 插件目录", "完成 manifest、provider、tool、main.py 基础结构", "建立本地打包与校验流程"], "files": ["db_query_extended/manifest.yaml", "db_query_extended/provider/", "db_query_extended/tools/"], "docs": ["reports/documentation/Phase2_Plugin_Development/README.md"], "screenshots": [], "milestone": "插件骨架完成"},
+      {"date": "2026-06-23", "title": "本地 MySQL/PostgreSQL 测试库完成", "items": ["搭建 MySQL 8.4 与 PostgreSQL 16 Docker 环境", "导入 users/orders/logs 标准数据", "覆盖 LIMIT、COUNT、JOIN、聚合和时间查询"], "files": ["local_test_db/docker-compose.yml", "local_test_db/verification/verify.ps1"], "docs": ["local_test_db/database_setup_report.md"], "screenshots": [], "milestone": "本地数据库基线完成"},
+      {"date": "2026-06-25", "title": "Phase 3 平台联调与证据归档", "items": ["Dify Console 与 plugin-daemon 恢复", "插件安装到当前 Workspace", "Workflow App Plu_Test 创建并发布", "MySQL/PostgreSQL Workflow UI 与 API 验证通过", "错误密码路径验证通过"], "files": ["reports/verification/2026-06-25/"], "docs": ["reports/documentation/Phase3_Platform_Integration/2026-06-25/README.md"], "screenshots": ["证据以 JSON、API 日志、plugin-daemon 日志和人工记录归档"], "milestone": "真实 Dify Workflow 验证完成"},
+      {"date": "2026-06-26", "title": "Phase 4 Plugin Core Freeze 与报告汉化", "items": ["未直接开始 DM，先冻结公共核心", "整理数据库连接工厂、结果格式化层和 SQL 只读校验", "将报告体系拆为 Documentation 与 Verification", "Project Cockpit 完成中文化"], "files": ["db_query_extended/utils/database.py", "db_query_extended/utils/formatter.py", "reports/documentation/", "reports/verification/2026-06-26/", "reports/html_reports/2026-06-24/project_dashboard.html"], "docs": ["reports/documentation/Phase4_Core_Freeze/2026-06-26/README.md"], "screenshots": ["本阶段以验证报告和 Cockpit 更新为证据"], "milestone": "公共核心稳定，报告入口中文化完成"}
+    ]
+  }
+  </script>
+  <script src="assets/dashboard.js"></script>
+</body>
+</html>

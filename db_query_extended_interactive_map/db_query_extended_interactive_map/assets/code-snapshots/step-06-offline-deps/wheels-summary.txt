@@ -1,0 +1,3 @@
+wheels/ stores offline Python wheels.
+The directory is intentionally summarized rather than copied because it contains large binary distributions.
+Evidence: wheel cache timestamp 2026-06-22 04:24.

@@ -1,0 +1,2 @@
+Confirmed: db_query_extended 0.0.1 installed as a Dify LOCAL PLUGIN.
+Runtime: li_zijun/db_query_extended ready.

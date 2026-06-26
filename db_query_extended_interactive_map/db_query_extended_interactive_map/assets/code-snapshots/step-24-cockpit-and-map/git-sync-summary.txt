@@ -1,0 +1,1 @@
+Local commits exist for Cockpit localization and this interactive map continuation. Remote push is intentionally not marked complete unless explicitly approved and executed.

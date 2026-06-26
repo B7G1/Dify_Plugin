@@ -1,0 +1,1 @@
+Confirmed: dify-plugin_daemon runtime li_zijun/db_query_extended ready; API ↔ daemon management/tool calls returned HTTP 200.

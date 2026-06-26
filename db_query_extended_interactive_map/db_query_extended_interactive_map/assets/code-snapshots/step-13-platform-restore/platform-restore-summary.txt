@@ -1,0 +1,1 @@
+2026-06-25: Dify Console recovered. plugin-daemon recovered and loaded li_zijun/db_query_extended:0.0.1. Evidence is archived under reports/verification/2026-06-25.
