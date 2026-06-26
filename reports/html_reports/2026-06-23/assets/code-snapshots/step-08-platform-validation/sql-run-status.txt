@@ -1,0 +1,2 @@
+Direct PostgreSQL SELECT 1 and SELECT * FROM plugin_test_users LIMIT 5 succeeded.
+Workflow final SQL execution remains pending verification.

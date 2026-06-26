@@ -1,0 +1,1 @@
+Direct PostgreSQL queries succeeded. Workflow SQL final execution remains pending verification.

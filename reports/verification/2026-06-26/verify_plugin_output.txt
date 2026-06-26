@@ -1,0 +1,34 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260625204111
+Username: LAPTOP-3VLHOO58\LH1858
+RunAs User: LAPTOP-3VLHOO58\LH1858
+Configuration Name: 
+Machine: LAPTOP-3VLHOO58 (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Start-Transcript -Path 'E:\Dify_Plugin\reports\verification\2026-06-26\verify_plugin_output.txt' -Force; Set-Location 'E:\Dify_Plugin\db_query_extended'; .\verify_plugin.ps1 -ReportPath '..\reports\verification\2026-06-26\phase2_verification_report.json'; $code=$LASTEXITCODE; Stop-Transcript; exit $code
+Process ID: 6720
+PSVersion: 5.1.26100.8655
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8655
+BuildVersion: 10.0.26100.8655
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is E:\Dify_Plugin\reports\verification\2026-06-26\verify_plugin_output.txt
+[Phase2] Running db_query_extended plugin verification matrix...
+[Phase2] Verification report written to ..\reports\verification\2026-06-26\phase2_verification_report.json
+
+
+pass : 74
+fail : 0
+skip : 1
+
+
+
+[Phase2] PASS
+**********************
+Windows PowerShell transcript end
+End time: 20260625204116
+**********************

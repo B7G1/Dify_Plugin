@@ -1,0 +1,59 @@
+identity:
+  name: db_query_extended
+  author: li_zijun
+  label:
+    en_US: Read-only SQL Query
+    zh_Hans: 只读 SQL 查询
+description:
+  human:
+    en_US: Validate one read-only SQL statement. Database execution is intentionally deferred.
+    zh_Hans: 校验一条只读 SQL；当前阶段暂不执行数据库查询。
+  llm: Validates a single read-only SQL statement for a configured database connection. Execution is not enabled in this scaffold.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL statement
+      zh_Hans: SQL 语句
+    human_description:
+      en_US: One SELECT or WITH ... SELECT statement. Write operations are rejected.
+      zh_Hans: 仅允许一条 SELECT 或 WITH ... SELECT 语句，写操作会被拒绝。
+    llm_description: One read-only SQL statement.
+    form: llm
+  - name: max_rows
+    type: number
+    required: false
+    default: 100
+    label:
+      en_US: Maximum rows
+      zh_Hans: 最大返回行数
+    human_description:
+      en_US: Maximum rows returned after execution is enabled.
+      zh_Hans: 真实执行接入后允许返回的最大行数。
+    form: form
+  - name: timeout
+    type: number
+    required: false
+    default: 30
+    label:
+      en_US: Query timeout (seconds)
+      zh_Hans: 查询超时（秒）
+    human_description:
+      en_US: Timeout to apply after database execution is enabled.
+      zh_Hans: 真实执行接入后使用的查询超时。
+    form: form
+  - name: readonly
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Read-only mode
+      zh_Hans: 只读模式
+    human_description:
+      en_US: Must remain enabled in the current scaffold.
+      zh_Hans: 当前骨架阶段必须保持启用。
+    form: form
+extra:
+  python:
+    source: tools/db_query_extended.py

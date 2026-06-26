@@ -1,0 +1,1 @@
+Confirmed: PostgreSQL test database Provider validation succeeded; API and daemon returned 200; UI displayed success.

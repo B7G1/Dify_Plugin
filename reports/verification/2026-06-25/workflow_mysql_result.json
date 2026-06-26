@@ -1,0 +1,40 @@
+{
+  "date": "2026-06-25",
+  "target": "mysql",
+  "status": "PASS",
+  "app": "Plu_Test",
+  "workflow_app_id": "1ced7307-32eb-49c3-af30-be381b206d90",
+  "endpoint": "http://localhost/v1/workflows/run",
+  "workflow_chain": [
+    "Dify Workflow",
+    "Tool Node",
+    "Provider Credential",
+    "db_query_extended",
+    "SQL Tool",
+    "MySQL",
+    "JSON Result",
+    "Workflow Output"
+  ],
+  "tool": "扩展数据库查询 / 只读 SQL 查询",
+  "sql": "SELECT * FROM plugin_test_users LIMIT 5",
+  "output_variable": "result = 只读 SQL 查询 / json",
+  "api_result_excerpt": {
+    "status": "succeeded",
+    "outputs": {
+      "result": [
+        {
+          "columns": ["id", "username", "email", "department", "salary", "created_at"],
+          "row_count": 5,
+          "truncated": false
+        }
+      ]
+    },
+    "total_steps": 3,
+    "error": null
+  },
+  "notes": [
+    "Tool Node was configured in Dify UI with MySQL credential.",
+    "Dify API returned workflow status=succeeded and non-empty outputs.result.",
+    "plugin-daemon logged POST /dispatch/tool/invoke status=200."
+  ]
+}

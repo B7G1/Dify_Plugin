@@ -1,0 +1,2 @@
+Documentation directory contains development-environment and plugin-skeleton records.
+Only key text documents are included as snapshots.

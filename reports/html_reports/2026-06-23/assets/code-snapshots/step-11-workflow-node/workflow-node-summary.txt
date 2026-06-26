@@ -1,0 +1,1 @@
+Confirmed: Dify Workflow can add the read-only SQL query node.

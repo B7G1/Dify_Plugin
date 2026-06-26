@@ -1,0 +1,29 @@
+2026-06-25 plugin-daemon evidence excerpts
+=========================================
+
+Recovery evidence:
+
+- dify plugin db initialized
+- start plugin manager daemon
+- local runtime ready plugin=li_zijun/db_query_extended
+
+Plugin installation evidence:
+
+- POST /plugin/{tenant_id}/management/install/upload/package status=200
+- POST /plugin/{tenant_id}/management/install/identifiers status=200
+- install task finished
+
+Credential validation evidence:
+
+- POST /plugin/{tenant_id}/dispatch/tool/validate_credentials status=200
+
+Workflow Tool invoke evidence:
+
+- GET /plugin/{tenant_id}/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended status=200
+- POST /plugin/{tenant_id}/dispatch/tool/invoke status=200
+- Tool: db_query_extended
+- Outputs: {"type":"json", ... "row_count":5 ...}
+
+Source:
+
+- docker logs dify-plugin_daemon-1 --tail 120

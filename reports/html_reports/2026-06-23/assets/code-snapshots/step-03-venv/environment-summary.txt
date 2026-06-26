@@ -1,0 +1,4 @@
+Created .venv/
+Python: 3.11.0 (verified in Day 1 baseline)
+Installed verified packages: dify_plugin 0.6.2, SQLAlchemy 2.0.51, PyMySQL 1.2.0, psycopg2-binary 2.9.12.
+No site-packages are copied into this map.

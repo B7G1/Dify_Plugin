@@ -1,0 +1,73 @@
+identity:
+  author: li_zijun
+  name: db_query_extended
+  label:
+    en_US: Extended Database Query
+    zh_Hans: 扩展数据库查询
+  description:
+    en_US: Configure a MySQL or PostgreSQL connection for the query tool.
+    zh_Hans: 为查询工具配置 MySQL 或 PostgreSQL 连接。
+  icon: icon.svg
+
+credentials_for_provider:
+  database_type:
+    type: select
+    required: true
+    default: mysql
+    options:
+      - value: mysql
+        label:
+          en_US: MySQL
+          zh_Hans: MySQL
+      - value: postgresql
+        label:
+          en_US: PostgreSQL
+          zh_Hans: PostgreSQL
+    label:
+      en_US: Database type
+      zh_Hans: 数据库类型
+  host:
+    type: text-input
+    required: true
+    default: host.docker.internal
+    label:
+      en_US: Host
+      zh_Hans: 主机地址
+  port:
+    type: text-input
+    required: true
+    label:
+      en_US: Port
+      zh_Hans: 端口
+  username:
+    type: text-input
+    required: true
+    label:
+      en_US: Username
+      zh_Hans: 用户名
+  password:
+    type: secret-input
+    required: true
+    label:
+      en_US: Password
+      zh_Hans: 密码
+  database:
+    type: text-input
+    required: true
+    label:
+      en_US: Database
+      zh_Hans: 数据库名
+  connect_timeout:
+    type: text-input
+    required: false
+    default: "10"
+    label:
+      en_US: Connection timeout in seconds
+      zh_Hans: 连接超时（秒）
+
+tools:
+  - tools/db_query_extended.yaml
+
+extra:
+  python:
+    source: provider/db_query_extended.py

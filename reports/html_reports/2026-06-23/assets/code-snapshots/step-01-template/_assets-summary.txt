@@ -1,0 +1,2 @@
+_assets/ is a Dify template asset directory. Binary/image contents are not copied.
+Evidence: directory timestamp 2026-06-21 21:07.
