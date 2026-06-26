@@ -2,7 +2,8 @@
 
 | 类别 | 位置 | 说明 |
 | --- | --- | --- |
-| Project Cockpit | [reports/html_reports/2026-06-24/project_dashboard.html](reports/html_reports/2026-06-24/project_dashboard.html) | 项目统一入口，已中文化，包含时间线、文档、验证、资产、知识库和恢复命令。 |
+| Project Cockpit | [reports/html_reports/2026-06-24/project_dashboard.html](reports/html_reports/2026-06-24/project_dashboard.html) | 项目统一入口，包含时间线、文档、验证、资产、知识库和恢复命令。 |
+| 交互式步骤地图 | [reports/html_reports/2026-06-26_interactive_step_map/project_map.html](reports/html_reports/2026-06-26_interactive_step_map/project_map.html) | 从旧 Step 12 之后续写 Step 13 到 Step 24，展示每一步代码和文件变化。 |
 | Documentation 总入口 | [reports/documentation/README.md](reports/documentation/README.md) | 给人读的阶段文档。新人从这里理解项目过程。 |
 | Verification 总入口 | [reports/verification/README.md](reports/verification/README.md) | 给机器和验收看的证据、日志、JSON 和自动化输出。 |
 | Phase 1 文档 | [reports/documentation/Phase1_Project_Setup/README.md](reports/documentation/Phase1_Project_Setup/README.md) | 环境搭建与项目研究。 |
@@ -23,8 +24,9 @@
 | 插件验证脚本 | [db_query_extended/verify_plugin.ps1](db_query_extended/verify_plugin.ps1) | Provider、SQL 安全、格式化、数据库矩阵和可选 Workflow API 验证。 |
 | 本地测试数据库 | [local_test_db/](local_test_db/README.md) | MySQL 8.4 / PostgreSQL 16 可复现测试环境。 |
 | 本地数据库验证 | [local_test_db/verification/verify.ps1](local_test_db/verification/verify.ps1) | 启动并检查数据库，执行验收 SQL。 |
-| 验证 SQL | [local_test_db/verification/verification.sql](local_test_db/verification/verification.sql) | MySQL/PostgreSQL 共用验收 SQL。 |
-| 历史 HTML 快照 | [reports/html_reports/2026-06-23/project_map.html](reports/html_reports/2026-06-23/project_map.html) | 2026-06-23 旧版项目地图。 |
+| 验证 SQL | [local_test_db/verification/verification.sql](local_test_db/verification/verification.sql) | MySQL / PostgreSQL 共用验收 SQL。 |
+| 历史 HTML 快照 | [reports/html_reports/2026-06-23/project_map.html](reports/html_reports/2026-06-23/project_map.html) | 2026-06-23 旧版项目地图，只读归档。 |
 | 插件包归档 | [archive/](archive/) | `.difypkg` 产物和历史归档。 |
 | 分析资料 | [analysis/](analysis/) | 历史分析与调研材料。 |
 | 文档资料 | [docs/](docs/) | 支撑文档。 |
+

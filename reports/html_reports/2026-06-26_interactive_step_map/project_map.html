@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-26 交互式步骤地图 · db_query_extended</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__text">
+      <p class="eyebrow">继承 2026-06-23 旧版地图，从 Step 13 继续</p>
+      <h1>db_query_extended 交互式步骤地图</h1>
+      <p class="lead">这份续版地图记录插件从 Dify 平台真实跑通，到公共核心冻结、报告体系整理和 Project Cockpit 汉化的完整过程。</p>
+    </div>
+    <div class="status-strip" aria-label="当前状态">
+      <span>Phase 3 已验收</span>
+      <span>Phase 4 Core Freeze</span>
+      <span>MySQL / PostgreSQL 保持通过</span>
+      <span>DM / KingbaseES 仅预留接口</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="步骤导航">
+      <div class="panel">
+        <div class="panel__head">
+          <h2>步骤</h2>
+          <span id="step-count"></span>
+        </div>
+        <div id="step-list" class="step-list"></div>
+      </div>
+      <div class="panel">
+        <div class="panel__head">
+          <h2>文件管理器</h2>
+          <span>按职责分组</span>
+        </div>
+        <div id="file-tree" class="file-tree"></div>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <nav class="tabs" aria-label="视图切换">
+        <button class="tab is-active" data-tab="story">步骤说明</button>
+        <button class="tab" data-tab="code">代码变更</button>
+        <button class="tab" data-tab="map">平台地图</button>
+        <button class="tab" data-tab="evidence">证据与入口</button>
+      </nav>
+
+      <section id="story" class="tab-panel is-active">
+        <article class="panel story-card">
+          <div class="story-meta">
+            <span id="step-date"></span>
+            <span id="step-phase"></span>
+          </div>
+          <h2 id="step-title"></h2>
+          <p id="step-summary" class="summary"></p>
+          <div class="story-grid">
+            <div>
+              <h3>为什么做</h3>
+              <ul id="step-why"></ul>
+            </div>
+            <div>
+              <h3>具体调整</h3>
+              <ul id="step-changes"></ul>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="code" class="tab-panel">
+        <div id="code-view" class="code-view"></div>
+      </section>
+
+      <section id="map" class="tab-panel">
+        <div class="panel map-panel">
+          <div class="panel__head">
+            <h2>平台可互动地图</h2>
+            <span>点击节点查看职责</span>
+          </div>
+          <div id="platform-map" class="platform-map"></div>
+          <div id="node-detail" class="node-detail"></div>
+        </div>
+      </section>
+
+      <section id="evidence" class="tab-panel">
+        <div class="panel">
+          <div class="panel__head">
+            <h2>证据与入口</h2>
+            <span>当前步骤相关</span>
+          </div>
+          <div id="evidence-list" class="evidence-list"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>旧版地图：reports/html_reports/2026-06-23/project_map.html</span>
+    <span>新版 Cockpit：reports/html_reports/2026-06-24/project_dashboard.html</span>
+  </footer>
+
+  <script src="assets/timeline-data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
+

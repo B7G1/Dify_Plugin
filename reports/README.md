@@ -14,14 +14,14 @@
 
 用于保存 JSON、日志、PowerShell transcript、Docker 输出、plugin-daemon 输出、Workflow 输出和自动化验证结果。
 
-## Project Cockpit：统一入口
+## HTML Reports：统一入口和交互地图
 
-位置：`reports/html_reports/2026-06-24/project_dashboard.html`
+位置：`reports/html_reports/`
 
-这是整个项目的驾驶舱。第一次接触项目的人可以从这里进入 Documentation、Verification、Timeline、Architecture、Assets、Knowledge Base 和 Recovery。
+这里包含 Project Cockpit 和交互式步骤地图：
 
-## 使用建议
+- [Project Cockpit](html_reports/2026-06-24/project_dashboard.html)：整个项目的驾驶舱。
+- [交互式步骤地图](html_reports/2026-06-26_interactive_step_map/project_map.html)：从旧 Step 12 继续展示 Step 13 到 Step 24 的代码和文件变化。
 
-- 想理解项目过程：先读 Documentation。
-- 想证明功能通过：查看 Verification。
-- 想快速总览全局：打开 Project Cockpit。
+第一次接触项目的人建议先打开 Project Cockpit，再阅读 Documentation。需要证明功能真的通过时，再进入 Verification。
+

@@ -23,9 +23,11 @@
 | Phase 5 | 待开始 | [DM Adapter](Phase5_DM_Adapter/README.md) |
 | Phase 6 | 未来范围 | [KingbaseES Adapter](Phase6_KingbaseES_Adapter/README.md) |
 
-## 新成员推荐阅读路径
+## 推荐阅读路径
 
-1. 打开 Project Cockpit：`reports/html_reports/2026-06-24/project_dashboard.html`。
+1. 打开 `reports/html_reports/2026-06-24/project_dashboard.html`。
 2. 阅读本 Documentation 索引。
 3. 重点阅读 Phase 3 和 Phase 4，理解当前已验证基线。
-4. 只有需要查验证证据时，再进入 `reports/verification/`。
+4. 打开 `reports/html_reports/2026-06-26_interactive_step_map/project_map.html`，查看 Step 13 到 Step 24 的具体代码和文件变化。
+5. 只有需要查验证证据时，再进入 `reports/verification/`。
+

@@ -23,3 +23,4 @@
 ## 兼容说明
 
 部分历史 Markdown 是在 Documentation / Verification 拆分前创建的，仍保留在日期目录中，不删除历史内容。后续新的说明性文档应写入 `reports/documentation/`。
+
