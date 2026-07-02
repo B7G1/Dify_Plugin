@@ -1,0 +1,32 @@
+name: db_query_extended
+display_name:
+  en_US: Extended Database Query
+  zh_Hans: 扩展数据库查询
+version: 0.1.1
+author: li_zijun
+category: tools
+tags:
+  - database
+  - sql
+  - read-only
+  - mysql
+  - postgresql
+  - dm8
+summary:
+  en_US: Read-only SQL queries for MySQL, PostgreSQL, and DM8 with a stable JSON result contract.
+  zh_Hans: 面向 MySQL、PostgreSQL 和 DM8 的只读 SQL 查询工具，提供稳定 JSON 结果契约。
+repository: https://github.com/B7G1/Dify_Plugin
+documentation: ../../README.md
+privacy: ../../db_query_extended/PRIVACY.md
+license: UNSELECTED_OWNER_DECISION
+architectures: [amd64]
+minimum_dify_version: 1.0.0
+release_evidence: ../../reports/verification/2026-07-01/final_cold_boot/summary.json
+screenshots:
+  - ../docs/images/plugin-installed.png
+  - ../docs/images/provider-validation.png
+  - ../docs/images/workflow-success.png
+  - ../docs/images/verification-45pass.png
+
+# This is a preparation record, not an official Marketplace schema submission.
+# Screenshot entries were manually approved for the released v1.0.0 baseline.

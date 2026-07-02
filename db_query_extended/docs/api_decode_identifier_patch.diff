@@ -1,0 +1,11 @@
+diff --git a/api/core/plugin/impl/plugin.py b/api/core/plugin/impl/plugin.py
+index ec4858a..0c60c14 100644
+--- a/api/core/plugin/impl/plugin.py
++++ b/api/core/plugin/impl/plugin.py
+@@ -209,7 +209,7 @@ class PluginInstaller(BasePluginClient):
+             "GET",
+             f"plugin/{tenant_id}/management/decode/from_identifier",
+             PluginDecodeResponse,
+-            params={"plugin_unique_identifier": plugin_unique_identifier},
++            params={"PluginUniqueIdentifier": plugin_unique_identifier},
+         )

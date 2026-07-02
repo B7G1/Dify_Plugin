@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs><style>.bg{fill:#f5f7fb}.node{fill:#fff;stroke:#2463eb;stroke-width:4}.title{font:700 50px 'Segoe UI';fill:#14213d}.head{font:700 30px 'Segoe UI';fill:#14213d}.text{font:22px 'Segoe UI';fill:#516078}.edge{stroke:#2463eb;stroke-width:5;fill:none;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2463eb"/></marker></defs>
+<rect class="bg" width="1920" height="1080"/><text class="title" x="120" y="120">Plugin Architecture</text><path class="edge" d="M390 520H530M810 520H950M1230 520H1370"/>
+<rect class="node" rx="24" x="110" y="400" width="280" height="240"/><text class="head" x="170" y="475">Dify Workflow</text><text class="text" x="155" y="535">Tool-node invocation</text><text class="text" x="155" y="575">Structured input/output</text>
+<rect class="node" rx="24" x="530" y="400" width="280" height="240"/><text class="head" x="590" y="475">Provider</text><text class="text" x="575" y="535">Credential form</text><text class="text" x="575" y="575">Connection validation</text>
+<rect class="node" rx="24" x="950" y="400" width="280" height="240"/><text class="head" x="1030" y="475">Tool</text><text class="text" x="995" y="535">Read-only policy</text><text class="text" x="995" y="575">Rows and timeout</text>
+<rect class="node" rx="24" x="1370" y="400" width="360" height="240"/><text class="head" x="1435" y="475">Adapter Layer</text><text class="text" x="1420" y="535">Driver/dialect isolation</text><text class="text" x="1420" y="575">Stable JSON contract</text>
+</svg>

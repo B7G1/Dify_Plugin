@@ -1,26 +1,16 @@
-# 验证证据 Verification
+# Verification Evidence Index
 
-这里保存面向机器和验收的证据。
+## Current authoritative result
 
-典型文件包括：
+`2026-07-01/final_cold_boot/summary.json` records:
 
-- JSON API 返回；
-- 自动化验证报告；
-- plugin-daemon 日志；
-- Docker 或 PowerShell transcript；
-- Workflow 输出；
-- 测试脚本输出。
+- Provider: 6 PASS / 0 FAIL / 0 SKIP
+- Tool: 27 PASS / 0 FAIL / 0 SKIP
+- Workflow: 12 PASS / 0 FAIL / 0 SKIP
+- Total: **45 PASS / 0 FAIL / 0 SKIP**
 
-项目过程说明、人读总结、架构解释和踩坑记录放在 `reports/documentation/`。
+Read `2026-07-01/final_cold_boot/README.md` for the file map and `2026-07-01/final_acceptance_log.md` for the execution timeline.
 
-## 按日期归档
+## Retention
 
-| 日期 | 阶段 | 入口 |
-| --- | --- | --- |
-| 2026-06-25 | Phase 3 平台联调 | [2026-06-25](2026-06-25/README.md) |
-| 2026-06-26 | Phase 4 Plugin Core Freeze | [2026-06-26](2026-06-26/README.md) |
-
-## 兼容说明
-
-部分历史 Markdown 是在 Documentation / Verification 拆分前创建的，仍保留在日期目录中，不删除历史内容。后续新的说明性文档应写入 `reports/documentation/`。
-
+Dated directories before 2026-07-01 are historical evidence. Backups and persistence artifacts must remain intact. Never replace machine JSON with a prose-only conclusion, and never store passwords, tokens, or API keys here.

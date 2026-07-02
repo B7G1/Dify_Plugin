@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs><style>.bg{fill:#f5f7fb}.node{fill:#fff;stroke:#2463eb;stroke-width:4}.pass{fill:#e9f8ef;stroke:#0a8a4b;stroke-width:4}.title{font:700 52px 'Segoe UI';fill:#14213d}.head{font:700 26px 'Segoe UI';fill:#14213d}.text{font:20px 'Segoe UI';fill:#516078}.edge{stroke:#2463eb;stroke-width:5;fill:none;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2463eb"/></marker></defs>
+<rect class="bg" width="1920" height="1080"/><text class="title" x="100" y="100">db_query_extended v1.0 — Overall Architecture</text><text class="text" x="100" y="145">Development, execution, verification and reporting form one recoverable evidence loop.</text>
+<path class="edge" d="M255 300H375M565 300H685M875 300H995M1185 300H1305M1495 300H1615"/>
+<rect class="node" rx="22" x="75" y="220" width="180" height="160"/><text class="head" x="105" y="280">Developer</text><text class="text" x="105" y="330">Source / docs</text>
+<rect class="node" rx="22" x="375" y="220" width="190" height="160"/><text class="head" x="407" y="280">bootstrap</text><text class="text" x="407" y="330">Safe startup</text>
+<rect class="node" rx="22" x="685" y="220" width="190" height="160"/><text class="head" x="748" y="280">Dify</text><text class="text" x="716" y="330">Console / API</text>
+<rect class="node" rx="22" x="995" y="220" width="190" height="160"/><text class="head" x="1026" y="280">Workflow</text><text class="text" x="1026" y="330">Start / Tool / Output</text>
+<rect class="node" rx="22" x="1305" y="220" width="190" height="160"/><text class="head" x="1330" y="280">Readonly Tool</text><text class="text" x="1336" y="330">Policy / limits</text>
+<rect class="node" rx="22" x="1615" y="220" width="220" height="160"/><text class="head" x="1640" y="280">Adapter Registry</text><text class="text" x="1640" y="330">MySQL / PG / DM8</text>
+<path class="edge" d="M1725 380V510H1490V520M1380 600H1185M995 600H875M685 600H565"/>
+<rect class="node" rx="22" x="1380" y="520" width="220" height="160"/><text class="head" x="1432" y="580">Database</text><text class="text" x="1412" y="630">Read-only query</text>
+<rect class="node" rx="22" x="995" y="520" width="190" height="160"/><text class="head" x="1056" y="580">JSON</text><text class="text" x="1026" y="630">Stable result</text>
+<rect class="pass" rx="22" x="685" y="520" width="190" height="160"/><text class="head" x="704" y="580">verify_all</text><text class="text" x="722" y="630">45 / 0 / 0</text>
+<rect class="pass" rx="22" x="345" y="520" width="220" height="160"/><text class="head" x="402" y="580">Reports</text><text class="text" x="377" y="630">Evidence / release</text>
+<rect class="node" rx="22" x="280" y="815" width="1360" height="130"/><text class="head" x="335" y="870">Stable baseline</text><text class="text" x="335" y="915">PostgreSQL named volume · system identifier 7657369583221227555 · plugin 0.1.1 · cold boot verified</text>
+</svg>

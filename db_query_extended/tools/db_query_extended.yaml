@@ -1,0 +1,79 @@
+identity:
+  name: db_query_extended
+  author: li_zijun
+  label:
+    en_US: Read-only SQL Query
+    zh_Hans: 只读 SQL 查询
+description:
+  human:
+    en_US: Execute exactly one read-only SQL statement against the configured MySQL or PostgreSQL database.
+    zh_Hans: 针对已配置的 MySQL 或 PostgreSQL 数据库执行一条只读 SQL。
+  llm: Execute one read-only SQL statement only. Allowed statements are SELECT and WITH. Reject INSERT, UPDATE, DELETE, DROP, ALTER, CREATE, TRUNCATE, CALL, EXEC, MERGE, COPY, LOAD DATA, transaction control, file operations, and multiple statements.
+parameters:
+  - name: sql
+    type: string
+    required: true
+    label:
+      en_US: SQL statement
+      zh_Hans: SQL 语句
+    human_description:
+      en_US: One read-only SELECT or WITH statement. Multiple statements and write operations are rejected.
+      zh_Hans: 一条只读 SELECT 或 WITH 语句。多语句和写操作会被拒绝。
+    llm_description: One read-only SQL statement. Do not generate semicolons, multiple statements, DDL, DML, procedure calls, or file operations.
+    form: llm
+  - name: max_rows
+    type: number
+    required: false
+    default: 100
+    label:
+      en_US: Maximum rows
+      zh_Hans: 最大返回行数
+    human_description:
+      en_US: Maximum rows returned by the query. Allowed range is 1 to 1000.
+      zh_Hans: 查询最多返回的行数，允许范围为 1 到 1000。
+    form: form
+  - name: timeout_seconds
+    type: number
+    required: false
+    default: 30
+    label:
+      en_US: Query timeout (seconds)
+      zh_Hans: 查询超时（秒）
+    human_description:
+      en_US: Maximum execution time in seconds. Allowed range is 1 to 120.
+      zh_Hans: 单次 SQL 最大执行时间，单位为秒，范围为 1 到 120。
+    form: form
+  - name: readonly
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Read-only mode
+      zh_Hans: 只读模式
+    human_description:
+      en_US: Must remain enabled. Requests with readonly=false are rejected.
+      zh_Hans: 必须保持启用；readonly=false 的请求会被拒绝。
+    form: form
+  - name: output_format
+    type: select
+    required: false
+    default: json
+    options:
+      - value: json
+        label:
+          en_US: JSON
+          zh_Hans: JSON
+      - value: markdown
+        label:
+          en_US: Markdown
+          zh_Hans: Markdown
+    label:
+      en_US: Output format
+      zh_Hans: 输出格式
+    human_description:
+      en_US: JSON is the supported structured response. Markdown is reserved for a future presentation-layer extension.
+      zh_Hans: 当前支持 JSON 结构化响应；Markdown 为后续展示层扩展预留。
+    form: form
+extra:
+  python:
+    source: tools/db_query_extended.py

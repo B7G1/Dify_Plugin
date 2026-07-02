@@ -7,3 +7,33 @@ dify-plugin-windows-amd64.exe
 Thumbs.db
 .vscode/
 .idea/
+
+/.quarto/
+**/*.quarto_ipynb
+
+# Local environments and shell history
+.Rhistory
+.env
+.env.*
+!.env.example
+**/.venv/
+
+# Generated language/tool caches
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+
+# Disposable temporary editor/tool output
+**/*.tmp
+**/*.temp
+**/*.bak
+
+# Credentials and private key material
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json

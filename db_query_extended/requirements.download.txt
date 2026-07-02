@@ -1,0 +1,6 @@
+dify_plugin==0.6.2
+SQLAlchemy==2.0.51
+PyMySQL==1.2.0
+psycopg2-binary==2.9.12
+dmPython==2.5.32
+dmSQLAlchemy==2.0.12

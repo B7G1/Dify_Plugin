@@ -1,0 +1,23 @@
+"""Non-executable design skeleton for a new database adapter."""
+
+from typing import Any
+
+
+class DatabaseAdapterTemplate:
+    """Replace with the project's real base adapter contract after design review."""
+
+    database_type = "<database>"
+
+    def validate_credentials(self, config: dict[str, Any]) -> None:
+        """Connect and execute the database's minimal read-only probe."""
+        raise NotImplementedError
+
+    def execute_read_only(
+        self, config: dict[str, Any], sql: str, max_rows: int, timeout_seconds: int
+    ) -> dict[str, Any]:
+        """Execute already-shared-validated SQL and return the common result shape."""
+        raise NotImplementedError
+
+    def normalize_value(self, value: Any) -> Any:
+        """Convert vendor values to JSON-safe values without losing Unicode."""
+        raise NotImplementedError

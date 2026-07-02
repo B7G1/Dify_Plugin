@@ -1,0 +1,414 @@
+﻿{
+  "provider": [
+    {
+      "target": "mysql",
+      "case": "provider_connection",
+      "status": "PASS",
+      "execution_time_ms": 169,
+      "message": "Provider credentials normalized and SELECT 1 succeeded."
+    },
+    {
+      "target": "postgresql",
+      "case": "provider_connection",
+      "status": "PASS",
+      "execution_time_ms": 110,
+      "message": "Provider credentials normalized and SELECT 1 succeeded."
+    }
+  ],
+  "sql_security": [
+    {
+      "target": "validator",
+      "case": "SELECT * FROM plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Allowed read-only SQL accepted."
+    },
+    {
+      "target": "validator",
+      "case": "select username from plugin_test_users where department is null",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Allowed read-only SQL accepted."
+    },
+    {
+      "target": "validator",
+      "case": "WITH active_users AS (SELECT * FROM plugin_test_users) SELECT * FROM active_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Allowed read-only SQL accepted."
+    },
+    {
+      "target": "validator",
+      "case": "EXPLAIN SELECT * FROM plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Allowed read-only SQL accepted."
+    },
+    {
+      "target": "validator",
+      "case": "SELECT 'DROP TABLE users' AS text_value",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Allowed read-only SQL accepted."
+    },
+    {
+      "target": "validator",
+      "case": "/* comment */ SELECT * FROM plugin_test_users -- trailing comment",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Allowed read-only SQL accepted."
+    },
+    {
+      "target": "validator",
+      "case": "<empty>",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "SQL must not be empty."
+    },
+    {
+      "target": "validator",
+      "case": "<empty>",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "SQL must not be empty."
+    },
+    {
+      "target": "validator",
+      "case": "INSERT INTO plugin_test_users(id) VALUES (99)",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "UpDaTe plugin_test_users SET username='x'",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "DELETE FROM plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "DROP TABLE plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "ALTER TABLE plugin_test_users ADD COLUMN x int",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "CREATE TABLE x(id int)",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "TRUNCATE TABLE plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "CALL do_something()",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "EXEC do_something",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "MERGE INTO x USING y ON x.id=y.id WHEN MATCHED THEN UPDATE SET id=1",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "COPY plugin_test_users TO STDOUT",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "LOAD DATA INFILE 'x' INTO TABLE plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "SELECT * FROM plugin_test_users; DROP TABLE plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "SELECT * FROM plugin_test_users;",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "/* SELECT */ UPDATE plugin_test_users SET username='x'",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "WITH deleted AS (DELETE FROM plugin_test_users RETURNING *) SELECT * FROM deleted",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "EXPLAIN ANALYZE SELECT * FROM plugin_test_users",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT, WITH, or EXPLAIN SELECT statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "SELECT * FROM plugin_test_users ----------------------------------------------------------------...",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "SQL length must not exceed 100000 characters."
+    }
+  ],
+  "database_matrix": [
+    {
+      "target": "mysql",
+      "case": "LIMIT",
+      "status": "PASS",
+      "execution_time_ms": 124,
+      "message": "rows=5 execution_time_ms=119"
+    },
+    {
+      "target": "mysql",
+      "case": "ORDER BY",
+      "status": "PASS",
+      "execution_time_ms": 98,
+      "message": "rows=3 execution_time_ms=94"
+    },
+    {
+      "target": "mysql",
+      "case": "GROUP BY",
+      "status": "PASS",
+      "execution_time_ms": 110,
+      "message": "rows=7 execution_time_ms=106"
+    },
+    {
+      "target": "mysql",
+      "case": "JOIN",
+      "status": "PASS",
+      "execution_time_ms": 113,
+      "message": "rows=5 execution_time_ms=109"
+    },
+    {
+      "target": "mysql",
+      "case": "DISTINCT",
+      "status": "PASS",
+      "execution_time_ms": 121,
+      "message": "rows=3 execution_time_ms=116"
+    },
+    {
+      "target": "mysql",
+      "case": "COUNT",
+      "status": "PASS",
+      "execution_time_ms": 128,
+      "message": "rows=1 execution_time_ms=123"
+    },
+    {
+      "target": "mysql",
+      "case": "LIKE",
+      "status": "PASS",
+      "execution_time_ms": 110,
+      "message": "rows=5 execution_time_ms=106"
+    },
+    {
+      "target": "mysql",
+      "case": "BETWEEN",
+      "status": "PASS",
+      "execution_time_ms": 105,
+      "message": "rows=5 execution_time_ms=101"
+    },
+    {
+      "target": "mysql",
+      "case": "NULL",
+      "status": "PASS",
+      "execution_time_ms": 118,
+      "message": "rows=2 execution_time_ms=114"
+    },
+    {
+      "target": "mysql",
+      "case": "DATE",
+      "status": "PASS",
+      "execution_time_ms": 136,
+      "message": "rows=3 execution_time_ms=130"
+    },
+    {
+      "target": "mysql",
+      "case": "TIMESTAMP",
+      "status": "PASS",
+      "execution_time_ms": 105,
+      "message": "rows=3 execution_time_ms=102"
+    },
+    {
+      "target": "mysql",
+      "case": "Chinese",
+      "status": "PASS",
+      "execution_time_ms": 101,
+      "message": "rows=1 execution_time_ms=97"
+    },
+    {
+      "target": "mysql",
+      "case": "Emoji",
+      "status": "PASS",
+      "execution_time_ms": 98,
+      "message": "rows=1 execution_time_ms=95"
+    },
+    {
+      "target": "mysql",
+      "case": "Long Text",
+      "status": "PASS",
+      "execution_time_ms": 93,
+      "message": "rows=1 execution_time_ms=90"
+    },
+    {
+      "target": "postgresql",
+      "case": "LIMIT",
+      "status": "PASS",
+      "execution_time_ms": 34,
+      "message": "rows=5 execution_time_ms=33"
+    },
+    {
+      "target": "postgresql",
+      "case": "ORDER BY",
+      "status": "PASS",
+      "execution_time_ms": 36,
+      "message": "rows=3 execution_time_ms=36"
+    },
+    {
+      "target": "postgresql",
+      "case": "GROUP BY",
+      "status": "PASS",
+      "execution_time_ms": 37,
+      "message": "rows=7 execution_time_ms=37"
+    },
+    {
+      "target": "postgresql",
+      "case": "JOIN",
+      "status": "PASS",
+      "execution_time_ms": 36,
+      "message": "rows=5 execution_time_ms=35"
+    },
+    {
+      "target": "postgresql",
+      "case": "DISTINCT",
+      "status": "PASS",
+      "execution_time_ms": 39,
+      "message": "rows=3 execution_time_ms=39"
+    },
+    {
+      "target": "postgresql",
+      "case": "COUNT",
+      "status": "PASS",
+      "execution_time_ms": 43,
+      "message": "rows=1 execution_time_ms=42"
+    },
+    {
+      "target": "postgresql",
+      "case": "LIKE",
+      "status": "PASS",
+      "execution_time_ms": 43,
+      "message": "rows=4 execution_time_ms=42"
+    },
+    {
+      "target": "postgresql",
+      "case": "BETWEEN",
+      "status": "PASS",
+      "execution_time_ms": 40,
+      "message": "rows=5 execution_time_ms=40"
+    },
+    {
+      "target": "postgresql",
+      "case": "NULL",
+      "status": "PASS",
+      "execution_time_ms": 42,
+      "message": "rows=2 execution_time_ms=41"
+    },
+    {
+      "target": "postgresql",
+      "case": "DATE",
+      "status": "PASS",
+      "execution_time_ms": 42,
+      "message": "rows=3 execution_time_ms=41"
+    },
+    {
+      "target": "postgresql",
+      "case": "TIMESTAMP",
+      "status": "PASS",
+      "execution_time_ms": 42,
+      "message": "rows=3 execution_time_ms=42"
+    },
+    {
+      "target": "postgresql",
+      "case": "Chinese",
+      "status": "PASS",
+      "execution_time_ms": 43,
+      "message": "rows=1 execution_time_ms=42"
+    },
+    {
+      "target": "postgresql",
+      "case": "Emoji",
+      "status": "PASS",
+      "execution_time_ms": 37,
+      "message": "rows=1 execution_time_ms=36"
+    },
+    {
+      "target": "postgresql",
+      "case": "Long Text",
+      "status": "PASS",
+      "execution_time_ms": 37,
+      "message": "rows=1 execution_time_ms=36"
+    }
+  ],
+  "workflow": [
+    {
+      "target": "dify_workflow",
+      "case": "workflow_api_call",
+      "status": "PASS",
+      "execution_time_ms": 345,
+      "message": "{\"task_id\": \"01a0b5e0-2bf6-4f0c-8c08-9f0880ccbd39\", \"workflow_run_id\": \"1bb5c801-4cc8-4327-9a63-9d220af57165\", \"data\": {\"id\": \"1bb5c801-4cc8-4327-9a63-9d220af57165\", \"workflow_id\": \"c3249204-5f8c-419c-9460-b0ecb4484fe5\", \"status\": \"succeeded\", \"outputs\": {\"result\": [{\"columns\": [\"id\", \"username\", \"email\", \"department\", \"salary\", \"created_at\"], \"max_rows\": 100, \"row_count\": 5, \"rows\": [{\"created_at\": \"2025-01-03 09:15:00\", \"department\": \"Engineering\", \"email\": \"zhang.wei@example.com\", \"id\": 1, \"salary\": \"18500.00\", \"username\": \"\\u5f20\\u4f1f\"}, {\"created_at\": \"2025-01-05 10:30:00\", \"department\": \"Product\", \"email\": \"li.na@example.com\", \"id\": 2, \"salary\": \"16200.50\", \"username\": \"\\u674e\\u5a1c\"}, {\"created_at\": \"2025-01-07 08:45:00\", \"department\": \"Engineering\", \"email\": \"alice.smith@example.com\", \"id\": 3, \"salary\": \"19800.00\", \"username\": \"Alice Smith\"}, {\"created_at\": \"2025-01-09 14:20:00\", \"department\": \"Sales\", \"email\": \"bob.oconnor@example.com\", \"id\": 4, \"salary\": \"14300.00\", \"username\": \"Bob O'Connor\"}, {\"created_at\": \"2025-01-12 11:00:00\", \"department\": \"Support\", \"email\": null, \"id\": 5, \"salary\": null, \"username\": \"\\u738b\\u5c0f\\u660e\"}], \"truncated\": false}]}, \"error\": null, \"elapsed_time\": 0.258414, \"total_tokens\": 0, \"total_steps\": 3, \"created_at\": 1782372857, \"finished_at\": 1782372857}}"
+    }
+  ],
+  "summary": {
+    "pass": 57,
+    "fail": 0,
+    "skip": 0
+  }
+}

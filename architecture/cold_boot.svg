@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs><style>.bg{fill:#f5f7fb}.box{fill:#fff;stroke:#2463eb;stroke-width:4}.pass{fill:#e9f8ef;stroke:#0a8a4b;stroke-width:4}.title{font:700 52px 'Segoe UI','Microsoft YaHei';fill:#14213d}.head{font:700 28px 'Segoe UI','Microsoft YaHei';fill:#14213d}.text{font:21px 'Segoe UI','Microsoft YaHei';fill:#516078}.edge{stroke:#2463eb;stroke-width:5;fill:none;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2463eb"/></marker></defs>
+<rect class="bg" width="1920" height="1080"/><text class="title" x="110" y="105">Cold Boot Verification</text><text class="text" x="110" y="150">A full stop, identity check and business regression prove the same environment returned.</text>
+<path class="edge" d="M410 345H525M805 345H920M1200 345H1315"/>
+<rect class="box" rx="24" x="100" y="250" width="310" height="190"/><text class="head" x="170" y="320">1. Full stop</text><text class="text" x="145" y="365">dify containers = 0</text><text class="text" x="145" y="400">Volumes untouched</text>
+<rect class="box" rx="24" x="525" y="250" width="280" height="190"/><text class="head" x="585" y="320">2. Bootstrap</text><text class="text" x="565" y="365">start_dify.ps1 only</text><text class="text" x="565" y="400">Preflight</text>
+<rect class="box" rx="24" x="920" y="250" width="280" height="190"/><text class="head" x="970" y="320">3. Identity</text><text class="text" x="960" y="365">system identifier</text><text class="text" x="945" y="400">7657369583221227555</text>
+<rect class="box" rx="24" x="1315" y="250" width="480" height="190"/><text class="head" x="1435" y="320">4. Persisted objects</text><text class="text" x="1380" y="365">accounts · tenants · plugin</text><text class="text" x="1380" y="400">Provider · Workflow · dify_plugin</text>
+<path class="edge" d="M1555 440V520H1225V590"/><path class="edge" d="M1045 675H845"/><path class="edge" d="M645 675H445"/>
+<rect class="pass" rx="24" x="1045" y="590" width="360" height="170"/><text class="head" x="1110" y="655">Runtime stable</text><text class="text" x="1095" y="705">plugin daemon restart = 0</text>
+<rect class="pass" rx="24" x="645" y="590" width="400" height="170"/><text class="head" x="725" y="655">Workflow/API</text><text class="text" x="705" y="705">SELECT 1 + Unicode + JSON</text>
+<rect class="pass" rx="24" x="245" y="590" width="400" height="170"/><text class="head" x="320" y="655">Final regression</text><text class="text" x="330" y="705">45 PASS / 0 FAIL / 0 SKIP</text>
+<rect class="box" rx="24" x="310" y="870" width="1300" height="105"/><text class="head" x="405" y="935">Same database identity + same records + successful regression = persistence proven</text>
+</svg>

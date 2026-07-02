@@ -1,0 +1,15 @@
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)][string]$OutputDirectory
+)
+
+$ErrorActionPreference = 'Stop'
+
+# Template only. Do not report PASS until these use a real target:
+# 1. Provider valid/invalid credential cases.
+# 2. Tool query, truncation, timeout, types, and dangerous SQL cases.
+# 3. Published Workflow scalar, Unicode, timestamp, and error cases.
+# 4. Workflow API HTTP and JSON contract.
+# 5. Full v1.0 regression through verify_all.ps1.
+
+throw 'Replace this template with real <database> verification before use.'

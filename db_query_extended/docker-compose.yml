@@ -1,0 +1,35 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: db-query-extended-mysql
+    environment:
+      MYSQL_DATABASE: db_query_test
+      MYSQL_USER: db_query_user
+      MYSQL_PASSWORD: db_query_password
+      MYSQL_ROOT_PASSWORD: root_password_for_local_testing
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./sql/init_mysql.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_password_for_local_testing"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  postgres:
+    image: postgres:16
+    container_name: db-query-extended-postgres
+    environment:
+      POSTGRES_DB: db_query_test
+      POSTGRES_USER: db_query_user
+      POSTGRES_PASSWORD: db_query_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./sql/init_postgres.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U db_query_user -d db_query_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 20

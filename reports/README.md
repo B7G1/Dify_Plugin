@@ -1,27 +1,35 @@
-# 报告体系
+# Reports Index
 
-本目录分为三条线，分别服务不同读者。
+This directory separates current release truth from historical evidence. A new reader should use the following order:
 
-## Documentation：给人读
+1. [`../BASELINE.md`](../BASELINE.md) — frozen environment identity and recovery entry.
+2. [`release/v1.0/`](release/v1.0/README.md) — publishable v1.0 material.
+3. [`documentation/Phase7_1_DM8_Adapter/Final_Acceptance_Report_2026-07-01.md`](documentation/Phase7_1_DM8_Adapter/Final_Acceptance_Report_2026-07-01.md) — final human-readable acceptance.
+4. [`verification/2026-07-01/final_cold_boot/`](verification/2026-07-01/final_cold_boot/README.md) — authoritative 45/0/0 machine evidence.
+5. [`html_reports/2026-07-01_phase7_1_final/dashboard.html`](html_reports/2026-07-01_phase7_1_final/dashboard.html) — documentation website.
+6. [`documentation/Phase9_Product_Ready/`](documentation/Phase9_Product_Ready/README.md) — product/open-source readiness status.
+7. [`documentation/Phase9_5_Public_Release/`](documentation/Phase9_5_Public_Release/README.md) — public demo, screenshot audit, and publication gates.
+8. [`documentation/Phase9_5_Public_Release/Public_Release_Summary_v1.0.md`](documentation/Phase9_5_Public_Release/Public_Release_Summary_v1.0.md) — final v1.0 Public Release decision.
+9. [`release/v1.0/RELEASE_CLOSURE.md`](release/v1.0/RELEASE_CLOSURE.md) — v1.0.0 lifecycle closure.
+10. [`statistics/final_statistics.md`](statistics/final_statistics.md) — final repository and verification statistics.
 
-位置：`reports/documentation/`
+## Taxonomy
 
-用于导师汇报、新成员接手、项目展示和后续维护。这里解释项目为什么这样设计、每天做了什么、遇到什么问题、怎么解决、下一步是什么。
+| Directory | Content policy |
+| --- | --- |
+| `documentation/` | technical, executive, phase, setup, and diagnosis documents |
+| `verification/` | JSON results, logs, backups, and dated execution evidence |
+| `snapshots/` | immutable environment identity captures |
+| `release/` | current release notes, compatibility, migration, and checklists |
+| `html_reports/` | navigable dashboards and historical rendered reports |
+| `architecture/` | pointer to the canonical root architecture set |
+| `archive/` | superseded or duplicate material retained for history |
 
-## Verification：给机器和验收看
+## Current status
 
-位置：`reports/verification/`
+- v1.0 technical baseline: PASS
+- Automated acceptance: 45 PASS / 0 FAIL / 0 SKIP
+- Supported adapters: MySQL, PostgreSQL, DM8
+- Secrets: prohibited from reports and Git
 
-用于保存 JSON、日志、PowerShell transcript、Docker 输出、plugin-daemon 输出、Workflow 输出和自动化验证结果。
-
-## HTML Reports：统一入口和交互地图
-
-位置：`reports/html_reports/`
-
-这里包含 Project Cockpit 和交互式步骤地图：
-
-- [Project Cockpit](html_reports/2026-06-24/project_dashboard.html)：整个项目的驾驶舱。
-- [交互式步骤地图](html_reports/2026-06-26_interactive_step_map/project_map.html)：从旧 Step 12 继续展示 Step 13 到 Step 24 的代码和文件变化。
-
-第一次接触项目的人建议先打开 Project Cockpit，再阅读 Documentation。需要证明功能真的通过时，再进入 Verification。
-
+Earlier dated reports remain evidence of their phase; they are not the current release statement. Do not delete them or use them in place of v1.0 documents.

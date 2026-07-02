@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose an improvement or future adapter
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes: {label: Problem to solve}
+    validations: {required: true}
+  - type: textarea
+    id: proposal
+    attributes: {label: Proposed behavior and compatibility impact}
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Proposed acceptance criteria}
+    validations: {required: true}
+  - type: checkboxes
+    id: baseline
+    attributes:
+      label: Baseline commitment
+      options:
+        - label: The proposal preserves the v1.0 read-only contract and existing regression suite.
+          required: true

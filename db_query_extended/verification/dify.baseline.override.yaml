@@ -1,0 +1,36 @@
+services:
+  init_permissions:
+    command:
+      - sh
+      - -c
+      - |
+        echo "Enforcing Dify storage ownership (1001:1001)."
+        chown -R 1001:1001 /app/api/storage
+        touch /app/api/storage/.init_permissions
+        echo "Dify storage ownership enforced."
+    volumes:
+      - dify_app_storage:/app/api/storage
+
+  api:
+    volumes:
+      - dify_app_storage:/app/api/storage
+      - /home/zli2759/projects/dify-dm/api/core/plugin/impl/plugin.py:/app/api/core/plugin/impl/plugin.py:ro
+
+  worker:
+    volumes:
+      - dify_app_storage:/app/api/storage
+
+  worker_beat:
+    volumes:
+      - dify_app_storage:/app/api/storage
+
+  plugin_daemon:
+    environment:
+      DM_HOME: /opt/dm8
+      LD_LIBRARY_PATH: /opt/dm8/bin:/opt/dm8/bin/dependencies:/opt/dm8/bin/external_crypto_libs
+    volumes:
+      - /home/zli2759/dm8-install-tmp/DMInstall/source:/opt/dm8:ro
+
+volumes:
+  dify_app_storage:
+    name: dify_app_storage

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs><style>.bg{fill:#f5f7fb}.node{fill:#fff;stroke:#2463eb;stroke-width:4}.pass{fill:#e9f8ef;stroke:#0a8a4b;stroke-width:4}.title{font:700 52px 'Segoe UI';fill:#14213d}.head{font:700 27px 'Segoe UI';fill:#14213d}.text{font:20px 'Segoe UI';fill:#516078}.edge{stroke:#2463eb;stroke-width:5;fill:none;marker-end:url(#arrow)}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2463eb"/></marker></defs>
+<rect class="bg" width="1920" height="1080"/><text class="title" x="110" y="105">v1.0 Public Architecture</text><text class="text" x="110" y="150">A recoverable path from development and execution to verified public evidence.</text>
+<path class="edge" d="M300 330H390M600 330H690M900 330H990M1200 330H1290M1500 330H1590"/>
+<rect class="node" rx="22" x="90" y="240" width="210" height="180"/><text class="head" x="135" y="310">Developer</text><text class="text" x="125" y="355">Source / Docs</text>
+<rect class="node" rx="22" x="390" y="240" width="210" height="180"/><text class="head" x="430" y="310">bootstrap</text><text class="text" x="430" y="355">Safe recovery</text>
+<rect class="node" rx="22" x="690" y="240" width="210" height="180"/><text class="head" x="765" y="310">Dify</text><text class="text" x="730" y="355">Workflow API</text>
+<rect class="node" rx="22" x="990" y="240" width="210" height="180"/><text class="head" x="1025" y="310">Readonly Tool</text><text class="text" x="1030" y="355">Validation</text>
+<rect class="node" rx="22" x="1290" y="240" width="210" height="180"/><text class="head" x="1320" y="310">Adapter</text><text class="text" x="1320" y="355">MySQL / PG / DM8</text>
+<rect class="node" rx="22" x="1590" y="240" width="240" height="180"/><text class="head" x="1650" y="310">Database</text><text class="text" x="1640" y="355">Read-only query</text>
+<path class="edge" d="M1710 420V540H1310V600"/><path class="edge" d="M1190 680H1080"/><path class="edge" d="M880 680H770"/>
+<rect class="node" rx="22" x="1190" y="600" width="240" height="160"/><text class="head" x="1280" y="665">JSON</text><text class="text" x="1245" y="710">Stable contract</text>
+<rect class="pass" rx="22" x="880" y="600" width="300" height="160"/><text class="head" x="955" y="665">verify_all</text><text class="text" x="965" y="710">45 / 0 / 0</text>
+<rect class="pass" rx="22" x="580" y="600" width="300" height="160"/><text class="head" x="680" y="665">Reports</text><text class="text" x="650" y="710">Evidence / Dashboard</text>
+<rect class="node" rx="22" x="330" y="865" width="1260" height="110"/><text class="head" x="390" y="930">Frozen baseline: fixed Compose · persistent volumes · plugin 0.1.1 · real Workflow API acceptance</text>
+</svg>

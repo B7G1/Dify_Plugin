@@ -1,0 +1,200 @@
+{
+  "suite": "tool",
+  "generated_at": "2026-07-02T03:28:58.404340+00:00",
+  "entries": [
+    {
+      "target": "mysql",
+      "case": "select_1",
+      "status": "PASS",
+      "execution_time_ms": 166,
+      "message": "{\"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "mysql",
+      "case": "limit_5",
+      "status": "PASS",
+      "execution_time_ms": 119,
+      "message": "{\"row_count\": 5, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "mysql",
+      "case": "count",
+      "status": "PASS",
+      "execution_time_ms": 107,
+      "message": "{\"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "mysql",
+      "case": "where",
+      "status": "PASS",
+      "execution_time_ms": 89,
+      "message": "{\"row_count\": 14, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "mysql",
+      "case": "join",
+      "status": "PASS",
+      "execution_time_ms": 105,
+      "message": "{\"row_count\": 10, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "mysql",
+      "case": "max_rows",
+      "status": "PASS",
+      "execution_time_ms": 108,
+      "message": "{\"row_count\": 3, \"truncated\": true, \"max_rows\": 3}"
+    },
+    {
+      "target": "postgresql",
+      "case": "select_1",
+      "status": "PASS",
+      "execution_time_ms": 115,
+      "message": "{\"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "postgresql",
+      "case": "limit_5",
+      "status": "PASS",
+      "execution_time_ms": 34,
+      "message": "{\"row_count\": 5, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "postgresql",
+      "case": "count",
+      "status": "PASS",
+      "execution_time_ms": 36,
+      "message": "{\"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "postgresql",
+      "case": "where",
+      "status": "PASS",
+      "execution_time_ms": 33,
+      "message": "{\"row_count\": 14, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "postgresql",
+      "case": "join",
+      "status": "PASS",
+      "execution_time_ms": 55,
+      "message": "{\"row_count\": 10, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "postgresql",
+      "case": "max_rows",
+      "status": "PASS",
+      "execution_time_ms": 35,
+      "message": "{\"row_count\": 3, \"truncated\": true, \"max_rows\": 3}"
+    },
+    {
+      "target": "dm",
+      "case": "select_1",
+      "status": "PASS",
+      "execution_time_ms": 266,
+      "message": "{\"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "dm",
+      "case": "limit_5",
+      "status": "PASS",
+      "execution_time_ms": 30,
+      "message": "{\"row_count\": 5, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "dm",
+      "case": "count",
+      "status": "PASS",
+      "execution_time_ms": 29,
+      "message": "{\"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "dm",
+      "case": "where",
+      "status": "PASS",
+      "execution_time_ms": 31,
+      "message": "{\"row_count\": 14, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "dm",
+      "case": "join",
+      "status": "PASS",
+      "execution_time_ms": 30,
+      "message": "{\"row_count\": 10, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "dm",
+      "case": "max_rows",
+      "status": "PASS",
+      "execution_time_ms": 31,
+      "message": "{\"row_count\": 3, \"truncated\": true, \"max_rows\": 3}"
+    },
+    {
+      "target": "dm",
+      "case": "unicode_bind",
+      "status": "PASS",
+      "execution_time_ms": 63,
+      "message": "dmPython parameter binding preserved Unicode. | SQLAlchemy and Tool JSON preserved Unicode."
+    },
+    {
+      "target": "validator",
+      "case": "drop",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "update",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "delete",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "alter",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "validator",
+      "case": "create",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+    },
+    {
+      "target": "formatter",
+      "case": "decimal",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "{\"columns\": [\"value\"], \"rows\": [{\"value\": \"12.30\"}], \"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "formatter",
+      "case": "date_time",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "{\"columns\": [\"dt\", \"d\", \"t\"], \"rows\": [{\"dt\": \"2026-06-28 01:02:03\", \"d\": \"2026-06-28\", \"t\": \"01:02:03\"}], \"row_count\": 1, \"truncated\": false, \"max_rows\": 100}"
+    },
+    {
+      "target": "formatter",
+      "case": "truncated",
+      "status": "PASS",
+      "execution_time_ms": 0,
+      "message": "{\"columns\": [\"id\"], \"rows\": [{\"id\": 1}, {\"id\": 2}], \"row_count\": 2, \"truncated\": true, \"max_rows\": 2}"
+    }
+  ],
+  "summary": {
+    "pass": 27,
+    "fail": 0,
+    "skip": 0
+  }
+}

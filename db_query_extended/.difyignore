@@ -1,0 +1,28 @@
+# Development, verification, and local-runtime artifacts
+docs/
+sql/
+docker-compose.yml
+README.md
+GUIDE.md
+*.difypkg
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+tests/
+outputs/
+dist/
+build/
+verification/
+verify_plugin.ps1
+
+# Repository and local tooling metadata
+.git/
+.gitignore
+.github/
+.env
+.env.example
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
