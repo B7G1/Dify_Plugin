@@ -1,4 +1,5 @@
-# Development dependencies pinned in the project-local Python 3.11 virtual environment.
+# Offline dependency set for the Dify plugin runtime (Python 3.12, Linux amd64).
+# The local verification venv may use Python 3.11; runtime binary wheels must still provide cp312 Linux amd64 builds.
 --no-index
 --find-links=./wheels
 
