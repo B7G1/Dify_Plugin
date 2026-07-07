@@ -11,6 +11,8 @@
 - `documentation/Phase7_1_DM8_Adapter/executive_report_2026-07-01.md`
 - `documentation/Phase7_1_DM8_Adapter/phase_summary_2026-07-01.md`
 - `documentation/Phase7_1_DM8_Adapter/dify_environment_diagnosis_2026-06-30.md`
+- `documentation/Phase7_1_DM8_Adapter/data_retrieval_validation.md` — 2026-07-03 数据能力证据范围复核。
+- `documentation/Phase7_2_Multilingual_Compatibility/README.md` — 2026-07-07 post-final supplemental multilingual stored-data exact equality gate; MySQL / PostgreSQL / DM8 PASS.
 
 ## Verification and logs
 
@@ -19,6 +21,7 @@
 - `verification/2026-07-01/final_cold_boot/tool_result.json`
 - `verification/2026-07-01/final_cold_boot/workflow_result.json`
 - `verification/2026-07-01/final_acceptance_log.md`
+- `verification/2026-07-07/multilingual_dm_result.json` — DM8 multilingual exact equality machine evidence: `{"pass": 1, "fail": 0, "skip": 0}`.
 
 ## HTML
 
@@ -31,3 +34,5 @@
 - Screenshot Review: PASS by final manual owner confirmation
 - Environment Ready: YES
 - Public Release: READY
+- Phase 7.2 Multilingual Compatibility: PASS
+- Credential boundary: `DIFY_TEST` was used only for local DM8 administrator fixture authorization and is not a plugin runtime credential; no password is recorded.

@@ -1,0 +1,74 @@
+{
+  "suite": "phase10_packaging_readiness",
+  "generated_at": "2026-07-07T06:54:19.252121+00:00",
+  "phase": "v1.1.0-preparation",
+  "entries": [
+    {
+      "case": "manifest_version",
+      "status": "PASS",
+      "message": "Manifest remains at accepted plugin version 0.1.1; no premature v1.1 claim."
+    },
+    {
+      "case": "runtime_contract",
+      "status": "PASS",
+      "message": "Runtime contract is Python 3.12 / amd64."
+    },
+    {
+      "case": "requirements_pins",
+      "status": "PASS",
+      "message": "All accepted v1 dependency pins remain present."
+    },
+    {
+      "case": "v1_runtime_wheels",
+      "status": "PASS",
+      "message": "Accepted v1 direct dependencies have compatible offline runtime wheels."
+    },
+    {
+      "case": "kingbase_not_prematurely_pinned",
+      "status": "PASS",
+      "message": "Unapproved Kingbase driver/dialect is not declared as a release dependency."
+    },
+    {
+      "case": "v1_release_artifact",
+      "status": "PASS",
+      "message": "Canonical v1 artifact exists with accepted SHA-256 CEE3B0D7D54ECF1171E78739FF01C12D204F9B0CCCF7627D51AFAA69631A142B."
+    },
+    {
+      "case": "artifact_selection_policy",
+      "status": "PASS",
+      "message": "Only the named 0.1.1 Linux amd64 package is canonical; 7 other package artifact(s) remain historical/test/development and must not be selected for release."
+    },
+    {
+      "case": "kingbase_driver_wheel",
+      "status": "BLOCKED",
+      "message": "Approved ksycopg2 CPython 3.12 Linux x86_64 wheel is not present in wheels/."
+    },
+    {
+      "case": "kingbase_sqlalchemy_dialect",
+      "status": "BLOCKED",
+      "message": "SQLAlchemy 2.0.51-compatible Kingbase dialect artifact is not present."
+    },
+    {
+      "case": "kingbase_native_client",
+      "status": "BLOCKED",
+      "message": "Required libkci/native client contents and ldd closure are not available."
+    },
+    {
+      "case": "kingbase_redistribution",
+      "status": "BLOCKED",
+      "message": "Vendor driver, dialect, native-library, image, and license redistribution review is incomplete."
+    },
+    {
+      "case": "v1_1_release_artifact",
+      "status": "BLOCKED",
+      "message": "A v1.1 package must not be built until real KingbaseES runtime acceptance passes."
+    }
+  ],
+  "summary": {
+    "pass": 7,
+    "fail": 0,
+    "skip": 0,
+    "blocked": 5
+  },
+  "decision": "BLOCKED"
+}

@@ -1,0 +1,19 @@
+{
+  "suite": "dm8_multilingual_fixture_import",
+  "generated_at": "2026-07-07T05:51:06.609Z",
+  "status": "PASS",
+  "admin_connection": {
+    "host": "127.0.0.1",
+    "port": 5236,
+    "database": "DMSERVER",
+    "username": "PLUGIN_TEST_OWNER"
+  },
+  "sql_file": "E:\\Dify_Plugin\\local_test_db\\dm8\\04_multilingual_fixture.sql",
+  "checks": {
+    "statement_count": 17,
+    "multilingual_row_count": 12,
+    "plugin_test_user_select_grant": true
+  },
+  "error": null,
+  "duration_ms": 582
+}

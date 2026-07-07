@@ -258,10 +258,13 @@ def invoke_workflow(api_url: str, api_key: str, sql: str, max_rows: int, workflo
 
 def workflow_result(body: dict[str, Any]) -> dict[str, Any]:
     outputs = body.get("data", {}).get("outputs", {})
-    raw = outputs.get("result")
-    if not isinstance(raw, list) or not raw or not isinstance(raw[0], dict):
+    raw = outputs.get("result", outputs.get("json"))
+    if isinstance(raw, dict):
+        return raw
+    if isinstance(raw, list) and len(raw) == 1 and isinstance(raw[0], dict):
+        return raw[0]
+    else:
         raise AssertionError(f"Workflow output result is missing or malformed: {json.dumps(outputs, ensure_ascii=False)}")
-    return raw[0]
 
 
 def workflow_excerpt(body: dict[str, Any], result: dict[str, Any]) -> str:

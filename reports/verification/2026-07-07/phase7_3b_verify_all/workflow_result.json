@@ -1,0 +1,103 @@
+{
+  "suite": "workflow",
+  "generated_at": "2026-07-07T07:32:24.419573+00:00",
+  "entries": [
+    {
+      "target": "dm8_workflow",
+      "case": "select_1",
+      "status": "PASS",
+      "execution_time_ms": 219,
+      "message": "{\"workflow_run_id\": \"9d8a1b8c-f7d2-49f8-87f0-e75872d9d549\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 1, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "limit_5",
+      "status": "PASS",
+      "execution_time_ms": 202,
+      "message": "{\"workflow_run_id\": \"d121aa18-6793-4768-97cb-0d7438c55c15\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 5, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "count",
+      "status": "PASS",
+      "execution_time_ms": 202,
+      "message": "{\"workflow_run_id\": \"31801bc4-8cc7-4d21-8606-8a5a8a30e6e2\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 1, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "where",
+      "status": "PASS",
+      "execution_time_ms": 239,
+      "message": "{\"workflow_run_id\": \"138f03d5-a37f-4051-9259-601095985a48\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 14, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "join",
+      "status": "PASS",
+      "execution_time_ms": 232,
+      "message": "{\"workflow_run_id\": \"1101c6d3-8b72-4d3e-a304-e8fcb4f65ea5\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 10, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "max_rows",
+      "status": "PASS",
+      "execution_time_ms": 255,
+      "message": "{\"workflow_run_id\": \"eeab6d98-b8d9-4b0d-a68c-d3308b0da5ea\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 3, \"truncated\": true, \"error_type\": null}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "unicode_utf8",
+      "status": "PASS",
+      "execution_time_ms": 272,
+      "message": "{\"workflow_run_id\": \"e7ed8d2b-6e94-45d9-9b06-2da2785f7fe7\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 1, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "drop",
+      "status": "PASS",
+      "execution_time_ms": 201,
+      "message": "{\"workflow_run_id\": \"6d4b92d4-d518-4457-9b8a-e9d1138df1a6\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "update",
+      "status": "PASS",
+      "execution_time_ms": 241,
+      "message": "{\"workflow_run_id\": \"514c29d5-00bf-4a8a-b751-881cc60beff6\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "delete",
+      "status": "PASS",
+      "execution_time_ms": 197,
+      "message": "{\"workflow_run_id\": \"a6795b3d-e0d9-4759-9864-dec390a6331a\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "alter",
+      "status": "PASS",
+      "execution_time_ms": 200,
+      "message": "{\"workflow_run_id\": \"237de207-63f3-4cfd-b129-4581bf2ae46b\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dm8_workflow",
+      "case": "create",
+      "status": "PASS",
+      "execution_time_ms": 243,
+      "message": "{\"workflow_run_id\": \"e4059559-6305-46a8-b299-1cf8ad3e03a3\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    }
+  ],
+  "summary": {
+    "pass": 12,
+    "fail": 0,
+    "skip": 0
+  },
+  "targets": [
+    {
+      "name": "dm8_workflow",
+      "database_type": "dm",
+      "endpoint": "http://localhost/v1/workflows/run",
+      "credential": "DIFY_WORKFLOW_API_KEY"
+    }
+  ]
+}

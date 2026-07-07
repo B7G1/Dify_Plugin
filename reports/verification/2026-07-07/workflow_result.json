@@ -1,0 +1,96 @@
+{
+  "suite": "workflow",
+  "generated_at": "2026-07-07T07:22:57.029854+00:00",
+  "entries": [
+    {
+      "target": "dify_workflow",
+      "case": "select_1",
+      "status": "FAIL",
+      "execution_time_ms": 1094,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [\"ok\"], \"database_type\": \"dm\", \"error\": null, \"execution_time_ms\": 92, \"generated_at\": \"2026-07-07T07:22:56.069Z\", \"max_rows\": 100, \"row_count\": 1, \"rows\": [{\"ok\": 1}], \"success\": true, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "limit_5",
+      "status": "FAIL",
+      "execution_time_ms": 323,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [\"ID\", \"USERNAME\", \"EMAIL\", \"DEPARTMENT\", \"SALARY\", \"CREATED_AT\"], \"database_type\": \"dm\", \"error\": null, \"execution_time_ms\": 62, \"generated_at\": \"2026-07-07T07:22:56.447Z\", \"max_rows\": 100, \"row_count\": 5, \"rows\": [{\"CREATED_AT\": \"2025-01-03 09:15:00\", \"DEPARTMENT\": \"Engineering\", \"EMAIL\": \"zhang.wei@example.com\", \"ID\": 1, \"SALARY\": \"18500.0\", \"USERNAME\": \"Zhang Wei\"}, {\"CREATED_AT\": \"2025-01-05 10:30:00\", \"DEPARTMENT\": \"Product\", \"EMAIL\": \"li.na@example.com\", \"ID\": 2, \"SALARY\": \"16200.5\", \"USERNAME\": \"Li Na\"}, {\"CREATED_AT\": \"2025-01-07 08:45:00\", \"DEPARTMENT\": \"Engineering\", \"EMAIL\": \"alice.smith@example.com\", \"ID\": 3, \"SALARY\": \"19800.0\", \"USERNAME\": \"Alice Smith\"}, {\"CREATED_AT\": \"2025-01-09 14:20:00\", \"DEPARTMENT\": \"Sales\", \"EMAIL\": \"bob.oconnor@example.com\", \"ID\": 4, \"SALARY\": \"14300.0\", \"USERNAME\": \"Bob O'Connor\"}, {\"CREATED_AT\": \"2025-01-12 11:00:00\", \"DEPARTMENT\": \"Support\", \"EMAIL\": null, \"ID\": 5, \"SALARY\": null, \"USERNAME\": \"Wang Xiaoming\"}], \"success\": true, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "count",
+      "status": "FAIL",
+      "execution_time_ms": 259,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [\"total\"], \"database_type\": \"dm\", \"error\": null, \"execution_time_ms\": 49, \"generated_at\": \"2026-07-07T07:22:56.703Z\", \"max_rows\": 100, \"row_count\": 1, \"rows\": [{\"total\": 12}], \"success\": true, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "where",
+      "status": "FAIL",
+      "execution_time_ms": 275,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [\"ID\", \"USER_ID\", \"PRODUCT_NAME\", \"AMOUNT\", \"STATUS\", \"CREATED_AT\"], \"database_type\": \"dm\", \"error\": null, \"execution_time_ms\": 51, \"generated_at\": \"2026-07-07T07:22:56.936Z\", \"max_rows\": 100, \"row_count\": 14, \"rows\": [{\"AMOUNT\": \"99.0\", \"CREATED_AT\": \"2025-02-01 09:00:00\", \"ID\": 1, \"PRODUCT_NAME\": \"Dify Pro License\", \"STATUS\": \"completed\", \"USER_ID\": 1}, {\"AMOUNT\": \"29.0\", \"CREATED_AT\": \"2025-02-02 10:00:00\", \"ID\": 2, \"PRODUCT_NAME\": \"SQL Connector\", \"STATUS\": \"completed\", \"USER_ID\": 1}, {\"AMOUNT\": \"199.0\", \"CREATED_AT\": \"2025-02-04 12:00:00\", \"ID\": 4, \"PRODUCT_NAME\": \"Analytics Pack\", \"STATUS\": \"completed\", \"USER_ID\": 3}, {\"AMOUNT\": \"19.99\", \"CREATED_AT\": \"2025-02-06 14:00:00\", \"ID\": 6, \"PRODUCT_NAME\": \"Support Add-on\", \"STATUS\": \"completed\", \"USER_ID\": 5}, {\"AMOUNT\": \"250.0\", \"CREATED_AT\": \"2025-02-08 16:00:00\", \"ID\": 8, \"PRODUCT_NAME\": \"API Credits\", \"STATUS\": \"completed\", \"USER_ID\": 7}, {\"AMOUNT\": \"159.0\", \"CREATED_AT\": \"2025-02-10 09:30:00\", \"ID\": 10, \"PRODUCT_NAME\": \"Finance Dashboard\", \"STATUS\": \"completed\", \"USER_ID\": 9}, {\"AMOUNT\": \"299.0\", \"CREATED_AT\": \"2025-02-12 11:30:00\", \"ID\": 12, \"PRODUCT_NAME\": \"Automation Bundle\", \"STATUS\": \"completed\", \"USER_ID\": 11}, {\"AMOUNT\": \"39.0\", \"CREATED_AT\": \"2025-02-13 12:30:00\", \"ID\": 13, \"PRODUCT_NAME\": \"Help Center Theme\", \"STATUS\": \"completed\", \"USER_ID\": 12}, {\"AMOUNT\": \"59.0\", \"CREATED_AT\": \"2025-02-15 14:30:00\", \"ID\": 15, \"PRODUCT_NAME\": \"Priority Queue\", \"STATUS\": \"completed\", \"USER_ID\": 2}, {\"AMOUNT\": \"45.0\", \"CREATED_AT\": \"2025-02-17 16:30:00\", \"ID\": 17, \"PRODUCT_NAME\": \"Sales Playbook\", \"STATUS\": \"completed\", \"USER_ID\": 4}, {\"AMOUNT\": \"25.0\", \"CREATED_AT\": \"2025-02-19 09:45:00\", \"ID\": 19, \"PRODUCT_NAME\": \"Email Integration\", \"STATUS\": \"completed\", \"USER_ID\": 6}, {\"AMOUNT\": \"12.0\", \"CREATED_AT\": \"2025-02-21 11:45:00\", \"ID\": 21, \"PRODUCT_NAME\": \"Read-only Token\", \"STATUS\": \"completed\", \"USER_ID\": 8}, {\"AMOUNT\": \"180.0\", \"CREATED_AT\": \"2025-02-22 12:45:00\", \"ID\": 22, \"PRODUCT_NAME\": \"SSO Add-on\", \"STATUS\": \"completed\", \"USER_ID\": 9}, {\"AMOUNT\": \"220.0\", \"CREATED_AT\": \"2025-02-24 14:45:00\", \"ID\": 24, \"PRODUCT_NAME\": \"Agent Evaluation\", \"STATUS\": \"completed\", \"USER_ID\": 11}], \"success\": true, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "join",
+      "status": "FAIL",
+      "execution_time_ms": 319,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [\"username\", \"amount\"], \"database_type\": \"dm\", \"error\": null, \"execution_time_ms\": 63, \"generated_at\": \"2026-07-07T07:22:57.225Z\", \"max_rows\": 100, \"row_count\": 10, \"rows\": [{\"amount\": \"99.0\", \"username\": \"Zhang Wei\"}, {\"amount\": \"29.0\", \"username\": \"Zhang Wei\"}, {\"amount\": \"15.0\", \"username\": \"Zhang Wei\"}, {\"amount\": \"49.5\", \"username\": \"Li Na\"}, {\"amount\": \"59.0\", \"username\": \"Li Na\"}, {\"amount\": \"199.0\", \"username\": \"Alice Smith\"}, {\"amount\": \"120.0\", \"username\": \"Alice Smith\"}, {\"amount\": \"125.0\", \"username\": \"Bob O'Connor\"}, {\"amount\": \"45.0\", \"username\": \"Bob O'Connor\"}, {\"amount\": \"19.99\", \"username\": \"Wang Xiaoming\"}], \"success\": true, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "max_rows",
+      "status": "FAIL",
+      "execution_time_ms": 320,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [\"ID\", \"USERNAME\", \"EMAIL\", \"DEPARTMENT\", \"SALARY\", \"CREATED_AT\"], \"database_type\": \"dm\", \"error\": null, \"execution_time_ms\": 53, \"generated_at\": \"2026-07-07T07:22:57.532Z\", \"max_rows\": 3, \"row_count\": 3, \"rows\": [{\"CREATED_AT\": \"2025-01-03 09:15:00\", \"DEPARTMENT\": \"Engineering\", \"EMAIL\": \"zhang.wei@example.com\", \"ID\": 1, \"SALARY\": \"18500.0\", \"USERNAME\": \"Zhang Wei\"}, {\"CREATED_AT\": \"2025-01-05 10:30:00\", \"DEPARTMENT\": \"Product\", \"EMAIL\": \"li.na@example.com\", \"ID\": 2, \"SALARY\": \"16200.5\", \"USERNAME\": \"Li Na\"}, {\"CREATED_AT\": \"2025-01-07 08:45:00\", \"DEPARTMENT\": \"Engineering\", \"EMAIL\": \"alice.smith@example.com\", \"ID\": 3, \"SALARY\": \"19800.0\", \"USERNAME\": \"Alice Smith\"}], \"success\": true, \"truncated\": true, \"warning\": \"Result was truncated to max_rows=3.\"}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "drop",
+      "status": "FAIL",
+      "execution_time_ms": 206,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [], \"database_type\": null, \"error\": {\"message\": \"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.\", \"type\": \"ReadOnlyViolationError\"}, \"execution_time_ms\": 0, \"generated_at\": \"2026-07-07T07:22:57.713Z\", \"max_rows\": 100, \"row_count\": 0, \"rows\": [], \"success\": false, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "update",
+      "status": "FAIL",
+      "execution_time_ms": 195,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [], \"database_type\": null, \"error\": {\"message\": \"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.\", \"type\": \"ReadOnlyViolationError\"}, \"execution_time_ms\": 0, \"generated_at\": \"2026-07-07T07:22:57.911Z\", \"max_rows\": 100, \"row_count\": 0, \"rows\": [], \"success\": false, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "delete",
+      "status": "FAIL",
+      "execution_time_ms": 191,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [], \"database_type\": null, \"error\": {\"message\": \"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.\", \"type\": \"ReadOnlyViolationError\"}, \"execution_time_ms\": 0, \"generated_at\": \"2026-07-07T07:22:58.083Z\", \"max_rows\": 100, \"row_count\": 0, \"rows\": [], \"success\": false, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "alter",
+      "status": "FAIL",
+      "execution_time_ms": 201,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [], \"database_type\": null, \"error\": {\"message\": \"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.\", \"type\": \"ReadOnlyViolationError\"}, \"execution_time_ms\": 0, \"generated_at\": \"2026-07-07T07:22:58.255Z\", \"max_rows\": 100, \"row_count\": 0, \"rows\": [], \"success\": false, \"truncated\": false, \"warning\": null}]}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "create",
+      "status": "FAIL",
+      "execution_time_ms": 200,
+      "message": "Workflow output result is missing or malformed: {\"json\": [{\"columns\": [], \"database_type\": null, \"error\": {\"message\": \"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.\", \"type\": \"ReadOnlyViolationError\"}, \"execution_time_ms\": 0, \"generated_at\": \"2026-07-07T07:22:58.456Z\", \"max_rows\": 100, \"row_count\": 0, \"rows\": [], \"success\": false, \"truncated\": false, \"warning\": null}]}"
+    }
+  ],
+  "summary": {
+    "pass": 0,
+    "fail": 11,
+    "skip": 0
+  },
+  "targets": [
+    {
+      "name": "dify_workflow",
+      "database_type": "mysql",
+      "endpoint": "http://localhost/v1/workflows/run",
+      "credential": "DIFY_WORKFLOW_API_KEY"
+    }
+  ]
+}

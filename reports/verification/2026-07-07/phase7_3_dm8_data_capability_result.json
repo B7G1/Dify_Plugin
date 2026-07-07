@@ -1,0 +1,715 @@
+{
+  "suite": "dm8_data_capability_closure",
+  "generated_at": "2026-07-07T06:54:54.079229+00:00",
+  "scope": "DM8 data capability evidence only; regression suite unchanged.",
+  "database_type": "dm",
+  "execution_layer": "tool_json",
+  "summary": {
+    "pass": 14,
+    "partial": 0,
+    "not_evidenced": 0,
+    "fail": 0
+  },
+  "capabilities": [
+    {
+      "capability_id": "DM8-CAP-01",
+      "capability_name": "SELECT * field values",
+      "sql": "SELECT * FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" ORDER BY \"ID\" LIMIT 5",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.217746+00:00",
+      "columns": [
+        "ID",
+        "USERNAME",
+        "EMAIL",
+        "DEPARTMENT",
+        "SALARY",
+        "CREATED_AT"
+      ],
+      "rows": [
+        {
+          "ID": 1,
+          "USERNAME": "Zhang Wei",
+          "EMAIL": "zhang.wei@example.com",
+          "DEPARTMENT": "Engineering",
+          "SALARY": "18500.0",
+          "CREATED_AT": "2025-01-03 09:15:00"
+        },
+        {
+          "ID": 2,
+          "USERNAME": "Li Na",
+          "EMAIL": "li.na@example.com",
+          "DEPARTMENT": "Product",
+          "SALARY": "16200.5",
+          "CREATED_AT": "2025-01-05 10:30:00"
+        },
+        {
+          "ID": 3,
+          "USERNAME": "Alice Smith",
+          "EMAIL": "alice.smith@example.com",
+          "DEPARTMENT": "Engineering",
+          "SALARY": "19800.0",
+          "CREATED_AT": "2025-01-07 08:45:00"
+        },
+        {
+          "ID": 4,
+          "USERNAME": "Bob O'Connor",
+          "EMAIL": "bob.oconnor@example.com",
+          "DEPARTMENT": "Sales",
+          "SALARY": "14300.0",
+          "CREATED_AT": "2025-01-09 14:20:00"
+        },
+        {
+          "ID": 5,
+          "USERNAME": "Wang Xiaoming",
+          "EMAIL": null,
+          "DEPARTMENT": "Support",
+          "SALARY": null,
+          "CREATED_AT": "2025-01-12 11:00:00"
+        }
+      ],
+      "row_count": 5,
+      "truncated": false,
+      "max_rows": 5,
+      "execution_time_ms": 455,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-02",
+      "capability_name": "WHERE filter",
+      "sql": "SELECT * FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_ORDERS\" WHERE \"STATUS\" = 'completed' ORDER BY \"ID\"",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.674344+00:00",
+      "columns": [
+        "ID",
+        "USER_ID",
+        "PRODUCT_NAME",
+        "AMOUNT",
+        "STATUS",
+        "CREATED_AT"
+      ],
+      "rows": [
+        {
+          "ID": 1,
+          "USER_ID": 1,
+          "PRODUCT_NAME": "Dify Pro License",
+          "AMOUNT": "99.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-01 09:00:00"
+        },
+        {
+          "ID": 2,
+          "USER_ID": 1,
+          "PRODUCT_NAME": "SQL Connector",
+          "AMOUNT": "29.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-02 10:00:00"
+        },
+        {
+          "ID": 4,
+          "USER_ID": 3,
+          "PRODUCT_NAME": "Analytics Pack",
+          "AMOUNT": "199.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-04 12:00:00"
+        },
+        {
+          "ID": 6,
+          "USER_ID": 5,
+          "PRODUCT_NAME": "Support Add-on",
+          "AMOUNT": "19.99",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-06 14:00:00"
+        },
+        {
+          "ID": 8,
+          "USER_ID": 7,
+          "PRODUCT_NAME": "API Credits",
+          "AMOUNT": "250.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-08 16:00:00"
+        },
+        {
+          "ID": 10,
+          "USER_ID": 9,
+          "PRODUCT_NAME": "Finance Dashboard",
+          "AMOUNT": "159.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-10 09:30:00"
+        },
+        {
+          "ID": 12,
+          "USER_ID": 11,
+          "PRODUCT_NAME": "Automation Bundle",
+          "AMOUNT": "299.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-12 11:30:00"
+        },
+        {
+          "ID": 13,
+          "USER_ID": 12,
+          "PRODUCT_NAME": "Help Center Theme",
+          "AMOUNT": "39.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-13 12:30:00"
+        },
+        {
+          "ID": 15,
+          "USER_ID": 2,
+          "PRODUCT_NAME": "Priority Queue",
+          "AMOUNT": "59.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-15 14:30:00"
+        },
+        {
+          "ID": 17,
+          "USER_ID": 4,
+          "PRODUCT_NAME": "Sales Playbook",
+          "AMOUNT": "45.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-17 16:30:00"
+        },
+        {
+          "ID": 19,
+          "USER_ID": 6,
+          "PRODUCT_NAME": "Email Integration",
+          "AMOUNT": "25.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-19 09:45:00"
+        },
+        {
+          "ID": 21,
+          "USER_ID": 8,
+          "PRODUCT_NAME": "Read-only Token",
+          "AMOUNT": "12.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-21 11:45:00"
+        },
+        {
+          "ID": 22,
+          "USER_ID": 9,
+          "PRODUCT_NAME": "SSO Add-on",
+          "AMOUNT": "180.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-22 12:45:00"
+        },
+        {
+          "ID": 24,
+          "USER_ID": 11,
+          "PRODUCT_NAME": "Agent Evaluation",
+          "AMOUNT": "220.0",
+          "STATUS": "completed",
+          "CREATED_AT": "2025-02-24 14:45:00"
+        }
+      ],
+      "row_count": 14,
+      "truncated": false,
+      "max_rows": 100,
+      "execution_time_ms": 29,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-03",
+      "capability_name": "ORDER BY and max_rows first three IDs",
+      "sql": "SELECT * FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" ORDER BY \"ID\"",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.702513+00:00",
+      "columns": [
+        "ID",
+        "USERNAME",
+        "EMAIL",
+        "DEPARTMENT",
+        "SALARY",
+        "CREATED_AT"
+      ],
+      "rows": [
+        {
+          "ID": 1,
+          "USERNAME": "Zhang Wei",
+          "EMAIL": "zhang.wei@example.com",
+          "DEPARTMENT": "Engineering",
+          "SALARY": "18500.0",
+          "CREATED_AT": "2025-01-03 09:15:00"
+        },
+        {
+          "ID": 2,
+          "USERNAME": "Li Na",
+          "EMAIL": "li.na@example.com",
+          "DEPARTMENT": "Product",
+          "SALARY": "16200.5",
+          "CREATED_AT": "2025-01-05 10:30:00"
+        },
+        {
+          "ID": 3,
+          "USERNAME": "Alice Smith",
+          "EMAIL": "alice.smith@example.com",
+          "DEPARTMENT": "Engineering",
+          "SALARY": "19800.0",
+          "CREATED_AT": "2025-01-07 08:45:00"
+        }
+      ],
+      "row_count": 3,
+      "truncated": true,
+      "max_rows": 3,
+      "execution_time_ms": 31,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-04",
+      "capability_name": "LIMIT",
+      "sql": "SELECT * FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" ORDER BY \"ID\" LIMIT 5",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.735051+00:00",
+      "columns": [
+        "ID",
+        "USERNAME",
+        "EMAIL",
+        "DEPARTMENT",
+        "SALARY",
+        "CREATED_AT"
+      ],
+      "rows": [
+        {
+          "ID": 1,
+          "USERNAME": "Zhang Wei",
+          "EMAIL": "zhang.wei@example.com",
+          "DEPARTMENT": "Engineering",
+          "SALARY": "18500.0",
+          "CREATED_AT": "2025-01-03 09:15:00"
+        },
+        {
+          "ID": 2,
+          "USERNAME": "Li Na",
+          "EMAIL": "li.na@example.com",
+          "DEPARTMENT": "Product",
+          "SALARY": "16200.5",
+          "CREATED_AT": "2025-01-05 10:30:00"
+        },
+        {
+          "ID": 3,
+          "USERNAME": "Alice Smith",
+          "EMAIL": "alice.smith@example.com",
+          "DEPARTMENT": "Engineering",
+          "SALARY": "19800.0",
+          "CREATED_AT": "2025-01-07 08:45:00"
+        },
+        {
+          "ID": 4,
+          "USERNAME": "Bob O'Connor",
+          "EMAIL": "bob.oconnor@example.com",
+          "DEPARTMENT": "Sales",
+          "SALARY": "14300.0",
+          "CREATED_AT": "2025-01-09 14:20:00"
+        },
+        {
+          "ID": 5,
+          "USERNAME": "Wang Xiaoming",
+          "EMAIL": null,
+          "DEPARTMENT": "Support",
+          "SALARY": null,
+          "CREATED_AT": "2025-01-12 11:00:00"
+        }
+      ],
+      "row_count": 5,
+      "truncated": false,
+      "max_rows": 100,
+      "execution_time_ms": 30,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-05",
+      "capability_name": "COUNT(*) actual value",
+      "sql": "SELECT COUNT(*) AS \"USER_COUNT\" FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\"",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.765282+00:00",
+      "columns": [
+        "USER_COUNT"
+      ],
+      "rows": [
+        {
+          "USER_COUNT": 12
+        }
+      ],
+      "row_count": 1,
+      "truncated": false,
+      "max_rows": 10,
+      "execution_time_ms": 30,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-06",
+      "capability_name": "GROUP BY average salary",
+      "sql": "SELECT \"DEPARTMENT\", AVG(\"SALARY\") AS \"AVERAGE_SALARY\" FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" GROUP BY \"DEPARTMENT\" ORDER BY \"DEPARTMENT\"",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.796398+00:00",
+      "columns": [
+        "DEPARTMENT",
+        "AVERAGE_SALARY"
+      ],
+      "rows": [
+        {
+          "DEPARTMENT": null,
+          "AVERAGE_SALARY": "13200"
+        },
+        {
+          "DEPARTMENT": "Engineering",
+          "AVERAGE_SALARY": "19237.5"
+        },
+        {
+          "DEPARTMENT": "Finance",
+          "AVERAGE_SALARY": "16900"
+        },
+        {
+          "DEPARTMENT": "Marketing",
+          "AVERAGE_SALARY": "15100.75"
+        },
+        {
+          "DEPARTMENT": "Product",
+          "AVERAGE_SALARY": "16000.25"
+        },
+        {
+          "DEPARTMENT": "Sales",
+          "AVERAGE_SALARY": "14300"
+        },
+        {
+          "DEPARTMENT": "Support",
+          "AVERAGE_SALARY": "12800"
+        }
+      ],
+      "row_count": 7,
+      "truncated": false,
+      "max_rows": 20,
+      "execution_time_ms": 35,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-07",
+      "capability_name": "JOIN",
+      "sql": "SELECT U.\"USERNAME\", O.\"PRODUCT_NAME\", O.\"AMOUNT\" FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" U JOIN \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_ORDERS\" O ON U.\"ID\" = O.\"USER_ID\" ORDER BY O.\"ID\" LIMIT 10",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.831446+00:00",
+      "columns": [
+        "USERNAME",
+        "PRODUCT_NAME",
+        "AMOUNT"
+      ],
+      "rows": [
+        {
+          "USERNAME": "Zhang Wei",
+          "PRODUCT_NAME": "Dify Pro License",
+          "AMOUNT": "99.0"
+        },
+        {
+          "USERNAME": "Zhang Wei",
+          "PRODUCT_NAME": "SQL Connector",
+          "AMOUNT": "29.0"
+        },
+        {
+          "USERNAME": "Li Na",
+          "PRODUCT_NAME": "Workflow Template",
+          "AMOUNT": "49.5"
+        },
+        {
+          "USERNAME": "Alice Smith",
+          "PRODUCT_NAME": "Analytics Pack",
+          "AMOUNT": "199.0"
+        },
+        {
+          "USERNAME": "Bob O'Connor",
+          "PRODUCT_NAME": "Team Seats x5",
+          "AMOUNT": "125.0"
+        },
+        {
+          "USERNAME": "Wang Xiaoming",
+          "PRODUCT_NAME": "Support Add-on",
+          "AMOUNT": "19.99"
+        },
+        {
+          "USERNAME": "Emma and Co.",
+          "PRODUCT_NAME": "Campaign Kit",
+          "AMOUNT": "79.0"
+        },
+        {
+          "USERNAME": "Chen Chen",
+          "PRODUCT_NAME": "API Credits",
+          "AMOUNT": "250.0"
+        },
+        {
+          "USERNAME": "David Brown",
+          "PRODUCT_NAME": "Starter Plan",
+          "AMOUNT": "9.99"
+        },
+        {
+          "USERNAME": "Zhao Min",
+          "PRODUCT_NAME": "Finance Dashboard",
+          "AMOUNT": "159.0"
+        }
+      ],
+      "row_count": 10,
+      "truncated": false,
+      "max_rows": 100,
+      "execution_time_ms": 26,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-08",
+      "capability_name": "Unicode literal",
+      "sql": "SELECT '中文测试' AS \"UNICODE_TEXT\" FROM DUAL",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.858147+00:00",
+      "columns": [
+        "UNICODE_TEXT"
+      ],
+      "rows": [
+        {
+          "UNICODE_TEXT": "中文测试"
+        }
+      ],
+      "row_count": 1,
+      "truncated": false,
+      "max_rows": 1,
+      "execution_time_ms": 32,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-09",
+      "capability_name": "NULL to JSON null",
+      "sql": "SELECT \"ID\", \"USERNAME\", \"EMAIL\", \"SALARY\" FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" WHERE \"EMAIL\" IS NULL OR \"SALARY\" IS NULL ORDER BY \"ID\"",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.890154+00:00",
+      "columns": [
+        "ID",
+        "USERNAME",
+        "EMAIL",
+        "SALARY"
+      ],
+      "rows": [
+        {
+          "ID": 5,
+          "USERNAME": "Wang Xiaoming",
+          "EMAIL": null,
+          "SALARY": null
+        },
+        {
+          "ID": 12,
+          "USERNAME": "Noah Kim",
+          "EMAIL": null,
+          "SALARY": "12800.0"
+        }
+      ],
+      "row_count": 2,
+      "truncated": false,
+      "max_rows": 10,
+      "execution_time_ms": 32,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-10",
+      "capability_name": "JSON text serialization",
+      "sql": "SELECT '{\"source\"' || CHR(58) || '\"dm8\",\"ok\"' || CHR(58) || 'true,\"count\"' || CHR(58) || '12}' AS \"JSON_TEXT\" FROM DUAL",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.922544+00:00",
+      "columns": [
+        "JSON_TEXT"
+      ],
+      "rows": [
+        {
+          "JSON_TEXT": "{\"source\":\"dm8\",\"ok\":true,\"count\":12}"
+        }
+      ],
+      "row_count": 1,
+      "truncated": false,
+      "max_rows": 1,
+      "execution_time_ms": 31,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-11",
+      "capability_name": "CLOB/TEXT read",
+      "sql": "SELECT \"ID\", \"EVENT_TYPE\", \"EVENT_MESSAGE\" FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_LOGS\" WHERE \"ID\" = 5",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.953068+00:00",
+      "columns": [
+        "ID",
+        "EVENT_TYPE",
+        "EVENT_MESSAGE"
+      ],
+      "rows": [
+        {
+          "ID": 5,
+          "EVENT_TYPE": "workflow",
+          "EVENT_MESSAGE": "Workflow integration smoke test."
+        }
+      ],
+      "row_count": 1,
+      "truncated": false,
+      "max_rows": 1,
+      "execution_time_ms": 33,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-12",
+      "capability_name": "Parameter-safe Unicode equivalent",
+      "sql": "SELECT '中文测试' AS \"UNICODE_TEXT\" FROM DUAL",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:53.986860+00:00",
+      "columns": [
+        "UNICODE_TEXT"
+      ],
+      "rows": [
+        {
+          "UNICODE_TEXT": "中文测试"
+        }
+      ],
+      "row_count": 1,
+      "truncated": false,
+      "max_rows": 1,
+      "execution_time_ms": 29,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-13",
+      "capability_name": "Multi-row array shape",
+      "sql": "SELECT \"ID\", \"USERNAME\" FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" ORDER BY \"ID\" LIMIT 10",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:54.015411+00:00",
+      "columns": [
+        "ID",
+        "USERNAME"
+      ],
+      "rows": [
+        {
+          "ID": 1,
+          "USERNAME": "Zhang Wei"
+        },
+        {
+          "ID": 2,
+          "USERNAME": "Li Na"
+        },
+        {
+          "ID": 3,
+          "USERNAME": "Alice Smith"
+        },
+        {
+          "ID": 4,
+          "USERNAME": "Bob O'Connor"
+        },
+        {
+          "ID": 5,
+          "USERNAME": "Wang Xiaoming"
+        },
+        {
+          "ID": 6,
+          "USERNAME": "Emma and Co."
+        },
+        {
+          "ID": 7,
+          "USERNAME": "Chen Chen"
+        },
+        {
+          "ID": 8,
+          "USERNAME": "David Brown"
+        },
+        {
+          "ID": 9,
+          "USERNAME": "Zhao Min"
+        },
+        {
+          "ID": 10,
+          "USERNAME": "Lea Martin"
+        }
+      ],
+      "row_count": 10,
+      "truncated": false,
+      "max_rows": 100,
+      "execution_time_ms": 34,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    },
+    {
+      "capability_id": "DM8-CAP-14",
+      "capability_name": "Empty result",
+      "sql": "SELECT \"ID\", \"USERNAME\" FROM \"PLUGIN_TEST_OWNER\".\"PLUGIN_TEST_USERS\" WHERE \"ID\" = -1",
+      "execution_layer": "tool_json",
+      "workflow_run_id": null,
+      "generated_at": "2026-07-07T06:54:54.050230+00:00",
+      "columns": [
+        "ID",
+        "USERNAME"
+      ],
+      "rows": [],
+      "row_count": 0,
+      "truncated": false,
+      "max_rows": 10,
+      "execution_time_ms": 28,
+      "assertion": {
+        "passed": true,
+        "message": "all checks passed"
+      },
+      "status": "PASS"
+    }
+  ]
+}

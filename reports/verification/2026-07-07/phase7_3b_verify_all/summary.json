@@ -1,0 +1,37 @@
+﻿{
+    "generated_at":  "2026-07-07T07:32:25.8984527Z",
+    "suites":  [
+                   {
+                       "name":  "provider",
+                       "report":  "provider_result.json",
+                       "summary":  {
+                                       "pass":  6,
+                                       "fail":  0,
+                                       "skip":  0
+                                   }
+                   },
+                   {
+                       "name":  "tool",
+                       "report":  "tool_result.json",
+                       "summary":  {
+                                       "pass":  27,
+                                       "fail":  0,
+                                       "skip":  0
+                                   }
+                   },
+                   {
+                       "name":  "workflow",
+                       "report":  "workflow_result.json",
+                       "summary":  {
+                                       "pass":  12,
+                                       "fail":  0,
+                                       "skip":  0
+                                   }
+                   }
+               ],
+    "summary":  {
+                    "pass":  45,
+                    "fail":  0,
+                    "skip":  0
+                }
+}

@@ -1,0 +1,245 @@
+{
+  "suite": "multilingual_stored_data_gate",
+  "generated_at": "2026-07-07T05:51:10.204Z",
+  "summary": {
+    "pass": 1,
+    "fail": 0,
+    "skip": 0
+  },
+  "fixture": {
+    "table": "PLUGIN_TEST_MULTILINGUAL",
+    "row_count": 12,
+    "sha256": "f901d5099bdfd3c4ef6eb98ccb963b48356c8ff2f45e361aed91ab8d8a675a7f",
+    "expected_rows": [
+      {
+        "ID": 1,
+        "LANGUAGE_CODE": "zh-CN",
+        "DISPLAY_NAME": "简体中文",
+        "CONTENT_TEXT": "数据库连接测试",
+        "SPECIAL_TEXT": "中文标点：你好，世界。",
+        "LONG_TEXT": "简体中文长文本：数据库中的真实数据应被插件直接读取并返回。"
+      },
+      {
+        "ID": 2,
+        "LANGUAGE_CODE": "zh-TW",
+        "DISPLAY_NAME": "繁體中文",
+        "CONTENT_TEXT": "資料庫連線測試",
+        "SPECIAL_TEXT": "繁體標點：你好，世界。",
+        "LONG_TEXT": "繁體中文長文本：資料庫中的真實資料應被外掛直接讀取並返回。"
+      },
+      {
+        "ID": 3,
+        "LANGUAGE_CODE": "en",
+        "DISPLAY_NAME": "English",
+        "CONTENT_TEXT": "Database connection test",
+        "SPECIAL_TEXT": "Plain ASCII text",
+        "LONG_TEXT": "English long text: stored rows are retrieved through the plugin path."
+      },
+      {
+        "ID": 4,
+        "LANGUAGE_CODE": "ja",
+        "DISPLAY_NAME": "日本語",
+        "CONTENT_TEXT": "日本語データ検索",
+        "SPECIAL_TEXT": "かな・カナ・漢字",
+        "LONG_TEXT": "日本語の長文：データベースに保存された文字列をそのまま返します。"
+      },
+      {
+        "ID": 5,
+        "LANGUAGE_CODE": "ko",
+        "DISPLAY_NAME": "한국어",
+        "CONTENT_TEXT": "한국어 데이터 조회",
+        "SPECIAL_TEXT": "한글과 문장 부호",
+        "LONG_TEXT": "한국어 긴 텍스트: 데이터베이스에 저장된 값을 그대로 반환합니다."
+      },
+      {
+        "ID": 6,
+        "LANGUAGE_CODE": "fr",
+        "DISPLAY_NAME": "Français",
+        "CONTENT_TEXT": "Café déjà vu — français",
+        "SPECIAL_TEXT": "é è ê ç à ù œ",
+        "LONG_TEXT": "Texte long accentué: l'élève vérifie la récupération des caractères."
+      },
+      {
+        "ID": 7,
+        "LANGUAGE_CODE": "de",
+        "DISPLAY_NAME": "Deutsch",
+        "CONTENT_TEXT": "Straße München",
+        "SPECIAL_TEXT": "ä ö ü Ä Ö Ü ß",
+        "LONG_TEXT": "Deutscher Langtext: Größe, Grüße und Straße bleiben erhalten."
+      },
+      {
+        "ID": 8,
+        "LANGUAGE_CODE": "mixed",
+        "DISPLAY_NAME": "Mixed language",
+        "CONTENT_TEXT": "中文 + English + 日本語 + 한국어",
+        "SPECIAL_TEXT": "Mixed punctuation: 你好, world, こんにちは",
+        "LONG_TEXT": "Mixed long text: 简体中文、繁體中文、English、日本語、한국어 are stored together."
+      },
+      {
+        "ID": 9,
+        "LANGUAGE_CODE": "emoji",
+        "DISPLAY_NAME": "Emoji",
+        "CONTENT_TEXT": "你好，世界 🌍🚀",
+        "SPECIAL_TEXT": "emoji: 😀 🎉 🧪",
+        "LONG_TEXT": "Emoji long text: supplementary Unicode characters should survive JSON output 🌟."
+      },
+      {
+        "ID": 10,
+        "LANGUAGE_CODE": "special",
+        "DISPLAY_NAME": "Special characters",
+        "CONTENT_TEXT": "O'Connor + 100% \\ path",
+        "SPECIAL_TEXT": "apostrophe ' plus + percent % backslash \\",
+        "LONG_TEXT": "Special long text: C:\\temp\\plugin + 100% complete for O'Connor."
+      },
+      {
+        "ID": 11,
+        "LANGUAGE_CODE": "newline",
+        "DISPLAY_NAME": "Multiline text",
+        "CONTENT_TEXT": "第一行\n第二行",
+        "SPECIAL_TEXT": "line1\nline2\nline3",
+        "LONG_TEXT": "多行长文本：\n第一行\n第二行\n第三行"
+      },
+      {
+        "ID": 12,
+        "LANGUAGE_CODE": "null",
+        "DISPLAY_NAME": "Nullable fields",
+        "CONTENT_TEXT": "NULL field check",
+        "SPECIAL_TEXT": null,
+        "LONG_TEXT": null
+      }
+    ]
+  },
+  "entries": [
+    {
+      "database_type": "dm",
+      "status": "PASS",
+      "duration_ms": 321,
+      "driver": "dmPython + dmSQLAlchemy",
+      "row_count": 12,
+      "checked_fields": [
+        "LANGUAGE_CODE",
+        "DISPLAY_NAME",
+        "CONTENT_TEXT",
+        "SPECIAL_TEXT",
+        "LONG_TEXT"
+      ],
+      "result": {
+        "success": true,
+        "database_type": "dm",
+        "execution_time_ms": 47,
+        "columns": [
+          "ID",
+          "LANGUAGE_CODE",
+          "DISPLAY_NAME",
+          "CONTENT_TEXT",
+          "SPECIAL_TEXT",
+          "LONG_TEXT"
+        ],
+        "rows": [
+          {
+            "ID": 1,
+            "LANGUAGE_CODE": "zh-CN",
+            "DISPLAY_NAME": "简体中文",
+            "CONTENT_TEXT": "数据库连接测试",
+            "SPECIAL_TEXT": "中文标点：你好，世界。",
+            "LONG_TEXT": "简体中文长文本：数据库中的真实数据应被插件直接读取并返回。"
+          },
+          {
+            "ID": 2,
+            "LANGUAGE_CODE": "zh-TW",
+            "DISPLAY_NAME": "繁體中文",
+            "CONTENT_TEXT": "資料庫連線測試",
+            "SPECIAL_TEXT": "繁體標點：你好，世界。",
+            "LONG_TEXT": "繁體中文長文本：資料庫中的真實資料應被外掛直接讀取並返回。"
+          },
+          {
+            "ID": 3,
+            "LANGUAGE_CODE": "en",
+            "DISPLAY_NAME": "English",
+            "CONTENT_TEXT": "Database connection test",
+            "SPECIAL_TEXT": "Plain ASCII text",
+            "LONG_TEXT": "English long text: stored rows are retrieved through the plugin path."
+          },
+          {
+            "ID": 4,
+            "LANGUAGE_CODE": "ja",
+            "DISPLAY_NAME": "日本語",
+            "CONTENT_TEXT": "日本語データ検索",
+            "SPECIAL_TEXT": "かな・カナ・漢字",
+            "LONG_TEXT": "日本語の長文：データベースに保存された文字列をそのまま返します。"
+          },
+          {
+            "ID": 5,
+            "LANGUAGE_CODE": "ko",
+            "DISPLAY_NAME": "한국어",
+            "CONTENT_TEXT": "한국어 데이터 조회",
+            "SPECIAL_TEXT": "한글과 문장 부호",
+            "LONG_TEXT": "한국어 긴 텍스트: 데이터베이스에 저장된 값을 그대로 반환합니다."
+          },
+          {
+            "ID": 6,
+            "LANGUAGE_CODE": "fr",
+            "DISPLAY_NAME": "Français",
+            "CONTENT_TEXT": "Café déjà vu — français",
+            "SPECIAL_TEXT": "é è ê ç à ù œ",
+            "LONG_TEXT": "Texte long accentué: l'élève vérifie la récupération des caractères."
+          },
+          {
+            "ID": 7,
+            "LANGUAGE_CODE": "de",
+            "DISPLAY_NAME": "Deutsch",
+            "CONTENT_TEXT": "Straße München",
+            "SPECIAL_TEXT": "ä ö ü Ä Ö Ü ß",
+            "LONG_TEXT": "Deutscher Langtext: Größe, Grüße und Straße bleiben erhalten."
+          },
+          {
+            "ID": 8,
+            "LANGUAGE_CODE": "mixed",
+            "DISPLAY_NAME": "Mixed language",
+            "CONTENT_TEXT": "中文 + English + 日本語 + 한국어",
+            "SPECIAL_TEXT": "Mixed punctuation: 你好, world, こんにちは",
+            "LONG_TEXT": "Mixed long text: 简体中文、繁體中文、English、日本語、한국어 are stored together."
+          },
+          {
+            "ID": 9,
+            "LANGUAGE_CODE": "emoji",
+            "DISPLAY_NAME": "Emoji",
+            "CONTENT_TEXT": "你好，世界 🌍🚀",
+            "SPECIAL_TEXT": "emoji: 😀 🎉 🧪",
+            "LONG_TEXT": "Emoji long text: supplementary Unicode characters should survive JSON output 🌟."
+          },
+          {
+            "ID": 10,
+            "LANGUAGE_CODE": "special",
+            "DISPLAY_NAME": "Special characters",
+            "CONTENT_TEXT": "O'Connor + 100% \\ path",
+            "SPECIAL_TEXT": "apostrophe ' plus + percent % backslash \\",
+            "LONG_TEXT": "Special long text: C:\\temp\\plugin + 100% complete for O'Connor."
+          },
+          {
+            "ID": 11,
+            "LANGUAGE_CODE": "newline",
+            "DISPLAY_NAME": "Multiline text",
+            "CONTENT_TEXT": "第一行\n第二行",
+            "SPECIAL_TEXT": "line1\nline2\nline3",
+            "LONG_TEXT": "多行长文本：\n第一行\n第二行\n第三行"
+          },
+          {
+            "ID": 12,
+            "LANGUAGE_CODE": "null",
+            "DISPLAY_NAME": "Nullable fields",
+            "CONTENT_TEXT": "NULL field check",
+            "SPECIAL_TEXT": null,
+            "LONG_TEXT": null
+          }
+        ],
+        "row_count": 12,
+        "truncated": false,
+        "max_rows": 100,
+        "generated_at": "2026-07-07T05:51:10.204Z",
+        "warning": null,
+        "error": null
+      }
+    }
+  ]
+}
