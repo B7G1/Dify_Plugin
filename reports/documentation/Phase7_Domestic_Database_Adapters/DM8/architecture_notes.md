@@ -10,4 +10,4 @@
 - 运行时：固定 `dify` Compose 项目的 `plugin_daemon` 只读挂载官方 Linux DM client，并注入 `DM_HOME` 与 `LD_LIBRARY_PATH`。
 - Workflow 契约：Start(`sql`, `max_rows`) → Tool → End(`result=Tool.json`)。
 
-该结构复用既有 SQL 校验、结果格式化和 Tool 主流程，没有为 DM8 分叉业务协议。Phase 7.1 状态：**PASS**。
+该结构复用既有 SQL 校验、结果格式化和 Tool 主流程，没有为 DM8 分叉业务协议。Phase 7.1 原门禁状态：**PASS**；该架构结论不代替数据能力逐项验收，后者当前为 PARTIAL PASS。

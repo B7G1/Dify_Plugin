@@ -8,4 +8,4 @@
 - 插件重装或 Start 变量重建会使节点变量 ID 失效，必须重新绑定 `sql` 和 `max_rows`。
 - API Key 只允许通过进程环境变量临时注入，禁止进入报告、脚本、证据或 Git。
 
-最终状态：**PASS**。完整过程见 [`../../Phase7_1_DM8_Adapter/README.md`](../../Phase7_1_DM8_Adapter/README.md)。
+原阶段门禁状态：**PASS**；Compatibility PASS，Data Capability PARTIAL PASS。完整过程见 [`../../Phase7_1_DM8_Adapter/README.md`](../../Phase7_1_DM8_Adapter/README.md)。

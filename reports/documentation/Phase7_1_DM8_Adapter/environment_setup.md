@@ -6,7 +6,7 @@
 
 修订版脚本使用 `DROP USER IF EXISTS ... CASCADE` 清理半执行状态，执行 `SET DEFINE OFF`，并将测试字符串临时改为 ASCII。修订版已完成真实执行，DM8 测试环境准备阶段 PASS。ASCII 初始化数据只用于规避 Windows DIsql 文件编码问题，不取消后续 Unicode 参数绑定、Tool JSON 和 Workflow API UTF-8 验收要求。
 
-Phase 7.1 已于 2026-06-30 完成最终验收并正式标记为 **PASS**；最终证据为 `reports/verification/2026-06-30/workflow_dm8_result.json`。
+Phase 7.1 原自动化门禁于 2026-06-30 标记为 **PASS**；最终证据为 `reports/verification/2026-06-30/workflow_dm8_result.json`。该结论证明环境与既定 Workflow 用例通过，不等价于全部数据能力均有字段级证据；专项审计见 [`data_retrieval_validation.md`](data_retrieval_validation.md)。
 
 ## 运行环境故障记录（2026-06-30 01:18）
 
@@ -53,4 +53,4 @@ FATAL: database "dify_plugin" does not exist
 
 ## 最终状态
 
-DM8 环境、Provider、Tool、Unicode 和 Workflow API 真实验收均已通过。最终 Workflow API 结果为 `12 PASS / 0 FAIL / 0 SKIP`，Phase 7.1 状态为 **PASS**。
+DM8 环境、Provider、既定 Tool、Unicode 和 Workflow API 用例均已真实通过。最终 Workflow API 结果为 `12 PASS / 0 FAIL / 0 SKIP`；Compatibility 为 PASS，Data Capability 因部分值级 artifact 缺口为 PARTIAL PASS。

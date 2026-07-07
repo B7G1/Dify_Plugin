@@ -12,6 +12,8 @@
 | Cold Boot | PASS | Entire Dify stack was stopped, zero project containers remained, then the stack recovered healthy |
 | Verification | PASS | `45 PASS / 0 FAIL / 0 SKIP` |
 | Dify UI screenshot evidence | PASS | Current v1.0 screenshots received final manual owner approval for public display |
+| Environment & Compatibility | PASS | Dify services, DM8 driver/ORM, Provider, Plugin, Workflow and API operated together |
+| DM8 Data Capability | PARTIAL PASS | Real table reads, WHERE, JOIN, LIMIT, multi-row, truncation and Unicode passed; full 14-case value-level evidence is incomplete |
 
 ## Cold-boot facts
 
@@ -32,6 +34,23 @@ After the cold boot, the published Workflow was invoked through the real Workflo
 | `SELECT CURRENT_TIMESTAMP;` | 200 | SUCCESS | one timestamp row in JSON |
 
 The Provider record `DM8 Local Readonly` persisted. Successful post-boot Workflow execution through the provider is runtime evidence that the stored credential remains usable. Secrets were transient and are not recorded here.
+
+These three cold-boot checks prove post-restart connectivity and scalar value transport. They are not, by themselves, evidence for table filtering, relational joins, NULL, CLOB, grouping or empty-result behavior.
+
+## DM8 data retrieval evidence
+
+The broader Workflow suite did execute real DM8 table queries:
+
+| Capability | Evidence | Decision |
+|---|---|---|
+| WHERE | completed-order query returned the deterministic 14 rows | PASS |
+| JOIN | users/orders join returned 10 rows | PASS |
+| LIMIT | user query returned 5 rows | PASS |
+| Multi-row/truncation | ordered user query returned 3 rows and `truncated=true` | PASS |
+| Unicode | returned JSON value was asserted equal to `中文测试` | PASS |
+| Parameter binding | dmPython/SQLAlchemy/Tool JSON preserved the bound Unicode value | PASS |
+
+Most archived Workflow entries contain only row-count excerpts rather than complete desensitized `columns/rows` payloads. GROUP BY, NULL-to-JSON, DM8 JSON type, CLOB and empty-result cases lack final Workflow/API/UI artifacts. Therefore the original automated acceptance remains PASS, while the dedicated data-capability decision is **PARTIAL PASS**. See [`data_retrieval_validation.md`](data_retrieval_validation.md).
 
 ## Automated acceptance
 
@@ -55,4 +74,4 @@ Environment Ready
 YES
 ```
 
-Technical acceptance, screenshot review, and formal baseline sealing are complete. Public Release is READY; no persistence, cold-boot, or automated suite needed to be rerun for this documentation-only closure.
+Technical compatibility acceptance, screenshot review, and formal baseline sealing are complete. Public Release is READY under the original v1.0 scope. A separate value-level DM8 data-capability evidence pass is still required before claiming complete coverage of all 14 retrieval scenarios.
