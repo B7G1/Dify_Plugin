@@ -1,0 +1,5 @@
+﻿{
+    "status":  "NOT_RUN",
+    "required":  "45 PASS / 0 FAIL / 0 SKIP",
+    "reason":  "Use -RunV1Regression with the existing Workflow API environment variables."
+}

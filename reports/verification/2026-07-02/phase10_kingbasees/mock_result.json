@@ -1,0 +1,85 @@
+{
+  "suite": "kingbasees_mock",
+  "evidence_level": "MOCK_ONLY",
+  "generated_at": "2026-07-03T01:26:36.281042+00:00",
+  "entries": [
+    {
+      "case": "validation",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "KingbaseES credentials normalize additively with port 54321 and explicit schema."
+    },
+    {
+      "case": "adapter_discovery",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 18,
+      "message": "Dynamic adapter discovery resolves KingbaseESAdapter."
+    },
+    {
+      "case": "url_contract",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "URL uses kingbase+ksycopg2 and SQLAlchemy redacts the password."
+    },
+    {
+      "case": "connect_args",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "Connection timeout and SSL mode remain isolated connect_args."
+    },
+    {
+      "case": "engine_options",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "Engine options preserve the base short-lived engine contract after the runtime gate."
+    },
+    {
+      "case": "session_timeout",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "Statement timeout is parameterized and transaction-local by design."
+    },
+    {
+      "case": "session_search_path",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "search_path uses a bound parameter; schema text is not concatenated into SQL."
+    },
+    {
+      "case": "session_without_schema",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "Empty schema leaves the server search_path unchanged."
+    },
+    {
+      "case": "existing_adapter_contracts",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 188,
+      "message": "MySQL, PostgreSQL, and DM8 default ports and URL drivers are unchanged."
+    },
+    {
+      "case": "shared_sql_security",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "The unchanged shared validator accepts SELECT and blocks representative unsafe SQL."
+    },
+    {
+      "case": "provider_schema",
+      "status": "MOCK_PASS",
+      "execution_time_ms": 0,
+      "message": "Provider declares KingbaseES as Preview and exposes optional schema without changing Tool inputs."
+    },
+    {
+      "case": "real_driver_runtime",
+      "status": "BLOCKED",
+      "execution_time_ms": 1,
+      "message": "KingbaseES runtime is unavailable. Install the approved Linux amd64 ksycopg2 driver and native client libraries."
+    }
+  ],
+  "summary": {
+    "mock_pass": 11,
+    "fail": 0,
+    "blocked": 1
+  },
+  "real_database_status": "BLOCKED"
+}

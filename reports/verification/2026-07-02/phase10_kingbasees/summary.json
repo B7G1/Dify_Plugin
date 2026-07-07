@@ -1,0 +1,18 @@
+﻿{
+    "phase":  "Phase 10 KingbaseES",
+    "evidence_level":  "MOCK_ONLY",
+    "mock":  {
+                 "mock_pass":  11,
+                 "fail":  0,
+                 "blocked":  1
+             },
+    "real_database":  "BLOCKED",
+    "workflow":  "BLOCKED",
+    "api":  "BLOCKED",
+    "v1_regression":  {
+                          "status":  "NOT_RUN",
+                          "required":  "45 PASS / 0 FAIL / 0 SKIP",
+                          "reason":  "Use -RunV1Regression with the existing Workflow API environment variables."
+                      },
+    "final_acceptance":  "BLOCKED"
+}

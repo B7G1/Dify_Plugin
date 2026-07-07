@@ -1,0 +1,11 @@
+﻿{
+    "status":  "BLOCKED",
+    "reason":  "Real KingbaseES server, approved driver/runtime, and credentials are required.",
+    "missing_environment":  [
+                                "KINGBASE_HOST",
+                                "KINGBASE_DATABASE",
+                                "KINGBASE_USERNAME",
+                                "KINGBASE_PASSWORD"
+                            ],
+    "executed":  false
+}
