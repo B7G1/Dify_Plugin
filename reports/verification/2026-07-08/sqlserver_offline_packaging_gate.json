@@ -1,0 +1,46 @@
+{
+  "suite": "sqlserver_offline_packaging_gate",
+  "generated_at": "2026-07-09T06:36:15.321911+00:00",
+  "status": "PASS",
+  "python": "3.12.3",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "checks": {
+    "sqlalchemy_import": {
+      "ok": true,
+      "version": "2.0.51"
+    },
+    "pymssql_import": {
+      "ok": true,
+      "version": "2.3.13"
+    },
+    "sqlalchemy_url": {
+      "ok": true,
+      "drivername": "mssql+pymssql",
+      "dialect_name": "mssql"
+    },
+    "dialect_load": {
+      "ok": true,
+      "dialect_name": "mssql",
+      "driver": "pymssql"
+    },
+    "adapter_import": {
+      "ok": true,
+      "class": "SQLServerAdapter"
+    },
+    "adapter_url_build": {
+      "ok": true,
+      "drivername": "mssql+pymssql",
+      "dialect_name": "mssql",
+      "safe_url_has_password": false
+    },
+    "connect_args": {
+      "ok": true,
+      "value": {
+        "login_timeout": 5,
+        "timeout": 5
+      }
+    }
+  },
+  "safe_url": "mssql+pymssql://plugin_readonly:***@127.0.0.1:1433/plugin_test",
+  "error": null
+}

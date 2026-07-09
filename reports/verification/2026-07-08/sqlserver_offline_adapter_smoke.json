@@ -1,0 +1,85 @@
+{
+  "suite": "sqlserver_adapter_smoke",
+  "generated_at": "2026-07-09T06:36:29.596413+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "safe_url": "mssql+pymssql://plugin_readonly:***@127.0.0.1:1433/plugin_test",
+  "checks": {
+    "adapter_import": {
+      "ok": true
+    },
+    "url_build": {
+      "ok": true,
+      "drivername": "mssql+pymssql",
+      "dialect_name": "mssql"
+    },
+    "engine_creation": {
+      "ok": true
+    },
+    "select_1": {
+      "ok": true,
+      "row_count": 1,
+      "rows": [
+        {
+          "probe_value": 1
+        }
+      ]
+    },
+    "top_5": {
+      "ok": true,
+      "row_count": 5,
+      "rows": [
+        {
+          "id": 1,
+          "username": "alice",
+          "display_name": "Alice",
+          "department": "Engineering",
+          "created_at": "2026-01-01 09:00:00"
+        },
+        {
+          "id": 2,
+          "username": "zhang_wei",
+          "display_name": "张伟",
+          "department": "研发部",
+          "created_at": "2026-01-02 09:00:00"
+        },
+        {
+          "id": 3,
+          "username": "li_na",
+          "display_name": "李娜",
+          "department": "财务部",
+          "created_at": "2026-01-03 09:00:00"
+        },
+        {
+          "id": 4,
+          "username": "emoji_user",
+          "display_name": "测试用户🚀",
+          "department": null,
+          "created_at": "2026-01-04 09:00:00"
+        },
+        {
+          "id": 5,
+          "username": "readonly",
+          "display_name": "只读账号测试",
+          "department": "Quality",
+          "created_at": "2026-01-05 09:00:00"
+        }
+      ]
+    },
+    "unicode_read": {
+      "ok": true,
+      "values": [
+        "Alice",
+        "张伟",
+        "李娜",
+        "测试用户🚀",
+        "只读账号测试"
+      ]
+    },
+    "schema_qualified_read": {
+      "ok": true,
+      "schema": "plugin_test"
+    }
+  },
+  "error": null
+}
