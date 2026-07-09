@@ -1,0 +1,178 @@
+{
+  "phase": "Phase 8.9 - SQL Server verification integration gate",
+  "generated_at": "2026-07-09T07:38:48.235877Z",
+  "verdict": "PASS",
+  "provider": "li_zijun/db_query_extended/db_query_extended",
+  "tool": "db_query_extended",
+  "credential_name": "SQL Server Local Readonly",
+  "connection": {
+    "database_type": "sqlserver",
+    "host": "host.docker.internal",
+    "port": "1433",
+    "database": "plugin_test",
+    "schema": "plugin_test",
+    "username": "plugin_readonly",
+    "password_recorded": false
+  },
+  "provider_credential_validation": {
+    "credential_found": true,
+    "runtime_validate_credentials": true,
+    "credential_name": "SQL Server Local Readonly"
+  },
+  "cases": {
+    "select_1": {
+      "columns": [
+        "probe_value"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 91,
+      "generated_at": "2026-07-09T07:38:59.679Z",
+      "max_rows": 10,
+      "row_count": 1,
+      "rows": [
+        {
+          "probe_value": 1
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    },
+    "top_5": {
+      "columns": [
+        "id",
+        "username",
+        "display_name",
+        "department",
+        "created_at"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 74,
+      "generated_at": "2026-07-09T07:38:59.787Z",
+      "max_rows": 10,
+      "row_count": 5,
+      "rows": [
+        {
+          "created_at": "2026-01-01 09:00:00",
+          "department": "Engineering",
+          "display_name": "Alice",
+          "id": 1,
+          "username": "alice"
+        },
+        {
+          "created_at": "2026-01-02 09:00:00",
+          "department": "研发部",
+          "display_name": "张伟",
+          "id": 2,
+          "username": "zhang_wei"
+        },
+        {
+          "created_at": "2026-01-03 09:00:00",
+          "department": "财务部",
+          "display_name": "李娜",
+          "id": 3,
+          "username": "li_na"
+        },
+        {
+          "created_at": "2026-01-04 09:00:00",
+          "department": null,
+          "display_name": "测试用户🚀",
+          "id": 4,
+          "username": "emoji_user"
+        },
+        {
+          "created_at": "2026-01-05 09:00:00",
+          "department": "Quality",
+          "display_name": "只读账号测试",
+          "id": 5,
+          "username": "readonly"
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    },
+    "unicode_fixture_read": {
+      "columns": [
+        "id",
+        "event_type",
+        "message"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 76,
+      "generated_at": "2026-07-09T07:38:59.898Z",
+      "max_rows": 10,
+      "row_count": 3,
+      "rows": [
+        {
+          "event_type": "LOGIN",
+          "id": 1,
+          "message": "Alice logged in"
+        },
+        {
+          "event_type": "查询",
+          "id": 2,
+          "message": "中文日志测试"
+        },
+        {
+          "event_type": "UNICODE",
+          "id": 3,
+          "message": "Unicode 与 Emoji 🚀"
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    },
+    "schema_qualified_read": {
+      "columns": [
+        "log_count"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 69,
+      "generated_at": "2026-07-09T07:39:00.005Z",
+      "max_rows": 10,
+      "row_count": 1,
+      "rows": [
+        {
+          "log_count": 3
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    }
+  },
+  "output_structure_check": {
+    "required_keys": [
+      "columns",
+      "rows",
+      "row_count",
+      "truncated",
+      "max_rows"
+    ],
+    "all_cases_have_required_keys": true
+  },
+  "sqlserver_specific_checks": {
+    "database_type_sqlserver": true,
+    "select_1_pass": true,
+    "top_query_pass": true,
+    "unicode_fixture_read_pass": true,
+    "schema_qualified_read_pass": true
+  },
+  "secret_hygiene": {
+    "password_recorded": false,
+    "token_recorded": false
+  },
+  "error": null,
+  "plugin": {
+    "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@<redacted>",
+    "database_type_observed": [
+      "sqlserver"
+    ]
+  }
+}
