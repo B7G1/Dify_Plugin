@@ -1,0 +1,69 @@
+{
+  "suite": "sqlserver_driver_probe",
+  "generated_at": "2026-07-09T03:33:49.779939+00:00",
+  "status": "BLOCKED",
+  "reason": "MISSING_ENV",
+  "exit_code": 2,
+  "python": {
+    "version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "executable": "/usr/bin/python3"
+  },
+  "platform": {
+    "system": "Linux",
+    "release": "6.6.87.2-microsoft-standard-WSL2",
+    "machine": "x86_64"
+  },
+  "checks": {
+    "sqlalchemy_import": {
+      "ok": true,
+      "module": "sqlalchemy",
+      "version": "2.0.51"
+    },
+    "pymssql_import": {
+      "ok": true,
+      "module": "pymssql",
+      "version": "2.3.13"
+    },
+    "url_build": {
+      "ok": true,
+      "drivername": "mssql+pymssql",
+      "dialect_name": "mssql",
+      "safe_url_has_password": false
+    },
+    "dialect_load": {
+      "ok": true,
+      "dialect_name": "mssql",
+      "driver": "pymssql"
+    }
+  },
+  "connection_env": {
+    "required_names": [
+      "SQLSERVER_HOST",
+      "SQLSERVER_PORT",
+      "SQLSERVER_DATABASE",
+      "SQLSERVER_USERNAME",
+      "SQLSERVER_PASSWORD"
+    ],
+    "optional_defaults": {
+      "SQLSERVER_PORT": "1433",
+      "SQLSERVER_SCHEMA": "plugin_test",
+      "SQLSERVER_CONNECT_TIMEOUT": "5"
+    },
+    "present_names": [],
+    "missing_env": [
+      "SQLSERVER_HOST",
+      "SQLSERVER_PORT",
+      "SQLSERVER_DATABASE",
+      "SQLSERVER_USERNAME",
+      "SQLSERVER_PASSWORD"
+    ],
+    "schema": "plugin_test",
+    "host": "",
+    "port": 1433,
+    "database": "",
+    "username": ""
+  },
+  "safe_url": "mssql+pymssql://probe_user:***@localhost:1433/plugin_test",
+  "connection_probe": null,
+  "error": null
+}
