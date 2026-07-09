@@ -1,0 +1,90 @@
+{
+  "suite": "workflow",
+  "generated_at": "2026-06-29T02:47:51.191527+00:00",
+  "entries": [
+    {
+      "target": "dify_workflow",
+      "case": "select_1",
+      "status": "PASS",
+      "execution_time_ms": 307,
+      "message": "{\"workflow_run_id\": \"5b3a4972-0233-488c-8dad-520ef09a5c14\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 1, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "limit_5",
+      "status": "PASS",
+      "execution_time_ms": 236,
+      "message": "{\"workflow_run_id\": \"7aba2091-407b-44df-ad99-91a09c38f258\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 5, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "count",
+      "status": "PASS",
+      "execution_time_ms": 227,
+      "message": "{\"workflow_run_id\": \"3f9b063b-5257-48a9-aa6f-75e8bd3524c3\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 1, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "where",
+      "status": "PASS",
+      "execution_time_ms": 251,
+      "message": "{\"workflow_run_id\": \"fdbb20ad-713b-428b-a515-020fcbb67221\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 14, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "join",
+      "status": "PASS",
+      "execution_time_ms": 276,
+      "message": "{\"workflow_run_id\": \"ace2355e-d3e7-4f5c-ac3a-fd9ce4b7d9e5\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 10, \"truncated\": false, \"error_type\": null}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "max_rows",
+      "status": "PASS",
+      "execution_time_ms": 234,
+      "message": "{\"workflow_run_id\": \"bd6c0f56-4c4a-4a51-a81c-16c910df8746\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": true, \"row_count\": 3, \"truncated\": true, \"error_type\": null}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "drop",
+      "status": "PASS",
+      "execution_time_ms": 167,
+      "message": "{\"workflow_run_id\": \"ee20f753-4936-421d-b572-b9b717b80583\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "update",
+      "status": "PASS",
+      "execution_time_ms": 159,
+      "message": "{\"workflow_run_id\": \"ed34d448-6505-44a1-9037-10e51190bc38\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "delete",
+      "status": "PASS",
+      "execution_time_ms": 160,
+      "message": "{\"workflow_run_id\": \"ed6ff014-3cf8-4df0-9f47-6a94d0cbdfed\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "alter",
+      "status": "PASS",
+      "execution_time_ms": 162,
+      "message": "{\"workflow_run_id\": \"ba778fad-2967-4416-859e-11c5d71514f1\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    },
+    {
+      "target": "dify_workflow",
+      "case": "create",
+      "status": "PASS",
+      "execution_time_ms": 176,
+      "message": "{\"workflow_run_id\": \"060ea71f-19bf-48ef-b30c-ad60a39d71f9\", \"status\": \"succeeded\", \"total_steps\": 3, \"success\": false, \"row_count\": 0, \"truncated\": false, \"error_type\": \"ReadOnlyViolationError\"}"
+    }
+  ],
+  "summary": {
+    "pass": 11,
+    "fail": 0,
+    "skip": 0
+  },
+  "endpoint": "http://localhost/v1/workflows/run",
+  "credential": "DIFY_WORKFLOW_API_KEY (redacted)"
+}

@@ -1,0 +1,87 @@
+﻿{
+    "plugin":  "db_query_extended",
+    "version":  "0.1.0",
+    "status":  "frozen",
+    "frozen_at":  "2026-06-29T08:14:12.0117006Z",
+    "source_commit":  "9705c619a26a690925421fd5dd522d6e644dbc48",
+    "source_worktree_clean":  false,
+    "source_note":  "Release snapshot includes documented working-tree changes not yet committed.",
+    "quality_gate":  {
+                         "pass":  35,
+                         "fail":  0,
+                         "skip":  0,
+                         "report":  "verification/summary.json"
+                     },
+    "compatibility":  {
+                          "dify":  "1.13.3",
+                          "plugin_daemon":  "0.5.3-local",
+                          "python_runner":  "3.12"
+                      },
+    "files":  [
+                  {
+                      "path":  "README.md",
+                      "sha256":  "571d7917cd8d59861808d1ba4fe14abd08104ba4ceb1ddfee05a9cf29a572e4f",
+                      "bytes":  1713
+                  },
+                  {
+                      "path":  "RELEASE_NOTES.md",
+                      "sha256":  "4598a4f26a02e373917aed5538711e07d13395a6eb8b7741f57fe39f423092c1",
+                      "bytes":  1612
+                  },
+                  {
+                      "path":  "CHANGELOG.md",
+                      "sha256":  "65beb00d50b76679add5914ac86eb2db554c7c901bdb36ef84c74b770f28c02d",
+                      "bytes":  1300
+                  },
+                  {
+                      "path":  "adr/ADR-0001-release-freeze.md",
+                      "sha256":  "5bf7494f0987812bc9c02094fee199b117929dd12e8cd5fb30dd947e689c2e50",
+                      "bytes":  1501
+                  },
+                  {
+                      "path":  "artifacts/db_query_extended-0.1.0.difypkg",
+                      "sha256":  "3ba8952ccfb6c42d3865c28d2c1cc83a879be1add2059affacf3d7e1b878736a",
+                      "bytes":  18590127
+                  },
+                  {
+                      "path":  "verification/provider_result.json",
+                      "sha256":  "0f37a51def245b7c81169837576a399beb76e5434c21894d37451f4fa0c90cc7",
+                      "bytes":  989
+                  },
+                  {
+                      "path":  "verification/tool_result.json",
+                      "sha256":  "31157defd269094d7531d59161173a7374663e8cf6f7c0ca3c713cf710fd2cc3",
+                      "bytes":  5050
+                  },
+                  {
+                      "path":  "verification/workflow_result.json",
+                      "sha256":  "0cedc6e7f9c5f79f7d613f46bad98cbb3ff42bcf39c03bbe479dff2f8842fc34",
+                      "bytes":  4176
+                  },
+                  {
+                      "path":  "verification/summary.json",
+                      "sha256":  "274bed78045eee42ea73e4219d63df91fc36ba8465faf0f329b37b13256f461a",
+                      "bytes":  1370
+                  },
+                  {
+                      "path":  "metadata/manifest.yaml",
+                      "sha256":  "23f85117f9804d6580f77a56fb94916023be869631605a51c5f08e33012b1b64",
+                      "bytes":  781
+                  },
+                  {
+                      "path":  "metadata/requirements.txt",
+                      "sha256":  "046dc640dc1b8c82c92c98bb82b1d56b284a38a1889f9c7404d8039acc2d5216",
+                      "bytes":  199
+                  },
+                  {
+                      "path":  "metadata/provider/db_query_extended.yaml",
+                      "sha256":  "92799de08609bda917710f1a0a9485ba2c53ec1982c2c010a0b20c82ffc15a0a",
+                      "bytes":  2695
+                  },
+                  {
+                      "path":  "metadata/tools/db_query_extended.yaml",
+                      "sha256":  "c5e63d2edc8b73de6dd35763f651246e43798779ba1abd8160b3128f954b90c4",
+                      "bytes":  2770
+                  }
+              ]
+}

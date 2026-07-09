@@ -1,0 +1,33 @@
+version: 0.1.0
+type: plugin
+author: li_zijun
+name: db_query_extended
+label:
+  en_US: Extended Database Query
+  zh_Hans: 扩展数据库查询
+description:
+  en_US: A read-only SQL query tool for MySQL and PostgreSQL, designed for local database testing and future extension.
+  zh_Hans: 面向本地数据库测试和后续扩展的 MySQL 与 PostgreSQL 只读 SQL 查询工具。
+icon: icon.svg
+icon_dark: icon-dark.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/db_query_extended.yaml
+meta:
+  version: 0.1.0
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 1.0.0
+created_at: 2026-06-21T21:07:24-05:00
+privacy: PRIVACY.md
+verified: false
