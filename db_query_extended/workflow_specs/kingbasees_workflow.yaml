@@ -1,0 +1,62 @@
+kind: design-specification
+version: 1
+status: BLOCKED_REAL_DATABASE
+name: db_query_extended_kingbasees
+description: >-
+  Phase 10 KingbaseES Workflow contract. This is a reviewable specification,
+  not a claim that a Dify Workflow has been created, published, or accepted.
+
+provider:
+  database_type: kingbasees
+  host: localhost
+  port: 54321
+  database: plugin_test
+  schema: plugin_test
+  username: plugin_readonly
+  password_source: DIFY_PROVIDER_SECRET_INPUT
+  credential_validation: BLOCKED
+
+graph:
+  - node: start
+    inputs:
+      sql:
+        type: string
+        required: true
+      max_rows:
+        type: number
+        required: true
+        default: 100
+  - node: db_query_extended
+    provider: db_query_extended
+    tool: db_query_extended
+    bindings:
+      sql: start.sql
+      max_rows: start.max_rows
+      timeout_seconds: 30
+      readonly: true
+      output_format: json
+  - node: end
+    outputs:
+      result: db_query_extended.json
+
+acceptance_cases:
+  - SELECT 1
+  - SELECT '中文测试'
+  - SELECT CURRENT_TIMESTAMP
+  - SELECT * FROM plugin_test.plugin_test_users ORDER BY id LIMIT 5
+  - SELECT COUNT(*) FROM plugin_test.plugin_test_users
+  - max_rows_truncation
+  - dangerous_sql_rejection
+
+api:
+  url_environment: DIFY_KINGBASE_WORKFLOW_API_URL
+  key_environment: DIFY_KINGBASE_WORKFLOW_API_KEY
+  response_mode: blocking
+  status: BLOCKED
+
+frozen_contracts:
+  - Tool JSON Contract
+  - shared SQL Security
+  - Start(sql,max_rows) -> Tool -> End(result)
+  - v1.0 verify_all.ps1 regression
+
