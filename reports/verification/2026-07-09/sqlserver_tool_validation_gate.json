@@ -1,0 +1,175 @@
+{
+  "phase": "Phase 8.8 - SQL Server Tool Validation Gate",
+  "generated_at": "2026-07-09T07:21:15.483389Z",
+  "verdict": "PASS",
+  "plugin": {
+    "provider_id": "li_zijun/db_query_extended/db_query_extended",
+    "tool_name": "db_query_extended",
+    "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@4d1e293d9c5df7a8614e7d5e086a6a8a856a7a76accf835bc18ab6736f84af47",
+    "sqlserver_option_present_in_console_schema": true,
+    "credential_id_used": "bee27082-8838-4e02-8594-9f7501e709e0",
+    "credential_name_used": "SQL Server Local Readonly"
+  },
+  "provider_credential_validation": {
+    "console_credential_present": true,
+    "runtime_validate_credentials": true,
+    "password_recorded": false
+  },
+  "sqlserver_specific_checks": {
+    "top_query_pass": true,
+    "unicode_fixture_read_pass": true,
+    "schema_qualified_read_pass": true,
+    "formal_sqlserver_adapter_indicators": {
+      "database_type_observed": [
+        "sqlserver"
+      ],
+      "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@4d1e293d9c5df7a8614e7d5e086a6a8a856a7a76accf835bc18ab6736f84af47",
+      "sqlserver_option_present_in_console_schema": true
+    }
+  },
+  "output_structure_check": {
+    "required_keys": [
+      "columns",
+      "rows",
+      "row_count",
+      "truncated",
+      "max_rows"
+    ],
+    "all_cases_have_required_keys": true
+  },
+  "cases": {
+    "select_1": {
+      "columns": [
+        "probe_value"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 81,
+      "generated_at": "2026-07-09T07:21:17.430Z",
+      "max_rows": 10,
+      "row_count": 1,
+      "rows": [
+        {
+          "probe_value": 1
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    },
+    "top_5": {
+      "columns": [
+        "id",
+        "username",
+        "display_name",
+        "department",
+        "created_at"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 85,
+      "generated_at": "2026-07-09T07:21:17.558Z",
+      "max_rows": 10,
+      "row_count": 5,
+      "rows": [
+        {
+          "created_at": "2026-01-01 09:00:00",
+          "department": "Engineering",
+          "display_name": "Alice",
+          "id": 1,
+          "username": "alice"
+        },
+        {
+          "created_at": "2026-01-02 09:00:00",
+          "department": "研发部",
+          "display_name": "张伟",
+          "id": 2,
+          "username": "zhang_wei"
+        },
+        {
+          "created_at": "2026-01-03 09:00:00",
+          "department": "财务部",
+          "display_name": "李娜",
+          "id": 3,
+          "username": "li_na"
+        },
+        {
+          "created_at": "2026-01-04 09:00:00",
+          "department": null,
+          "display_name": "测试用户🚀",
+          "id": 4,
+          "username": "emoji_user"
+        },
+        {
+          "created_at": "2026-01-05 09:00:00",
+          "department": "Quality",
+          "display_name": "只读账号测试",
+          "id": 5,
+          "username": "readonly"
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    },
+    "unicode_fixture_read": {
+      "columns": [
+        "id",
+        "event_type",
+        "message"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 79,
+      "generated_at": "2026-07-09T07:21:17.668Z",
+      "max_rows": 10,
+      "row_count": 3,
+      "rows": [
+        {
+          "event_type": "LOGIN",
+          "id": 1,
+          "message": "Alice logged in"
+        },
+        {
+          "event_type": "查询",
+          "id": 2,
+          "message": "中文日志测试"
+        },
+        {
+          "event_type": "UNICODE",
+          "id": 3,
+          "message": "Unicode 与 Emoji 🚀"
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    },
+    "schema_qualified_read": {
+      "columns": [
+        "log_count"
+      ],
+      "database_type": "sqlserver",
+      "error": null,
+      "execution_time_ms": 80,
+      "generated_at": "2026-07-09T07:21:17.790Z",
+      "max_rows": 10,
+      "row_count": 1,
+      "rows": [
+        {
+          "log_count": 3
+        }
+      ],
+      "success": true,
+      "truncated": false,
+      "warning": null
+    }
+  },
+  "security": {
+    "password_recorded": false,
+    "auth_tokens_recorded": false,
+    "notes": [
+      "Deterministic local test credential was used during runtime validation but is not persisted in this artifact."
+    ]
+  }
+}
