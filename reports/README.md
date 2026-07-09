@@ -1,10 +1,10 @@
 # Reports Index
 
-本目录是仓库报告、log、测试数据和可视化地图的主入口。中文汇报先看 [`../当前状态.md`](../当前状态.md)，完整导航看 [`REPORT_MAP.md`](REPORT_MAP.md)。
+本目录是仓库报告、log、测试数据和可视化地图的主入口。中文汇报先看 [`root_reports/当前状态.md`](root_reports/当前状态.md)，完整导航看 [`REPORT_MAP.md`](REPORT_MAP.md)。
 
 ## Recommended Order
 
-1. [`../当前状态.md`](../当前状态.md) — 每次对话后更新的中文汇报状态。
+1. [`root_reports/当前状态.md`](root_reports/当前状态.md) — 每次对话后更新的中文汇报状态。
 2. [`REPORT_MAP.md`](REPORT_MAP.md) — 按日期、进度、分类整理的报告地图。
 3. [`../BASELINE.md`](../BASELINE.md) — frozen environment identity and recovery entry.
 4. [`release/v1.0/`](release/v1.0/README.md) — publishable v1.0 material.

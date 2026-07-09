@@ -7,7 +7,7 @@
 
 | 需要 | 入口 |
 |---|---|
-| 对外中文汇报 | `../当前状态.md` |
+| 对外中文汇报 | `root_reports/当前状态.md` |
 | 当前报告总入口 | `README.md` |
 | v1.0 发布材料 | `release/v1.0/README.md` |
 | Phase 7.1 DM8 最终验收 | `documentation/Phase7_1_DM8_Adapter/README.md` |
@@ -23,7 +23,7 @@
 
 | 分类 | 目录 | 当前内容 |
 |---|---|---|
-| 当前状态 | `../当前状态.md` | 每次对话后中文更新的汇报文件 |
+| 当前状态 | `root_reports/当前状态.md` | 每次对话后中文更新的汇报文件 |
 | 人读报告 | `documentation/` | 68 个文件，按 Phase 归档 |
 | 验证证据 | `verification/` | 71 个文件，按日期归档 JSON / log / 结果 |
 | 可视化地图 | `html_reports/` | 72 个文件，含项目地图、dashboard、HTML 报告 |
@@ -65,8 +65,8 @@
 
 | 目录 | 处理方式 |
 |---|---|
-| `../过往报告/` | 保留原位，作为早期中文报告归档 |
-| `../最新报告/` | 保留原位，视为 2026-06-29 的历史“最新报告”入口 |
+| `root_reports/过往报告/` | 已从仓库根目录集中到 `reports/root_reports/`，作为早期中文报告归档 |
+| `root_reports/最新报告/` | 已从仓库根目录集中到 `reports/root_reports/`，视为 2026-06-29 的历史“最新报告”入口 |
 
 ponytail: 没有搬动 Quarto/HTML 资源目录；等确认所有链接都能重写时再物理迁移。
 
