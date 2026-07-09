@@ -28,6 +28,7 @@
 | `statistics/` | repository and verification statistics |
 | `architecture/` | pointer to the canonical root architecture set |
 | `archive/` | superseded or duplicate material retained for history |
+| `root_reports/` | loose root-level report/render artifacts consolidated without deletion |
 
 ## Current Status
 

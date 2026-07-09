@@ -1,0 +1,12 @@
+Command
+-------
+poetry --version
+
+Output
+------
+Poetry (version 2.4.1)
+
+Note
+----
+db_query_extended has no pyproject.toml and currently uses requirements.txt plus .venv.
+Poetry is installed but does not manage this project environment at the baseline.

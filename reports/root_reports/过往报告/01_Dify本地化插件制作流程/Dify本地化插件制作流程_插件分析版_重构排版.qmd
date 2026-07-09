@@ -1,0 +1,802 @@
+---
+title: "junjiem-db_query 离线插件包静态分析报告"
+toc: true
+toc-location: left
+toc-depth: 4
+number-sections: true
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 4
+    number-sections: true
+    smooth-scroll: true
+    theme: cosmo
+    page-layout: full
+execute:
+  enabled: false
+---
+
+<style>
+body {
+  color: #111827;
+}
+main.content {
+  max-width: 1320px;
+}
+.page-columns .content {
+  grid-column: body-content-start / body-content-end;
+}
+.mermaid {
+  background: #ffffff;
+  text-align: center;
+  font-size: 18px;
+}
+.mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+table {
+  width: 100%;
+  table-layout: auto;
+}
+th, td {
+  vertical-align: top;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.source-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 1rem 0 1.5rem;
+}
+.source-nav-item {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #ffffff;
+}
+.source-nav-item code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.source-nav-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.source-nav-meta {
+  color: #475569;
+  margin-top: 6px;
+}
+@media (max-width: 900px) {
+  .source-nav {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+# junjiem-db_query 离线插件包静态分析报告
+
+本报告基于 `junjiem-db_query_0.0.11-offline.difypkg` 的静态解包结果编写。分析过程未安装插件、未运行插件代码、未修改原始 `.difypkg` 文件，仅阅读解包后的配置、源码、依赖声明与离线 wheel 文件。
+
+解包路径为 `E:\Dify_Plugin\analysis\junjiem-db_query_0.0.11`。该插件是一个 Dify Tool Plugin，核心能力是通过 Tool 参数接收数据库连接信息与 SQL，使用 SQLAlchemy 与数据库驱动执行查询，并把结果以 Markdown 表格或 JSON 返回给 Dify Workflow / Agent。
+
+## 1 插件概览
+
+### 1.1 基础信息
+
+| 项目 | 内容 |
+|---|---|
+| 插件名称 | `db_query` |
+| 插件版本 | `0.0.11` |
+| 作者 | `junjiem` |
+| 插件类型 | `plugin` |
+| Runtime | Python `3.12` |
+| 入口文件 | `main.py` |
+| Provider | `provider/db_query.yaml`、`provider/db_query.py` |
+| Tool | `tools/sql_query.yaml`、`tools/sql_query.py` |
+| 数据库层 | `tools/db_util.py` |
+| 离线特征 | `requirements.txt` 使用 `--no-index --find-links=./wheels/`，并携带 `wheels/` 目录 |
+
+插件包采用 Dify Tool Plugin 的典型分层：`manifest.yaml` 声明插件元信息与入口，Provider 负责插件提供方声明与凭据校验入口，Tool 负责用户可调用工具的参数与执行逻辑，`db_util.py` 封装数据库连接与查询。
+
+### 1.2 插件源码导航
+
+::: {.source-nav}
+::: {.source-nav-item}
+<div class="source-nav-title"><code>manifest.yaml</code></div>
+作用：插件入口配置，声明版本、运行时、Provider、资源权限和 Marketplace 信息。  
+关联对象：<code>provider/db_query.yaml</code>、<code>tools/sql_query.yaml</code>。  
+<div class="source-nav-meta">对应章节：1.3 manifest</div>
+:::
+
+::: {.source-nav-item}
+<div class="source-nav-title"><code>main.py</code></div>
+作用：插件启动入口，调用 Dify Plugin SDK 启动运行时。  
+关联对象：<code>dify_plugin.Plugin</code>。  
+<div class="source-nav-meta">对应章节：1.4 main.py</div>
+:::
+
+::: {.source-nav-item}
+<div class="source-nav-title"><code>provider/db_query.yaml</code></div>
+作用：Provider 声明，关联 Tool YAML 和 Provider Python 文件。  
+关联对象：<code>provider/db_query.py</code>、<code>tools/sql_query.yaml</code>。  
+<div class="source-nav-meta">对应章节：2.1 Provider YAML</div>
+:::
+
+::: {.source-nav-item}
+<div class="source-nav-title"><code>provider/db_query.py</code></div>
+作用：Provider Python 实现，提供 credential 校验入口。  
+关联对象：<code>ToolProvider</code>、<code>tools/db_util.py</code>。  
+<div class="source-nav-meta">对应章节：2.2 Provider Python</div>
+:::
+
+::: {.source-nav-item}
+<div class="source-nav-title"><code>tools/sql_query.yaml</code></div>
+作用：Tool 入参、输出格式和 UI 表单声明。  
+关联对象：<code>tools/sql_query.py</code>。  
+<div class="source-nav-meta">对应章节：3.1 Tool YAML</div>
+:::
+
+::: {.source-nav-item}
+<div class="source-nav-title"><code>tools/sql_query.py</code></div>
+作用：Tool 执行入口，校验参数、限制 SQL 类型、封装返回值。  
+关联对象：<code>tools/db_util.py</code>、<code>tabulate</code>、<code>sqlparse</code>。  
+<div class="source-nav-meta">对应章节：3.2 Tool Python</div>
+:::
+
+::: {.source-nav-item}
+<div class="source-nav-title"><code>tools/db_util.py</code></div>
+作用：数据库连接、SQLAlchemy URL 构造、查询执行与结果转换。  
+关联对象：SQLAlchemy、pandas、数据库 drivers。  
+<div class="source-nav-meta">对应章节：4.1 db_util</div>
+:::
+
+::: {.source-nav-item}
+<div class="source-nav-title"><code>requirements.txt</code> / <code>wheels/</code> / <code>_assets/</code></div>
+作用：依赖声明、离线 wheel 安装策略、插件图标与 Marketplace 展示图片。  
+关联对象：<code>requirements.txt</code>、<code>wheels/</code>、<code>manifest.yaml</code>。  
+<div class="source-nav-meta">对应章节：5 依赖分析</div>
+:::
+:::
+
+### 1.3 manifest {#manifest}
+
+`manifest.yaml` 是 Dify Plugin 的根配置文件。它定义插件身份、运行时、资源限制、权限、Provider 入口与 Marketplace 展示信息。Dify 或 plugin-daemon 加载插件包时，会先读取该文件来判断插件如何启动、有哪些 provider、需要哪些资源。
+
+```yaml
+version: 0.0.11
+type: plugin
+author: junjiem
+name: db_query
+label:
+  en_US: DB Query
+  zh_Hans: 数据库查询
+created_at: 2025-06-17T21:43:31.911109+08:00
+resource:
+  memory: 1048576
+plugins:
+  tools:
+    - provider/db_query.yaml
+meta:
+  version: 0.0.11
+  arch:
+    - amd64
+    - arm64
+```
+
+**作用：** 声明插件身份、版本、类型、资源、Provider 入口与目标架构。  
+**输入：** 插件包根目录中的 YAML 元数据。  
+**输出：** plugin-daemon 可识别的插件加载配置。  
+**关联文件：** `provider/db_query.yaml`、`README.md`、`PRIVACY.md`、`_assets/`。  
+**在插件生命周期中的位置：** 插件安装、加载、运行前的第一层配置入口。
+
+manifest 中的 `resource.memory: 1048576` 表示插件运行时资源声明。`plugins.tools` 指向 `provider/db_query.yaml`，这使 Dify 能找到该插件暴露的 Tool Provider。`meta.arch` 声明 `amd64` 与 `arm64`，但离线 wheels 主要体现 Linux x86_64 / cp312 生态，实际离线可用性仍需要以 wheel 文件平台标签为准。
+
+### 1.4 main.py {#mainpy}
+
+`main.py` 是插件运行进程的入口，通常保持很薄，只负责读取环境变量、启动 SDK runtime，然后把具体能力委托给 Provider 和 Tool。
+
+```python
+import os
+from dify_plugin import Plugin, DifyPluginEnv
+
+plugin = Plugin(DifyPluginEnv(MAX_REQUEST_TIMEOUT=120))
+
+if __name__ == '__main__':
+    plugin.run()
+```
+
+**作用：** 启动 Dify Plugin SDK runtime。  
+**输入：** plugin-daemon 注入的运行环境与请求。  
+**输出：** 一个可与 plugin-daemon 通信的插件进程。  
+**关联文件：** `manifest.yaml`、Provider YAML、Tool Python 文件。  
+**在插件生命周期中的位置：** 插件被加载后，运行期进程启动的入口。
+
+该文件没有业务逻辑。仿写自己的数据库插件时，建议保持类似结构，把数据库连接、参数校验、SQL 执行都放在 Tool 或独立工具层，避免 `main.py` 变成业务容器。
+
+### 1.5 插件包结构图
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"20px"
+}
+}}%%
+flowchart TB
+  P["difypkg<br/>离线插件包"]
+  M["manifest.yaml<br/>插件入口"]
+  R["main.py<br/>运行入口"]
+  V["provider/<br/>Provider"]
+  T["tools/<br/>Tool"]
+  D["db_util.py<br/>数据库层"]
+  W["wheels/<br/>离线依赖"]
+  A["_assets/<br/>展示资源"]
+  G["README / GUIDE / PRIVACY<br/>文档"]
+
+  P --> M
+  P --> R
+  P --> V
+  P --> T
+  T --> D
+  P --> W
+  P --> A
+  P --> G
+```
+
+### 1.6 目录结构摘要
+
+```text
+junjiem-db_query_0.0.11/
+├─ .difyignore
+├─ .env.example
+├─ .verification.dify.json
+├─ GUIDE.md
+├─ main.py
+├─ manifest.yaml
+├─ PRIVACY.md
+├─ README.md
+├─ requirements.txt
+├─ provider/
+│  ├─ db_query.py
+│  └─ db_query.yaml
+├─ tools/
+│  ├─ db_util.py
+│  ├─ sql_query.py
+│  └─ sql_query.yaml
+├─ wheels/
+│  ├─ dify_plugin-0.2.1-py3-none-any.whl
+│  ├─ SQLAlchemy-2.0.35-cp312-...
+│  ├─ PyMySQL-1.1.1-py3-none-any.whl
+│  ├─ psycopg2_binary-2.9.10-cp312-...
+│  ├─ oracledb-2.2.1-cp312-...
+│  ├─ pymssql-2.3.4-cp312-...
+│  └─ 其他依赖 wheel
+└─ _assets/
+   ├─ icon.svg
+   ├─ db_query.png
+   ├─ db_query_chatflow.png
+   ├─ db_query_sql_query.png
+   └─ llm_riddles*.png
+```
+
+## 2 Provider
+
+### 2.1 Provider YAML {#provider-yaml}
+
+`provider/db_query.yaml` 声明 Provider 的身份、显示名称、图标、关联 Tool，以及 Provider Python 源文件。它是 manifest 与具体 Tool 之间的桥梁。
+
+```yaml
+identity:
+  name: db_query
+  author: junjiem
+  label:
+    en_US: DB Query
+    zh_Hans: 数据库查询
+tools:
+  - tools/sql_query.yaml
+extra:
+  python:
+    source: provider/db_query.py
+```
+
+**作用：** 声明 Provider，并把 `tools/sql_query.yaml` 挂到该 Provider 下。  
+**输入：** Provider 身份、展示信息、Tool YAML 路径。  
+**输出：** Dify 可展示和加载的 Provider 定义。  
+**关联文件：** `provider/db_query.py`、`tools/sql_query.yaml`。  
+**在插件生命周期中的位置：** 插件加载后，Dify 构建工具列表和 Provider 面板时使用。
+
+该 Provider YAML 没有声明 `credentials_for_provider`。因此数据库连接参数不是在 Provider 层统一配置，而是作为 Tool 参数传入。这样做更灵活，但不适合生产级数据库插件，因为连接信息会进入每次 Tool 调用链路，也更难集中校验与复用。
+
+### 2.2 Provider Python {#provider-python}
+
+`provider/db_query.py` 继承 Dify Plugin SDK 的 `ToolProvider`，提供 `_validate_credentials` 钩子。当前插件中该函数为空实现。
+
+```python
+from dify_plugin import ToolProvider
+
+class DbQueryProvider(ToolProvider):
+    def _validate_credentials(self, credentials: dict) -> None:
+        pass
+```
+
+**作用：** 提供 Provider 层 credential 校验入口。  
+**输入：** Provider 级 credentials 字典。  
+**输出：** 校验通过则无返回，失败时应抛出异常。  
+**关联文件：** `provider/db_query.yaml`、`tools/db_util.py`。  
+**在插件生命周期中的位置：** 用户配置 Provider 凭据并点击验证时触发。
+
+当前实现没有实际校验逻辑，也不会主动连接数据库测试凭据。若我们开发自己的数据库插件，建议把数据库连接信息放在 Provider credentials 中，并在这里调用类似 `DbUtil.test_sql()` 的逻辑执行轻量只读连通性检查。
+
+## 3 Tool
+
+### 3.1 Tool YAML {#tool-yaml}
+
+`tools/sql_query.yaml` 定义 Dify Workflow / Agent 中用户能看到的工具名称、描述、参数类型、默认值和输出格式。
+
+```yaml
+identity:
+  name: sql_query
+parameters:
+  - name: db_type
+    type: select
+    required: true
+    options:
+      - value: mysql
+      - value: oracle
+      - value: oracle11g
+      - value: postgresql
+      - value: mssql
+  - name: db_password
+    type: secret-input
+    required: true
+  - name: query_sql
+    type: string
+    required: true
+```
+
+**作用：** 声明 Tool 入参和表单展示方式。  
+**输入：** 数据库类型、连接信息、SQL、输出格式。  
+**输出：** Dify 前端可渲染的工具表单与 Agent 可调用的参数 schema。  
+**关联文件：** `tools/sql_query.py`。  
+**在插件生命周期中的位置：** 用户在 Workflow / Agent 中配置和调用 Tool 时使用。
+
+该 Tool 暴露的主要字段包括 `db_type`、`db_host`、`db_port`、`db_username`、`db_password`、`db_name`、`db_properties`、`query_sql` 和 `output_format`。其中 `db_password` 使用 `secret-input`，这是正确方向；但数据库 host、username、password 全部作为 Tool 参数出现，生产环境更适合迁移到 Provider credentials。
+
+### 3.2 Tool Python {#tool-python}
+
+`tools/sql_query.py` 是真正的 Tool 执行入口。它读取参数、做基础校验、用 `sqlparse` 限制单条 SELECT，再调用 `DbUtil.run_query()` 执行查询，最后根据 `output_format` 生成 JSON 或 Markdown。
+
+```python
+class SqlQueryTool(Tool):
+    def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
+        db_type = tool_parameters.get("db_type", "")
+        db_host = tool_parameters.get("db_host", "")
+        db_username = tool_parameters.get("db_username", "")
+        db_password = tool_parameters.get("db_password", "")
+        query_sql = tool_parameters.get("query_sql", "")
+
+        statements = sqlparse.parse(query_sql)
+        if len(statements) != 1 or statements[0].get_type() != "SELECT":
+            raise ValueError("Only one SELECT statement is allowed")
+
+        db = DbUtil(db_type, db_host, db_port, db_username, db_password, db_name, db_properties)
+        records = db.run_query(query_sql)
+```
+
+**作用：** 执行 Tool 调用，完成参数校验、SQL 类型限制与数据库查询。  
+**输入：** Dify 传入的 `tool_parameters`。  
+**输出：** `ToolInvokeMessage`，可为 JSON 或文本消息。  
+**关联文件：** `tools/sql_query.yaml`、`tools/db_util.py`。  
+**在插件生命周期中的位置：** 用户在 Workflow / Agent 中触发 Tool 时执行。
+
+```python
+if output_format == "json":
+    yield self.create_json_message({"records": records})
+else:
+    yield self.create_text_message(
+        tabulate.tabulate(records, headers="keys", tablefmt="github", floatfmt="")
+    )
+```
+
+**作用：** 根据输出格式封装查询结果。  
+**输入：** `DbUtil.run_query()` 返回的 records。  
+**输出：** JSON 消息或 Markdown 表格文本。  
+**关联文件：** `tabulate`、Dify Plugin SDK message API。  
+**在插件生命周期中的位置：** Tool 执行末尾，向 Dify 返回结果。
+
+当前 SQL 安全限制的优点是：只允许单条语句，并且语句类型必须是 `SELECT`。不足是：`SELECT` 仍可能读取敏感表、执行高成本查询，且没有 schema 白名单、表白名单、最大行数、超时控制或字段脱敏策略。
+
+## 4 Database Layer
+
+### 4.1 db_util {#db-util}
+
+`tools/db_util.py` 是数据库适配层。它把插件参数转换为 SQLAlchemy connection string，创建 engine，并使用 pandas 执行查询和转换结果。
+
+```python
+def get_driver_name(self):
+    if self.db_type == "mysql":
+        return "mysql+pymysql"
+    if self.db_type == "oracle" or self.db_type == "oracle11g":
+        return "oracle+oracledb"
+    if self.db_type == "postgresql":
+        return "postgresql+psycopg2"
+    if self.db_type == "mssql":
+        return "mssql+pymssql"
+```
+
+**作用：** 根据 `db_type` 选择 SQLAlchemy dialect 与 driver。  
+**输入：** `mysql`、`oracle`、`oracle11g`、`postgresql`、`mssql`。  
+**输出：** SQLAlchemy driver name。  
+**关联文件：** `requirements.txt`、`tools/sql_query.yaml`。  
+**在插件生命周期中的位置：** 创建数据库 engine 前执行。
+
+```python
+def get_url(self):
+    username = parse.quote_plus(self.db_username)
+    password = parse.quote_plus(self.db_password)
+    host = parse.quote_plus(self.db_host)
+    database = parse.quote_plus(self.db_name)
+    url = f"{self.get_driver_name()}://{username}:{password}@{host}"
+    if self.db_port:
+        url += f":{self.db_port}"
+    if database:
+        url += f"/{database}"
+    return url
+```
+
+**作用：** 构造 SQLAlchemy connection URL。  
+**输入：** 数据库类型、host、port、username、password、database。  
+**输出：** SQLAlchemy 可识别的连接字符串。  
+**关联文件：** `tools/sql_query.py`、数据库 driver。  
+**在插件生命周期中的位置：** Tool 创建 `DbUtil` 实例并准备连接数据库时执行。
+
+```python
+def run_query(self, query_sql: str):
+    query_sql = query_sql.replace("%", "%%")
+    df = pd.read_sql_query(
+        sql=query_sql,
+        con=self.engine,
+        parse_dates="%Y-%m-%d %H:%M:%S",
+    )
+    df = df.fillna("")
+    return self.to_records(df)
+```
+
+**作用：** 执行 SQL 查询，并把 DataFrame 转为 records。  
+**输入：** 单条 SELECT SQL。  
+**输出：** `list[dict]` 风格的记录列表。  
+**关联文件：** `pandas`、SQLAlchemy engine、`tools/sql_query.py`。  
+**在插件生命周期中的位置：** SQL 通过安全检查后，实际访问数据库时执行。
+
+支持数据库与 driver 对应关系如下：
+
+| 数据库 | SQLAlchemy driver name | Python driver |
+|---|---|---|
+| MySQL | `mysql+pymysql` | `PyMySQL` |
+| PostgreSQL | `postgresql+psycopg2` | `psycopg2-binary` |
+| Oracle | `oracle+oracledb` | `oracledb` |
+| Oracle 11g | `oracle+oracledb` | `oracledb`，并额外依赖 thick client 初始化 |
+| SQL Server | `mssql+pymssql` | `pymssql` |
+
+`pandas.read_sql_query()` 参与了 SQL 执行与结果读取，`tabulate` 则在 Tool 层把 records 转成 GitHub 风格 Markdown 表格。`db_util.py` 对空值使用 `fillna("")`，并处理 `Timestamp`、`date`、`UUID`、整数型浮点数等 JSON 友好转换。
+
+## 5 依赖分析 {#依赖分析}
+
+### 5.1 requirements.txt
+
+```txt
+--no-index --find-links=./wheels/
+dify_plugin==0.2.1
+sqlparse==0.5.3
+tabulate==0.9.0
+pandas==2.2.3
+SQLAlchemy==2.0.35
+PyMySQL==1.1.1
+oracledb==2.2.1
+psycopg2-binary==2.9.10
+pymssql==2.3.4
+```
+
+**作用：** 声明插件运行所需 Python 包，并指定从本地 `wheels/` 安装。  
+**输入：** 离线 wheel 目录。  
+**输出：** 插件运行环境依赖集合。  
+**关联文件：** `wheels/`、`manifest.yaml`。  
+**在插件生命周期中的位置：** 插件安装或构建运行环境时使用。
+
+依赖分工如下：
+
+| 依赖 | 作用 |
+|---|---|
+| `dify_plugin==0.2.1` | Dify Plugin SDK |
+| `SQLAlchemy==2.0.35` | 数据库抽象与 engine 管理 |
+| `PyMySQL==1.1.1` | MySQL driver |
+| `psycopg2-binary==2.9.10` | PostgreSQL driver |
+| `oracledb==2.2.1` | Oracle driver |
+| `pymssql==2.3.4` | SQL Server driver |
+| `pandas==2.2.3` | 查询结果读取与 DataFrame 转换 |
+| `tabulate==0.9.0` | Markdown 表格格式化 |
+| `sqlparse==0.5.3` | SQL 解析与语句类型识别 |
+
+### 5.2 offline package {#offline-package}
+
+该包名包含 `offline`，并且 `requirements.txt` 使用 `--no-index --find-links=./wheels/`，说明安装依赖时优先从插件包内的 `wheels/` 读取，不访问 PyPI。`wheels/` 目录中包含 54 个 wheel 文件，平台标签大量出现 `cp312`、`manylinux`、`x86_64`。
+
+这说明插件运行时大概率面向 Python 3.12 的 Linux x86_64 环境。虽然 manifest 声明了 `amd64` 与 `arm64`，但离线安装能否覆盖 arm64 仍取决于实际 wheel 文件是否包含对应架构。
+
+### 5.3 assets {#assets}
+
+`_assets/` 包含插件图标和 Marketplace 展示图片，例如 `icon.svg`、`db_query.png`、`db_query_chatflow.png`、`db_query_sql_query.png` 以及若干示例图。这些资产主要用于 Dify 插件市场或插件详情页展示，不参与运行时逻辑。
+
+## 6 调用链分析
+
+### 6.1 Dify 调用插件运行链路图
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["用户<br/>Workflow / Agent"]
+  B["Dify 后端<br/>发起 Tool 调用"]
+  C["plugin-daemon<br/>管理插件进程"]
+  D["main.py<br/>启动 SDK runtime"]
+  E["Tool _invoke()<br/>读取参数与校验 SQL"]
+  F["DbUtil<br/>创建 engine 并查询"]
+  G["目标数据库<br/>返回 rows"]
+  H["Dify<br/>接收 ToolInvokeMessage"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+  F --> G
+  G --> F
+  F --> E
+  E --> H
+```
+
+### 6.2 静态依赖关系图
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  M["manifest.yaml<br/>插件根配置"]
+  PY["main.py<br/>运行入口"]
+  VY["provider/db_query.yaml<br/>Provider 声明"]
+  VP["provider/db_query.py<br/>凭据校验入口"]
+  TY["tools/sql_query.yaml<br/>Tool 参数 schema"]
+  TP["tools/sql_query.py<br/>Tool 执行逻辑"]
+  DU["tools/db_util.py<br/>数据库工具层"]
+  REQ["requirements.txt<br/>依赖与离线安装"]
+
+  M --> PY
+  M --> VY
+  VY --> VP
+  VY --> TY
+  TY --> TP
+  TP --> DU
+  DU --> REQ
+```
+
+### 6.3 credentials 到 SQL 流程
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["Tool 参数<br/>host / port / user / password"]
+  B["sql_query.py<br/>必填项校验"]
+  C["sqlparse<br/>单语句与 SELECT 校验"]
+  D["DbUtil 初始化<br/>选择 driver"]
+  E["构造 SQLAlchemy URL<br/>创建 engine"]
+  F["pandas.read_sql_query<br/>执行查询"]
+  G["数据库<br/>返回查询结果"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+  F --> G
+```
+
+### 6.4 SQL 返回结果流程
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["数据库 rows"]
+  B["pandas DataFrame<br/>fillna 与类型处理"]
+  C["records<br/>list[dict]"]
+  D{"output_format"}
+  E["JSON 输出<br/>create_json_message"]
+  F["Markdown 输出<br/>tabulate 表格"]
+  G["Dify Workflow / Agent<br/>消费结果"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  D --> F
+  E --> G
+  F --> G
+```
+
+### 6.5 插件内部职责分层图
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["配置层<br/>manifest / provider yaml / tool yaml"]
+  B["入口层<br/>main.py / SDK runtime"]
+  C["业务层<br/>sql_query.py"]
+  D["数据层<br/>db_util.py"]
+  E["依赖层<br/>SQLAlchemy / pandas / drivers"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+```
+
+## 7 风险分析
+
+### 7.1 已有安全设计
+
+插件已经做了两项有价值的限制：一是使用 `secret-input` 接收数据库密码，避免密码作为普通文本字段展示；二是使用 `sqlparse` 限制只允许单条 `SELECT` 语句，降低误执行写操作或多语句注入的风险。
+
+### 7.2 主要风险
+
+| 风险 | 说明 | 建议 |
+|---|---|---|
+| Provider 校验为空 | `_validate_credentials()` 直接 `pass`，不能在配置阶段验证数据库连接 | 在 Provider 层增加连通性测试 |
+| 凭据作为 Tool 参数 | host、username、password 每次随 Tool 调用传入 | 改为 Provider credentials |
+| `SELECT` 限制不充分 | `SELECT` 仍可能读取敏感表或执行高成本查询 | 增加 schema 白名单、表白名单、最大行数和超时 |
+| `db_properties` 直接拼接 | 连接属性可影响 driver 行为 | 限制允许的连接参数集合 |
+| 日志泄露风险 | 如果记录完整 connection URL，可能包含密码 | 日志中必须脱敏 password |
+| 离线 wheels 平台限制 | wheels 体现 cp312 / Linux x86_64 特征 | 打包时按目标 Python ABI 和 CPU 架构准备 wheels |
+| Oracle 11g 环境依赖 | 可能需要 thick client | 在文档与运行环境中明确依赖 |
+
+## 8 对本项目启发
+
+### 8.1 可以复用的结构
+
+适合复用的是整体分层结构：`manifest.yaml` 负责插件声明，Provider YAML 负责挂载 Tool，Provider Python 负责凭据校验，Tool YAML 负责工具参数，Tool Python 负责调用入口，`db_util.py` 负责数据库连接与查询。这个结构清晰，适合我们后续开发本地化数据库 Tool Plugin。
+
+SQLAlchemy 统一 MySQL、PostgreSQL 等数据库连接的思路也值得保留。输出层提供 JSON 和 Markdown 两种格式，适合同时服务 Workflow 自动处理和 Agent 可读展示。
+
+### 8.2 可以参考但不能照搬的代码
+
+不能照搬空的 Provider credential 校验，也不建议照搬“所有连接信息都作为 Tool 参数”的设计。生产插件应把数据库连接配置放到 Provider credentials，并在 Tool 调用中只暴露 `query_sql`、`output_format`、可选 `limit` 等运行参数。
+
+`db_util.py` 中构造 URL 和执行查询的思路可以参考，但需要补充 password 脱敏日志、连接超时、查询超时、最大返回行数、错误分类和更明确的异常消息。
+
+### 8.3 支持 Dameng DM 的扩展点
+
+如果要支持 Dameng DM，至少需要改三处：
+
+1. 在 `tools/sql_query.yaml` 的 `db_type` options 中新增 `dm` 或 `dameng`。
+2. 在 `tools/db_util.py` 的 driver 映射中新增 Dameng 对应的 dialect / driver。
+3. 在 `requirements.txt` 和 `wheels/` 中加入 Dameng Python driver 或 SQLAlchemy dialect 相关依赖。
+
+如果 Dameng driver 不能通过 SQLAlchemy dialect 稳定接入，则需要在 `db_util.py` 中增加一条 native DB-API 执行路径，不强行复用 SQLAlchemy URL。
+
+### 8.4 driver 依赖设计
+
+MySQL 可以继续使用 `PyMySQL`，PostgreSQL 可以使用 `psycopg2-binary` 或按部署要求改为源码版 `psycopg2`。Dameng DM 的 driver 要特别确认 Python 版本、系统平台、授权和 wheel 可用性。离线打包时，必须确保 wheel 的 Python ABI 与插件 runtime 对齐，例如 Python 3.12 对应 `cp312`。
+
+### 8.5 credentials 设计
+
+建议在 Provider 层设计以下 credentials：
+
+| 字段 | 类型 | 建议 |
+|---|---|---|
+| `db_type` | select | MySQL / PostgreSQL / Dameng DM |
+| `db_host` | text-input | 必填 |
+| `db_port` | number | 按数据库提供默认值 |
+| `db_name` | text-input | 必填或按数据库类型决定 |
+| `db_username` | text-input | 必填 |
+| `db_password` | secret-input | 必填 |
+| `connect_timeout` | number | 提供默认值 |
+| `allowed_schemas` | text-input | 可选白名单 |
+| `max_rows` | number | 默认限制返回行数 |
+
+Tool 参数则应尽量收敛为 `query_sql`、`output_format`、可选 `limit`。这样既方便 Workflow / Agent 使用，也能减少敏感信息暴露。
+
+### 8.6 SQL 安全限制
+
+本项目建议至少实现以下限制：
+
+| 限制 | 目的 |
+|---|---|
+| 单语句 | 防止多语句注入 |
+| SELECT-only | 避免写操作 |
+| 禁止危险关键字 | 防止绕过和高危操作 |
+| schema / table 白名单 | 控制可访问范围 |
+| 最大行数 | 防止大结果集拖垮插件 |
+| 查询超时 | 防止长查询阻塞 |
+| 只读数据库账号 | 从数据库权限层兜底 |
+| 日志脱敏 | 避免泄露密码和敏感 SQL |
+
+### 8.7 输出格式设计
+
+建议保留 JSON 和 Markdown 双输出。JSON 应包含稳定 schema，例如：
+
+```json
+{
+  "columns": ["id", "name"],
+  "rows": [{"id": 1, "name": "demo"}],
+  "row_count": 1,
+  "truncated": false
+}
+```
+
+Markdown 适合 Agent 直接展示，但不应作为自动化流程的唯一输出。对于大结果集，应返回截断说明、总行数或建议用户增加过滤条件。
+
+### 8.8 offline 打包注意事项
+
+离线插件打包时要注意 Python runtime、操作系统、CPU 架构和 wheel ABI 的一致性。若 manifest 声明 Python 3.12，则 wheels 应包含 `cp312`。如果目标环境是 Linux amd64，就需要 manylinux x86_64 wheel；如果要支持 arm64，还需要准备对应 arm64 wheel。
+
+离线包中不应包含真实数据库账号、测试密码或内网连接信息。打包前应检查 `README.md`、示例配置、日志和测试文件，避免泄露敏感数据。
+
+## 9 结论
+
+`junjiem-db_query` 是一个结构清晰、适合学习的 Dify Tool Plugin 示例。它展示了从 manifest 到 Provider、Tool、数据库工具层、离线依赖打包的完整链路，也提供了多数据库查询、SQLAlchemy 统一连接、Markdown / JSON 双输出等可复用思路。
+
+对我们自己的本地化数据库插件而言，最值得仿写的是项目结构、Tool 调用链路、SQLAlchemy 适配层和离线 wheels 打包方式。最需要改进的是 Provider 层凭据设计、连接校验、SQL 安全策略、日志脱敏、最大行数与超时控制，以及对 Dameng DM driver 的独立适配。
+
+当前插件适合作为“参考实现”，不建议作为生产代码直接照搬。后续开发应以 MySQL / PostgreSQL 为第一阶段目标，在结构稳定后再扩展 Dameng DM，并把安全限制、凭据管理和离线打包验证作为核心验收项。

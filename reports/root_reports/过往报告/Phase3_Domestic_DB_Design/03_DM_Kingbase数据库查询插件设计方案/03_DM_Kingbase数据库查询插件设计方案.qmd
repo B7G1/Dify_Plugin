@@ -1,0 +1,702 @@
+---
+title: "多数据库查询插件设计方案（含 DM / KingbaseES 扩展）"
+toc: true
+toc-location: right
+toc-depth: 3
+number-sections: true
+format:
+  html:
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    number-sections: true
+    smooth-scroll: true
+    theme: cosmo
+    page-layout: article
+execute:
+  enabled: false
+---
+
+<style>
+body {
+  color: #111827;
+}
+main.content {
+  max-width: 1050px;
+}
+.page-columns .content {
+  grid-column: body-content-start / body-content-end;
+}
+#TOC {
+  font-size: 0.95rem;
+}
+#TOC ul {
+  padding-left: 0.9rem;
+}
+#TOC a {
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+.mermaid {
+  background: #ffffff;
+  text-align: center;
+  font-size: 18px;
+}
+.mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+table {
+  width: 100%;
+  table-layout: auto;
+}
+th, td {
+  vertical-align: top;
+}
+</style>
+
+# 设计需求
+
+这个是一份插件设计文档，我们想要从 0 开始设计一个新的 Dify 数据库查询插件，而且是根据现在已经有了的现有插件 `junjiem-db_query_0.0.11-offline.difypkg` 作为结构参考。导入本地插件之后，我们把它加入到新节点，看其中的用户输入和下滑选择栏，我们发现它已经体现了 Dify 前端下拉栏、Tool 参数、数据库驱动映射、`requirements.txt` 和 `wheels/` 离线依赖组织方式。
+
+所以我们的目标是设计一个多数据库查询插件，而且还要确保基础能力覆盖参考包中已经出现的数据库类型，最后在同一结构中扩展 DM 和 KingbaseES。
+
+- MySQL
+- Oracle
+- Oracle 11g
+- PostgreSQL
+- Microsoft SQL Server
+- DM（达梦数据库）
+- KingbaseES（人大金仓数据库）
+
+同时满足：
+
+- 完全离线部署
+- 本地依赖管理
+- 插件打包导出
+- 导入 Dify 后可作为 Workflow 节点使用
+
+
+## 1. 项目目标
+
+为什么需要这个插件？因为我们希望在 Dify Workflow 中直接查询数据库。这样的话，用户就不需要在工作流外手动查库、复制结果、再粘贴给后续节点了，直接在一个 Tool 节点中完成查询就可以了。
+
+这个插件要解决四个具体问题：
+
+| 问题 | 插件要提供的能力 |
+|---|---|
+| Workflow 需要读取业务数据 | 提供 SQL 查询节点 |
+| 数据库类型不止一种 | 支持 MySQL、Oracle、Oracle11g、PostgreSQL、SQL Server，并扩展 DM、KingbaseES |
+| 部署环境不能访问公网 | 所有依赖本地化，支持离线安装 |
+| 结果要被后续节点使用 | 返回结构化 JSON，同时支持 Markdown 展示 |
+
+我们大概描述这个插件的理想回路就是这样的：
+
+```text
+连接数据库 -> 执行只读 SQL -> 返回查询结果
+```
+
+所以这个项目的目标是：
+
+> 设计一个可离线交付的 Dify 多数据库查询 Tool Plugin，让 Workflow 能以节点形式选择数据库类型、执行只读 SQL，并返回可继续流转的查询结果。
+
+## 2. 总体设计思路
+
+我们打算设计一个 Dify Tool Plugin。用户在 Dify 中通过下拉栏选择数据库类型，填写连接信息，在 Workflow 节点中输入 SQL，插件调用对应数据库驱动执行查询，然后最后再把结果返回给 Dify就可以了。
+
+总体架构图如下：
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"18px"
+}
+}}%%
+flowchart TB
+  A["用户 / Workflow"]
+  B["数据库查询插件<br/>Tool Plugin"]
+  C["数据库驱动层<br/>MySQL / Oracle / Oracle11g / PostgreSQL / SQL Server / DM / KingbaseES"]
+  D["目标数据库"]
+  E["查询结果<br/>JSON / Markdown"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> C
+  C --> B
+  B --> E
+  E --> A
+```
+
+设计思路分为四层：
+
+| 层级 | 设计内容 |
+|---|---|
+| Dify 接入层 | 让插件以 Tool 的方式出现在 Workflow 中 |
+| 参数配置层 | 管理数据库类型、连接信息、SQL 和输出格式 |
+| 数据库适配层 | 按数据库类型选择驱动和连接方式 |
+| 离线交付层 | 将源码、依赖、驱动和资源打包为 `.difypkg` |
+
+这样Dify只需要理解一个 Tool然后把数据库差异留在插件内部处理就可以了。这样的好处就是会人性化很多。
+
+## 3. 模块分类
+
+插件应该拆成哪些部分？
+
+我们看了官方的文档，然后发现这个按职责可以拆成六类：
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"17px"
+}
+}}%%
+flowchart TB
+  A["数据库查询插件"]
+  B["配置模块"]
+  C["SQL 执行模块"]
+  D["数据库适配模块"]
+  E["结果处理模块"]
+  F["打包模块"]
+  G["校验模块"]
+
+  A --> B
+  A --> C
+  A --> D
+  A --> E
+  A --> F
+  A --> G
+```
+
+模块分类如下：
+
+| 模块 | 负责什么 | 不负责什么 |
+|---|---|---|
+| 配置模块 | 声明插件、Provider、Tool、参数表单 | 不执行 SQL |
+| SQL 执行模块 | 接收 SQL、校验 SQL、发起查询 | 不关心具体驱动安装 |
+| 数据库适配模块 | 处理 MySQL、Oracle、Oracle11g、PostgreSQL、SQL Server、DM、KingbaseES 的连接差异 | 不直接暴露给用户 |
+| 结果处理模块 | 将查询结果转为 JSON / Markdown | 不改变查询语义 |
+| 打包模块 | 管理 `requirements.txt`、`wheels/`、`.difypkg` | 不处理业务逻辑 |
+| 校验模块 | 验证连接、依赖、导入、查询、离线运行 | 不替代测试环境 |
+
+这样相当于，等我们新增数据库的时候，只要主要修改数据库适配模块和依赖包就可以了，不需要重写 Tool 调用流程。
+
+## 4. 插件类型定义
+
+我们看了Dify官方对插件的三大分类，最后选了 Tool Plugin。（其他两个是Model Provider和Endpoint。因为这两个一个是用来接入模型能力的，一个是给外部调用使用然后给人家开放API的，这俩确实都不提供我们希望用到的内部功能。）
+
+数据库查询符合 Tool 的调用方式：
+
+| 需求 | Tool Plugin 是否匹配 |
+|---|---|
+| 在 Workflow 中作为节点使用 | 匹配 |
+| 在 Agent 中作为工具调用 | 匹配 |
+| 前端展示参数表单 | 匹配 |
+| 接收 SQL 并执行动作 | 匹配 |
+| 返回 JSON 给后续节点 | 匹配 |
+| 打包为 `.difypkg` 导入 Dify | 匹配 |
+
+结论：
+
+> 本插件定义为 Dify Tool Plugin。
+
+值得一提的是，插件类型配置应体现在 `manifest.yaml` 中。这个在我们之前的报告里有提到。
+
+```yaml
+type: plugin
+plugins:
+  tools:
+    - provider/db_query.yaml
+resource:
+  permission:
+    tool:
+      enabled: true
+```
+
+## 5. 插件目录结构设计
+
+插件项目目录应该如何组织，这个问题其实我们之前的报告也都回答过了。
+
+目录结构图大概张这个样子，我们参考了`junjiem-db_query_0.0.11-offline.difypkg`，也就是给的那个插件源文件 的主结构：`manifest.yaml`、`main.py`、`provider/`、`tools/`、`requirements.txt`、`wheels/`、`_assets/`。在此基础上，把数据库差异从单个 `db_util.py` 拆到 `tools/adapters/` 中，这样的话后续再维护就比较集中了。
+
+```text
+multi_db_query/
+├─ manifest.yaml
+├─ main.py
+├─ README.md
+├─ PRIVACY.md
+├─ requirements.txt
+├─ .env.example
+├─ .difyignore
+├─ provider/
+│  ├─ db_query.yaml
+│  └─ db_query.py
+├─ tools/
+│  ├─ sql_query.yaml
+│  ├─ sql_query.py
+│  ├─ result_formatter.py
+│  └─ adapters/
+│     ├─ base.py
+│     ├─ mysql_adapter.py
+│     ├─ oracle_adapter.py
+│     ├─ postgresql_adapter.py
+│     ├─ mssql_adapter.py
+│     ├─ dm_adapter.py
+│     └─ kingbase_adapter.py
+├─ tests/
+│  ├─ test_sql_validate.py
+│  └─ test_result_formatter.py
+├─ wheels/
+│  ├─ dify_plugin-*.whl
+│  ├─ SQLAlchemy-*.whl
+│  ├─ PyMySQL-*.whl
+│  ├─ oracledb-*.whl
+│  ├─ psycopg2*.whl
+│  ├─ pymssql-*.whl
+│  ├─ dmPython*.whl
+│  ├─ ksycopg2*.whl
+│  └─ 其他依赖 wheel
+└─ _assets/
+   └─ icon.svg
+```
+
+目录职责如下：
+
+| 文件 / 目录 | 职责 |
+|---|---|
+| `manifest.yaml` | 插件总声明。定义名称、版本、运行时、权限和 Provider 入口 |
+| `main.py` | 插件运行入口。启动 Dify Plugin SDK |
+| `provider/db_query.yaml` | Provider 声明。定义插件展示信息和连接凭据表单 |
+| `provider/db_query.py` | Provider 实现。校验数据库连接配置 |
+| `tools/sql_query.yaml` | Tool 声明。定义 SQL、输出格式等工具参数 |
+| `tools/sql_query.py` | Tool 实现。接收调用、校验 SQL、调用适配器 |
+| `tools/adapters/` | 数据库适配层。隔离不同数据库的连接和异常差异 |
+| `tools/result_formatter.py` | 最后给用户的输出。统一输出 JSON / Markdown |
+| `requirements.txt` | Python 依赖清单，固定版本 |
+| `wheels/` | 离线依赖仓库 |
+| `_assets/` | 插件图标和展示资源 |
+| `.difyignore` | 控制哪些文件不进入最终插件包 |
+
+`provider` 和 `tool` 的边界要清楚：
+
+| 层级 | 做什么 |
+|---|---|
+| 数据库配置模块（Provider） | 保存数据库地址、账号密码等信息，然后检查数据库能不能连上 |
+| SQL 查询模块（Tool） | 接收用户输入的 SQL 语句，到数据库执行后返回结果 |
+
+## 6. 数据库扩展设计
+
+我现在想要知道怎么在现有多数据库结构上支持 DM 和 KingbaseES，最好的办法就是先定义统一输入：
+
+| 参数 | 说明 |
+|---|---|
+| `db_type` | 数据库类型：`mysql`、`oracle`、`oracle11g`、`postgresql`、`mssql`、`dm`、`kingbase` |
+| `host` | 数据库地址 |
+| `port` | 数据库端口 |
+| `database` | 数据库名 |
+| `username` | 用户名 |
+| `password` | 密码，使用密文输入 |
+| `connect_timeout` | 连接超时时间 |
+| `query_sql` | SQL 查询语句 |
+| `output_format` | `json` 或 `markdown` |
+
+数据库驱动映射表如下：
+
+| 数据库 | 驱动 | 连接路线 | 适配方式 |
+|---|---|---|---|
+| MySQL | `PyMySQL` | SQLAlchemy | 常规适配 |
+| Oracle | `oracledb` | SQLAlchemy | 常规适配 |
+| Oracle 11g | `oracledb` + thick client | SQLAlchemy | 特殊初始化适配 |
+| PostgreSQL | `psycopg2` / `psycopg2-binary` | SQLAlchemy | 常规适配 |
+| Microsoft SQL Server | `pymssql` | SQLAlchemy | 常规适配 |
+| DM | `dmPython` | DB-API 或专用 dialect | 独立适配 |
+| KingbaseES | `ksycopg2` | PostgreSQL 兼容路线 | 兼容适配 |
+
+参考包中的 `db_type` 下拉栏已经包含了 `mysql`、`oracle`、`oracle11g`、`postgresql`、`mssql`。我们肯定要保留这些选项，然后在此基础上再新增 `dm` 和 `kingbase`。这样 Dify 前端看到的是一个完整的查询工具了。
+
+我们研究了每个数据库和Dify的适配路线，发现大概是这样子：
+
+| 已有数据库类型 | 设计处理 |
+|---|---|
+| MySQL | 保留 `mysql+pymysql` 路线 |
+| Oracle | 保留 `oracle+oracledb` 路线 |
+| Oracle11g | 保留 Oracle 路线，并在适配器中处理 thick client 初始化 |
+| PostgreSQL | 保留 `postgresql+psycopg2` 路线 |
+| SQL Server | 保留 `mssql+pymssql` 路线 |
+
+这里面 DM 和 KingbaseES 是这次要求里增加的两个适配分支。为了支持这些数据库，我们要补齐驱动依赖、连接方式、异常处理、离线 wheel 和验收用例。
+
+### 6.1 DM 扩展方案
+
+因为达梦比较特殊，所以大概率要做独立适配。DM 使用 `dmPython` 作为 Python 驱动，这就告诉我们它肯定不是和 MySQL 或 PostgreSQL 轻松完全兼容的，所以做独立适配器肯定更好。
+
+DM 适配器负责：
+
+| 设计点 | 方案 |
+|---|---|
+| 驱动 | 使用 `dmPython` |
+| 连接串 | 使用 DM 驱动要求的 host、port、user、password、database 参数 |
+| SQL 执行 | 通过 DB-API cursor 执行 |
+| 结果读取 | 从 cursor description 提取列名，从 rows 转成 records |
+| 异常处理 | 捕获 DM 驱动异常，转换成 Dify 可读错误 |
+| 依赖打包 | 将 `dmPython` 对应 wheel 或安装包放入 `wheels/` |
+
+连接逻辑示意：
+
+```python
+import dmPython
+
+connection = dmPython.connect(
+    user=username,
+    password=password,
+    server=host,
+    port=port,
+)
+```
+
+我们总结了一下DM 独立适配的原因：
+
+| 原因 | 说明 |
+|---|---|
+| 驱动行为独立 | `dmPython` 的连接参数、异常类型、返回值细节可能不同 |
+| 离线依赖特殊 | DM 驱动常需要单独准备，不能默认从公网获取 |
+| 问题定位清晰 | DM 连接失败时，需要返回 DM 相关错误，而不是通用 SQLAlchemy 错误 |
+
+### 6.2 KingbaseES 扩展方案
+
+我们刚刚说了DM的适配路线，那问题是 KingbaseES 为什么可以和 PostgreSQL 用一样的技术路线？这是因为 KingbaseES 和 PostgreSQL 兼容度较高，这样的话插件设计上就不用从零做一套查询链路了，我只要替换驱动和少量连接参数就可以了。
+
+KingbaseES 适配器负责：
+
+| 设计点 | 方案 |
+|---|---|
+| 驱动 | 使用 `ksycopg2` |
+| 技术路线 | PostgreSQL 兼容模式 |
+| SQL 执行 | 复用 PostgreSQL 风格连接和 cursor |
+| 结果读取 | 与 PostgreSQL 返回结构保持一致 |
+| 异常处理 | 将 `ksycopg2` 异常转换为插件统一错误 |
+| 依赖打包 | 将 `ksycopg2` wheel 放入 `wheels/` |
+
+我们希望连接路线是这个样子：
+
+```text
+kingbase
+  -> ksycopg2
+  -> PostgreSQL-compatible connection
+  -> cursor.execute(sql)
+  -> records
+```
+
+这样设计解决的问题是：KingbaseES 不需要占用一套完全独立的实现了，但是还可以保留单独的适配器，这样就方便后续处理兼容差异了。
+
+## 7. SQL 查询执行流程设计
+
+我们这部分是插件设计技术的一部分，因为肯定技术部分会遇到一个问题：用户输入 SQL 后，插件内部该咋执行？
+
+SQL 执行流程图如下：
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"17px"
+}
+}}%%
+flowchart TD
+  A["用户输入<br/>连接信息 + SQL"]
+  B["Dify Workflow<br/>调用 Tool 节点"]
+  C["Tool 读取参数"]
+  D["校验必填项"]
+  E["校验 SQL<br/>单语句 + SELECT"]
+  F["根据 db_type<br/>选择适配器"]
+  G["连接数据库"]
+  H["执行 SQL"]
+  I["读取 rows"]
+  J["结果转换<br/>records / markdown"]
+  K["返回 Dify"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+  F --> G
+  G --> H
+  H --> I
+  I --> J
+  J --> K
+```
+
+有一些实现规则，我们后面设计的时候就可以参考：
+
+| 规则 | 原因 |
+|---|---|
+| 默认只允许单条 `SELECT` | 降低误执行写操作风险 |
+| 使用只读数据库账号 | 从数据库权限层兜底 |
+| 设置连接超时 | 避免连接阶段阻塞 |
+| 设置查询超时 | 避免长 SQL 卡住插件 |
+| 设置最大返回行数 | 避免大结果集拖垮 Workflow |
+| 返回 JSON | 方便后续节点消费 |
+| 返回 Markdown | 方便用户直接阅读 |
+
+建议返回成 JSON 结构：
+
+```json
+{
+  "columns": ["id", "name"],
+  "rows": [
+    {"id": 1, "name": "demo"}
+  ],
+  "row_count": 1,
+  "truncated": false,
+  "database_type": "kingbase"
+}
+```
+
+## 8. 离线插件整体制作流程
+
+我们要求里是需要这个插件Offline的，所以很多环境要提前备好在包里。
+
+先简单设计一下离线制作流程图：
+
+```{mermaid}
+%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"17px"
+}
+}}%%
+flowchart TD
+  A["确认目标环境<br/>OS / CPU / Python"]
+  B["创建插件项目"]
+  C["固定 requirements 版本"]
+  D["联网环境下载 wheels"]
+  E["补齐数据库驱动<br/>含 Oracle / SQL Server / DM / KingbaseES"]
+  F["离线安装验证"]
+  G["本地调试 Tool"]
+  H["打包 difypkg"]
+  I["导入离线 Dify"]
+  J["Workflow 节点验证"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+  F --> G
+  G --> H
+  H --> I
+  I --> J
+```
+
+先提前确认一下离线环境（通过之前拿到的插件包）：
+
+| 项目 | 需要确认 |
+|---|---|
+| Python 版本 | 例如 `3.12`，决定 wheel ABI |
+| CPU 架构 | `amd64` 或 `arm64` |
+| 操作系统 | Linux / Windows，不同平台 wheel 不通用 |
+| Dify 版本 | 确认插件系统兼容 |
+| 数据库网络 | Dify 插件运行环境能访问目标数据库 |
+| 驱动来源 | Oracle、SQL Server、DM、KingbaseES 等驱动是否允许打包分发 |
+
+## 9. 依赖本地化与插件打包方案
+
+我们最后的目标肯定是生成 `.difypkg` 然后导入 Dify 成为工作流节点，但是依赖也需要好好管理。
+
+### 9.1 requirements 固定版本
+
+依赖版本要固定，这也就避免不同环境安装出不同结果。
+
+示例：
+
+```txt
+--no-index --find-links=./wheels/
+dify_plugin==0.2.1
+SQLAlchemy==2.0.35
+PyMySQL==1.1.1
+oracledb==2.2.1
+psycopg2-binary==2.9.10
+pymssql==2.3.4
+dmPython==x.y.z
+ksycopg2==x.y.z
+sqlparse==0.5.3
+tabulate==0.9.0
+```
+
+上面这些就是大概找到的一些依赖版本。`--no-index` 的作用是禁止访问公网包仓库。`--find-links=./wheels/` 的作用是从插件包内的本地依赖目录查找 wheel。
+
+### 9.2 wheel 下载与本地依赖仓库
+
+跟之前说的一样，只要在联网环境中提前下载依赖就可以了：
+
+```bash
+pip download -r requirements-online.txt -d wheels/
+```
+
+执行这个命令到本地仓库，本地依赖仓库就是插件目录下的 `wheels/`。它至少要包含：
+
+| 依赖类型 | 示例 |
+|---|---|
+| Dify SDK | `dify_plugin` |
+| 通用 SQL 能力 | `SQLAlchemy`、`sqlparse` |
+| MySQL 驱动 | `PyMySQL` |
+| Oracle 驱动 | `oracledb` |
+| PostgreSQL 驱动 | `psycopg2-binary` |
+| SQL Server 驱动 | `pymssql` |
+| DM 驱动 | `dmPython` |
+| KingbaseES 驱动 | `ksycopg2` |
+| 输出格式化 | `tabulate` |
+
+### 9.3 difypkg 打包
+
+打包前要检查：
+
+| 检查项 | 要求 |
+|---|---|
+| `manifest.yaml` | `type: plugin`，`plugins.tools` 指向 Provider |
+| Provider YAML | 包含连接凭据配置和 Tool 引用 |
+| Tool YAML | 参数与 Tool Python 代码一致 |
+| `requirements.txt` | 固定版本，指向 `wheels/` |
+| `wheels/` | 所有依赖存在，平台匹配 |
+| `.difyignore` | 排除测试缓存、临时文件、真实凭据 |
+
+打包命令比如说写成这样：
+
+```bash
+dify plugin package ./multi_db_query
+```
+
+Windows 本地命令可写为：
+
+```powershell
+.\dify-plugin.exe plugin package .\multi_db_query -o .\dist
+```
+
+### 9.4 导入 Dify
+
+根据所演示的前端中新建了智能体，然后本地导入步骤：
+
+```text
+1. 打开 Dify 插件管理页面
+2. 选择本地文件导入
+3. 上传生成的 .difypkg
+4. 确认插件权限
+5. 完成安装
+6. 打开插件配置页
+7. 填写数据库连接信息
+8. 执行连接校验
+```
+
+导入成功不代表插件就能用了，后面咱们肯定还要继续验证数据库连接和 SQL 查询。
+
+### 9.5 成为工作流节点
+
+插件成为 Workflow 节点的条件：
+
+| 条件 | 说明 |
+|---|---|
+| 插件类型是 Tool Plugin | Dify 才能在工具节点中选择 |
+| Tool YAML 参数完整 | Workflow 节点才能渲染输入项 |
+| 插件已安装到 Workspace | 工作流中才能引用 |
+| Provider 凭据通过校验 | 节点运行时才能连接数据库 |
+| Tool 返回 JSON | 后续节点才能读取查询结果 |
+
+使用方式：
+
+```text
+Workflow
+  -> 添加 Tool 节点
+  -> 选择数据库查询插件
+  -> 选择 sql_query 工具
+  -> 输入 query_sql
+  -> 运行节点
+  -> 后续节点读取 rows / columns / row_count
+```
+
+## 10. 完整性校验
+
+大概列了一个表，这个表就可以判断这个插件设计是不是可以进入开发和交付：
+
+| 校验项 | 结果 |
+|---|---|
+| 插件可导入 | PASS |
+| Tool 类型正确 | PASS |
+| Workflow 中可选择 | PASS |
+| Provider 凭据表单正常 | PASS |
+| Password 使用密文输入 | PASS |
+| MySQL 可连接 | PASS |
+| Oracle 可连接 | PASS |
+| Oracle 11g 可连接 | PASS |
+| PostgreSQL 可连接 | PASS |
+| SQL Server 可连接 | PASS |
+| DM 可连接 | PASS |
+| KingbaseES 可连接 | PASS |
+| SQL 查询成功 | PASS |
+| JSON 输出正常 | PASS |
+| Markdown 输出正常 | PASS |
+| 错误提示可理解 | PASS |
+| requirements 版本固定 | PASS |
+| wheels 依赖完整 | PASS |
+| 离线安装成功 | PASS |
+| `.difypkg` 可重复生成 | PASS |
+
+我们想让这个链路能最后通：
+
+```text
+设计目录
+  -> 编写插件
+  -> 本地依赖
+  -> 打包 difypkg
+  -> 导入 Dify
+  -> 配置连接
+  -> Workflow 节点执行 SQL
+  -> 返回结果给后续节点
+```
+
+如果这条链路能在无公网环境下完成，就说明插件设计成功了。
+
+## 11. 实施任务分解
+
+以下任务分解以本方案的多数据库查询 Tool Plugin 为范围，覆盖现有数据库类型、DM / KingbaseES 扩展、离线交付和 Dify 工作流验证。预估工时按单人实施口径统计，单位为人时。
+
+| 任务环节 | 任务项 / 模块 | 任务明细 / 细化任务 | 预估工时（人时） |
+|---|---|---|---:|
+| 设计 | 技术研究与方案确认 | 核对 Dify Tool Plugin 生命周期、Provider / Tool 配置边界、CLI 本地调试与 `.difypkg` 打包流程；确认目标 Dify、Python、操作系统和 CPU 架构版本。 | 8 |
+| 设计 | 数据库适配设计 | 梳理 MySQL、Oracle、Oracle 11g、PostgreSQL、SQL Server、DM、KingbaseES 的驱动、连接串、认证方式、异常类型和离线依赖要求；形成驱动映射与适配器接口。 | 12 |
+| 设计 | 安全与接口设计 | 定义连接凭据、SQL、超时、最大返回行数和输出格式等参数；明确单条只读 SQL、只读账号、脱敏报错、JSON / Markdown 输出规范。 | 8 |
+| 设计 | 设计文档评审与完善 | 评审目录结构、接口、数据库兼容策略、离线交付边界和验收标准，并根据意见修订方案。 | 4 |
+| 编码 | 开发环境与测试资源搭建 | 配置 Python、Poetry、Dify Plugin SDK 和 Dify 本地插件环境；搭建或接入 MySQL / PostgreSQL 测试库，准备测试表和测试数据。 | 12 |
+| 编码 | 插件骨架开发 | 使用官方模板初始化项目；编写 `manifest.yaml`、`main.py`、Provider 与 Tool YAML，完成参数表单、SDK 入口、基础日志和统一异常处理。 | 16 |
+| 编码 | Provider 凭据校验 | 实现数据库类型选择、地址、端口、库名、用户名、密码和连接超时等凭据配置；完成连接测试与凭据错误提示。 | 8 |
+| 编码 | 通用查询能力 | 实现 SQL 单语句 / 只读校验、参数绑定、连接与查询超时、最大返回行数、分页控制，以及统一的 `_invoke` 调用流程。 | 16 |
+| 编码 | 结果转换与输出 | 将各类驱动返回结果统一转换为 records JSON；处理空值、日期、数值等类型，支持 Markdown 展示、行数统计和截断标识。 | 12 |
+| 编码 | 基础数据库适配 | 实现并联调 MySQL、Oracle、Oracle 11g、PostgreSQL、SQL Server 适配器；处理连接字符串、驱动初始化和数据库异常转换。 | 24 |
+| 编码 | DM 数据库适配 | 基于 `dmPython` 实现 DM 独立适配器，完成连接、查询、结果读取、异常转换和测试用例。 | 16 |
+| 编码 | KingbaseES 数据库适配 | 基于 `ksycopg2` / PostgreSQL 兼容路线实现 KingbaseES 适配器，处理兼容差异、连接和结果读取，并补充测试用例。 | 16 |
+| 编码 | 离线依赖与打包 | 固定 `requirements.txt` 版本；准备与目标环境匹配的 wheels，验证无公网安装；配置 `.difyignore` 并使用 CLI 生成 `.difypkg`。 | 16 |
+| 联调 | CLI 与本地单元调试 | 通过 CLI 构造连接和 SQL 入参，验证连接、查询、结果格式、超时和异常提示；执行适配器与结果转换单元测试。 | 12 |
+| 联调 | Dify 平台与工作流联调 | 在 Dify 中导入插件，验证凭据表单、连接校验和 Tool 节点渲染；在 Workflow 中传递上游变量并验证 JSON 数据流转。 | 16 |
+| 自测 | 功能、安全与离线全量测试 | 覆盖七类数据库连通性、只读 SQL 拦截、超时、空结果、大结果截断、敏感信息脱敏、离线安装、重复打包和导入验证。 | 20 |
+| 自测 | 缺陷修复与交付整理 | 修复自测问题，补齐安装说明、环境前置条件、已知限制、测试记录和交付清单。 | 12 |
+| **合计** |  |  | **228** |

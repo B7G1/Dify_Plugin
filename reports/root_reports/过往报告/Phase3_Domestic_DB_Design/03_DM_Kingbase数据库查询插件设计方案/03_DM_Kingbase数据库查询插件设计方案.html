@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>多数据库查询插件设计方案（含 DM / KingbaseES 扩展）</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/clipboard/clipboard.min.js"></script>
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/popper.min.js"></script>
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/anchor.min.js"></script>
+<link href="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="03_DM_Kingbase数据库查询插件设计方案_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="03_DM_Kingbase数据库查询插件设计方案_files/libs/bootstrap/bootstrap-67270d1595a62d14f123c043d4fb2f18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#设计需求" id="toc-设计需求" class="nav-link active" data-scroll-target="#设计需求"><span class="header-section-number">1</span> 设计需求</a>
+  <ul class="collapse">
+  <li><a href="#项目目标" id="toc-项目目标" class="nav-link" data-scroll-target="#项目目标"><span class="header-section-number">1.1</span> 1. 项目目标</a></li>
+  <li><a href="#总体设计思路" id="toc-总体设计思路" class="nav-link" data-scroll-target="#总体设计思路"><span class="header-section-number">1.2</span> 2. 总体设计思路</a></li>
+  <li><a href="#模块分类" id="toc-模块分类" class="nav-link" data-scroll-target="#模块分类"><span class="header-section-number">1.3</span> 3. 模块分类</a></li>
+  <li><a href="#插件类型定义" id="toc-插件类型定义" class="nav-link" data-scroll-target="#插件类型定义"><span class="header-section-number">1.4</span> 4. 插件类型定义</a></li>
+  <li><a href="#插件目录结构设计" id="toc-插件目录结构设计" class="nav-link" data-scroll-target="#插件目录结构设计"><span class="header-section-number">1.5</span> 5. 插件目录结构设计</a></li>
+  <li><a href="#数据库扩展设计" id="toc-数据库扩展设计" class="nav-link" data-scroll-target="#数据库扩展设计"><span class="header-section-number">1.6</span> 6. 数据库扩展设计</a>
+  <ul class="collapse">
+  <li><a href="#dm-扩展方案" id="toc-dm-扩展方案" class="nav-link" data-scroll-target="#dm-扩展方案"><span class="header-section-number">1.6.1</span> 6.1 DM 扩展方案</a></li>
+  <li><a href="#kingbasees-扩展方案" id="toc-kingbasees-扩展方案" class="nav-link" data-scroll-target="#kingbasees-扩展方案"><span class="header-section-number">1.6.2</span> 6.2 KingbaseES 扩展方案</a></li>
+  </ul></li>
+  <li><a href="#sql-查询执行流程设计" id="toc-sql-查询执行流程设计" class="nav-link" data-scroll-target="#sql-查询执行流程设计"><span class="header-section-number">1.7</span> 7. SQL 查询执行流程设计</a></li>
+  <li><a href="#离线插件整体制作流程" id="toc-离线插件整体制作流程" class="nav-link" data-scroll-target="#离线插件整体制作流程"><span class="header-section-number">1.8</span> 8. 离线插件整体制作流程</a></li>
+  <li><a href="#依赖本地化与插件打包方案" id="toc-依赖本地化与插件打包方案" class="nav-link" data-scroll-target="#依赖本地化与插件打包方案"><span class="header-section-number">1.9</span> 9. 依赖本地化与插件打包方案</a>
+  <ul class="collapse">
+  <li><a href="#requirements-固定版本" id="toc-requirements-固定版本" class="nav-link" data-scroll-target="#requirements-固定版本"><span class="header-section-number">1.9.1</span> 9.1 requirements 固定版本</a></li>
+  <li><a href="#wheel-下载与本地依赖仓库" id="toc-wheel-下载与本地依赖仓库" class="nav-link" data-scroll-target="#wheel-下载与本地依赖仓库"><span class="header-section-number">1.9.2</span> 9.2 wheel 下载与本地依赖仓库</a></li>
+  <li><a href="#difypkg-打包" id="toc-difypkg-打包" class="nav-link" data-scroll-target="#difypkg-打包"><span class="header-section-number">1.9.3</span> 9.3 difypkg 打包</a></li>
+  <li><a href="#导入-dify" id="toc-导入-dify" class="nav-link" data-scroll-target="#导入-dify"><span class="header-section-number">1.9.4</span> 9.4 导入 Dify</a></li>
+  <li><a href="#成为工作流节点" id="toc-成为工作流节点" class="nav-link" data-scroll-target="#成为工作流节点"><span class="header-section-number">1.9.5</span> 9.5 成为工作流节点</a></li>
+  </ul></li>
+  <li><a href="#完整性校验" id="toc-完整性校验" class="nav-link" data-scroll-target="#完整性校验"><span class="header-section-number">1.10</span> 10. 完整性校验</a></li>
+  <li><a href="#实施任务分解" id="toc-实施任务分解" class="nav-link" data-scroll-target="#实施任务分解"><span class="header-section-number">1.11</span> 11. 实施任务分解</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">多数据库查询插件设计方案（含 DM / KingbaseES 扩展）</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+body {
+  color: #111827;
+}
+main.content {
+  max-width: 1050px;
+}
+.page-columns .content {
+  grid-column: body-content-start / body-content-end;
+}
+#TOC {
+  font-size: 0.95rem;
+}
+#TOC ul {
+  padding-left: 0.9rem;
+}
+#TOC a {
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+.mermaid {
+  background: #ffffff;
+  text-align: center;
+  font-size: 18px;
+}
+.mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+table {
+  width: 100%;
+  table-layout: auto;
+}
+th, td {
+  vertical-align: top;
+}
+</style>
+<section id="设计需求" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 设计需求</h1>
+<p>这个是一份插件设计文档，我们想要从 0 开始设计一个新的 Dify 数据库查询插件，而且是根据现在已经有了的现有插件 <code>junjiem-db_query_0.0.11-offline.difypkg</code> 作为结构参考。导入本地插件之后，我们把它加入到新节点，看其中的用户输入和下滑选择栏，我们发现它已经体现了 Dify 前端下拉栏、Tool 参数、数据库驱动映射、<code>requirements.txt</code> 和 <code>wheels/</code> 离线依赖组织方式。</p>
+<p>所以我们的目标是设计一个多数据库查询插件，而且还要确保基础能力覆盖参考包中已经出现的数据库类型，最后在同一结构中扩展 DM 和 KingbaseES。</p>
+<ul>
+<li>MySQL</li>
+<li>Oracle</li>
+<li>Oracle 11g</li>
+<li>PostgreSQL</li>
+<li>Microsoft SQL Server</li>
+<li>DM（达梦数据库）</li>
+<li>KingbaseES（人大金仓数据库）</li>
+</ul>
+<p>同时满足：</p>
+<ul>
+<li>完全离线部署</li>
+<li>本地依赖管理</li>
+<li>插件打包导出</li>
+<li>导入 Dify 后可作为 Workflow 节点使用</li>
+</ul>
+<section id="项目目标" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="项目目标"><span class="header-section-number">1.1</span> 1. 项目目标</h2>
+<p>为什么需要这个插件？因为我们希望在 Dify Workflow 中直接查询数据库。这样的话，用户就不需要在工作流外手动查库、复制结果、再粘贴给后续节点了，直接在一个 Tool 节点中完成查询就可以了。</p>
+<p>这个插件要解决四个具体问题：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>问题</th>
+<th>插件要提供的能力</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Workflow 需要读取业务数据</td>
+<td>提供 SQL 查询节点</td>
+</tr>
+<tr class="even">
+<td>数据库类型不止一种</td>
+<td>支持 MySQL、Oracle、Oracle11g、PostgreSQL、SQL Server，并扩展 DM、KingbaseES</td>
+</tr>
+<tr class="odd">
+<td>部署环境不能访问公网</td>
+<td>所有依赖本地化，支持离线安装</td>
+</tr>
+<tr class="even">
+<td>结果要被后续节点使用</td>
+<td>返回结构化 JSON，同时支持 Markdown 展示</td>
+</tr>
+</tbody>
+</table>
+<p>我们大概描述这个插件的理想回路就是这样的：</p>
+<pre class="text"><code>连接数据库 -&gt; 执行只读 SQL -&gt; 返回查询结果</code></pre>
+<p>所以这个项目的目标是：</p>
+<blockquote class="blockquote">
+<p>设计一个可离线交付的 Dify 多数据库查询 Tool Plugin，让 Workflow 能以节点形式选择数据库类型、执行只读 SQL，并返回可继续流转的查询结果。</p>
+</blockquote>
+</section>
+<section id="总体设计思路" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="总体设计思路"><span class="header-section-number">1.2</span> 2. 总体设计思路</h2>
+<p>我们打算设计一个 Dify Tool Plugin。用户在 Dify 中通过下拉栏选择数据库类型，填写连接信息，在 Workflow 节点中输入 SQL，插件调用对应数据库驱动执行查询，然后最后再把结果返回给 Dify就可以了。</p>
+<p>总体架构图如下：</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"18px"
+}
+}}%%
+flowchart TB
+  A["用户 / Workflow"]
+  B["数据库查询插件&lt;br/&gt;Tool Plugin"]
+  C["数据库驱动层&lt;br/&gt;MySQL / Oracle / Oracle11g / PostgreSQL / SQL Server / DM / KingbaseES"]
+  D["目标数据库"]
+  E["查询结果&lt;br/&gt;JSON / Markdown"]
+
+  A --&gt; B
+  B --&gt; C
+  C --&gt; D
+  D --&gt; C
+  C --&gt; B
+  B --&gt; E
+  E --&gt; A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>设计思路分为四层：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>层级</th>
+<th>设计内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dify 接入层</td>
+<td>让插件以 Tool 的方式出现在 Workflow 中</td>
+</tr>
+<tr class="even">
+<td>参数配置层</td>
+<td>管理数据库类型、连接信息、SQL 和输出格式</td>
+</tr>
+<tr class="odd">
+<td>数据库适配层</td>
+<td>按数据库类型选择驱动和连接方式</td>
+</tr>
+<tr class="even">
+<td>离线交付层</td>
+<td>将源码、依赖、驱动和资源打包为 <code>.difypkg</code></td>
+</tr>
+</tbody>
+</table>
+<p>这样Dify只需要理解一个 Tool然后把数据库差异留在插件内部处理就可以了。这样的好处就是会人性化很多。</p>
+</section>
+<section id="模块分类" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="模块分类"><span class="header-section-number">1.3</span> 3. 模块分类</h2>
+<p>插件应该拆成哪些部分？</p>
+<p>我们看了官方的文档，然后发现这个按职责可以拆成六类：</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"17px"
+}
+}}%%
+flowchart TB
+  A["数据库查询插件"]
+  B["配置模块"]
+  C["SQL 执行模块"]
+  D["数据库适配模块"]
+  E["结果处理模块"]
+  F["打包模块"]
+  G["校验模块"]
+
+  A --&gt; B
+  A --&gt; C
+  A --&gt; D
+  A --&gt; E
+  A --&gt; F
+  A --&gt; G
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>模块分类如下：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>模块</th>
+<th>负责什么</th>
+<th>不负责什么</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>配置模块</td>
+<td>声明插件、Provider、Tool、参数表单</td>
+<td>不执行 SQL</td>
+</tr>
+<tr class="even">
+<td>SQL 执行模块</td>
+<td>接收 SQL、校验 SQL、发起查询</td>
+<td>不关心具体驱动安装</td>
+</tr>
+<tr class="odd">
+<td>数据库适配模块</td>
+<td>处理 MySQL、Oracle、Oracle11g、PostgreSQL、SQL Server、DM、KingbaseES 的连接差异</td>
+<td>不直接暴露给用户</td>
+</tr>
+<tr class="even">
+<td>结果处理模块</td>
+<td>将查询结果转为 JSON / Markdown</td>
+<td>不改变查询语义</td>
+</tr>
+<tr class="odd">
+<td>打包模块</td>
+<td>管理 <code>requirements.txt</code>、<code>wheels/</code>、<code>.difypkg</code></td>
+<td>不处理业务逻辑</td>
+</tr>
+<tr class="even">
+<td>校验模块</td>
+<td>验证连接、依赖、导入、查询、离线运行</td>
+<td>不替代测试环境</td>
+</tr>
+</tbody>
+</table>
+<p>这样相当于，等我们新增数据库的时候，只要主要修改数据库适配模块和依赖包就可以了，不需要重写 Tool 调用流程。</p>
+</section>
+<section id="插件类型定义" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="插件类型定义"><span class="header-section-number">1.4</span> 4. 插件类型定义</h2>
+<p>我们看了Dify官方对插件的三大分类，最后选了 Tool Plugin。（其他两个是Model Provider和Endpoint。因为这两个一个是用来接入模型能力的，一个是给外部调用使用然后给人家开放API的，这俩确实都不提供我们希望用到的内部功能。）</p>
+<p>数据库查询符合 Tool 的调用方式：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>需求</th>
+<th>Tool Plugin 是否匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>在 Workflow 中作为节点使用</td>
+<td>匹配</td>
+</tr>
+<tr class="even">
+<td>在 Agent 中作为工具调用</td>
+<td>匹配</td>
+</tr>
+<tr class="odd">
+<td>前端展示参数表单</td>
+<td>匹配</td>
+</tr>
+<tr class="even">
+<td>接收 SQL 并执行动作</td>
+<td>匹配</td>
+</tr>
+<tr class="odd">
+<td>返回 JSON 给后续节点</td>
+<td>匹配</td>
+</tr>
+<tr class="even">
+<td>打包为 <code>.difypkg</code> 导入 Dify</td>
+<td>匹配</td>
+</tr>
+</tbody>
+</table>
+<p>结论：</p>
+<blockquote class="blockquote">
+<p>本插件定义为 Dify Tool Plugin。</p>
+</blockquote>
+<p>值得一提的是，插件类型配置应体现在 <code>manifest.yaml</code> 中。这个在我们之前的报告里有提到。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> plugin</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plugins</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tools</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> provider/db_query.yaml</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">resource</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">permission</span><span class="kw">:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">tool</span><span class="kw">:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="插件目录结构设计" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="插件目录结构设计"><span class="header-section-number">1.5</span> 5. 插件目录结构设计</h2>
+<p>插件项目目录应该如何组织，这个问题其实我们之前的报告也都回答过了。</p>
+<p>目录结构图大概张这个样子，我们参考了<code>junjiem-db_query_0.0.11-offline.difypkg</code>，也就是给的那个插件源文件 的主结构：<code>manifest.yaml</code>、<code>main.py</code>、<code>provider/</code>、<code>tools/</code>、<code>requirements.txt</code>、<code>wheels/</code>、<code>_assets/</code>。在此基础上，把数据库差异从单个 <code>db_util.py</code> 拆到 <code>tools/adapters/</code> 中，这样的话后续再维护就比较集中了。</p>
+<pre class="text"><code>multi_db_query/
+├─ manifest.yaml
+├─ main.py
+├─ README.md
+├─ PRIVACY.md
+├─ requirements.txt
+├─ .env.example
+├─ .difyignore
+├─ provider/
+│  ├─ db_query.yaml
+│  └─ db_query.py
+├─ tools/
+│  ├─ sql_query.yaml
+│  ├─ sql_query.py
+│  ├─ result_formatter.py
+│  └─ adapters/
+│     ├─ base.py
+│     ├─ mysql_adapter.py
+│     ├─ oracle_adapter.py
+│     ├─ postgresql_adapter.py
+│     ├─ mssql_adapter.py
+│     ├─ dm_adapter.py
+│     └─ kingbase_adapter.py
+├─ tests/
+│  ├─ test_sql_validate.py
+│  └─ test_result_formatter.py
+├─ wheels/
+│  ├─ dify_plugin-*.whl
+│  ├─ SQLAlchemy-*.whl
+│  ├─ PyMySQL-*.whl
+│  ├─ oracledb-*.whl
+│  ├─ psycopg2*.whl
+│  ├─ pymssql-*.whl
+│  ├─ dmPython*.whl
+│  ├─ ksycopg2*.whl
+│  └─ 其他依赖 wheel
+└─ _assets/
+   └─ icon.svg</code></pre>
+<p>目录职责如下：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>文件 / 目录</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>manifest.yaml</code></td>
+<td>插件总声明。定义名称、版本、运行时、权限和 Provider 入口</td>
+</tr>
+<tr class="even">
+<td><code>main.py</code></td>
+<td>插件运行入口。启动 Dify Plugin SDK</td>
+</tr>
+<tr class="odd">
+<td><code>provider/db_query.yaml</code></td>
+<td>Provider 声明。定义插件展示信息和连接凭据表单</td>
+</tr>
+<tr class="even">
+<td><code>provider/db_query.py</code></td>
+<td>Provider 实现。校验数据库连接配置</td>
+</tr>
+<tr class="odd">
+<td><code>tools/sql_query.yaml</code></td>
+<td>Tool 声明。定义 SQL、输出格式等工具参数</td>
+</tr>
+<tr class="even">
+<td><code>tools/sql_query.py</code></td>
+<td>Tool 实现。接收调用、校验 SQL、调用适配器</td>
+</tr>
+<tr class="odd">
+<td><code>tools/adapters/</code></td>
+<td>数据库适配层。隔离不同数据库的连接和异常差异</td>
+</tr>
+<tr class="even">
+<td><code>tools/result_formatter.py</code></td>
+<td>最后给用户的输出。统一输出 JSON / Markdown</td>
+</tr>
+<tr class="odd">
+<td><code>requirements.txt</code></td>
+<td>Python 依赖清单，固定版本</td>
+</tr>
+<tr class="even">
+<td><code>wheels/</code></td>
+<td>离线依赖仓库</td>
+</tr>
+<tr class="odd">
+<td><code>_assets/</code></td>
+<td>插件图标和展示资源</td>
+</tr>
+<tr class="even">
+<td><code>.difyignore</code></td>
+<td>控制哪些文件不进入最终插件包</td>
+</tr>
+</tbody>
+</table>
+<p><code>provider</code> 和 <code>tool</code> 的边界要清楚：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>层级</th>
+<th>做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>数据库配置模块（Provider）</td>
+<td>保存数据库地址、账号密码等信息，然后检查数据库能不能连上</td>
+</tr>
+<tr class="even">
+<td>SQL 查询模块（Tool）</td>
+<td>接收用户输入的 SQL 语句，到数据库执行后返回结果</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="数据库扩展设计" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="数据库扩展设计"><span class="header-section-number">1.6</span> 6. 数据库扩展设计</h2>
+<p>我现在想要知道怎么在现有多数据库结构上支持 DM 和 KingbaseES，最好的办法就是先定义统一输入：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>db_type</code></td>
+<td>数据库类型：<code>mysql</code>、<code>oracle</code>、<code>oracle11g</code>、<code>postgresql</code>、<code>mssql</code>、<code>dm</code>、<code>kingbase</code></td>
+</tr>
+<tr class="even">
+<td><code>host</code></td>
+<td>数据库地址</td>
+</tr>
+<tr class="odd">
+<td><code>port</code></td>
+<td>数据库端口</td>
+</tr>
+<tr class="even">
+<td><code>database</code></td>
+<td>数据库名</td>
+</tr>
+<tr class="odd">
+<td><code>username</code></td>
+<td>用户名</td>
+</tr>
+<tr class="even">
+<td><code>password</code></td>
+<td>密码，使用密文输入</td>
+</tr>
+<tr class="odd">
+<td><code>connect_timeout</code></td>
+<td>连接超时时间</td>
+</tr>
+<tr class="even">
+<td><code>query_sql</code></td>
+<td>SQL 查询语句</td>
+</tr>
+<tr class="odd">
+<td><code>output_format</code></td>
+<td><code>json</code> 或 <code>markdown</code></td>
+</tr>
+</tbody>
+</table>
+<p>数据库驱动映射表如下：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>数据库</th>
+<th>驱动</th>
+<th>连接路线</th>
+<th>适配方式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MySQL</td>
+<td><code>PyMySQL</code></td>
+<td>SQLAlchemy</td>
+<td>常规适配</td>
+</tr>
+<tr class="even">
+<td>Oracle</td>
+<td><code>oracledb</code></td>
+<td>SQLAlchemy</td>
+<td>常规适配</td>
+</tr>
+<tr class="odd">
+<td>Oracle 11g</td>
+<td><code>oracledb</code> + thick client</td>
+<td>SQLAlchemy</td>
+<td>特殊初始化适配</td>
+</tr>
+<tr class="even">
+<td>PostgreSQL</td>
+<td><code>psycopg2</code> / <code>psycopg2-binary</code></td>
+<td>SQLAlchemy</td>
+<td>常规适配</td>
+</tr>
+<tr class="odd">
+<td>Microsoft SQL Server</td>
+<td><code>pymssql</code></td>
+<td>SQLAlchemy</td>
+<td>常规适配</td>
+</tr>
+<tr class="even">
+<td>DM</td>
+<td><code>dmPython</code></td>
+<td>DB-API 或专用 dialect</td>
+<td>独立适配</td>
+</tr>
+<tr class="odd">
+<td>KingbaseES</td>
+<td><code>ksycopg2</code></td>
+<td>PostgreSQL 兼容路线</td>
+<td>兼容适配</td>
+</tr>
+</tbody>
+</table>
+<p>参考包中的 <code>db_type</code> 下拉栏已经包含了 <code>mysql</code>、<code>oracle</code>、<code>oracle11g</code>、<code>postgresql</code>、<code>mssql</code>。我们肯定要保留这些选项，然后在此基础上再新增 <code>dm</code> 和 <code>kingbase</code>。这样 Dify 前端看到的是一个完整的查询工具了。</p>
+<p>我们研究了每个数据库和Dify的适配路线，发现大概是这样子：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>已有数据库类型</th>
+<th>设计处理</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MySQL</td>
+<td>保留 <code>mysql+pymysql</code> 路线</td>
+</tr>
+<tr class="even">
+<td>Oracle</td>
+<td>保留 <code>oracle+oracledb</code> 路线</td>
+</tr>
+<tr class="odd">
+<td>Oracle11g</td>
+<td>保留 Oracle 路线，并在适配器中处理 thick client 初始化</td>
+</tr>
+<tr class="even">
+<td>PostgreSQL</td>
+<td>保留 <code>postgresql+psycopg2</code> 路线</td>
+</tr>
+<tr class="odd">
+<td>SQL Server</td>
+<td>保留 <code>mssql+pymssql</code> 路线</td>
+</tr>
+</tbody>
+</table>
+<p>这里面 DM 和 KingbaseES 是这次要求里增加的两个适配分支。为了支持这些数据库，我们要补齐驱动依赖、连接方式、异常处理、离线 wheel 和验收用例。</p>
+<section id="dm-扩展方案" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="dm-扩展方案"><span class="header-section-number">1.6.1</span> 6.1 DM 扩展方案</h3>
+<p>因为达梦比较特殊，所以大概率要做独立适配。DM 使用 <code>dmPython</code> 作为 Python 驱动，这就告诉我们它肯定不是和 MySQL 或 PostgreSQL 轻松完全兼容的，所以做独立适配器肯定更好。</p>
+<p>DM 适配器负责：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>设计点</th>
+<th>方案</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>驱动</td>
+<td>使用 <code>dmPython</code></td>
+</tr>
+<tr class="even">
+<td>连接串</td>
+<td>使用 DM 驱动要求的 host、port、user、password、database 参数</td>
+</tr>
+<tr class="odd">
+<td>SQL 执行</td>
+<td>通过 DB-API cursor 执行</td>
+</tr>
+<tr class="even">
+<td>结果读取</td>
+<td>从 cursor description 提取列名，从 rows 转成 records</td>
+</tr>
+<tr class="odd">
+<td>异常处理</td>
+<td>捕获 DM 驱动异常，转换成 Dify 可读错误</td>
+</tr>
+<tr class="even">
+<td>依赖打包</td>
+<td>将 <code>dmPython</code> 对应 wheel 或安装包放入 <code>wheels/</code></td>
+</tr>
+</tbody>
+</table>
+<p>连接逻辑示意：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dmPython</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>connection <span class="op">=</span> dmPython.<span class="ex">connect</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    user<span class="op">=</span>username,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    password<span class="op">=</span>password,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    server<span class="op">=</span>host,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    port<span class="op">=</span>port,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们总结了一下DM 独立适配的原因：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>原因</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>驱动行为独立</td>
+<td><code>dmPython</code> 的连接参数、异常类型、返回值细节可能不同</td>
+</tr>
+<tr class="even">
+<td>离线依赖特殊</td>
+<td>DM 驱动常需要单独准备，不能默认从公网获取</td>
+</tr>
+<tr class="odd">
+<td>问题定位清晰</td>
+<td>DM 连接失败时，需要返回 DM 相关错误，而不是通用 SQLAlchemy 错误</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kingbasees-扩展方案" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="kingbasees-扩展方案"><span class="header-section-number">1.6.2</span> 6.2 KingbaseES 扩展方案</h3>
+<p>我们刚刚说了DM的适配路线，那问题是 KingbaseES 为什么可以和 PostgreSQL 用一样的技术路线？这是因为 KingbaseES 和 PostgreSQL 兼容度较高，这样的话插件设计上就不用从零做一套查询链路了，我只要替换驱动和少量连接参数就可以了。</p>
+<p>KingbaseES 适配器负责：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>设计点</th>
+<th>方案</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>驱动</td>
+<td>使用 <code>ksycopg2</code></td>
+</tr>
+<tr class="even">
+<td>技术路线</td>
+<td>PostgreSQL 兼容模式</td>
+</tr>
+<tr class="odd">
+<td>SQL 执行</td>
+<td>复用 PostgreSQL 风格连接和 cursor</td>
+</tr>
+<tr class="even">
+<td>结果读取</td>
+<td>与 PostgreSQL 返回结构保持一致</td>
+</tr>
+<tr class="odd">
+<td>异常处理</td>
+<td>将 <code>ksycopg2</code> 异常转换为插件统一错误</td>
+</tr>
+<tr class="even">
+<td>依赖打包</td>
+<td>将 <code>ksycopg2</code> wheel 放入 <code>wheels/</code></td>
+</tr>
+</tbody>
+</table>
+<p>我们希望连接路线是这个样子：</p>
+<pre class="text"><code>kingbase
+  -&gt; ksycopg2
+  -&gt; PostgreSQL-compatible connection
+  -&gt; cursor.execute(sql)
+  -&gt; records</code></pre>
+<p>这样设计解决的问题是：KingbaseES 不需要占用一套完全独立的实现了，但是还可以保留单独的适配器，这样就方便后续处理兼容差异了。</p>
+</section>
+</section>
+<section id="sql-查询执行流程设计" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="sql-查询执行流程设计"><span class="header-section-number">1.7</span> 7. SQL 查询执行流程设计</h2>
+<p>我们这部分是插件设计技术的一部分，因为肯定技术部分会遇到一个问题：用户输入 SQL 后，插件内部该咋执行？</p>
+<p>SQL 执行流程图如下：</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"17px"
+}
+}}%%
+flowchart TD
+  A["用户输入&lt;br/&gt;连接信息 + SQL"]
+  B["Dify Workflow&lt;br/&gt;调用 Tool 节点"]
+  C["Tool 读取参数"]
+  D["校验必填项"]
+  E["校验 SQL&lt;br/&gt;单语句 + SELECT"]
+  F["根据 db_type&lt;br/&gt;选择适配器"]
+  G["连接数据库"]
+  H["执行 SQL"]
+  I["读取 rows"]
+  J["结果转换&lt;br/&gt;records / markdown"]
+  K["返回 Dify"]
+
+  A --&gt; B
+  B --&gt; C
+  C --&gt; D
+  D --&gt; E
+  E --&gt; F
+  F --&gt; G
+  G --&gt; H
+  H --&gt; I
+  I --&gt; J
+  J --&gt; K
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>有一些实现规则，我们后面设计的时候就可以参考：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>规则</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>默认只允许单条 <code>SELECT</code></td>
+<td>降低误执行写操作风险</td>
+</tr>
+<tr class="even">
+<td>使用只读数据库账号</td>
+<td>从数据库权限层兜底</td>
+</tr>
+<tr class="odd">
+<td>设置连接超时</td>
+<td>避免连接阶段阻塞</td>
+</tr>
+<tr class="even">
+<td>设置查询超时</td>
+<td>避免长 SQL 卡住插件</td>
+</tr>
+<tr class="odd">
+<td>设置最大返回行数</td>
+<td>避免大结果集拖垮 Workflow</td>
+</tr>
+<tr class="even">
+<td>返回 JSON</td>
+<td>方便后续节点消费</td>
+</tr>
+<tr class="odd">
+<td>返回 Markdown</td>
+<td>方便用户直接阅读</td>
+</tr>
+</tbody>
+</table>
+<p>建议返回成 JSON 结构：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"columns"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"id"</span><span class="ot">,</span> <span class="st">"name"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"rows"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"demo"</span><span class="fu">}</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"row_count"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"truncated"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database_type"</span><span class="fu">:</span> <span class="st">"kingbase"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="离线插件整体制作流程" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="离线插件整体制作流程"><span class="header-section-number">1.8</span> 8. 离线插件整体制作流程</h2>
+<p>我们要求里是需要这个插件Offline的，所以很多环境要提前备好在包里。</p>
+<p>先简单设计一下离线制作流程图：</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"17px"
+}
+}}%%
+flowchart TD
+  A["确认目标环境&lt;br/&gt;OS / CPU / Python"]
+  B["创建插件项目"]
+  C["固定 requirements 版本"]
+  D["联网环境下载 wheels"]
+  E["补齐数据库驱动&lt;br/&gt;含 Oracle / SQL Server / DM / KingbaseES"]
+  F["离线安装验证"]
+  G["本地调试 Tool"]
+  H["打包 difypkg"]
+  I["导入离线 Dify"]
+  J["Workflow 节点验证"]
+
+  A --&gt; B
+  B --&gt; C
+  C --&gt; D
+  D --&gt; E
+  E --&gt; F
+  F --&gt; G
+  G --&gt; H
+  H --&gt; I
+  I --&gt; J
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>先提前确认一下离线环境（通过之前拿到的插件包）：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>项目</th>
+<th>需要确认</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python 版本</td>
+<td>例如 <code>3.12</code>，决定 wheel ABI</td>
+</tr>
+<tr class="even">
+<td>CPU 架构</td>
+<td><code>amd64</code> 或 <code>arm64</code></td>
+</tr>
+<tr class="odd">
+<td>操作系统</td>
+<td>Linux / Windows，不同平台 wheel 不通用</td>
+</tr>
+<tr class="even">
+<td>Dify 版本</td>
+<td>确认插件系统兼容</td>
+</tr>
+<tr class="odd">
+<td>数据库网络</td>
+<td>Dify 插件运行环境能访问目标数据库</td>
+</tr>
+<tr class="even">
+<td>驱动来源</td>
+<td>Oracle、SQL Server、DM、KingbaseES 等驱动是否允许打包分发</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="依赖本地化与插件打包方案" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="依赖本地化与插件打包方案"><span class="header-section-number">1.9</span> 9. 依赖本地化与插件打包方案</h2>
+<p>我们最后的目标肯定是生成 <code>.difypkg</code> 然后导入 Dify 成为工作流节点，但是依赖也需要好好管理。</p>
+<section id="requirements-固定版本" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="requirements-固定版本"><span class="header-section-number">1.9.1</span> 9.1 requirements 固定版本</h3>
+<p>依赖版本要固定，这也就避免不同环境安装出不同结果。</p>
+<p>示例：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>--no-index --find-links=./wheels/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dify_plugin==0.2.1</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>SQLAlchemy==2.0.35</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>PyMySQL==1.1.1</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>oracledb==2.2.1</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>psycopg2-binary==2.9.10</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pymssql==2.3.4</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>dmPython==x.y.z</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ksycopg2==x.y.z</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>sqlparse==0.5.3</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>tabulate==0.9.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>上面这些就是大概找到的一些依赖版本。<code>--no-index</code> 的作用是禁止访问公网包仓库。<code>--find-links=./wheels/</code> 的作用是从插件包内的本地依赖目录查找 wheel。</p>
+</section>
+<section id="wheel-下载与本地依赖仓库" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="wheel-下载与本地依赖仓库"><span class="header-section-number">1.9.2</span> 9.2 wheel 下载与本地依赖仓库</h3>
+<p>跟之前说的一样，只要在联网环境中提前下载依赖就可以了：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> download <span class="at">-r</span> requirements-online.txt <span class="at">-d</span> wheels/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>执行这个命令到本地仓库，本地依赖仓库就是插件目录下的 <code>wheels/</code>。它至少要包含：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>依赖类型</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dify SDK</td>
+<td><code>dify_plugin</code></td>
+</tr>
+<tr class="even">
+<td>通用 SQL 能力</td>
+<td><code>SQLAlchemy</code>、<code>sqlparse</code></td>
+</tr>
+<tr class="odd">
+<td>MySQL 驱动</td>
+<td><code>PyMySQL</code></td>
+</tr>
+<tr class="even">
+<td>Oracle 驱动</td>
+<td><code>oracledb</code></td>
+</tr>
+<tr class="odd">
+<td>PostgreSQL 驱动</td>
+<td><code>psycopg2-binary</code></td>
+</tr>
+<tr class="even">
+<td>SQL Server 驱动</td>
+<td><code>pymssql</code></td>
+</tr>
+<tr class="odd">
+<td>DM 驱动</td>
+<td><code>dmPython</code></td>
+</tr>
+<tr class="even">
+<td>KingbaseES 驱动</td>
+<td><code>ksycopg2</code></td>
+</tr>
+<tr class="odd">
+<td>输出格式化</td>
+<td><code>tabulate</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="difypkg-打包" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="difypkg-打包"><span class="header-section-number">1.9.3</span> 9.3 difypkg 打包</h3>
+<p>打包前要检查：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>检查项</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>manifest.yaml</code></td>
+<td><code>type: plugin</code>，<code>plugins.tools</code> 指向 Provider</td>
+</tr>
+<tr class="even">
+<td>Provider YAML</td>
+<td>包含连接凭据配置和 Tool 引用</td>
+</tr>
+<tr class="odd">
+<td>Tool YAML</td>
+<td>参数与 Tool Python 代码一致</td>
+</tr>
+<tr class="even">
+<td><code>requirements.txt</code></td>
+<td>固定版本，指向 <code>wheels/</code></td>
+</tr>
+<tr class="odd">
+<td><code>wheels/</code></td>
+<td>所有依赖存在，平台匹配</td>
+</tr>
+<tr class="even">
+<td><code>.difyignore</code></td>
+<td>排除测试缓存、临时文件、真实凭据</td>
+</tr>
+</tbody>
+</table>
+<p>打包命令比如说写成这样：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dify</span> plugin package ./multi_db_query</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Windows 本地命令可写为：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>\dify-plugin<span class="op">.</span><span class="fu">exe</span> plugin package <span class="op">.</span>\multi_db_query <span class="op">-</span>o <span class="op">.</span>\dist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="导入-dify" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="导入-dify"><span class="header-section-number">1.9.4</span> 9.4 导入 Dify</h3>
+<p>根据所演示的前端中新建了智能体，然后本地导入步骤：</p>
+<pre class="text"><code>1. 打开 Dify 插件管理页面
+2. 选择本地文件导入
+3. 上传生成的 .difypkg
+4. 确认插件权限
+5. 完成安装
+6. 打开插件配置页
+7. 填写数据库连接信息
+8. 执行连接校验</code></pre>
+<p>导入成功不代表插件就能用了，后面咱们肯定还要继续验证数据库连接和 SQL 查询。</p>
+</section>
+<section id="成为工作流节点" class="level3" data-number="1.9.5">
+<h3 data-number="1.9.5" class="anchored" data-anchor-id="成为工作流节点"><span class="header-section-number">1.9.5</span> 9.5 成为工作流节点</h3>
+<p>插件成为 Workflow 节点的条件：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>插件类型是 Tool Plugin</td>
+<td>Dify 才能在工具节点中选择</td>
+</tr>
+<tr class="even">
+<td>Tool YAML 参数完整</td>
+<td>Workflow 节点才能渲染输入项</td>
+</tr>
+<tr class="odd">
+<td>插件已安装到 Workspace</td>
+<td>工作流中才能引用</td>
+</tr>
+<tr class="even">
+<td>Provider 凭据通过校验</td>
+<td>节点运行时才能连接数据库</td>
+</tr>
+<tr class="odd">
+<td>Tool 返回 JSON</td>
+<td>后续节点才能读取查询结果</td>
+</tr>
+</tbody>
+</table>
+<p>使用方式：</p>
+<pre class="text"><code>Workflow
+  -&gt; 添加 Tool 节点
+  -&gt; 选择数据库查询插件
+  -&gt; 选择 sql_query 工具
+  -&gt; 输入 query_sql
+  -&gt; 运行节点
+  -&gt; 后续节点读取 rows / columns / row_count</code></pre>
+</section>
+</section>
+<section id="完整性校验" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="完整性校验"><span class="header-section-number">1.10</span> 10. 完整性校验</h2>
+<p>大概列了一个表，这个表就可以判断这个插件设计是不是可以进入开发和交付：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>校验项</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>插件可导入</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>Tool 类型正确</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>Workflow 中可选择</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>Provider 凭据表单正常</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>Password 使用密文输入</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>MySQL 可连接</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>Oracle 可连接</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>Oracle 11g 可连接</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>PostgreSQL 可连接</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>SQL Server 可连接</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>DM 可连接</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>KingbaseES 可连接</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>SQL 查询成功</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>JSON 输出正常</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>Markdown 输出正常</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>错误提示可理解</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>requirements 版本固定</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td>wheels 依赖完整</td>
+<td>PASS</td>
+</tr>
+<tr class="odd">
+<td>离线安装成功</td>
+<td>PASS</td>
+</tr>
+<tr class="even">
+<td><code>.difypkg</code> 可重复生成</td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+<p>我们想让这个链路能最后通：</p>
+<pre class="text"><code>设计目录
+  -&gt; 编写插件
+  -&gt; 本地依赖
+  -&gt; 打包 difypkg
+  -&gt; 导入 Dify
+  -&gt; 配置连接
+  -&gt; Workflow 节点执行 SQL
+  -&gt; 返回结果给后续节点</code></pre>
+<p>如果这条链路能在无公网环境下完成，就说明插件设计成功了。</p>
+</section>
+<section id="实施任务分解" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="实施任务分解"><span class="header-section-number">1.11</span> 11. 实施任务分解</h2>
+<p>以下任务分解以本方案的多数据库查询 Tool Plugin 为范围，覆盖现有数据库类型、DM / KingbaseES 扩展、离线交付和 Dify 工作流验证。预估工时按单人实施口径统计，单位为人时。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>任务环节</th>
+<th>任务项 / 模块</th>
+<th>任务明细 / 细化任务</th>
+<th style="text-align: right;">预估工时（人时）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>设计</td>
+<td>技术研究与方案确认</td>
+<td>核对 Dify Tool Plugin 生命周期、Provider / Tool 配置边界、CLI 本地调试与 <code>.difypkg</code> 打包流程；确认目标 Dify、Python、操作系统和 CPU 架构版本。</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td>设计</td>
+<td>数据库适配设计</td>
+<td>梳理 MySQL、Oracle、Oracle 11g、PostgreSQL、SQL Server、DM、KingbaseES 的驱动、连接串、认证方式、异常类型和离线依赖要求；形成驱动映射与适配器接口。</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td>设计</td>
+<td>安全与接口设计</td>
+<td>定义连接凭据、SQL、超时、最大返回行数和输出格式等参数；明确单条只读 SQL、只读账号、脱敏报错、JSON / Markdown 输出规范。</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td>设计</td>
+<td>设计文档评审与完善</td>
+<td>评审目录结构、接口、数据库兼容策略、离线交付边界和验收标准，并根据意见修订方案。</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td>编码</td>
+<td>开发环境与测试资源搭建</td>
+<td>配置 Python、Poetry、Dify Plugin SDK 和 Dify 本地插件环境；搭建或接入 MySQL / PostgreSQL 测试库，准备测试表和测试数据。</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td>编码</td>
+<td>插件骨架开发</td>
+<td>使用官方模板初始化项目；编写 <code>manifest.yaml</code>、<code>main.py</code>、Provider 与 Tool YAML，完成参数表单、SDK 入口、基础日志和统一异常处理。</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td>编码</td>
+<td>Provider 凭据校验</td>
+<td>实现数据库类型选择、地址、端口、库名、用户名、密码和连接超时等凭据配置；完成连接测试与凭据错误提示。</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td>编码</td>
+<td>通用查询能力</td>
+<td>实现 SQL 单语句 / 只读校验、参数绑定、连接与查询超时、最大返回行数、分页控制，以及统一的 <code>_invoke</code> 调用流程。</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td>编码</td>
+<td>结果转换与输出</td>
+<td>将各类驱动返回结果统一转换为 records JSON；处理空值、日期、数值等类型，支持 Markdown 展示、行数统计和截断标识。</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td>编码</td>
+<td>基础数据库适配</td>
+<td>实现并联调 MySQL、Oracle、Oracle 11g、PostgreSQL、SQL Server 适配器；处理连接字符串、驱动初始化和数据库异常转换。</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td>编码</td>
+<td>DM 数据库适配</td>
+<td>基于 <code>dmPython</code> 实现 DM 独立适配器，完成连接、查询、结果读取、异常转换和测试用例。</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td>编码</td>
+<td>KingbaseES 数据库适配</td>
+<td>基于 <code>ksycopg2</code> / PostgreSQL 兼容路线实现 KingbaseES 适配器，处理兼容差异、连接和结果读取，并补充测试用例。</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td>编码</td>
+<td>离线依赖与打包</td>
+<td>固定 <code>requirements.txt</code> 版本；准备与目标环境匹配的 wheels，验证无公网安装；配置 <code>.difyignore</code> 并使用 CLI 生成 <code>.difypkg</code>。</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td>联调</td>
+<td>CLI 与本地单元调试</td>
+<td>通过 CLI 构造连接和 SQL 入参，验证连接、查询、结果格式、超时和异常提示；执行适配器与结果转换单元测试。</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td>联调</td>
+<td>Dify 平台与工作流联调</td>
+<td>在 Dify 中导入插件，验证凭据表单、连接校验和 Tool 节点渲染；在 Workflow 中传递上游变量并验证 JSON 数据流转。</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td>自测</td>
+<td>功能、安全与离线全量测试</td>
+<td>覆盖七类数据库连通性、只读 SQL 拦截、超时、空结果、大结果截断、敏感信息脱敏、离线安装、重复打包和导入验证。</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td>自测</td>
+<td>缺陷修复与交付整理</td>
+<td>修复自测问题，补齐安装说明、环境前置条件、已知限制、测试记录和交付清单。</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td><strong>合计</strong></td>
+<td></td>
+<td></td>
+<td style="text-align: right;"><strong>228</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="03_DM_Kingbase数据库查询插件设计方案_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

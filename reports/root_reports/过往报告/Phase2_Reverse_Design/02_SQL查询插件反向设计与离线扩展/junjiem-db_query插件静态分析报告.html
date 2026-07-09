@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>junjiem-db_query 离线插件包静态分析报告</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="junjiem-db_query插件静态分析报告_files/libs/clipboard/clipboard.min.js"></script>
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-html/popper.min.js"></script>
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-html/anchor.min.js"></script>
+<link href="junjiem-db_query插件静态分析报告_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="junjiem-db_query插件静态分析报告_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="junjiem-db_query插件静态分析报告_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="junjiem-db_query插件静态分析报告_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="junjiem-db_query插件静态分析报告_files/libs/bootstrap/bootstrap-67270d1595a62d14f123c043d4fb2f18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="junjiem-db_query插件静态分析报告_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#junjiem-db_query-离线插件包静态分析报告" id="toc-junjiem-db_query-离线插件包静态分析报告" class="nav-link active" data-scroll-target="#junjiem-db_query-离线插件包静态分析报告"><span class="header-section-number">1</span> junjiem-db_query 离线插件包静态分析报告</a>
+  <ul>
+  <li><a href="#插件概览" id="toc-插件概览" class="nav-link" data-scroll-target="#插件概览"><span class="header-section-number">1.1</span> 1 插件概览</a>
+  <ul class="collapse">
+  <li><a href="#基础信息" id="toc-基础信息" class="nav-link" data-scroll-target="#基础信息"><span class="header-section-number">1.1.1</span> 1.1 基础信息</a></li>
+  <li><a href="#插件源码导航" id="toc-插件源码导航" class="nav-link" data-scroll-target="#插件源码导航"><span class="header-section-number">1.1.2</span> 1.2 插件源码导航</a></li>
+  <li><a href="#manifest" id="toc-manifest" class="nav-link" data-scroll-target="#manifest"><span class="header-section-number">1.1.3</span> 1.3 manifest</a></li>
+  <li><a href="#mainpy" id="toc-mainpy" class="nav-link" data-scroll-target="#mainpy"><span class="header-section-number">1.1.4</span> 1.4 main.py</a></li>
+  <li><a href="#插件包结构图" id="toc-插件包结构图" class="nav-link" data-scroll-target="#插件包结构图"><span class="header-section-number">1.1.5</span> 1.5 插件包结构图</a></li>
+  <li><a href="#目录结构摘要" id="toc-目录结构摘要" class="nav-link" data-scroll-target="#目录结构摘要"><span class="header-section-number">1.1.6</span> 1.6 目录结构摘要</a></li>
+  </ul></li>
+  <li><a href="#provider" id="toc-provider" class="nav-link" data-scroll-target="#provider"><span class="header-section-number">1.2</span> 2 Provider</a>
+  <ul class="collapse">
+  <li><a href="#provider-yaml" id="toc-provider-yaml" class="nav-link" data-scroll-target="#provider-yaml"><span class="header-section-number">1.2.1</span> 2.1 Provider YAML</a></li>
+  <li><a href="#provider-python" id="toc-provider-python" class="nav-link" data-scroll-target="#provider-python"><span class="header-section-number">1.2.2</span> 2.2 Provider Python</a></li>
+  </ul></li>
+  <li><a href="#tool" id="toc-tool" class="nav-link" data-scroll-target="#tool"><span class="header-section-number">1.3</span> 3 Tool</a>
+  <ul class="collapse">
+  <li><a href="#tool-yaml" id="toc-tool-yaml" class="nav-link" data-scroll-target="#tool-yaml"><span class="header-section-number">1.3.1</span> 3.1 Tool YAML</a></li>
+  <li><a href="#tool-python" id="toc-tool-python" class="nav-link" data-scroll-target="#tool-python"><span class="header-section-number">1.3.2</span> 3.2 Tool Python</a></li>
+  </ul></li>
+  <li><a href="#database-layer" id="toc-database-layer" class="nav-link" data-scroll-target="#database-layer"><span class="header-section-number">1.4</span> 4 Database Layer</a>
+  <ul class="collapse">
+  <li><a href="#db-util" id="toc-db-util" class="nav-link" data-scroll-target="#db-util"><span class="header-section-number">1.4.1</span> 4.1 db_util</a></li>
+  </ul></li>
+  <li><a href="#依赖分析" id="toc-依赖分析" class="nav-link" data-scroll-target="#依赖分析"><span class="header-section-number">1.5</span> 5 依赖分析</a>
+  <ul class="collapse">
+  <li><a href="#requirements.txt" id="toc-requirements.txt" class="nav-link" data-scroll-target="#requirements.txt"><span class="header-section-number">1.5.1</span> 5.1 requirements.txt</a></li>
+  <li><a href="#offline-package" id="toc-offline-package" class="nav-link" data-scroll-target="#offline-package"><span class="header-section-number">1.5.2</span> 5.2 offline package</a></li>
+  <li><a href="#assets" id="toc-assets" class="nav-link" data-scroll-target="#assets"><span class="header-section-number">1.5.3</span> 5.3 assets</a></li>
+  </ul></li>
+  <li><a href="#调用链分析" id="toc-调用链分析" class="nav-link" data-scroll-target="#调用链分析"><span class="header-section-number">1.6</span> 6 调用链分析</a>
+  <ul class="collapse">
+  <li><a href="#dify-调用插件运行链路图" id="toc-dify-调用插件运行链路图" class="nav-link" data-scroll-target="#dify-调用插件运行链路图"><span class="header-section-number">1.6.1</span> 6.1 Dify 调用插件运行链路图</a></li>
+  <li><a href="#静态依赖关系图" id="toc-静态依赖关系图" class="nav-link" data-scroll-target="#静态依赖关系图"><span class="header-section-number">1.6.2</span> 6.2 静态依赖关系图</a></li>
+  <li><a href="#credentials-到-sql-流程" id="toc-credentials-到-sql-流程" class="nav-link" data-scroll-target="#credentials-到-sql-流程"><span class="header-section-number">1.6.3</span> 6.3 credentials 到 SQL 流程</a></li>
+  <li><a href="#sql-返回结果流程" id="toc-sql-返回结果流程" class="nav-link" data-scroll-target="#sql-返回结果流程"><span class="header-section-number">1.6.4</span> 6.4 SQL 返回结果流程</a></li>
+  <li><a href="#插件内部职责分层图" id="toc-插件内部职责分层图" class="nav-link" data-scroll-target="#插件内部职责分层图"><span class="header-section-number">1.6.5</span> 6.5 插件内部职责分层图</a></li>
+  </ul></li>
+  <li><a href="#风险分析" id="toc-风险分析" class="nav-link" data-scroll-target="#风险分析"><span class="header-section-number">1.7</span> 7 风险分析</a>
+  <ul class="collapse">
+  <li><a href="#已有安全设计" id="toc-已有安全设计" class="nav-link" data-scroll-target="#已有安全设计"><span class="header-section-number">1.7.1</span> 7.1 已有安全设计</a></li>
+  <li><a href="#主要风险" id="toc-主要风险" class="nav-link" data-scroll-target="#主要风险"><span class="header-section-number">1.7.2</span> 7.2 主要风险</a></li>
+  </ul></li>
+  <li><a href="#对本项目启发" id="toc-对本项目启发" class="nav-link" data-scroll-target="#对本项目启发"><span class="header-section-number">1.8</span> 8 对本项目启发</a>
+  <ul class="collapse">
+  <li><a href="#可以复用的结构" id="toc-可以复用的结构" class="nav-link" data-scroll-target="#可以复用的结构"><span class="header-section-number">1.8.1</span> 8.1 可以复用的结构</a></li>
+  <li><a href="#可以参考但不能照搬的代码" id="toc-可以参考但不能照搬的代码" class="nav-link" data-scroll-target="#可以参考但不能照搬的代码"><span class="header-section-number">1.8.2</span> 8.2 可以参考但不能照搬的代码</a></li>
+  <li><a href="#支持-dameng-dm-的扩展点" id="toc-支持-dameng-dm-的扩展点" class="nav-link" data-scroll-target="#支持-dameng-dm-的扩展点"><span class="header-section-number">1.8.3</span> 8.3 支持 Dameng DM 的扩展点</a></li>
+  <li><a href="#driver-依赖设计" id="toc-driver-依赖设计" class="nav-link" data-scroll-target="#driver-依赖设计"><span class="header-section-number">1.8.4</span> 8.4 driver 依赖设计</a></li>
+  <li><a href="#credentials-设计" id="toc-credentials-设计" class="nav-link" data-scroll-target="#credentials-设计"><span class="header-section-number">1.8.5</span> 8.5 credentials 设计</a></li>
+  <li><a href="#sql-安全限制" id="toc-sql-安全限制" class="nav-link" data-scroll-target="#sql-安全限制"><span class="header-section-number">1.8.6</span> 8.6 SQL 安全限制</a></li>
+  <li><a href="#输出格式设计" id="toc-输出格式设计" class="nav-link" data-scroll-target="#输出格式设计"><span class="header-section-number">1.8.7</span> 8.7 输出格式设计</a></li>
+  <li><a href="#offline-打包注意事项" id="toc-offline-打包注意事项" class="nav-link" data-scroll-target="#offline-打包注意事项"><span class="header-section-number">1.8.8</span> 8.8 offline 打包注意事项</a></li>
+  </ul></li>
+  <li><a href="#结论" id="toc-结论" class="nav-link" data-scroll-target="#结论"><span class="header-section-number">1.9</span> 9 结论</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">junjiem-db_query 离线插件包静态分析报告</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+body {
+  color: #111827;
+}
+main.content {
+  max-width: 1050px;
+}
+.page-columns .content {
+  grid-column: body-content-start / body-content-end;
+}
+#TOC {
+  font-size: 0.95rem;
+}
+#TOC ul {
+  padding-left: 0.9rem;
+}
+#TOC a {
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+.mermaid {
+  background: #ffffff;
+  text-align: center;
+  font-size: 18px;
+}
+.mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+table {
+  width: 100%;
+  table-layout: auto;
+}
+th, td {
+  vertical-align: top;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.source-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 1rem 0 1.5rem;
+}
+.source-nav-item {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #ffffff;
+}
+.source-nav-item code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.source-nav-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.source-nav-meta {
+  color: #475569;
+  margin-top: 6px;
+}
+@media (max-width: 900px) {
+  .source-nav {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+<section id="junjiem-db_query-离线插件包静态分析报告" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> junjiem-db_query 离线插件包静态分析报告</h1>
+<p>本报告基于 <code>junjiem-db_query_0.0.11-offline.difypkg</code> 的静态解包结果编写。分析过程未安装插件、未运行插件代码、未修改原始 <code>.difypkg</code> 文件，仅阅读解包后的配置、源码、依赖声明与离线 wheel 文件。</p>
+<p>解包路径为 <code>E:\Dify_Plugin\analysis\junjiem-db_query_0.0.11</code>。该插件是一个 Dify Tool Plugin，核心能力是通过 Tool 参数接收数据库连接信息与 SQL，使用 SQLAlchemy 与数据库驱动执行查询，并把结果以 Markdown 表格或 JSON 返回给 Dify Workflow / Agent。</p>
+<section id="插件概览" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="插件概览"><span class="header-section-number">1.1</span> 1 插件概览</h2>
+<section id="基础信息" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="基础信息"><span class="header-section-number">1.1.1</span> 1.1 基础信息</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>插件名称</td>
+<td><code>db_query</code></td>
+</tr>
+<tr class="even">
+<td>插件版本</td>
+<td><code>0.0.11</code></td>
+</tr>
+<tr class="odd">
+<td>作者</td>
+<td><code>junjiem</code></td>
+</tr>
+<tr class="even">
+<td>插件类型</td>
+<td><code>plugin</code></td>
+</tr>
+<tr class="odd">
+<td>Runtime</td>
+<td>Python <code>3.12</code></td>
+</tr>
+<tr class="even">
+<td>入口文件</td>
+<td><code>main.py</code></td>
+</tr>
+<tr class="odd">
+<td>Provider</td>
+<td><code>provider/db_query.yaml</code>、<code>provider/db_query.py</code></td>
+</tr>
+<tr class="even">
+<td>Tool</td>
+<td><code>tools/sql_query.yaml</code>、<code>tools/sql_query.py</code></td>
+</tr>
+<tr class="odd">
+<td>数据库层</td>
+<td><code>tools/db_util.py</code></td>
+</tr>
+<tr class="even">
+<td>离线特征</td>
+<td><code>requirements.txt</code> 使用 <code>--no-index --find-links=./wheels/</code>，并携带 <code>wheels/</code> 目录</td>
+</tr>
+</tbody>
+</table>
+<p>插件包采用 Dify Tool Plugin 的典型分层：<code>manifest.yaml</code> 声明插件元信息与入口，Provider 负责插件提供方声明与凭据校验入口，Tool 负责用户可调用工具的参数与执行逻辑，<code>db_util.py</code> 封装数据库连接与查询。</p>
+</section>
+<section id="插件源码导航" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="插件源码导航"><span class="header-section-number">1.1.2</span> 1.2 插件源码导航</h3>
+<div class="source-nav">
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>manifest.yaml</code>
+</div>
+作用：插件入口配置，声明版本、运行时、Provider、资源权限和 Marketplace 信息。<br>
+关联对象：<code>provider/db_query.yaml</code>、<code>tools/sql_query.yaml</code>。<br>
+
+<div class="source-nav-meta">
+对应章节：1.3 manifest
+</div>
+</div>
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>main.py</code>
+</div>
+作用：插件启动入口，调用 Dify Plugin SDK 启动运行时。<br>
+关联对象：<code>dify_plugin.Plugin</code>。<br>
+
+<div class="source-nav-meta">
+对应章节：1.4 main.py
+</div>
+</div>
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>provider/db_query.yaml</code>
+</div>
+作用：Provider 声明，关联 Tool YAML 和 Provider Python 文件。<br>
+关联对象：<code>provider/db_query.py</code>、<code>tools/sql_query.yaml</code>。<br>
+
+<div class="source-nav-meta">
+对应章节：2.1 Provider YAML
+</div>
+</div>
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>provider/db_query.py</code>
+</div>
+作用：Provider Python 实现，提供 credential 校验入口。<br>
+关联对象：<code>ToolProvider</code>、<code>tools/db_util.py</code>。<br>
+
+<div class="source-nav-meta">
+对应章节：2.2 Provider Python
+</div>
+</div>
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>tools/sql_query.yaml</code>
+</div>
+作用：Tool 入参、输出格式和 UI 表单声明。<br>
+关联对象：<code>tools/sql_query.py</code>。<br>
+
+<div class="source-nav-meta">
+对应章节：3.1 Tool YAML
+</div>
+</div>
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>tools/sql_query.py</code>
+</div>
+作用：Tool 执行入口，校验参数、限制 SQL 类型、封装返回值。<br>
+关联对象：<code>tools/db_util.py</code>、<code>tabulate</code>、<code>sqlparse</code>。<br>
+
+<div class="source-nav-meta">
+对应章节：3.2 Tool Python
+</div>
+</div>
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>tools/db_util.py</code>
+</div>
+作用：数据库连接、SQLAlchemy URL 构造、查询执行与结果转换。<br>
+关联对象：SQLAlchemy、pandas、数据库 drivers。<br>
+
+<div class="source-nav-meta">
+对应章节：4.1 db_util
+</div>
+</div>
+<div class="source-nav-item">
+<div class="source-nav-title">
+<code>requirements.txt</code> / <code>wheels/</code> / <code>_assets/</code>
+</div>
+作用：依赖声明、离线 wheel 安装策略、插件图标与 Marketplace 展示图片。<br>
+关联对象：<code>requirements.txt</code>、<code>wheels/</code>、<code>manifest.yaml</code>。<br>
+
+<div class="source-nav-meta">
+对应章节：5 依赖分析
+</div>
+</div>
+</div>
+</section>
+<section id="manifest" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="manifest"><span class="header-section-number">1.1.3</span> 1.3 manifest</h3>
+<p><code>manifest.yaml</code> 是 Dify Plugin 的根配置文件。它定义插件身份、运行时、资源限制、权限、Provider 入口与 Marketplace 展示信息。Dify 或 plugin-daemon 加载插件包时，会先读取该文件来判断插件如何启动、有哪些 provider、需要哪些资源。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.0.11</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> plugin</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> junjiem</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> db_query</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">label</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">en_US</span><span class="kw">:</span><span class="at"> DB Query</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">zh_Hans</span><span class="kw">:</span><span class="at"> 数据库查询</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">created_at</span><span class="kw">:</span><span class="at"> 2025-06-17T21:43:31.911109+08:00</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">resource</span><span class="kw">:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">memory</span><span class="kw">:</span><span class="at"> </span><span class="dv">1048576</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plugins</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tools</span><span class="kw">:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> provider/db_query.yaml</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">meta</span><span class="kw">:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.0.11</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">arch</span><span class="kw">:</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> amd64</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> arm64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 声明插件身份、版本、类型、资源、Provider 入口与目标架构。<br>
+<strong>输入：</strong> 插件包根目录中的 YAML 元数据。<br>
+<strong>输出：</strong> plugin-daemon 可识别的插件加载配置。<br>
+<strong>关联文件：</strong> <code>provider/db_query.yaml</code>、<code>README.md</code>、<code>PRIVACY.md</code>、<code>_assets/</code>。<br>
+<strong>在插件生命周期中的位置：</strong> 插件安装、加载、运行前的第一层配置入口。</p>
+<p>manifest 中的 <code>resource.memory: 1048576</code> 表示插件运行时资源声明。<code>plugins.tools</code> 指向 <code>provider/db_query.yaml</code>，这使 Dify 能找到该插件暴露的 Tool Provider。<code>meta.arch</code> 声明 <code>amd64</code> 与 <code>arm64</code>，但离线 wheels 主要体现 Linux x86_64 / cp312 生态，实际离线可用性仍需要以 wheel 文件平台标签为准。</p>
+</section>
+<section id="mainpy" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="mainpy"><span class="header-section-number">1.1.4</span> 1.4 main.py</h3>
+<p><code>main.py</code> 是插件运行进程的入口，通常保持很薄，只负责读取环境变量、启动 SDK runtime，然后把具体能力委托给 Provider 和 Tool。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dify_plugin <span class="im">import</span> Plugin, DifyPluginEnv</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plugin <span class="op">=</span> Plugin(DifyPluginEnv(MAX_REQUEST_TIMEOUT<span class="op">=</span><span class="dv">120</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    plugin.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 启动 Dify Plugin SDK runtime。<br>
+<strong>输入：</strong> plugin-daemon 注入的运行环境与请求。<br>
+<strong>输出：</strong> 一个可与 plugin-daemon 通信的插件进程。<br>
+<strong>关联文件：</strong> <code>manifest.yaml</code>、Provider YAML、Tool Python 文件。<br>
+<strong>在插件生命周期中的位置：</strong> 插件被加载后，运行期进程启动的入口。</p>
+<p>该文件没有业务逻辑。仿写自己的数据库插件时，建议保持类似结构，把数据库连接、参数校验、SQL 执行都放在 Tool 或独立工具层，避免 <code>main.py</code> 变成业务容器。</p>
+</section>
+<section id="插件包结构图" class="level3" data-number="1.1.5">
+<h3 data-number="1.1.5" class="anchored" data-anchor-id="插件包结构图"><span class="header-section-number">1.1.5</span> 1.5 插件包结构图</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"20px"
+}
+}}%%
+flowchart TB
+  P["difypkg&lt;br/&gt;离线插件包"]
+  M["manifest.yaml&lt;br/&gt;插件入口"]
+  R["main.py&lt;br/&gt;运行入口"]
+  V["provider/&lt;br/&gt;Provider"]
+  T["tools/&lt;br/&gt;Tool"]
+  D["db_util.py&lt;br/&gt;数据库层"]
+  W["wheels/&lt;br/&gt;离线依赖"]
+  A["_assets/&lt;br/&gt;展示资源"]
+  G["README / GUIDE / PRIVACY&lt;br/&gt;文档"]
+
+  P --&gt; M
+  P --&gt; R
+  P --&gt; V
+  P --&gt; T
+  T --&gt; D
+  P --&gt; W
+  P --&gt; A
+  P --&gt; G
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="目录结构摘要" class="level3" data-number="1.1.6">
+<h3 data-number="1.1.6" class="anchored" data-anchor-id="目录结构摘要"><span class="header-section-number">1.1.6</span> 1.6 目录结构摘要</h3>
+<pre class="text"><code>junjiem-db_query_0.0.11/
+├─ .difyignore
+├─ .env.example
+├─ .verification.dify.json
+├─ GUIDE.md
+├─ main.py
+├─ manifest.yaml
+├─ PRIVACY.md
+├─ README.md
+├─ requirements.txt
+├─ provider/
+│  ├─ db_query.py
+│  └─ db_query.yaml
+├─ tools/
+│  ├─ db_util.py
+│  ├─ sql_query.py
+│  └─ sql_query.yaml
+├─ wheels/
+│  ├─ dify_plugin-0.2.1-py3-none-any.whl
+│  ├─ SQLAlchemy-2.0.35-cp312-...
+│  ├─ PyMySQL-1.1.1-py3-none-any.whl
+│  ├─ psycopg2_binary-2.9.10-cp312-...
+│  ├─ oracledb-2.2.1-cp312-...
+│  ├─ pymssql-2.3.4-cp312-...
+│  └─ 其他依赖 wheel
+└─ _assets/
+   ├─ icon.svg
+   ├─ db_query.png
+   ├─ db_query_chatflow.png
+   ├─ db_query_sql_query.png
+   └─ llm_riddles*.png</code></pre>
+</section>
+</section>
+<section id="provider" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="provider"><span class="header-section-number">1.2</span> 2 Provider</h2>
+<section id="provider-yaml" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="provider-yaml"><span class="header-section-number">1.2.1</span> 2.1 Provider YAML</h3>
+<p><code>provider/db_query.yaml</code> 声明 Provider 的身份、显示名称、图标、关联 Tool，以及 Provider Python 源文件。它是 manifest 与具体 Tool 之间的桥梁。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identity</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> db_query</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">author</span><span class="kw">:</span><span class="at"> junjiem</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">label</span><span class="kw">:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">en_US</span><span class="kw">:</span><span class="at"> DB Query</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">zh_Hans</span><span class="kw">:</span><span class="at"> 数据库查询</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tools</span><span class="kw">:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> tools/sql_query.yaml</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">extra</span><span class="kw">:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">python</span><span class="kw">:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">source</span><span class="kw">:</span><span class="at"> provider/db_query.py</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 声明 Provider，并把 <code>tools/sql_query.yaml</code> 挂到该 Provider 下。<br>
+<strong>输入：</strong> Provider 身份、展示信息、Tool YAML 路径。<br>
+<strong>输出：</strong> Dify 可展示和加载的 Provider 定义。<br>
+<strong>关联文件：</strong> <code>provider/db_query.py</code>、<code>tools/sql_query.yaml</code>。<br>
+<strong>在插件生命周期中的位置：</strong> 插件加载后，Dify 构建工具列表和 Provider 面板时使用。</p>
+<p>该 Provider YAML 没有声明 <code>credentials_for_provider</code>。因此数据库连接参数不是在 Provider 层统一配置，而是作为 Tool 参数传入。这样做更灵活，但不适合生产级数据库插件，因为连接信息会进入每次 Tool 调用链路，也更难集中校验与复用。</p>
+</section>
+<section id="provider-python" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="provider-python"><span class="header-section-number">1.2.2</span> 2.2 Provider Python</h3>
+<p><code>provider/db_query.py</code> 继承 Dify Plugin SDK 的 <code>ToolProvider</code>，提供 <code>_validate_credentials</code> 钩子。当前插件中该函数为空实现。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dify_plugin <span class="im">import</span> ToolProvider</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DbQueryProvider(ToolProvider):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _validate_credentials(<span class="va">self</span>, credentials: <span class="bu">dict</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 提供 Provider 层 credential 校验入口。<br>
+<strong>输入：</strong> Provider 级 credentials 字典。<br>
+<strong>输出：</strong> 校验通过则无返回，失败时应抛出异常。<br>
+<strong>关联文件：</strong> <code>provider/db_query.yaml</code>、<code>tools/db_util.py</code>。<br>
+<strong>在插件生命周期中的位置：</strong> 用户配置 Provider 凭据并点击验证时触发。</p>
+<p>当前实现没有实际校验逻辑，也不会主动连接数据库测试凭据。若我们开发自己的数据库插件，建议把数据库连接信息放在 Provider credentials 中，并在这里调用类似 <code>DbUtil.test_sql()</code> 的逻辑执行轻量只读连通性检查。</p>
+</section>
+</section>
+<section id="tool" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="tool"><span class="header-section-number">1.3</span> 3 Tool</h2>
+<section id="tool-yaml" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="tool-yaml"><span class="header-section-number">1.3.1</span> 3.1 Tool YAML</h3>
+<p><code>tools/sql_query.yaml</code> 定义 Dify Workflow / Agent 中用户能看到的工具名称、描述、参数类型、默认值和输出格式。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identity</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sql_query</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> db_type</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> select</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">value</span><span class="kw">:</span><span class="at"> mysql</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">value</span><span class="kw">:</span><span class="at"> oracle</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">value</span><span class="kw">:</span><span class="at"> oracle11g</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">value</span><span class="kw">:</span><span class="at"> postgresql</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">value</span><span class="kw">:</span><span class="at"> mssql</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> db_password</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> secret-input</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> query_sql</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 声明 Tool 入参和表单展示方式。<br>
+<strong>输入：</strong> 数据库类型、连接信息、SQL、输出格式。<br>
+<strong>输出：</strong> Dify 前端可渲染的工具表单与 Agent 可调用的参数 schema。<br>
+<strong>关联文件：</strong> <code>tools/sql_query.py</code>。<br>
+<strong>在插件生命周期中的位置：</strong> 用户在 Workflow / Agent 中配置和调用 Tool 时使用。</p>
+<p>该 Tool 暴露的主要字段包括 <code>db_type</code>、<code>db_host</code>、<code>db_port</code>、<code>db_username</code>、<code>db_password</code>、<code>db_name</code>、<code>db_properties</code>、<code>query_sql</code> 和 <code>output_format</code>。其中 <code>db_password</code> 使用 <code>secret-input</code>，这是正确方向；但数据库 host、username、password 全部作为 Tool 参数出现，生产环境更适合迁移到 Provider credentials。</p>
+</section>
+<section id="tool-python" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="tool-python"><span class="header-section-number">1.3.2</span> 3.2 Tool Python</h3>
+<p><code>tools/sql_query.py</code> 是真正的 Tool 执行入口。它读取参数、做基础校验、用 <code>sqlparse</code> 限制单条 SELECT，再调用 <code>DbUtil.run_query()</code> 执行查询，最后根据 <code>output_format</code> 生成 JSON 或 Markdown。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SqlQueryTool(Tool):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _invoke(<span class="va">self</span>, tool_parameters: <span class="bu">dict</span>[<span class="bu">str</span>, Any]) <span class="op">-&gt;</span> Generator[ToolInvokeMessage]:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        db_type <span class="op">=</span> tool_parameters.get(<span class="st">"db_type"</span>, <span class="st">""</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        db_host <span class="op">=</span> tool_parameters.get(<span class="st">"db_host"</span>, <span class="st">""</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        db_username <span class="op">=</span> tool_parameters.get(<span class="st">"db_username"</span>, <span class="st">""</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        db_password <span class="op">=</span> tool_parameters.get(<span class="st">"db_password"</span>, <span class="st">""</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        query_sql <span class="op">=</span> tool_parameters.get(<span class="st">"query_sql"</span>, <span class="st">""</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        statements <span class="op">=</span> sqlparse.parse(query_sql)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(statements) <span class="op">!=</span> <span class="dv">1</span> <span class="kw">or</span> statements[<span class="dv">0</span>].get_type() <span class="op">!=</span> <span class="st">"SELECT"</span>:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Only one SELECT statement is allowed"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        db <span class="op">=</span> DbUtil(db_type, db_host, db_port, db_username, db_password, db_name, db_properties)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        records <span class="op">=</span> db.run_query(query_sql)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 执行 Tool 调用，完成参数校验、SQL 类型限制与数据库查询。<br>
+<strong>输入：</strong> Dify 传入的 <code>tool_parameters</code>。<br>
+<strong>输出：</strong> <code>ToolInvokeMessage</code>，可为 JSON 或文本消息。<br>
+<strong>关联文件：</strong> <code>tools/sql_query.yaml</code>、<code>tools/db_util.py</code>。<br>
+<strong>在插件生命周期中的位置：</strong> 用户在 Workflow / Agent 中触发 Tool 时执行。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> output_format <span class="op">==</span> <span class="st">"json"</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> <span class="va">self</span>.create_json_message({<span class="st">"records"</span>: records})</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span> <span class="va">self</span>.create_text_message(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        tabulate.tabulate(records, headers<span class="op">=</span><span class="st">"keys"</span>, tablefmt<span class="op">=</span><span class="st">"github"</span>, floatfmt<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 根据输出格式封装查询结果。<br>
+<strong>输入：</strong> <code>DbUtil.run_query()</code> 返回的 records。<br>
+<strong>输出：</strong> JSON 消息或 Markdown 表格文本。<br>
+<strong>关联文件：</strong> <code>tabulate</code>、Dify Plugin SDK message API。<br>
+<strong>在插件生命周期中的位置：</strong> Tool 执行末尾，向 Dify 返回结果。</p>
+<p>当前 SQL 安全限制的优点是：只允许单条语句，并且语句类型必须是 <code>SELECT</code>。不足是：<code>SELECT</code> 仍可能读取敏感表、执行高成本查询，且没有 schema 白名单、表白名单、最大行数、超时控制或字段脱敏策略。</p>
+</section>
+</section>
+<section id="database-layer" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="database-layer"><span class="header-section-number">1.4</span> 4 Database Layer</h2>
+<section id="db-util" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="db-util"><span class="header-section-number">1.4.1</span> 4.1 db_util</h3>
+<p><code>tools/db_util.py</code> 是数据库适配层。它把插件参数转换为 SQLAlchemy connection string，创建 engine，并使用 pandas 执行查询和转换结果。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_driver_name(<span class="va">self</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">self</span>.db_type <span class="op">==</span> <span class="st">"mysql"</span>:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"mysql+pymysql"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">self</span>.db_type <span class="op">==</span> <span class="st">"oracle"</span> <span class="kw">or</span> <span class="va">self</span>.db_type <span class="op">==</span> <span class="st">"oracle11g"</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"oracle+oracledb"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">self</span>.db_type <span class="op">==</span> <span class="st">"postgresql"</span>:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"postgresql+psycopg2"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">self</span>.db_type <span class="op">==</span> <span class="st">"mssql"</span>:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"mssql+pymssql"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 根据 <code>db_type</code> 选择 SQLAlchemy dialect 与 driver。<br>
+<strong>输入：</strong> <code>mysql</code>、<code>oracle</code>、<code>oracle11g</code>、<code>postgresql</code>、<code>mssql</code>。<br>
+<strong>输出：</strong> SQLAlchemy driver name。<br>
+<strong>关联文件：</strong> <code>requirements.txt</code>、<code>tools/sql_query.yaml</code>。<br>
+<strong>在插件生命周期中的位置：</strong> 创建数据库 engine 前执行。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_url(<span class="va">self</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    username <span class="op">=</span> parse.quote_plus(<span class="va">self</span>.db_username)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    password <span class="op">=</span> parse.quote_plus(<span class="va">self</span>.db_password)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    host <span class="op">=</span> parse.quote_plus(<span class="va">self</span>.db_host)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    database <span class="op">=</span> parse.quote_plus(<span class="va">self</span>.db_name)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>get_driver_name()<span class="sc">}</span><span class="ss">://</span><span class="sc">{</span>username<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>host<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">self</span>.db_port:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        url <span class="op">+=</span> <span class="ss">f":</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>db_port<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> database:</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        url <span class="op">+=</span> <span class="ss">f"/</span><span class="sc">{</span>database<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> url</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 构造 SQLAlchemy connection URL。<br>
+<strong>输入：</strong> 数据库类型、host、port、username、password、database。<br>
+<strong>输出：</strong> SQLAlchemy 可识别的连接字符串。<br>
+<strong>关联文件：</strong> <code>tools/sql_query.py</code>、数据库 driver。<br>
+<strong>在插件生命周期中的位置：</strong> Tool 创建 <code>DbUtil</code> 实例并准备连接数据库时执行。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_query(<span class="va">self</span>, query_sql: <span class="bu">str</span>):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    query_sql <span class="op">=</span> query_sql.replace(<span class="st">"%"</span>, <span class="st">"</span><span class="sc">%%</span><span class="st">"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_sql_query(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        sql<span class="op">=</span>query_sql,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        con<span class="op">=</span><span class="va">self</span>.engine,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        parse_dates<span class="op">=</span><span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.fillna(<span class="st">""</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">self</span>.to_records(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 执行 SQL 查询，并把 DataFrame 转为 records。<br>
+<strong>输入：</strong> 单条 SELECT SQL。<br>
+<strong>输出：</strong> <code>list[dict]</code> 风格的记录列表。<br>
+<strong>关联文件：</strong> <code>pandas</code>、SQLAlchemy engine、<code>tools/sql_query.py</code>。<br>
+<strong>在插件生命周期中的位置：</strong> SQL 通过安全检查后，实际访问数据库时执行。</p>
+<p>支持数据库与 driver 对应关系如下：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>数据库</th>
+<th>SQLAlchemy driver name</th>
+<th>Python driver</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MySQL</td>
+<td><code>mysql+pymysql</code></td>
+<td><code>PyMySQL</code></td>
+</tr>
+<tr class="even">
+<td>PostgreSQL</td>
+<td><code>postgresql+psycopg2</code></td>
+<td><code>psycopg2-binary</code></td>
+</tr>
+<tr class="odd">
+<td>Oracle</td>
+<td><code>oracle+oracledb</code></td>
+<td><code>oracledb</code></td>
+</tr>
+<tr class="even">
+<td>Oracle 11g</td>
+<td><code>oracle+oracledb</code></td>
+<td><code>oracledb</code>，并额外依赖 thick client 初始化</td>
+</tr>
+<tr class="odd">
+<td>SQL Server</td>
+<td><code>mssql+pymssql</code></td>
+<td><code>pymssql</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>pandas.read_sql_query()</code> 参与了 SQL 执行与结果读取，<code>tabulate</code> 则在 Tool 层把 records 转成 GitHub 风格 Markdown 表格。<code>db_util.py</code> 对空值使用 <code>fillna("")</code>，并处理 <code>Timestamp</code>、<code>date</code>、<code>UUID</code>、整数型浮点数等 JSON 友好转换。</p>
+</section>
+</section>
+<section id="依赖分析" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="依赖分析"><span class="header-section-number">1.5</span> 5 依赖分析</h2>
+<section id="requirements.txt" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="requirements.txt"><span class="header-section-number">1.5.1</span> 5.1 requirements.txt</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>--no-index --find-links=./wheels/</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dify_plugin==0.2.1</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>sqlparse==0.5.3</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>tabulate==0.9.0</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>pandas==2.2.3</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>SQLAlchemy==2.0.35</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>PyMySQL==1.1.1</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>oracledb==2.2.1</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>psycopg2-binary==2.9.10</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>pymssql==2.3.4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>作用：</strong> 声明插件运行所需 Python 包，并指定从本地 <code>wheels/</code> 安装。<br>
+<strong>输入：</strong> 离线 wheel 目录。<br>
+<strong>输出：</strong> 插件运行环境依赖集合。<br>
+<strong>关联文件：</strong> <code>wheels/</code>、<code>manifest.yaml</code>。<br>
+<strong>在插件生命周期中的位置：</strong> 插件安装或构建运行环境时使用。</p>
+<p>依赖分工如下：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>依赖</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>dify_plugin==0.2.1</code></td>
+<td>Dify Plugin SDK</td>
+</tr>
+<tr class="even">
+<td><code>SQLAlchemy==2.0.35</code></td>
+<td>数据库抽象与 engine 管理</td>
+</tr>
+<tr class="odd">
+<td><code>PyMySQL==1.1.1</code></td>
+<td>MySQL driver</td>
+</tr>
+<tr class="even">
+<td><code>psycopg2-binary==2.9.10</code></td>
+<td>PostgreSQL driver</td>
+</tr>
+<tr class="odd">
+<td><code>oracledb==2.2.1</code></td>
+<td>Oracle driver</td>
+</tr>
+<tr class="even">
+<td><code>pymssql==2.3.4</code></td>
+<td>SQL Server driver</td>
+</tr>
+<tr class="odd">
+<td><code>pandas==2.2.3</code></td>
+<td>查询结果读取与 DataFrame 转换</td>
+</tr>
+<tr class="even">
+<td><code>tabulate==0.9.0</code></td>
+<td>Markdown 表格格式化</td>
+</tr>
+<tr class="odd">
+<td><code>sqlparse==0.5.3</code></td>
+<td>SQL 解析与语句类型识别</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="offline-package" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="offline-package"><span class="header-section-number">1.5.2</span> 5.2 offline package</h3>
+<p>该包名包含 <code>offline</code>，并且 <code>requirements.txt</code> 使用 <code>--no-index --find-links=./wheels/</code>，说明安装依赖时优先从插件包内的 <code>wheels/</code> 读取，不访问 PyPI。<code>wheels/</code> 目录中包含 54 个 wheel 文件，平台标签大量出现 <code>cp312</code>、<code>manylinux</code>、<code>x86_64</code>。</p>
+<p>这说明插件运行时大概率面向 Python 3.12 的 Linux x86_64 环境。虽然 manifest 声明了 <code>amd64</code> 与 <code>arm64</code>，但离线安装能否覆盖 arm64 仍取决于实际 wheel 文件是否包含对应架构。</p>
+</section>
+<section id="assets" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="assets"><span class="header-section-number">1.5.3</span> 5.3 assets</h3>
+<p><code>_assets/</code> 包含插件图标和 Marketplace 展示图片，例如 <code>icon.svg</code>、<code>db_query.png</code>、<code>db_query_chatflow.png</code>、<code>db_query_sql_query.png</code> 以及若干示例图。这些资产主要用于 Dify 插件市场或插件详情页展示，不参与运行时逻辑。</p>
+</section>
+</section>
+<section id="调用链分析" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="调用链分析"><span class="header-section-number">1.6</span> 6 调用链分析</h2>
+<section id="dify-调用插件运行链路图" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="dify-调用插件运行链路图"><span class="header-section-number">1.6.1</span> 6.1 Dify 调用插件运行链路图</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["用户&lt;br/&gt;Workflow / Agent"]
+  B["Dify 后端&lt;br/&gt;发起 Tool 调用"]
+  C["plugin-daemon&lt;br/&gt;管理插件进程"]
+  D["main.py&lt;br/&gt;启动 SDK runtime"]
+  E["Tool _invoke()&lt;br/&gt;读取参数与校验 SQL"]
+  F["DbUtil&lt;br/&gt;创建 engine 并查询"]
+  G["目标数据库&lt;br/&gt;返回 rows"]
+  H["Dify&lt;br/&gt;接收 ToolInvokeMessage"]
+
+  A --&gt; B
+  B --&gt; C
+  C --&gt; D
+  D --&gt; E
+  E --&gt; F
+  F --&gt; G
+  G --&gt; F
+  F --&gt; E
+  E --&gt; H
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="静态依赖关系图" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="静态依赖关系图"><span class="header-section-number">1.6.2</span> 6.2 静态依赖关系图</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  M["manifest.yaml&lt;br/&gt;插件根配置"]
+  PY["main.py&lt;br/&gt;运行入口"]
+  VY["provider/db_query.yaml&lt;br/&gt;Provider 声明"]
+  VP["provider/db_query.py&lt;br/&gt;凭据校验入口"]
+  TY["tools/sql_query.yaml&lt;br/&gt;Tool 参数 schema"]
+  TP["tools/sql_query.py&lt;br/&gt;Tool 执行逻辑"]
+  DU["tools/db_util.py&lt;br/&gt;数据库工具层"]
+  REQ["requirements.txt&lt;br/&gt;依赖与离线安装"]
+
+  M --&gt; PY
+  M --&gt; VY
+  VY --&gt; VP
+  VY --&gt; TY
+  TY --&gt; TP
+  TP --&gt; DU
+  DU --&gt; REQ
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="credentials-到-sql-流程" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="credentials-到-sql-流程"><span class="header-section-number">1.6.3</span> 6.3 credentials 到 SQL 流程</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["Tool 参数&lt;br/&gt;host / port / user / password"]
+  B["sql_query.py&lt;br/&gt;必填项校验"]
+  C["sqlparse&lt;br/&gt;单语句与 SELECT 校验"]
+  D["DbUtil 初始化&lt;br/&gt;选择 driver"]
+  E["构造 SQLAlchemy URL&lt;br/&gt;创建 engine"]
+  F["pandas.read_sql_query&lt;br/&gt;执行查询"]
+  G["数据库&lt;br/&gt;返回查询结果"]
+
+  A --&gt; B
+  B --&gt; C
+  C --&gt; D
+  D --&gt; E
+  E --&gt; F
+  F --&gt; G
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="sql-返回结果流程" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="sql-返回结果流程"><span class="header-section-number">1.6.4</span> 6.4 SQL 返回结果流程</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["数据库 rows"]
+  B["pandas DataFrame&lt;br/&gt;fillna 与类型处理"]
+  C["records&lt;br/&gt;list[dict]"]
+  D{"output_format"}
+  E["JSON 输出&lt;br/&gt;create_json_message"]
+  F["Markdown 输出&lt;br/&gt;tabulate 表格"]
+  G["Dify Workflow / Agent&lt;br/&gt;消费结果"]
+
+  A --&gt; B
+  B --&gt; C
+  C --&gt; D
+  D --&gt; E
+  D --&gt; F
+  E --&gt; G
+  F --&gt; G
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="插件内部职责分层图" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="插件内部职责分层图"><span class="header-section-number">1.6.5</span> 6.5 插件内部职责分层图</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {
+"theme":"base",
+"themeVariables":{
+"primaryColor":"#ffffff",
+"primaryTextColor":"#111827",
+"primaryBorderColor":"#94a3b8",
+"lineColor":"#64748b",
+"fontSize":"16px"
+}
+}}%%
+flowchart TB
+  A["配置层&lt;br/&gt;manifest / provider yaml / tool yaml"]
+  B["入口层&lt;br/&gt;main.py / SDK runtime"]
+  C["业务层&lt;br/&gt;sql_query.py"]
+  D["数据层&lt;br/&gt;db_util.py"]
+  E["依赖层&lt;br/&gt;SQLAlchemy / pandas / drivers"]
+
+  A --&gt; B
+  B --&gt; C
+  C --&gt; D
+  D --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="风险分析" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="风险分析"><span class="header-section-number">1.7</span> 7 风险分析</h2>
+<section id="已有安全设计" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="已有安全设计"><span class="header-section-number">1.7.1</span> 7.1 已有安全设计</h3>
+<p>插件已经做了两项有价值的限制：一是使用 <code>secret-input</code> 接收数据库密码，避免密码作为普通文本字段展示；二是使用 <code>sqlparse</code> 限制只允许单条 <code>SELECT</code> 语句，降低误执行写操作或多语句注入的风险。</p>
+</section>
+<section id="主要风险" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="主要风险"><span class="header-section-number">1.7.2</span> 7.2 主要风险</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>风险</th>
+<th>说明</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Provider 校验为空</td>
+<td><code>_validate_credentials()</code> 直接 <code>pass</code>，不能在配置阶段验证数据库连接</td>
+<td>在 Provider 层增加连通性测试</td>
+</tr>
+<tr class="even">
+<td>凭据作为 Tool 参数</td>
+<td>host、username、password 每次随 Tool 调用传入</td>
+<td>改为 Provider credentials</td>
+</tr>
+<tr class="odd">
+<td><code>SELECT</code> 限制不充分</td>
+<td><code>SELECT</code> 仍可能读取敏感表或执行高成本查询</td>
+<td>增加 schema 白名单、表白名单、最大行数和超时</td>
+</tr>
+<tr class="even">
+<td><code>db_properties</code> 直接拼接</td>
+<td>连接属性可影响 driver 行为</td>
+<td>限制允许的连接参数集合</td>
+</tr>
+<tr class="odd">
+<td>日志泄露风险</td>
+<td>如果记录完整 connection URL，可能包含密码</td>
+<td>日志中必须脱敏 password</td>
+</tr>
+<tr class="even">
+<td>离线 wheels 平台限制</td>
+<td>wheels 体现 cp312 / Linux x86_64 特征</td>
+<td>打包时按目标 Python ABI 和 CPU 架构准备 wheels</td>
+</tr>
+<tr class="odd">
+<td>Oracle 11g 环境依赖</td>
+<td>可能需要 thick client</td>
+<td>在文档与运行环境中明确依赖</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="对本项目启发" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="对本项目启发"><span class="header-section-number">1.8</span> 8 对本项目启发</h2>
+<section id="可以复用的结构" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="可以复用的结构"><span class="header-section-number">1.8.1</span> 8.1 可以复用的结构</h3>
+<p>适合复用的是整体分层结构：<code>manifest.yaml</code> 负责插件声明，Provider YAML 负责挂载 Tool，Provider Python 负责凭据校验，Tool YAML 负责工具参数，Tool Python 负责调用入口，<code>db_util.py</code> 负责数据库连接与查询。这个结构清晰，适合我们后续开发本地化数据库 Tool Plugin。</p>
+<p>SQLAlchemy 统一 MySQL、PostgreSQL 等数据库连接的思路也值得保留。输出层提供 JSON 和 Markdown 两种格式，适合同时服务 Workflow 自动处理和 Agent 可读展示。</p>
+</section>
+<section id="可以参考但不能照搬的代码" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="可以参考但不能照搬的代码"><span class="header-section-number">1.8.2</span> 8.2 可以参考但不能照搬的代码</h3>
+<p>不能照搬空的 Provider credential 校验，也不建议照搬“所有连接信息都作为 Tool 参数”的设计。生产插件应把数据库连接配置放到 Provider credentials，并在 Tool 调用中只暴露 <code>query_sql</code>、<code>output_format</code>、可选 <code>limit</code> 等运行参数。</p>
+<p><code>db_util.py</code> 中构造 URL 和执行查询的思路可以参考，但需要补充 password 脱敏日志、连接超时、查询超时、最大返回行数、错误分类和更明确的异常消息。</p>
+</section>
+<section id="支持-dameng-dm-的扩展点" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="支持-dameng-dm-的扩展点"><span class="header-section-number">1.8.3</span> 8.3 支持 Dameng DM 的扩展点</h3>
+<p>如果要支持 Dameng DM，至少需要改三处：</p>
+<ol type="1">
+<li>在 <code>tools/sql_query.yaml</code> 的 <code>db_type</code> options 中新增 <code>dm</code> 或 <code>dameng</code>。</li>
+<li>在 <code>tools/db_util.py</code> 的 driver 映射中新增 Dameng 对应的 dialect / driver。</li>
+<li>在 <code>requirements.txt</code> 和 <code>wheels/</code> 中加入 Dameng Python driver 或 SQLAlchemy dialect 相关依赖。</li>
+</ol>
+<p>如果 Dameng driver 不能通过 SQLAlchemy dialect 稳定接入，则需要在 <code>db_util.py</code> 中增加一条 native DB-API 执行路径，不强行复用 SQLAlchemy URL。</p>
+</section>
+<section id="driver-依赖设计" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="driver-依赖设计"><span class="header-section-number">1.8.4</span> 8.4 driver 依赖设计</h3>
+<p>MySQL 可以继续使用 <code>PyMySQL</code>，PostgreSQL 可以使用 <code>psycopg2-binary</code> 或按部署要求改为源码版 <code>psycopg2</code>。Dameng DM 的 driver 要特别确认 Python 版本、系统平台、授权和 wheel 可用性。离线打包时，必须确保 wheel 的 Python ABI 与插件 runtime 对齐，例如 Python 3.12 对应 <code>cp312</code>。</p>
+</section>
+<section id="credentials-设计" class="level3" data-number="1.8.5">
+<h3 data-number="1.8.5" class="anchored" data-anchor-id="credentials-设计"><span class="header-section-number">1.8.5</span> 8.5 credentials 设计</h3>
+<p>建议在 Provider 层设计以下 credentials：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>类型</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>db_type</code></td>
+<td>select</td>
+<td>MySQL / PostgreSQL / Dameng DM</td>
+</tr>
+<tr class="even">
+<td><code>db_host</code></td>
+<td>text-input</td>
+<td>必填</td>
+</tr>
+<tr class="odd">
+<td><code>db_port</code></td>
+<td>number</td>
+<td>按数据库提供默认值</td>
+</tr>
+<tr class="even">
+<td><code>db_name</code></td>
+<td>text-input</td>
+<td>必填或按数据库类型决定</td>
+</tr>
+<tr class="odd">
+<td><code>db_username</code></td>
+<td>text-input</td>
+<td>必填</td>
+</tr>
+<tr class="even">
+<td><code>db_password</code></td>
+<td>secret-input</td>
+<td>必填</td>
+</tr>
+<tr class="odd">
+<td><code>connect_timeout</code></td>
+<td>number</td>
+<td>提供默认值</td>
+</tr>
+<tr class="even">
+<td><code>allowed_schemas</code></td>
+<td>text-input</td>
+<td>可选白名单</td>
+</tr>
+<tr class="odd">
+<td><code>max_rows</code></td>
+<td>number</td>
+<td>默认限制返回行数</td>
+</tr>
+</tbody>
+</table>
+<p>Tool 参数则应尽量收敛为 <code>query_sql</code>、<code>output_format</code>、可选 <code>limit</code>。这样既方便 Workflow / Agent 使用，也能减少敏感信息暴露。</p>
+</section>
+<section id="sql-安全限制" class="level3" data-number="1.8.6">
+<h3 data-number="1.8.6" class="anchored" data-anchor-id="sql-安全限制"><span class="header-section-number">1.8.6</span> 8.6 SQL 安全限制</h3>
+<p>本项目建议至少实现以下限制：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>限制</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>单语句</td>
+<td>防止多语句注入</td>
+</tr>
+<tr class="even">
+<td>SELECT-only</td>
+<td>避免写操作</td>
+</tr>
+<tr class="odd">
+<td>禁止危险关键字</td>
+<td>防止绕过和高危操作</td>
+</tr>
+<tr class="even">
+<td>schema / table 白名单</td>
+<td>控制可访问范围</td>
+</tr>
+<tr class="odd">
+<td>最大行数</td>
+<td>防止大结果集拖垮插件</td>
+</tr>
+<tr class="even">
+<td>查询超时</td>
+<td>防止长查询阻塞</td>
+</tr>
+<tr class="odd">
+<td>只读数据库账号</td>
+<td>从数据库权限层兜底</td>
+</tr>
+<tr class="even">
+<td>日志脱敏</td>
+<td>避免泄露密码和敏感 SQL</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="输出格式设计" class="level3" data-number="1.8.7">
+<h3 data-number="1.8.7" class="anchored" data-anchor-id="输出格式设计"><span class="header-section-number">1.8.7</span> 8.7 输出格式设计</h3>
+<p>建议保留 JSON 和 Markdown 双输出。JSON 应包含稳定 schema，例如：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"columns"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"id"</span><span class="ot">,</span> <span class="st">"name"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"rows"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span> <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"demo"</span><span class="fu">}</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"row_count"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"truncated"</span><span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Markdown 适合 Agent 直接展示，但不应作为自动化流程的唯一输出。对于大结果集，应返回截断说明、总行数或建议用户增加过滤条件。</p>
+</section>
+<section id="offline-打包注意事项" class="level3" data-number="1.8.8">
+<h3 data-number="1.8.8" class="anchored" data-anchor-id="offline-打包注意事项"><span class="header-section-number">1.8.8</span> 8.8 offline 打包注意事项</h3>
+<p>离线插件打包时要注意 Python runtime、操作系统、CPU 架构和 wheel ABI 的一致性。若 manifest 声明 Python 3.12，则 wheels 应包含 <code>cp312</code>。如果目标环境是 Linux amd64，就需要 manylinux x86_64 wheel；如果要支持 arm64，还需要准备对应 arm64 wheel。</p>
+<p>离线包中不应包含真实数据库账号、测试密码或内网连接信息。打包前应检查 <code>README.md</code>、示例配置、日志和测试文件，避免泄露敏感数据。</p>
+</section>
+</section>
+<section id="结论" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="结论"><span class="header-section-number">1.9</span> 9 结论</h2>
+<p><code>junjiem-db_query</code> 是一个结构清晰、适合学习的 Dify Tool Plugin 示例。它展示了从 manifest 到 Provider、Tool、数据库工具层、离线依赖打包的完整链路，也提供了多数据库查询、SQLAlchemy 统一连接、Markdown / JSON 双输出等可复用思路。</p>
+<p>对我们自己的本地化数据库插件而言，最值得仿写的是项目结构、Tool 调用链路、SQLAlchemy 适配层和离线 wheels 打包方式。最需要改进的是 Provider 层凭据设计、连接校验、SQL 安全策略、日志脱敏、最大行数与超时控制，以及对 Dameng DM driver 的独立适配。</p>
+<p>当前插件适合作为“参考实现”，不建议作为生产代码直接照搬。后续开发应以 MySQL / PostgreSQL 为第一阶段目标，在结构稳定后再扩展 Dameng DM，并把安全限制、凭据管理和离线打包验证作为核心验收项。</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="junjiem-db_query插件静态分析报告_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

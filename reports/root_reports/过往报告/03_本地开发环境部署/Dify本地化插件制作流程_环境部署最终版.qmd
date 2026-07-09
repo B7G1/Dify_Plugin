@@ -1,0 +1,1727 @@
+---
+format:
+  html:
+    toc: true
+execute:
+  enabled: false
+---
+
+# Dify Tool Plugin 开发体系技术调研
+
+调研范围：当前工作区 `E:\Dify_Plugin` 已整理本地 Dify Plugin CLI，并结合官方源码仓库与官方文档梳理 Tool Plugin 开发体系。官方源码侧参考 `langgenius/dify-plugin-daemon` 与 `langgenius/dify-official-plugins`，官方文档参考 Dify 最新 `Develop Plugin` 文档。
+
+本次操作未创建插件、未执行安装、未执行打包、未修改系统 PATH；仅将当前目录下已有的 Windows amd64 CLI 文件整理为可执行命令，并更新本文档。
+
+<style>
+.mermaid {
+  background: #ffffff;
+  text-align: center;
+}
+
+.mermaid svg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+## 0. 本地 CLI 安装与验证
+
+当前目录检查结果：
+
+- 已存在原始文件：`E:\Dify_Plugin\dify-plugin-windows-amd64.exe`
+- 已将该文件复制整理为：`E:\Dify_Plugin\dify-plugin.exe`
+- 原始 `dify-plugin-windows-amd64.exe` 已保留
+- 未修改系统 PATH
+
+验证命令结果如下。
+
+```powershell
+PS E:\Dify_Plugin> .\dify-plugin.exe --version
+Error: unknown flag: --version
+Usage:
+  dify [command]
+
+Available Commands:
+  bundle      Bundle
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  migrate     Run database migrations
+  plugin      Plugin
+  signature   Signature
+  version     Version
+
+Flags:
+      --config string   config file (default is $HOME/.dify.yaml)
+  -h, --help            help for dify
+
+Use "dify [command] --help" for more information about a command.
+```
+
+说明：当前 CLI 可运行，但不支持 `--version` flag；版本信息通过 `version` 子命令获取。
+
+```powershell
+PS E:\Dify_Plugin> .\dify-plugin.exe version
+v0.6.1
+```
+
+```powershell
+PS E:\Dify_Plugin> .\dify-plugin.exe --help
+Dify is a cli tool to help you develop your Dify projects.
+
+Usage:
+  dify [command]
+
+Available Commands:
+  bundle      Bundle
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  migrate     Run database migrations
+  plugin      Plugin
+  signature   Signature
+  version     Version
+
+Flags:
+      --config string   config file (default is $HOME/.dify.yaml)
+  -h, --help            help for dify
+
+Use "dify [command] --help" for more information about a command.
+```
+
+## 0.1 v0.6.1 plugin 子命令研究
+
+以下内容基于本地 `dify-plugin.exe v0.6.1` 的帮助输出整理。调研过程只执行 `--help` 类命令，未创建项目、未执行打包、未执行安装。
+
+```powershell
+PS E:\Dify_Plugin> .\dify-plugin.exe plugin --help
+Plugin related commands
+
+Usage:
+  dify plugin [command]
+
+Available Commands:
+  checksum    Checksum
+  cleanup     Cleanup old plugin versions in a working path
+  init        Initialize a new plugin
+  module      Module
+  package     Package
+  permission  Edit permission
+  readme      Readme
+  run         run
+
+Flags:
+  -h, --help   help for plugin
+
+Global Flags:
+      --config string   config file (default is $HOME/.dify.yaml)
+
+Use "dify plugin [command] --help" for more information about a command.
+```
+
+### plugin init 用法
+
+`plugin init` 用于初始化新插件。如果不传参数，会进入交互模式。
+
+```powershell
+.\dify-plugin.exe plugin init [flags]
+```
+
+实测帮助输出：
+
+```text
+Initialize a new plugin with the given parameters.
+If no parameters are provided, an interactive mode will be started.
+
+Usage:
+  dify plugin init [flags]
+
+Flags:
+      --allow-app                 Allow the plugin to invoke apps
+      --allow-endpoint            Allow the plugin to register endpoints
+      --allow-llm                 Allow the plugin to invoke LLM models
+      --allow-model               Allow the plugin to invoke models
+      --allow-moderation          Allow the plugin to invoke moderation models
+      --allow-node                Allow the plugin to invoke nodes
+      --allow-rerank              Allow the plugin to invoke rerank models
+      --allow-speech2text         Allow the plugin to invoke speech to text models
+      --allow-storage             Allow the plugin to use storage
+      --allow-text-embedding      Allow the plugin to invoke text embedding models
+      --allow-tool                Allow the plugin to invoke tools
+      --allow-tts                 Allow the plugin to invoke TTS models
+      --author string             Author name (1-64 characters, lowercase letters, numbers, dashes and underscores only)
+      --category string           Plugin category. Available options:
+                                    - tool: Tool plugin
+                                    - llm: Large Language Model plugin
+                                    - text-embedding: Text embedding plugin
+                                    - speech2text: Speech to text plugin
+                                    - moderation: Content moderation plugin
+                                    - rerank: Rerank plugin
+                                    - tts: Text to speech plugin
+                                    - extension: Extension plugin
+                                    - agent-strategy: Agent strategy plugin
+      --description string        Plugin description (cannot be empty)
+  -h, --help                      help for init
+      --language string           Programming language. Available options:
+                                    - python: Python language
+      --min-dify-version string   Minimum Dify version required
+      --name string               Plugin name (1-128 characters, lowercase letters, numbers, dashes and underscores only)
+      --quick                     Skip interactive mode and create plugin directly
+      --repo string               Plugin repository URL (optional)
+      --storage-size uint         Maximum storage size in bytes
+
+Global Flags:
+      --config string   config file (default is $HOME/.dify.yaml)
+```
+
+Tool Plugin 的典型命令形态如下，仅作为用法说明：
+
+```powershell
+.\dify-plugin.exe plugin init `
+  --quick `
+  --category tool `
+  --language python `
+  --name my_tool `
+  --author my_author `
+  --description "A minimal tool plugin"
+```
+
+### plugin package 用法
+
+`plugin package` 用于将插件项目目录打包为 `.difypkg` 文件。
+
+```powershell
+.\dify-plugin.exe plugin package [plugin_path] [flags]
+```
+
+实测帮助输出：
+
+```text
+Package plugins
+
+Usage:
+  dify plugin package [plugin_path] [flags]
+
+Flags:
+  -h, --help                 help for package
+      --max-size int         Maximum uncompressed size in MB (default 50)
+  -o, --output_path string   output path
+
+Global Flags:
+      --config string   config file (default is $HOME/.dify.yaml)
+```
+
+典型命令形态如下，仅作为用法说明：
+
+```powershell
+.\dify-plugin.exe plugin package .\my_tool
+.\dify-plugin.exe plugin package .\my_tool -o .\dist
+.\dify-plugin.exe plugin package .\my_tool --max-size 100
+```
+
+### plugin run 用法
+
+`plugin run` 用于本地启动一个插件包，通过 `stdio` 或 `tcp` 进行通信。
+
+```powershell
+.\dify-plugin.exe plugin run [plugin_package_path] [flags]
+```
+
+实测帮助输出：
+
+```text
+Launch a plugin locally and communicate through stdin/stdout or TCP
+
+Usage:
+  dify plugin run [plugin_package_path] [flags]
+
+Flags:
+  -l, --enable-logs              enable logs
+  -h, --help                     help for run
+  -m, --mode string              run mode, stdio or tcp (default "stdio")
+  -r, --response-format string   response format, text or json (default "text")
+
+Global Flags:
+      --config string   config file (default is $HOME/.dify.yaml)
+```
+
+典型命令形态如下，仅作为用法说明：
+
+```powershell
+.\dify-plugin.exe plugin run .\my_tool.difypkg
+.\dify-plugin.exe plugin run .\my_tool.difypkg --mode tcp
+.\dify-plugin.exe plugin run .\my_tool.difypkg --response-format json
+.\dify-plugin.exe plugin run .\my_tool.difypkg --enable-logs
+```
+
+### 最小 Tool Plugin 示例结构
+
+一个最小 Tool Plugin 通常包含以下文件结构：
+
+```text
+my_tool_plugin/
+├─ manifest.yaml
+├─ main.py
+├─ provider/
+│  ├─ my_tool.yaml
+│  └─ my_tool.py
+└─ tools/
+   ├─ hello.yaml
+   └─ hello.py
+```
+
+各文件职责：
+
+| 文件 | 职责 |
+|---|---|
+| `manifest.yaml` | 声明插件元信息、运行器、权限、provider 路径 |
+| `main.py` | 启动 `dify_plugin` SDK runtime |
+| `provider/my_tool.yaml` | 声明 provider identity、credentials、tools 列表、provider Python 入口 |
+| `provider/my_tool.py` | 实现 `ToolProvider`，通常用于校验 credentials |
+| `tools/hello.yaml` | 声明具体工具 identity、description、parameters、Python 入口 |
+| `tools/hello.py` | 实现 `Tool._invoke()`，返回 text/json/file 等 `ToolInvokeMessage` |
+
+最小调用关系：
+
+```text
+manifest.yaml
+  -> plugins.tools
+    -> provider/my_tool.yaml
+      -> tools/hello.yaml
+        -> tools/hello.py
+```
+
+---
+
+## 1. Dify Plugin 架构概览
+
+Dify Plugin 是独立于 Dify 主应用的扩展单元，用于把外部 API、自定义逻辑、工具、模型、Endpoint、Trigger、Datasource、Agent Strategy 等能力接入 Dify。
+
+Tool Plugin 的核心分层：
+
+```text
+Dify Workspace / App
+├─ Chatflow / Workflow / Agent
+│  └─ Tool 调用请求
+├─ Dify API Server
+│  └─ 与 plugin-daemon 通信
+├─ plugin-daemon
+│  ├─ 管理插件安装状态
+│  ├─ 校验 manifest / provider / tool schema
+│  ├─ 分发调用请求
+│  └─ 管理运行时
+│     ├─ Local runtime: 子进程 + STDIN/STDOUT
+│     ├─ Debug runtime: TCP 双向连接
+│     └─ Serverless runtime: HTTP 调用云函数类环境
+└─ Plugin Project
+   ├─ manifest.yaml
+   ├─ main.py
+   ├─ provider/*.yaml
+   ├─ provider/*.py
+   ├─ tools/*.yaml
+   ├─ tools/*.py
+   ├─ _assets/
+   └─ README / PRIVACY / pyproject / uv.lock
+```
+
+典型调用链：
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryTextColor": "#111827",
+  "primaryBorderColor": "#94a3b8",
+  "lineColor": "#64748b",
+  "fontSize": "16px"
+}}}%%
+
+flowchart TD
+  A["用户在 Agent / Workflow<br/>中调用 Tool"] --> B["Dify API Server"]
+  B --> C["plugin-daemon"]
+  C --> D{"运行模式"}
+  D --> E["Local Runtime<br/>启动插件子进程"]
+  D --> F["Debug Runtime<br/>连接本地 python -m main"]
+  D --> G["Serverless Runtime<br/>HTTP 调用"]
+  E --> H["dify_plugin SDK<br/>Plugin.run()"]
+  F --> H
+  G --> H
+  H --> I["Tool._invoke()"]
+  I --> J["yield ToolInvokeMessage"]
+  J --> C
+  C --> B
+  B --> A
+```
+
+---
+
+## 2. Tool Plugin 生命周期
+
+Tool Plugin 生命周期可以拆成开发期、调试期、安装期、运行期、发布期。
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryTextColor": "#111827",
+  "primaryBorderColor": "#94a3b8",
+  "lineColor": "#64748b",
+  "fontSize": "16px"
+}}}%%
+
+flowchart TB
+  A["开发期<br/>dify plugin init<br/>编写 manifest.yaml"]
+  B["实现期<br/>编写 provider yaml / py<br/>编写 tools yaml / py"]
+  C["调试期<br/>python -m main<br/>Dify 显示 Debug 插件"]
+  D["运行验证<br/>Agent / Workflow<br/>调用 Tool"]
+  E["发布准备<br/>dify plugin package<br/>生成 .difypkg"]
+  F["安装分发<br/>本地文件安装<br/>GitHub Release / Marketplace"]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+```
+
+运行时生命周期：
+
+1. Dify 根据插件安装信息识别 provider 与 tool。
+2. 用户配置 provider credentials。
+3. daemon 调用 provider 的 `_validate_credentials()` 校验凭据。
+4. App/Workflow/Agent 发起工具调用。
+5. daemon 路由到插件运行时。
+6. SDK 加载对应 Tool 类。
+7. Tool 的 `_invoke(tool_parameters)` 以 generator 形式返回消息。
+8. Dify 将 `text/json/files` 等结果暴露给用户或 Workflow 后续节点。
+
+---
+
+## 3. `manifest.yaml` 全字段说明
+
+官方 manifest 是插件最基础的声明文件，格式错误会导致解析或打包失败。
+
+### 顶层字段
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---:|---:|---|
+| `version` | version/string | 是 | 插件自身版本，例如 `0.0.1` |
+| `type` | string | 是 | 当前主要为 `plugin` |
+| `author` | string | 是 | 作者/组织名；发布和安装校验中很关键 |
+| `name` | string | 常见必填 | 插件唯一名，通常小写、无空格 |
+| `label` | object | 是 | 多语言展示名 |
+| `description` | object | 常见 | 多语言描述，官方插件普遍使用 |
+| `created_at` | RFC3339 | 是 | 创建时间，Marketplace 要求不能晚于当前时间 |
+| `icon` | string | 是 | 图标路径，媒体文件通常放 `_assets` |
+| `resource` | object | 否/常见 | 资源与权限申请 |
+| `plugins` | object | 是 | 声明插件扩展能力入口 |
+| `meta` | object | 是 | manifest 与运行时元数据 |
+| `privacy` | string | Marketplace 需要 | 隐私政策文件路径或 URL |
+| `verified` | boolean | 官方插件常见 | 官方/市场侧标记字段 |
+| `repo` / `homepage` | string | 部分插件可能有 | 仓库或主页信息，视模板/市场规范变化 |
+| `minimum_dify_version` | string/null | 官方插件可见 | 最低 Dify 版本约束 |
+
+### `label` / `description`
+
+多语言对象，官方文档列出的常见语言包括：
+
+```yaml
+label:
+  en_US: SQLite
+  zh_Hans: SQLite
+  ja_JP: SQLite
+  pt_BR: SQLite
+```
+
+官方 SQLite 插件还出现了 `zh_Hant`。
+
+### `resource`
+
+```yaml
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+```
+
+字段说明：
+
+| 字段 | 说明 |
+|---|---|
+| `memory` | 最大内存，单位 bytes；SaaS/serverless 资源申请相关 |
+| `permission.tool.enabled` | 是否允许反向调用 Tool |
+| `permission.model.enabled` | 是否允许反向调用 Model |
+| `permission.model.llm` | 是否允许 LLM |
+| `permission.model.text_embedding` | 是否允许 Embedding |
+| `permission.model.rerank` | 是否允许 Rerank |
+| `permission.model.tts` | 是否允许 TTS |
+| `permission.model.speech2text` | 是否允许语音转文本 |
+| `permission.model.moderation` | 是否允许 Moderation |
+| `permission.node.enabled` | 是否允许反向调用 Workflow/Chatflow Node |
+| `permission.endpoint.enabled` | 是否允许注册 Endpoint |
+| `permission.app.enabled` | 是否允许反向调用 App |
+| `permission.storage.enabled` | 是否启用持久化 KV 存储 |
+| `permission.storage.size` | 持久化存储上限，单位 bytes |
+
+### `plugins`
+
+声明插件提供哪些扩展入口。Tool Plugin 使用 `tools`：
+
+```yaml
+plugins:
+  tools:
+    - provider/sqlite_plugin.yaml
+```
+
+可选类型：
+
+| 字段 | 说明 |
+|---|---|
+| `tools` | Tool provider yaml 列表 |
+| `models` | Model provider yaml 列表 |
+| `endpoints` | Endpoint provider yaml 列表 |
+| `agent_strategies` | Agent Strategy provider yaml 列表 |
+
+约束：官方文档说明不能无扩展；不能同时扩展 Tool 与 Model；不能同时扩展 Model 与 Endpoint；目前每类扩展通常只支持一个 provider。
+
+### `meta`
+
+```yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+```
+
+字段说明：
+
+| 字段 | 说明 |
+|---|---|
+| `meta.version` | manifest 格式版本，初始为 `0.0.1` |
+| `meta.arch` | 支持架构，常见 `amd64`、`arm64` |
+| `meta.runner.language` | 运行语言，目前官方文档为 Python |
+| `meta.runner.version` | Python 版本，目前主推 `3.12` |
+| `meta.runner.entrypoint` | Python 下应为 `main` |
+| `meta.minimum_dify_version` | 最低 Dify 版本，官方插件中可为 `null` |
+
+### 示例配置
+
+```yaml
+version: 0.0.1
+type: plugin
+author: your-github-handle
+name: sample_tool
+label:
+  en_US: Sample Tool
+  zh_Hans: 示例工具
+description:
+  en_US: A sample Dify tool plugin.
+  zh_Hans: 一个 Dify 工具插件示例。
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/sample.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: "2026-06-17T00:00:00Z"
+privacy: PRIVACY.md
+```
+
+---
+
+## 4. `main.py` 开发模式
+
+官方插件的 `main.py` 很薄，主要负责创建 SDK `Plugin` 实例并运行。
+
+官方 SQLite 插件模式：
+
+```python
+from dify_plugin import Plugin, DifyPluginEnv
+
+plugin = Plugin(DifyPluginEnv(MAX_REQUEST_TIMEOUT=120))
+
+if __name__ == "__main__":
+    plugin.run()
+```
+
+要点：
+
+| 点 | 说明 |
+|---|---|
+| `Plugin(...)` | SDK 主入口，负责加载 manifest/provider/tool |
+| `DifyPluginEnv(...)` | 传递运行参数，例如请求超时 |
+| `plugin.run()` | 启动插件进程，与 daemon 建立本地或远程调试通信 |
+| `python -m main` | 官方推荐的开发/调试启动方式 |
+| 无热更新 | 修改代码后需要重启进程 |
+
+---
+
+## 5. 本地调试流程
+
+官方推荐的调试方式是 Remote Debug：插件进程在开发者机器运行，Dify 工作区通过 plugin-daemon 把调用路由过来。
+
+流程：
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryTextColor": "#111827",
+  "primaryBorderColor": "#94a3b8",
+  "lineColor": "#64748b",
+  "fontSize": "16px"
+}}}%%
+
+sequenceDiagram
+  participant Dev as Developer
+  participant Plugin as Local Plugin Process
+  participant Daemon as plugin-daemon
+  participant Dify as Dify Workspace
+
+  Dev->>Dify: 打开 Plugins 页面<br/>获取 Debug URL / Key
+  Dev->>Plugin: 配置 .env
+  Dev->>Plugin: python -m main
+  Plugin->>Daemon: 使用 REMOTE_INSTALL_URL / KEY<br/>注册调试插件
+  Daemon->>Dify: 插件出现在 Workspace<br/>插件列表
+  Dify->>Daemon: Tool 调用请求
+  Daemon->>Plugin: 转发调用
+  Plugin->>Daemon: 返回 ToolInvokeMessage
+  Daemon->>Dify: 返回 text/json/files
+```
+
+`.env` 示例：
+
+```env
+INSTALL_METHOD=remote
+REMOTE_INSTALL_URL=debug-plugin.dify.dev:5003
+REMOTE_INSTALL_KEY=********-****-****-****-************
+```
+
+自托管时常见配置点：
+
+```env
+PLUGIN_REMOTE_INSTALLING_ENABLED=true
+PLUGIN_REMOTE_INSTALLING_HOST=127.0.0.1
+PLUGIN_REMOTE_INSTALLING_PORT=5003
+```
+
+注意：
+
+- `REMOTE_INSTALL_URL` 是 `host:port`。
+- Debug Key 绑定 workspace，泄漏后别人可挂载调试插件。
+- 修改代码后重启 `python -m main`。
+- 如果插件不出现，优先检查 Key、daemon 日志、端口连通性。
+- `plugin_unique_identifier is not valid` 通常与 `manifest.yaml`、`provider/*.yaml` 的 `author` 不一致有关。
+
+---
+
+## 6. plugin-daemon 工作机制
+
+`dify-plugin-daemon` 是插件生命周期管理服务。官方 README 描述其负责三类 runtime：
+
+| Runtime | 工作方式 | 适用场景 |
+|---|---|---|
+| Local runtime | daemon 启动插件子进程，通过 STDIN/STDOUT 通信 | 本地部署、已安装插件运行 |
+| Debug runtime | daemon 监听端口，等待开发中的插件连接，TCP 双向通信 | `python -m main` 远程调试 |
+| Serverless runtime | 插件打包部署到 AWS Lambda 等，daemon 通过 HTTP 调用 | SaaS/serverless |
+
+daemon 在系统中的职责：
+
+1. 维护 workspace 与插件安装状态。
+2. 接收 Dify API Server 的 HTTP 请求。
+3. 根据插件安装信息选择 runtime。
+4. 启动或连接插件运行时。
+5. 转发 invocation 请求。
+6. 收集插件返回消息。
+7. 管理依赖、运行目录、日志、存储、远程调试连接等。
+
+简化机制图：
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryTextColor": "#111827",
+  "primaryBorderColor": "#94a3b8",
+  "lineColor": "#64748b",
+  "fontSize": "16px"
+}}}%%
+
+flowchart TD
+  API["Dify API Server"] -->|"HTTP"| Daemon["plugin-daemon"]
+  Daemon --> DB["Plugin metadata<br/>install state"]
+  Daemon --> Redis["Cache / PubSub<br/>Locks"]
+  Daemon --> Storage["Plugin package<br/>assets"]
+  Daemon --> Local["Local runtime<br/>subprocess"]
+  Daemon --> Debug["Debug runtime<br/>TCP connection"]
+  Daemon --> Serverless["Serverless runtime<br/>HTTP invocation"]
+  Local --> SDK["dify_plugin SDK"]
+  Debug --> SDK
+  Serverless --> SDK
+```
+
+daemon 开发/部署相关点：
+
+- daemon 是 Go 项目。
+- 依赖数据库、Redis、对象存储等环境变量。
+- 使用 `uv` 管理 Python 插件依赖。
+- `PYTHON_INTERPRETER_PATH` 可指定 Python 解释器。
+- 官方 README 提到 daemon 社区版对横向扩展有限，企业部署场景需关注 Redis namespace、存储卷性能等。
+
+---
+
+## 7. 本地安装流程
+
+本地安装通常指把 `.difypkg` 上传到 Dify 插件页。
+
+流程：
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryTextColor": "#111827",
+  "primaryBorderColor": "#94a3b8",
+  "lineColor": "#64748b",
+  "fontSize": "16px"
+}}}%%
+
+flowchart LR
+  A["已有 .difypkg"] --> B["打开 Dify<br/>Plugins 页面"]
+  B --> C["Install Plugin"]
+  C --> D["Via Local File<br/>拖拽上传"]
+  D --> E["检查权限声明"]
+  E --> F["确认安装"]
+  F --> G["Workspace 可用"]
+  G --> H["Agent / Workflow<br/>Tools 调用"]
+```
+
+关键点：
+
+- 本地文件安装不需要 Marketplace。
+- 自托管 Dify 默认可能启用签名校验。
+- 未签名 `.difypkg` 可能被拒绝，需要签名或调整验证设置。
+- 安装时会展示插件申请的权限，例如 tool/model/app/storage/endpoint。
+- `author` 必须与 provider yaml 中的 author 保持一致，避免唯一标识校验失败。
+
+---
+
+## 8. `.difypkg` 打包流程
+
+官方命令：
+
+```bash
+dify plugin package ./your_plugin_project
+```
+
+流程：
+
+```{mermaid}
+%%{init: {"theme": "base", "themeVariables": {
+  "primaryColor": "#ffffff",
+  "primaryTextColor": "#111827",
+  "primaryBorderColor": "#94a3b8",
+  "lineColor": "#64748b",
+  "fontSize": "16px"
+}}}%%
+
+flowchart TD
+  A["插件项目目录"] --> B["读取 manifest.yaml"]
+  B --> C["校验 plugins.*<br/>provider 路径"]
+  C --> D["校验 provider yaml<br/>引用 tools yaml"]
+  D --> E["收集 main.py / provider<br/>tools / assets / metadata"]
+  E --> F["应用 .difyignore<br/>排除规则"]
+  F --> G["生成<br/>your_plugin_project.difypkg"]
+```
+
+注意：
+
+- 命令需要在插件项目上级目录执行更清晰。
+- 产物在当前目录生成。
+- 打包前建议先完成 remote debugging。
+- 文件路径规则：
+  - 图片、视频等媒体资源放 `_assets`。
+  - `.py`、`.yaml` 等文本代码路径使用插件包内绝对路径风格，例如 `provider/sqlite_plugin.yaml`。
+- 官方插件现在倾向使用 `pyproject.toml` + `uv.lock` 管理依赖；老插件可能仍有 `requirements.txt`。
+
+---
+
+## 9. 官方数据库工具插件实现分析：SQLite
+
+官方数据库类工具中包括 `sqlite`、`supabase`、`neo4j`、`oracle_ai_db`、`nocodb`、`vanna`。其中 `sqlite` 是最直接的 SQL 数据库 Tool Plugin，结构清晰，适合作为 Tool Plugin 开发参考。
+
+源码位置：
+
+```text
+tools/sqlite
+├─ .difyignore
+├─ PRIVACY.md
+├─ README.md
+├─ _assets/
+│  └─ icon.svg
+├─ main.py
+├─ manifest.yaml
+├─ provider/
+│  ├─ sqlite_plugin.py
+│  └─ sqlite_plugin.yaml
+├─ pyproject.toml
+├─ tools/
+│  ├─ create_table.py
+│  ├─ create_table.yaml
+│  ├─ delete_sql.py
+│  ├─ delete_sql.yaml
+│  ├─ insert_json.py
+│  ├─ insert_json.yaml
+│  ├─ insert_sql.py
+│  ├─ insert_sql.yaml
+│  ├─ select_sql.py
+│  ├─ select_sql.yaml
+│  ├─ update_json.py
+│  ├─ update_json.yaml
+│  ├─ update_sql.py
+│  └─ update_sql.yaml
+└─ uv.lock
+```
+
+### 9.1 manifest 特征
+
+SQLite 插件 `manifest.yaml` 声明：
+
+- `version: 0.0.6`
+- `type: plugin`
+- `author: langgenius`
+- `name: sqlite`
+- `resource.memory: 268435456`
+- `permission.tool.enabled: true`
+- `plugins.tools: provider/sqlite_plugin.yaml`
+- Python runner: `3.12` + `entrypoint: main`
+- `privacy: PRIVACY.md`
+- `verified: true`
+
+这说明 Tool Plugin 的 manifest 不直接列出每个 Tool，而是先指向 provider yaml，再由 provider yaml 列出 tool yaml。
+
+### 9.2 provider yaml
+
+`provider/sqlite_plugin.yaml` 包含：
+
+```yaml
+identity:
+  author: langgenius
+  name: sqlite
+  label:
+    en_US: SQLite
+credentials_for_provider:
+  database_path:
+    type: text-input
+    required: true
+    label:
+      en_US: Database File Path
+tools:
+  - tools/create_table.yaml
+  - tools/delete_sql.yaml
+  - tools/insert_sql.yaml
+  - tools/insert_json.yaml
+  - tools/select_sql.yaml
+  - tools/update_sql.yaml
+  - tools/update_json.yaml
+extra:
+  python:
+    source: provider/sqlite_plugin.py
+```
+
+要点：
+
+- `credentials_for_provider` 定义安装/配置插件时的凭据表单。
+- `database_path` 是普通文本输入，要求插件运行环境能访问该 SQLite 文件。
+- `tools` 列出该 provider 下的多个工具。
+- `extra.python.source` 指向 provider 逻辑代码。
+
+### 9.3 provider 代码
+
+`provider/sqlite_plugin.py` 的核心职责是校验凭据：
+
+- 检查 `database_path` 是否存在。
+- 检查路径是否是文件。
+- 使用 `sqlite3.connect()` 执行 `SELECT 1`。
+- 失败时抛出 `ToolProviderCredentialValidationError`。
+
+这体现了 provider 层的定位：不执行具体业务工具，而是做 provider 级凭据与连通性验证。
+
+### 9.4 Tool yaml
+
+以 `select_sql.yaml` 为例：
+
+- `identity.name: select_sql`
+- `description.human` 面向用户展示
+- `description.llm` 面向 LLM 选择工具时理解用途
+- `parameters` 定义入参
+- `form: llm` 表示参数由 LLM 推理填充
+- `extra.python.source: tools/select_sql.py`
+
+### 9.5 Tool 代码
+
+`select_sql.py` 的核心流程：
+
+1. 从 `tool_parameters` 获取 `select_sql`。
+2. 要求 SQL 非空。
+3. 要求语句以 `SELECT` 开头。
+4. 从 `self.runtime.credentials` 获取 `database_path`。
+5. 检查数据库文件存在。
+6. 执行 SQL。
+7. 读取 `columns`、`rows`。
+8. 组装标准 JSON：
+   - `query`
+   - `table`
+   - `columns`
+   - `data`
+   - `row_count`
+   - `status`
+9. 同时返回文本消息和 JSON 消息。
+
+返回模式：
+
+```python
+yield self.create_text_message(text_output)
+yield self.create_json_message(sql_result)
+```
+
+这与官方 Tool Return 规范一致：工具默认可输出 `text`、`json`、`files` 等变量，Workflow 后续节点可以引用。
+
+### 9.6 设计评价
+
+优点：
+
+- provider 与 tool 分层清晰。
+- 每个 SQL 操作独立为一个工具，便于 LLM 选择。
+- `select` 限制只允许 SELECT，降低误操作风险。
+- JSON 输出结构稳定，便于 Workflow 消费。
+- 使用 generator 返回多条消息，符合 SDK 模式。
+
+风险与注意点：
+
+- `insert_sql`、`update_sql`、`delete_sql` 属于写操作，使用时需要工作区权限和提示词约束。
+- `database_path` 是运行环境路径，云端/容器环境中路径可达性是常见问题。
+- `select_sql` 只用字符串前缀判断 SELECT，复杂 SQL 安全边界有限。
+- SQLite 文件并发写入、锁等待、权限问题需要在生产环境额外评估。
+
+---
+
+## 10. 推荐 Tool Plugin 目录结构
+
+```text
+my_tool_plugin/
+├─ manifest.yaml
+├─ main.py
+├─ pyproject.toml
+├─ uv.lock
+├─ README.md
+├─ PRIVACY.md
+├─ .env.example
+├─ .difyignore
+├─ _assets/
+│  └─ icon.svg
+├─ provider/
+│  ├─ my_provider.yaml
+│  └─ my_provider.py
+└─ tools/
+   ├─ action_a.yaml
+   ├─ action_a.py
+   ├─ action_b.yaml
+   └─ action_b.py
+```
+
+Provider 示例：
+
+```yaml
+identity:
+  author: your-github-handle
+  name: sample
+  label:
+    en_US: Sample
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API Key
+tools:
+  - tools/search.yaml
+extra:
+  python:
+    source: provider/sample.py
+```
+
+Tool 示例：
+
+```yaml
+identity:
+  name: search
+  author: your-github-handle
+  label:
+    en_US: Search
+description:
+  human:
+    en_US: Search external data.
+  llm: Use this tool when you need to search external data.
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query
+    human_description:
+      en_US: Search keyword.
+    llm_description: Search keyword.
+    form: llm
+extra:
+  python:
+    source: tools/search.py
+```
+
+---
+
+## 参考资料
+
+- [Dify Plugin 概览](https://docs.dify.ai/en/develop-plugin/getting-started/getting-started-dify-plugin)
+- [Dify CLI 文档](https://docs.dify.ai/en/develop-plugin/getting-started/cli)
+- [Tool Plugin 官方开发文档](https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/tool-plugin)
+- [Manifest 官方规范](https://docs.dify.ai/en/develop-plugin/features-and-specs/plugin-types/plugin-info-by-manifest)
+- [General Specs](https://docs.dify.ai/en/develop-plugin/features-and-specs/plugin-types/general-specifications)
+- [Tool Return 规范](https://docs.dify.ai/en/develop-plugin/features-and-specs/plugin-types/tool)
+- [Plugin Debugging](https://docs.dify.ai/en/develop-plugin/features-and-specs/plugin-types/remote-debug-a-plugin)
+- [Package as Local File](https://docs.dify.ai/en/develop-plugin/publishing/marketplace-listing/release-by-file)
+- [dify-plugin-daemon 源码仓库](https://github.com/langgenius/dify-plugin-daemon)
+- [dify-official-plugins 源码仓库](https://github.com/langgenius/dify-official-plugins)
+- [官方 SQLite Tool Plugin](https://github.com/langgenius/dify-official-plugins/tree/main/tools/sqlite)
+
+---
+
+## 本地开发环境部署验证
+
+本节记录 `E:\Dify_Plugin` 下本地开发环境部署检查结果。检查时间：`2026-06-16 22:36:14 -05:00`。
+
+### 检查范围
+
+- Python 3.11
+- Poetry
+- Dify 源码环境
+- `dify-plugin-sdk`
+- 数据库驱动：`pymysql` / `psycopg2`
+
+### 执行限制
+
+- 未修改系统 PATH。
+- 未删除现有文件。
+- 未修改 Dify 源码。
+- 未创建正式插件项目。
+- 已创建临时验证目录：`E:\Dify_Plugin\env_check`。
+- Python 3.11 与 Poetry 不可用后，未强行继续执行依赖安装。
+
+### 当前目录检查
+
+命令：
+
+```powershell
+Get-Location
+Get-ChildItem -Force | Select-Object Mode,LastWriteTime,Length,Name
+Test-Path -LiteralPath '.\dify-plugin.exe'
+```
+
+结果摘要：
+
+```text
+工作目录：E:\Dify_Plugin
+dify-plugin.exe：存在
+dify-plugin-windows-amd64.exe：存在
+Dify本地化插件制作流程_最新整理版.qmd：存在
+Dify本地化插件制作流程_最新整理版.html：存在
+```
+
+结论：PASS。
+
+### dify-plugin CLI 验证
+
+命令：
+
+```powershell
+.\dify-plugin.exe version
+```
+
+结果：
+
+```text
+v0.6.1
+```
+
+命令：
+
+```powershell
+.\dify-plugin.exe --help
+```
+
+结果摘要：
+
+```text
+Dify is a cli tool to help you develop your Dify projects.
+
+Usage:
+  dify [command]
+
+Available Commands:
+  bundle
+  completion
+  help
+  migrate
+  plugin
+  signature
+  version
+```
+
+命令：
+
+```powershell
+.\dify-plugin.exe plugin --help
+```
+
+结果摘要：
+
+```text
+Plugin related commands
+
+Usage:
+  dify plugin [command]
+
+Available Commands:
+  checksum
+  cleanup
+  init
+  module
+  package
+  permission
+  readme
+  run
+```
+
+结论：PASS。
+
+### Python 3.11 检查
+
+命令：
+
+```powershell
+py -3.11 --version
+```
+
+结果：
+
+```text
+Python 3.11 not found!
+Installed Pythons found by C:\Windows\py.exe Launcher for Windows
+No Installed Pythons Found!
+
+Requested Python version (3.11) not installed, use -0 for available pythons
+```
+
+命令：
+
+```powershell
+python --version
+```
+
+结果：
+
+```text
+python : 无法将“python”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。
+```
+
+命令：
+
+```powershell
+where.exe python
+```
+
+结果：
+
+```text
+INFO: Could not find files for the given pattern(s).
+```
+
+命令：
+
+```powershell
+where.exe py
+```
+
+结果：
+
+```text
+C:\Windows\py.exe
+```
+
+判断：
+
+- Python 3.11：未发现。
+- 默认 `python`：不可用，因此不是 Python 3.11。
+- Windows Python Launcher：存在。
+
+结论：FAIL。
+
+### Poetry 检查
+
+命令：
+
+```powershell
+poetry --version
+```
+
+结果：
+
+```text
+poetry : 无法将“poetry”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。
+```
+
+命令：
+
+```powershell
+where.exe poetry
+```
+
+结果：
+
+```text
+INFO: Could not find files for the given pattern(s).
+```
+
+结论：FAIL。Poetry 当前不可用，按照限制未进行全局安装。
+
+### env_check 创建结果
+
+命令：
+
+```powershell
+New-Item -ItemType Directory -Path 'E:\Dify_Plugin\env_check' -Force
+```
+
+结果：
+
+```text
+FullName                 Exists
+--------                 ------
+E:\Dify_Plugin\env_check True
+```
+
+结论：PASS。
+
+### Poetry 项目初始化结果
+
+计划命令：
+
+```powershell
+poetry init -n
+poetry env use py -3.11
+poetry env use python
+poetry run python --version
+```
+
+执行结果：SKIPPED。
+
+原因：
+
+- Python 3.11 未安装或未被 `py` launcher 识别。
+- Poetry 命令不存在。
+- 按照任务限制，未修改 PATH，未全局安装 Poetry，未强行继续。
+
+### dify-plugin-sdk 安装与 import 验证
+
+计划命令：
+
+```powershell
+poetry add dify-plugin-sdk
+poetry run python -c "import dify_plugin; print('dify_plugin ok')"
+```
+
+执行结果：SKIPPED。
+
+原因：Python 3.11 与 Poetry 前置环境不可用。
+
+结论：BLOCKED。
+
+### pymysql 安装与 import 验证
+
+计划命令：
+
+```powershell
+poetry add pymysql
+poetry run python -c "import pymysql; print('pymysql ok')"
+```
+
+执行结果：SKIPPED。
+
+原因：Python 3.11 与 Poetry 前置环境不可用。
+
+结论：BLOCKED。
+
+### psycopg2 安装与 import 验证
+
+计划命令：
+
+```powershell
+poetry add psycopg2-binary
+poetry run python -c "import psycopg2; print('psycopg2 ok')"
+```
+
+执行结果：SKIPPED。
+
+原因：Python 3.11 与 Poetry 前置环境不可用。
+
+结论：BLOCKED。
+
+### Dify 源码环境检查
+
+检查目标：
+
+```text
+E:\Dify_Plugin\dify
+E:\Dify_Plugin\dify-main
+E:\Dify_Plugin\dify-dm
+```
+
+命令：
+
+```powershell
+Test-Path -LiteralPath 'E:\Dify_Plugin\dify'
+Test-Path -LiteralPath 'E:\Dify_Plugin\dify-main'
+Test-Path -LiteralPath 'E:\Dify_Plugin\dify-dm'
+```
+
+结果：
+
+```text
+False
+False
+False
+```
+
+结论：当前目录未发现 Dify 源码。按照限制，未自动 clone，未运行 Dify 服务，未执行 `docker compose up`。
+
+### 当前结论
+
+总评：PARTIAL PASS。
+
+PASS：
+
+- 工作目录检查通过。
+- `dify-plugin.exe` 存在。
+- `dify-plugin.exe version` 可运行，版本为 `v0.6.1`。
+- `dify-plugin.exe --help` 可运行。
+- `dify-plugin.exe plugin --help` 可运行。
+- `env_check` 临时目录创建成功。
+- Dify 源码未发现时，未自动 clone 或启动服务，符合任务限制。
+
+FAIL / BLOCKED：
+
+- Python 3.11 未发现。
+- 默认 `python` 命令不可用。
+- Poetry 未发现。
+- `poetry init`、`poetry env use`、`poetry add` 未执行。
+- `dify-plugin-sdk`、`pymysql`、`psycopg2` import 验证未执行。
+- 当前目录未发现 Dify 源码，因此未执行源码目录内的 `git status`、`git branch`、`git log`、`dir api`、`dir docker`。
+
+### 后续建议
+
+1. 安装 Python 3.11，并确认：
+
+   ```powershell
+   py -3.11 --version
+   ```
+
+2. 不修改系统 PATH 的前提下，可优先依赖 Windows Python Launcher 管理 Python 版本。
+
+3. 安装 Poetry 后确认：
+
+   ```powershell
+   poetry --version
+   where.exe poetry
+   ```
+
+4. Python 3.11 与 Poetry 均可用后，在 `E:\Dify_Plugin\env_check` 中继续执行：
+
+   ```powershell
+   poetry init -n
+   poetry env use py -3.11
+   poetry run python --version
+   poetry add dify-plugin-sdk pymysql psycopg2-binary
+   poetry run python -c "import dify_plugin; print('dify_plugin ok')"
+   poetry run python -c "import pymysql; print('pymysql ok')"
+   poetry run python -c "import psycopg2; print('psycopg2 ok')"
+   ```
+
+5. 如需检查 Dify 源码，请先将源码放入 `E:\Dify_Plugin\dify`、`E:\Dify_Plugin\dify-main` 或 `E:\Dify_Plugin\dify-dm`，再执行只读检查命令。
+
+---
+
+## 本地开发环境补齐尝试
+
+本节记录将环境从 `PARTIAL PASS` 补齐到 `PASS` 的尝试结果。检查时间：`2026-06-16 22:44:49 -05:00`。
+
+### 目标
+
+- 安装或确认 Python 3.11。
+- 优先使用 `winget install Python.Python.3.11`。
+- 使用 `py -3.11 -m pip install poetry` 安装 Poetry。
+- 在 `E:\Dify_Plugin\env_check` 中初始化 Poetry 项目。
+- 安装并验证：
+  - `dify-plugin-sdk`
+  - `pymysql`
+  - `psycopg2-binary`
+
+### 复查 Python 3.11
+
+命令：
+
+```powershell
+py -3.11 --version
+```
+
+结果：
+
+```text
+Python 3.11 not found!
+Installed Pythons found by C:\Windows\py.exe Launcher for Windows
+No Installed Pythons Found!
+
+Requested Python version (3.11) not installed, use -0 for available pythons
+```
+
+命令：
+
+```powershell
+python --version
+```
+
+结果：
+
+```text
+python : 无法将“python”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。
+```
+
+命令：
+
+```powershell
+where.exe python
+```
+
+结果：
+
+```text
+INFO: Could not find files for the given pattern(s).
+```
+
+命令：
+
+```powershell
+where.exe py
+```
+
+结果：
+
+```text
+C:\Windows\py.exe
+```
+
+判断：
+
+- Python 3.11：未发现。
+- 默认 `python`：不可用。
+- `py` launcher：存在。
+
+### winget 检查
+
+命令：
+
+```powershell
+winget --version
+```
+
+结果：
+
+```text
+winget : 无法将“winget”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。
+```
+
+结论：`winget` 当前不可用。
+
+### 安装动作
+
+计划命令：
+
+```powershell
+winget install Python.Python.3.11
+```
+
+执行结果：NOT RUN。
+
+原因：`winget` 不可用。根据限制，“如果 winget 不可用或 Python 安装失败，记录失败原因并停止”，因此未改用未知来源安装包，未修改系统 PATH。
+
+### Poetry 安装与验证
+
+计划命令：
+
+```powershell
+py -3.11 -m pip install poetry
+py -3.11 -m poetry --version
+```
+
+执行结果：BLOCKED / NOT RUN。
+
+原因：Python 3.11 未安装，且已在 `winget` 不可用处停止。
+
+### env_check 初始化与依赖安装
+
+计划命令：
+
+```powershell
+cd E:\Dify_Plugin\env_check
+py -3.11 -m poetry init -n
+py -3.11 -m poetry env use py -3.11
+py -3.11 -m poetry add dify-plugin-sdk pymysql psycopg2-binary
+```
+
+执行结果：BLOCKED / NOT RUN。
+
+原因：Python 3.11 与 Poetry 均不可用。
+
+### import 验证
+
+计划命令：
+
+```powershell
+py -3.11 -m poetry run python -c "import dify_plugin; print('dify_plugin ok')"
+py -3.11 -m poetry run python -c "import pymysql; print('pymysql ok')"
+py -3.11 -m poetry run python -c "import psycopg2; print('psycopg2 ok')"
+```
+
+执行结果：BLOCKED / NOT RUN。
+
+原因：依赖安装步骤未执行。
+
+### 当前结论
+
+总评：FAIL，尚未达到 PASS。
+
+通过项：
+
+- `py` launcher 存在：`C:\Windows\py.exe`。
+- 已按限制停止，没有修改 PATH，没有下载未知来源安装包，没有创建正式插件项目。
+
+失败或阻塞项：
+
+- `winget` 不可用。
+- Python 3.11 不可用。
+- 默认 `python` 命令不可用。
+- Poetry 未安装。
+- `dify-plugin-sdk` / `pymysql` / `psycopg2-binary` 未安装，import 未验证。
+
+### 后续建议
+
+1. 先修复 Windows App Installer / winget，使以下命令可用：
+
+   ```powershell
+   winget --version
+   ```
+
+2. `winget` 可用后，安装官方 Python 3.11：
+
+   ```powershell
+   winget install Python.Python.3.11
+   ```
+
+3. 新开 PowerShell 后验证：
+
+   ```powershell
+   py -3.11 --version
+   python --version
+   where.exe python
+   where.exe py
+   ```
+
+4. Python 3.11 可用后继续 Poetry 与依赖验证：
+
+   ```powershell
+   py -3.11 -m pip install poetry
+   py -3.11 -m poetry --version
+   cd E:\Dify_Plugin\env_check
+   py -3.11 -m poetry init -n
+   py -3.11 -m poetry env use py -3.11
+   py -3.11 -m poetry add dify-plugin-sdk pymysql psycopg2-binary
+   py -3.11 -m poetry run python -c "import dify_plugin; print('dify_plugin ok')"
+   py -3.11 -m poetry run python -c "import pymysql; print('pymysql ok')"
+   py -3.11 -m poetry run python -c "import psycopg2; print('psycopg2 ok')"
+   ```
+
+---
+
+## 手动安装 Python 3.11 后复查
+
+检查时间：`2026-06-17 01:30:18 -05:00`。工作目录：`E:\Dify_Plugin`。
+
+### Python 3.11 复查
+
+命令：
+
+```powershell
+py -3.11 --version
+```
+
+结果：
+
+```text
+No suitable Python runtime found
+Pass --list (-0) to see all detected environments on your machine
+or set environment variable PYLAUNCHER_ALLOW_INSTALL to use winget
+or open the Microsoft Store to the requested version.
+```
+
+命令：
+
+```powershell
+python --version
+```
+
+结果：
+
+```text
+python : 无法将“python”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。
+```
+
+命令：
+
+```powershell
+where.exe python
+```
+
+结果：
+
+```text
+INFO: Could not find files for the given pattern(s).
+```
+
+命令：
+
+```powershell
+where.exe py
+```
+
+结果：
+
+```text
+C:\Windows\py.exe
+```
+
+补充诊断：
+
+```powershell
+py -0p
+```
+
+结果：
+
+```text
+ -V:3.13 *        E:\python.exe
+```
+
+判断：
+
+- `py` launcher 存在。
+- `py -3.11` 仍不可用。
+- 当前 `py` launcher 只识别到 Python 3.13：`E:\python.exe`。
+- 默认 `python` 命令仍不可用。
+
+### Poetry 安装尝试
+
+命令：
+
+```powershell
+py -3.11 -m pip install poetry
+```
+
+结果：
+
+```text
+No suitable Python runtime found
+Pass --list (-0) to see all detected environments on your machine
+or set environment variable PYLAUNCHER_ALLOW_INSTALL to use winget
+or open the Microsoft Store to the requested version.
+```
+
+命令：
+
+```powershell
+py -3.11 -m poetry --version
+```
+
+结果：
+
+```text
+No suitable Python runtime found
+Pass --list (-0) to see all detected environments on your machine
+or set environment variable PYLAUNCHER_ALLOW_INSTALL to use winget
+or open the Microsoft Store to the requested version.
+```
+
+结论：Poetry 未安装成功，原因是 `py -3.11` 仍不可用。
+
+### env_check 与依赖验证
+
+以下命令未继续执行：
+
+```powershell
+cd E:\Dify_Plugin\env_check
+py -3.11 -m poetry init -n
+py -3.11 -m poetry env use py -3.11
+py -3.11 -m poetry add dify-plugin-sdk pymysql psycopg2-binary
+py -3.11 -m poetry run python -c "import dify_plugin; print('dify_plugin ok')"
+py -3.11 -m poetry run python -c "import pymysql; print('pymysql ok')"
+py -3.11 -m poetry run python -c "import psycopg2; print('psycopg2 ok')"
+```
+
+执行结果：BLOCKED / NOT RUN。
+
+原因：`py -3.11` 不可用，继续执行会重复失败。
+
+### 当前结论
+
+总评：FAIL，尚未达到 PASS。
+
+阻塞点：
+
+- 手动安装后，当前 shell 与 Python Launcher 仍未识别 Python 3.11。
+- `py -0p` 只显示 Python 3.13。
+- 不能按要求使用 `py -3.11 -m pip install poetry`。
+- `dify-plugin-sdk`、`pymysql`、`psycopg2-binary` 尚未安装和 import 验证。
+
+### 后续建议
+
+1. 确认 Python 3.11 是否安装到标准 Windows Python 位置，并已注册到 Python Launcher。
+2. 目标是让以下命令成功：
+
+   ```powershell
+   py -3.11 --version
+   py -0p
+   ```
+
+3. 如果 Python 3.11 安装在非标准位置，建议重新运行官方 Python 3.11 安装器，并启用 Python Launcher 注册。
+4. 不需要修改系统 PATH；只要 `py -3.11` 可用，后续 Poetry 与依赖验证即可继续。
