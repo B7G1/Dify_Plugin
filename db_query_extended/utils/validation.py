@@ -12,8 +12,8 @@ from utils.errors import (
 from utils.sql_validator import ReadOnlyValidator
 
 
-SUPPORTED_DATABASE_TYPES = {"mysql", "postgresql", "dm", "kingbasees"}
-DEFAULT_PORTS = {"mysql": 3306, "postgresql": 5432, "dm": 5236, "kingbasees": 54321}
+SUPPORTED_DATABASE_TYPES = {"mysql", "postgresql", "dm", "sqlserver", "kingbasees"}
+DEFAULT_PORTS = {"mysql": 3306, "postgresql": 5432, "dm": 5236, "sqlserver": 1433, "kingbasees": 54321}
 MAX_ALLOWED_ROWS = 1_000
 MAX_ALLOWED_TIMEOUT = 120
 
@@ -25,7 +25,7 @@ def validate_connection_config(credentials: dict[str, Any]) -> dict[str, Any]:
     database_type = str(credentials.get("database_type", "")).strip().lower()
     if database_type not in SUPPORTED_DATABASE_TYPES:
         raise UnsupportedDatabaseTypeError(
-            "Unsupported database type. Available types are mysql, postgresql, dm, and kingbasees."
+            "Unsupported database type. Available types are mysql, postgresql, dm, sqlserver, and kingbasees."
         )
 
     normalized = {"database_type": database_type}
