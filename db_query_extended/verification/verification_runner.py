@@ -77,12 +77,19 @@ DATABASES = {
         "port": int(os.getenv("DM_PORT", "5236")),
         "database": os.getenv("DM_DATABASE", "DMSERVER"),
         "username": os.getenv("DM_USERNAME", "PLUGIN_TEST_USER"),
-        "password": os.getenv("DM_PASSWORD", "PluginRead_2026!"),
+        "password": os.getenv("DM_PASSWORD"),
         "connection_timeout": int(os.getenv("DM_CONNECTION_TIMEOUT", "10")),
         "schema": os.getenv("DM_SCHEMA", "PLUGIN_TEST_OWNER"),
         "ssl_mode": "disable",
     },
 }
+
+
+def resolve_database_config(name: str) -> dict[str, Any]:
+    config = dict(DATABASES[name])
+    if name == "dm" and not config.get("password"):
+        raise RuntimeError("DM_PASSWORD environment variable is required for DM verification.")
+    return validate_connection_config(config)
 
 TOOL_QUERIES = [
     ("select_1", "SELECT 1 AS ok", 100, lambda r: r["row_count"] == 1),
@@ -132,7 +139,7 @@ def run_provider() -> dict[str, Any]:
     for name, credentials in DATABASES.items():
         started = perf_counter()
         try:
-            config = validate_connection_config(credentials)
+            config = resolve_database_config(name)
             result = execute_read_only_query(config, "SELECT 1 AS ok", 1, 30)
             response = success_response(name, result)
             assert_schema(response)
@@ -143,7 +150,7 @@ def run_provider() -> dict[str, Any]:
 
         started = perf_counter()
         try:
-            config = validate_connection_config(credentials)
+            config = resolve_database_config(name)
             driver, connect_args = expected[name]
             assert build_database_url(config).drivername == driver
             assert build_connect_args(config) == connect_args
@@ -157,7 +164,7 @@ def run_provider() -> dict[str, Any]:
 def run_tool() -> dict[str, Any]:
     entries: list[dict[str, Any]] = []
     for database_type, credentials in DATABASES.items():
-        config = validate_connection_config(credentials)
+        config = resolve_database_config(database_type)
         for case_name, sql, max_rows, predicate in TOOL_QUERIES:
             started = perf_counter()
             try:
@@ -356,7 +363,7 @@ def run_workflow_target(target: dict[str, str]) -> list[dict[str, Any]]:
 
 
 def verify_dm_unicode_acceptance() -> str:
-    config = validate_connection_config(DATABASES["dm"])
+    config = resolve_database_config("dm")
     messages = [verify_dm_dmpython_binding(config), verify_dm_sqlalchemy_binding(config)]
     return " | ".join(messages)
 
