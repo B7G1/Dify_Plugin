@@ -1,0 +1,27 @@
+name: dify-plugin-sqlserver-test
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: dify-plugin-test-sqlserver
+    environment:
+      ACCEPT_EULA: "${ACCEPT_EULA:?Set ACCEPT_EULA=Y only after accepting the Microsoft SQL Server EULA}"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?Set a local SQL Server sa password}"
+    ports:
+      - "${MSSQL_PORT:-1433}:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./init:/opt/phase11-init:ro
+      - ./verification:/opt/phase11-verification:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "SQLCMD=$$(command -v /opt/mssql-tools18/bin/sqlcmd || command -v /opt/mssql-tools/bin/sqlcmd); $$SQLCMD -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+volumes:
+  sqlserver_data:
+    name: dify-plugin-sqlserver-test-data

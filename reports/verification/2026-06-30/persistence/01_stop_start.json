@@ -1,0 +1,16 @@
+﻿{
+    "label":  "after_compose_stop_start",
+    "captured_at":  "2026-07-01T04:05:19.7849641-05:00",
+    "system_identifier":  "7657369583221227555",
+    "accounts":  1,
+    "tenants":  1,
+    "plugins":  0,
+    "plugin_installations":  0,
+    "dify_plugin_exists":  true,
+    "plugin_daemon":  {
+                          "status":  "running",
+                          "restarting":  false,
+                          "restart_count":  0
+                      },
+    "postgres_mount":  "volume|dify_postgres_data_v1"
+}

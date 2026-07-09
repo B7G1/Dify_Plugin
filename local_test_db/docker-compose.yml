@@ -1,0 +1,49 @@
+name: dify-plugin-local-test-db
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: dify-plugin-test-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: plugin_test
+      MYSQL_USER: plugin_test_user
+      MYSQL_PASSWORD: plugin_test_password
+      MYSQL_ROOT_PASSWORD: local_root_password
+      TZ: UTC
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/01-schema-and-data.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uplugin_test_user", "-pplugin_test_password"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+      start_period: 15s
+
+  postgres:
+    image: postgres:16
+    container_name: dify-plugin-test-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: plugin_test
+      POSTGRES_USER: plugin_test_user
+      POSTGRES_PASSWORD: plugin_test_password
+      TZ: UTC
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/01-schema-and-data.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plugin_test_user -d plugin_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+      start_period: 10s
+
+volumes:
+  mysql_data:
+  postgres_data:

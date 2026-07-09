@@ -1,0 +1,25 @@
+name: dify-plugin-kingbase-test
+
+services:
+  kingbase:
+    image: "${KINGBASE_IMAGE:?Set KINGBASE_IMAGE to the exact vendor-provided image loaded locally}"
+    container_name: dify-plugin-test-kingbase
+    privileged: true
+    restart: unless-stopped
+    environment:
+      DB_USER: system
+      DB_PASSWORD: "${KINGBASE_ADMIN_PASSWORD:?Set KINGBASE_ADMIN_PASSWORD in the current environment}"
+      DB_MODE: pg
+      ENCODING: UTF8
+      NEED_START: "true"
+    ports:
+      - "${KINGBASE_HOST_PORT:-54321}:54321"
+    volumes:
+      - kingbase_data:/home/kingbase/userdata
+      - ./init:/opt/phase10-init:ro
+      - ./verification:/opt/phase10-verification:ro
+    command: ["/usr/sbin/init"]
+
+volumes:
+  kingbase_data:
+    name: dify-plugin-kingbase-test-data

@@ -1,0 +1,16 @@
+﻿{
+    "label":  "after_wsl_restart_and_port_forward_recovery",
+    "captured_at":  "2026-07-01T04:13:34.2118351-05:00",
+    "system_identifier":  "7657369583221227555",
+    "accounts":  1,
+    "tenants":  1,
+    "plugins":  0,
+    "plugin_installations":  0,
+    "dify_plugin_exists":  true,
+    "plugin_daemon":  {
+                          "status":  "running",
+                          "restarting":  false,
+                          "restart_count":  1
+                      },
+    "postgres_mount":  "volume|dify_postgres_data_v1"
+}
