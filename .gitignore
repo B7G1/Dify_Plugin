@@ -29,6 +29,17 @@ Thumbs.db
 **/*.tmp
 **/*.temp
 **/*.bak
+staged.txt
+
+# Local package duplicates and reference bundles
+/db_query_extended.difypkg
+/db_query_extended/db_query_extended.difypkg
+/junjiem-db_query_0.0.11-offline.difypkg
+/test_tool_schema.difypkg
+
+# Local environment probes and generated logs
+/env_check/.venv/
+/local_test_db/sqlserver/logs/
 
 # Credentials and private key material
 *.pem
