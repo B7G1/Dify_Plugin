@@ -36,7 +36,11 @@ OPTIONAL_DEFAULTS = {
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", help="Optional JSON output path.")
+    parser.add_argument("--env-file", help="Optional KEY=VALUE env file loaded before the probe runs.")
     args = parser.parse_args()
+
+    if args.env_file:
+        load_env_file(Path(args.env_file))
 
     result = run_probe()
     payload = json.dumps(result, ensure_ascii=False, indent=2)
@@ -155,6 +159,15 @@ def resolved_env() -> dict[str, Any]:
     }
 
 
+def load_env_file(path: Path) -> None:
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip())
+
+
 def try_import(module_name: str) -> tuple[Any | None, str | None]:
     try:
         return importlib.import_module(module_name), None
@@ -193,7 +206,7 @@ def run_connection_probe(sqlalchemy_mod: Any, url: Any, config: dict[str, Any]) 
     )
     try:
         with engine.connect() as connection:
-            probe_value = connection.execute(text("SELECT 1 AS probe_value")).mappings().first()
+            probe_value = summarize_mapping(connection.execute(text("SELECT 1 AS probe_value")).mappings().first())
             table_probe = None
             try:
                 table_probe = connection.execute(
@@ -218,11 +231,17 @@ def summarize_rows(rows: Any) -> Any:
         return rows
     summary = []
     for row in rows[:5]:
-        item = {}
-        for key, value in dict(row).items():
-            item[str(key)] = None if value is None else str(value)
-        summary.append(item)
+        summary.append(summarize_mapping(row))
     return summary
+
+
+def summarize_mapping(row: Any) -> Any:
+    if row is None:
+        return None
+    item = {}
+    for key, value in dict(row).items():
+        item[str(key)] = None if value is None else str(value)
+    return item
 
 
 def contains_password(safe_url: str, password: str) -> bool:
