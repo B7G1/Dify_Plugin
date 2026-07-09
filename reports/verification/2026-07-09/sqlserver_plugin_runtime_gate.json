@@ -1,0 +1,114 @@
+{
+  "phase": "Phase 8.7 - SQL Server Plugin-Daemon Runtime Gate",
+  "timestamp": "2026-07-09T06:58:29Z",
+  "git_head": "b627a87",
+  "candidate_path": "E:\\Dify_Plugin\\release\\db_query_extended\\phase8_sqlserver_candidate\\db_query_extended-0.1.1-sqlserver-candidate.difypkg",
+  "candidate_sha256": "8a3c8e931da66e373831b8d1c5f3c77af1df33771fec0719f41be093db5e9e20",
+  "candidate_size": 36891110,
+  "plugin_identity": "li_zijun/db_query_extended",
+  "plugin_version": "0.1.1",
+  "candidate_unique_identifier": "li_zijun/db_query_extended:0.1.1@4d1e293d9c5df7a8614e7d5e086a6a8a856a7a76accf835bc18ab6736f84af47",
+  "previous_installed_unique_identifier": "li_zijun/db_query_extended:0.1.1@81c92f7804b3b306c52e2f028b6fb1f0d9bd579236763c728f310dc90fa92dc7",
+  "dify_runtime_inventory": {
+    "localhost_http": 200,
+    "localhost_install_http": 200,
+    "api_container": {
+      "name": "dify-api-1",
+      "image": "langgenius/dify-api:1.13.3",
+      "status": "running"
+    },
+    "plugin_daemon_container": {
+      "name": "dify-plugin_daemon-1",
+      "image": "langgenius/dify-plugin-daemon:0.5.3-local",
+      "status": "running",
+      "restarting": false
+    },
+    "nginx_container": {
+      "name": "dify-nginx-1",
+      "image": "nginx:latest",
+      "status": "running"
+    },
+    "web_container": {
+      "name": "dify-web-1",
+      "image": "langgenius/dify-web:1.13.3",
+      "status": "running"
+    }
+  },
+  "plugin_daemon_image": "langgenius/dify-plugin-daemon:0.5.3-local",
+  "install_method": "real_dify_console_api_using_existing_authenticated_localhost_session",
+  "install_window": {
+    "inventory_started_at_local": "2026-07-09T01:56:13-05:00",
+    "package_upload_completed_at_utc": "2026-07-09T06:57:32Z",
+    "install_task_started_at_utc": "2026-07-09T06:57:58Z",
+    "install_task_finished_at_utc": "2026-07-09T06:58:11Z"
+  },
+  "package_identity_preflight": {
+    "file_exists": true,
+    "archive_readable": true,
+    "bundled_requirements_contains_pymssql_2_3_13": true,
+    "bundled_pymssql_wheel_present": true
+  },
+  "package_received": {
+    "pass": true,
+    "evidence": [
+      "POST /management/install/upload/package status=200",
+      "upload response returned candidate unique_identifier"
+    ]
+  },
+  "decode_result": {
+    "pass": true,
+    "evidence": [
+      "GET /management/decode/from_identifier ... status=200"
+    ]
+  },
+  "dependency_prepare_result": {
+    "pass": true,
+    "evidence": [
+      "detected dependency file=requirements.txt",
+      "installing plugin dependencies method=\"uv pip install\""
+    ]
+  },
+  "pymssql_runtime_evidence": {
+    "pass": true,
+    "evidence": [
+      "pre-compiling plugin file=\"Listing './.venv/lib/python3.12/site-packages/pymssql-2.3.13.dist-info/licenses'...\""
+    ]
+  },
+  "plugin_install_result": {
+    "pass": true,
+    "task_id": "019f45ab-3e56-79b9-84a2-271e9c3b2a3a",
+    "task_status": "success",
+    "plugin_status": "success",
+    "plugin_message": "installed"
+  },
+  "runtime_start_result": {
+    "pass": true,
+    "evidence": [
+      "local runtime starting plugin=li_zijun/db_query_extended:0.1.1@4d1e293d9c5df7a8614e7d5e086a6a8a856a7a76accf835bc18ab6736f84af47",
+      "local runtime scale up ... instance_nums=1"
+    ]
+  },
+  "runtime_ready_result": {
+    "pass": true,
+    "evidence": [
+      "Installed tool: db_query_extended",
+      "local runtime ready plugin=li_zijun/db_query_extended:0.1.1@4d1e293d9c5df7a8614e7d5e086a6a8a856a7a76accf835bc18ab6736f84af47"
+    ]
+  },
+  "restart_loop_detected": false,
+  "observed_errors": [],
+  "observed_warnings": [
+    "Console/API plugin list and PostgreSQL plugin_installations/plugins tables still show the older 0.1.1 checksum after the successful runtime install task.",
+    "Phase 8.7 scope is runtime-gate only; this stale list/read-model behavior did not block decode, dependency preparation, install task success, or runtime ready evidence."
+  ],
+  "secret_hygiene": {
+    "pass": true,
+    "notes": [
+      "No SQL Server password recorded.",
+      "No Dify API key recorded.",
+      "No browser cookies or authorization headers recorded."
+    ]
+  },
+  "final_status": "PASS",
+  "next_status": "GO - READY_FOR_SQLSERVER_TOOL_VALIDATION"
+}
