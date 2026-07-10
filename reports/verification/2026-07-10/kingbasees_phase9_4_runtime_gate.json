@@ -1,0 +1,108 @@
+{
+  "phase": "9.4",
+  "date": "2026-07-10",
+  "gate": "OFFICIAL_MEDIA_INTAKE_IMAGE_LOAD_RUNTIME",
+  "decision": "PASS",
+  "scope_boundary": "server runtime only; not driver, dialect, Adapter, Provider, Tool, Workflow, packaging, or full compatibility",
+  "docker": {
+    "context": "desktop-linux",
+    "server_os": "linux",
+    "server_architecture": "amd64",
+    "server_version": "29.5.2",
+    "daemon_reachable": true,
+    "prune_executed": false
+  },
+  "media": [
+    {
+      "name": "KingbaseES_V009R001C010B0004_Lin64_install.iso",
+      "size_bytes": 2974226432,
+      "sha256": "E1A7477A6DDA1F72EEF5EBE0857D422BE9BFAF2374E1749CB38ED3FD30641E52",
+      "inventory_match": true,
+      "inspection": "read-only bsdtar listing; not mounted; installer not executed"
+    },
+    {
+      "name": "KingbaseES_V009R001C010B0004_x86_64_Docker.tar",
+      "size_bytes": 765955072,
+      "sha256": "16A436608CC204349E510CB136B8FC1FCBDF6874AEE7B204CDAC20A3522282DA",
+      "inventory_match": true,
+      "docker_load": "PASS"
+    },
+    {
+      "name": "license_4_V009R001C-开发版-365天.dat",
+      "size_bytes": 4998,
+      "sha256": "A3F7D3609CA143B51F6C671D956AE816F60DFE68814263BE8F4E37D8D2A47B9F",
+      "inventory_match": true,
+      "parser_result": {
+        "product_version": "V009R001C",
+        "edition": "development",
+        "valid_days": 365,
+        "max_connections": 10,
+        "db_modes": ["postgresql", "oracle", "mysql", "sqlserver"]
+      },
+      "runtime_activated": false,
+      "inspection": "neutral read-only bind at /intake/license.dat"
+    }
+  ],
+  "iso": {
+    "install_path_from_silent_cfg": "/opt/Kingbase/ES/V9",
+    "license_path_from_silent_cfg": "",
+    "standalone_kingbase_license_found_in_listing": false
+  },
+  "image": {
+    "tag_source": "tar manifest.json",
+    "tag": "kingbase_v009r001c010b0004_single_x86:v1",
+    "id": "sha256:10ba6f33e228ddd6be155e80523afe712be333ee25ccf9f912ee3a31899dc82f",
+    "os": "linux",
+    "architecture": "amd64",
+    "author": "KDBDEV support@kingbase.com.cn",
+    "entrypoint": ["/bin/bash", "/home/kingbase/docker-entrypoint.sh"],
+    "user": "kingbase",
+    "working_dir": "/home/kingbase/",
+    "exposed_port": "54321/tcp",
+    "created": "2025-07-02T03:21:54.130758953Z"
+  },
+  "license": {
+    "runtime_source": "image-bundled trial license",
+    "initial_path": "/home/kingbase/install/kingbase/bin/license.dat",
+    "persistent_path": "/home/kingbase/userdata/etc/license.dat",
+    "bin_path_resolves_to": "/home/kingbase/userdata/etc/license.dat",
+    "edition": "enterprise",
+    "valid_days": 90,
+    "base_date_after_first_start": "2026-07-10",
+    "is_first_read_after_start": false,
+    "pristine_image_sha256": "84a7a1bf019b7805f74020d902cf21a21620b2d3a5c68214f8b1106895588559",
+    "persisted_sha256_after_first_start": "6865616ceb6529e469b33c55a6a2e7415f274f243a4a6110dafdc24808172f53"
+  },
+  "runtime": {
+    "container": "dify-plugin-phase94-kingbase",
+    "container_id": "6fe085896f05e05628553885431d1406777e609a362845b7bbdb7074887d8374",
+    "volume": "dify-plugin-phase94-kingbase-data",
+    "host_port": 54321,
+    "container_port": 54321,
+    "initdb": "PASS",
+    "readiness": "127.0.0.1:54321 - accepting connections",
+    "host_tcp": "PASS",
+    "version": "KingbaseES V009R001C010",
+    "database": "kingbase",
+    "user": "system",
+    "select_1": 1,
+    "authenticated_tcp_sql": "PASS",
+    "restart": "PASS",
+    "post_restart_sql": "PASS",
+    "left_running": true,
+    "credential_recorded": false
+  },
+  "closed_blockers": [
+    "BLOCKED_BY_OFFICIAL_MEDIA",
+    "DOCKER_DAEMON_UNAVAILABLE",
+    "REAL_KINGBASE_SERVER_NOT_STARTED"
+  ],
+  "remaining_gates": [
+    "OFFICIAL_DRIVER_PLUGIN_DAEMON_PYTHON312_IMPORT",
+    "SQLALCHEMY_DIALECT_RUNTIME",
+    "ADAPTER_PROVIDER_TOOL_WORKFLOW",
+    "OFFLINE_DEPENDENCY_CLOSURE"
+  ],
+  "product_code_changed": false,
+  "adapter_changed": false
+}
