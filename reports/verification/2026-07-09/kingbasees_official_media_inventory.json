@@ -1,0 +1,140 @@
+{
+  "phase": "Phase 9.x - KingbaseES Official Media and Runtime Feasibility Gate",
+  "generated_at": "2026-07-09T21:05:02.7392002-05:00",
+  "baseline": {
+    "branch": "feature/kingbasees-adapter",
+    "commit": "6919e838e379041a2e37c0ba19c7f923488a7ae3",
+    "head_short": "6919e83"
+  },
+  "decision": "BLOCKED",
+  "primary_blocker": "BLOCKED_BY_OFFICIAL_MEDIA",
+  "classification_summary": {
+    "OFFICIAL": 0,
+    "BUNDLED WITH OFFICIAL MEDIA": 0,
+    "THIRD-PARTY": 1,
+    "UNKNOWN": 6,
+    "MISSING": 4
+  },
+  "commands": [
+    "git status --short --branch",
+    "git log -5 --oneline",
+    "rg -n --hidden -S \"KingbaseES|kingbase|\\bkdb\\b|\\bkci\\b|kdbndp|license.dat|driver_feasibility_probe\" E:\\Dify_Plugin",
+    "Get-ChildItem C:\\Users\\LH1858\\Downloads -Recurse -Force",
+    "docker images --format ...",
+    "docker ps -a --format ...",
+    "docker volume ls --format ...",
+    "wsl -l -v",
+    "wsl -e sh -lc \"find /home /mnt/c/Users/LH1858/Downloads ...\"",
+    "python --version",
+    "E:\\Dify_Plugin\\db_query_extended\\.venv\\Scripts\\python.exe --version"
+  ],
+  "assets": [
+    {
+      "path": "E:\\Dify_Plugin\\local_test_db\\kingbase\\prepare.ps1",
+      "classification": "UNKNOWN",
+      "role": "project_scaffolding",
+      "size_bytes": 953,
+      "sha256": "69E9642A464303CF4E6AC7793120C748F0A40F775900A4682FDAA0D30784156A",
+      "evidence": "Checks KINGBASE_IMAGE and compose rendering; not official media."
+    },
+    {
+      "path": "E:\\Dify_Plugin\\local_test_db\\kingbase\\docker-compose.yml",
+      "classification": "UNKNOWN",
+      "role": "project_scaffolding",
+      "size_bytes": 761,
+      "sha256": "8D4BD5759DFB5EA4751B90A48799EB1DA21753B2DEB8E7EA89DCC2CA0E47A4F7",
+      "evidence": "Compose template expects a vendor-provided image, but is not media itself."
+    },
+    {
+      "path": "E:\\Dify_Plugin\\local_test_db\\kingbase\\README.md",
+      "classification": "UNKNOWN",
+      "role": "project_scaffolding",
+      "size_bytes": 3592,
+      "sha256": "7E3964D24A711641EE594BA9AD9E6B35FC7A01E1F5956B009918B0D50DAAA1F8",
+      "evidence": "Project-side environment notes only; not official runtime media."
+    },
+    {
+      "path": "E:\\Dify_Plugin\\reports\\documentation\\Phase9_KingbaseES_Compatibility\\phase9_1_kingbasees_bundled_trial_feasibility_2026-07-09.md",
+      "classification": "UNKNOWN",
+      "role": "prior_evidence",
+      "size_bytes": 7390,
+      "sha256": "B0917830866A5D4C261A282EFF132992822BF53F394AE9D60E05DB740518AF95",
+      "evidence": "Prior internal report; not official media."
+    },
+    {
+      "path": "E:\\Dify_Plugin\\reports\\documentation\\Phase10_KingbaseES_Adapter\\driver_feasibility.md",
+      "classification": "UNKNOWN",
+      "role": "prior_evidence",
+      "size_bytes": 9537,
+      "sha256": "4B76DB2094529CBBB8E95C73F276C98716ED8810CB6FE44583BDF337393EF57D",
+      "evidence": "Prior internal driver-feasibility report; not an official driver package."
+    },
+    {
+      "path": "E:\\Dify_Plugin\\reports\\documentation\\Phase10_KingbaseES_Adapter\\driver_feasibility_probe.py",
+      "classification": "UNKNOWN",
+      "role": "isolated_probe",
+      "size_bytes": 5754,
+      "sha256": "196B200116C5FEE923F6B4452C802946AB44C68181A6D106176F851E5DE42B22",
+      "evidence": "Project-authored probe; not an official runtime artifact."
+    },
+    {
+      "path": "C:\\Users\\LH1858\\Downloads\\多数据库查询插件设计方案（含 DM _ KingbaseES 扩展）.html",
+      "classification": "THIRD-PARTY",
+      "role": "design_material",
+      "size_bytes": 167303,
+      "sha256": "BBA079416CBFF194495F088C9F9DE9D58F42FA28F360B7FF72EE261C29BF5F3F",
+      "evidence": "User-side HTML design material; not accepted as official media, driver, or license proof."
+    },
+    {
+      "path": "(not found locally)",
+      "classification": "MISSING",
+      "role": "official_install_media",
+      "evidence": "No official installer, ISO, image tar, or loaded vendor image was found in the inspected paths."
+    },
+    {
+      "path": "(not found locally)",
+      "classification": "MISSING",
+      "role": "official_python_driver",
+      "evidence": "No official Kingbase Python driver wheel/tar/source artifact was found locally."
+    },
+    {
+      "path": "(not found locally)",
+      "classification": "MISSING",
+      "role": "official_sqlalchemy_dialect",
+      "evidence": "No official Kingbase SQLAlchemy dialect artifact was found locally."
+    },
+    {
+      "path": "(not found locally)",
+      "classification": "MISSING",
+      "role": "license_artifact",
+      "evidence": "No local license.dat or other explicit Kingbase license file was found in the audited paths."
+    }
+  ],
+  "environment_findings": {
+    "docker_daemon": {
+      "status": "UNAVAILABLE",
+      "error_type": "DOCKER_DAEMON_UNREACHABLE",
+      "detail": "failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine"
+    },
+    "wsl": {
+      "distros": [
+        {
+          "name": "Ubuntu",
+          "state": "Running",
+          "version": 2
+        },
+        {
+          "name": "docker-desktop",
+          "state": "Stopped",
+          "version": 2
+        }
+      ],
+      "targeted_search_result": "No Kingbase installer/image/driver/license artifact found; only Downloads HTML and one unrelated cache path containing KCi in its generated name."
+    },
+    "python": {
+      "host_python": "3.10.13",
+      "repo_venv_python": "3.11.0",
+      "local_python312_found": false
+    }
+  }
+}

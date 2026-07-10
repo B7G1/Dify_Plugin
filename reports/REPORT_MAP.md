@@ -14,6 +14,7 @@
 | Phase 7.1 DM8 数据能力补证 | `documentation/Phase7_1_DM8_Adapter/data_capability_evidence_closure_2026-07-06.md` |
 | Phase 7.2 多语种 stored-data exact equality | `documentation/Phase7_2_Multilingual_Compatibility/README.md` |
 | Phase 7.3 全适配器回归 | `documentation/Phase7_3_Full_Adapter_Regression/README.md` |
+| Phase 9 KingbaseES feasibility | `documentation/Phase9_KingbaseES_Feasibility/phase9_kingbasees_official_media_runtime_feasibility.md` |
 | Phase 10 KingbaseES | `documentation/Phase10_KingbaseES_Adapter/README.md` |
 | Phase 11 SQL Server 环境门 | `documentation/Phase11_SQLServer_Adapter/environment_gate.md` |
 | 可视化地图 / dashboard | `html_reports/` |
@@ -44,6 +45,7 @@
 | 2026-06-30 | 环境启动、Postgres 持久化、备份和恢复实验 | `verification/2026-06-30/` |
 | 2026-07-01 | v1.0 最终冷启动验收和发布 dashboard | `verification/2026-07-01/`、`html_reports/2026-07-01_phase7_1_final/` |
 | 2026-07-02 | KingbaseES Phase 10 mock、packaging、真实状态 | `verification/2026-07-02/phase10_kingbasees/` |
+| 2026-07-09 | Phase 9 KingbaseES official media/runtime feasibility gate | `verification/2026-07-09/kingbasees_official_media_inventory.json`、`verification/2026-07-09/kingbasees_driver_runtime_probe.json` |
 | 2026-07-03 | SQL Server 环境门最终 PASS 证据写入 Phase 11 文档 | `documentation/Phase11_SQLServer_Adapter/environment_gate.md` |
 | 2026-07-06 | DM8 14 项数据能力完整 JSON evidence；Provider/Tool regression 重跑 | `verification/2026-07-06/dm8_data_capability_closure/`、`verification/2026-07-06/regression_after_dm8_data_capability/` |
 | 2026-07-07 | Phase 7.2 多语种已存储数据 exact equality gate；MySQL / PostgreSQL / DM8 PASS | `documentation/Phase7_2_Multilingual_Compatibility/`、`verification/2026-07-07/multilingual_dm_result.json` |
@@ -58,6 +60,7 @@
 | Phase 7.2 | Multilingual Compatibility PASS；MySQL / PostgreSQL / DM8 stored multilingual exact equality gate 全部通过 | `documentation/Phase7_2_Multilingual_Compatibility/README.md` |
 | Phase 7.3 | Full Adapter Regression PASS；Provider 6/0/0，Tool 27/0/0，Workflow 12/0/0，verify_all 45/0/0 | `documentation/Phase7_3_Full_Adapter_Regression/README.md` |
 | Phase 8-9.5 | v1.0 产品化和公开发布材料完成 | `documentation/Phase9_5_Public_Release/` |
+| Phase 9 | KingbaseES official media/runtime feasibility blocked on official media | `documentation/Phase9_KingbaseES_Feasibility/phase9_kingbasees_official_media_runtime_feasibility.md` |
 | Phase 10 | KingbaseES 适配推进中 | `documentation/Phase10_KingbaseES_Adapter/phase_status.md` |
 | Phase 11 | 数据库扩展和 SQL Server 环境门推进中 | `documentation/Phase11_Database_Expansion/`、`documentation/Phase11_SQLServer_Adapter/` |
 
