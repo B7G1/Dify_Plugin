@@ -5,7 +5,7 @@
 - Status: PASS
 - Database: KingbaseES
 - Scope: Plugin-owned scoped SQLAlchemy dialect, formal Adapter, real Adapter runtime, and targeted PostgreSQL isolation
-- Source commit: `566f8d7`
+- Source commit: `bff16f4`
 - Runtime: `dify-plugin_daemon-1`, Python 3.12.3, SQLAlchemy 2.0.51, ksycopg2 2.9.1
 - Canonical path: `reports/documentation/2026-07-12/Phase09_KingbaseES/phase9_6_kingbasees_dialect_adapter_implementation_gate.md`
 - Machine evidence: `reports/verification/2026-07-12/kingbasees_phase9_6_*.json`
