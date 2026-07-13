@@ -1,0 +1,12 @@
+Credential source: preserved KingbaseES container environment
+Password: ***REDACTED***
+SQLAlchemy: 2.0.51
+Route: experimental process-local kingbase+ksycopg2 shim
+Engine creation: PASS
+Real connection: PASS
+SELECT 1: 1
+Unicode: 金仓数据库
+Named parameter binding: 参数绑定
+Rollback/connection close: PASS
+Engine dispose: PASS
+Formal Adapter or global plugin-daemon modification: no

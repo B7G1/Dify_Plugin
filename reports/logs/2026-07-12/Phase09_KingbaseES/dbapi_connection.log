@@ -1,0 +1,10 @@
+Credential source: preserved KingbaseES container environment
+Password: ***REDACTED***
+Target: host.docker.internal:54321 / kingbase
+Driver: ksycopg2 2.9.1
+Authentication: PASS
+SELECT 1: 1
+Unicode: 金仓数据库
+Parameter binding (pyformat): 参数绑定
+Cursor close: PASS
+Connection close: PASS

@@ -1,0 +1,36 @@
+{
+  "phase": "9.5",
+  "date": "2026-07-12",
+  "status": "PASS",
+  "driver": {
+    "filename": "ksycopg2-2.9.1-cp312-cp312-manylinux1_x86_64.whl",
+    "version": "2.9.1",
+    "size_bytes": 4423009,
+    "sha256": "59D2D19439FA0D8AE66A7972EF9EF1FE461E84389D50BC3E90C59ABB4962287A",
+    "python_abi": "cp312-cp312",
+    "platform_tag": "manylinux1_x86_64",
+    "architecture": "x86_64",
+    "license": "LGPL with exceptions",
+    "classification": "OFFICIAL_MAINTAINER_DISTRIBUTION",
+    "source_registry": "PyPI",
+    "registry_project": "ksycopg2",
+    "registry_author": "Kingbase",
+    "upload_time_utc": "2026-07-01T03:19:19.880866Z",
+    "official_documentation_points_to_registry_install": true,
+    "local_storage": "external_assets/kingbasees/incoming (LOCAL_ONLY, NOT_TRACKED_BY_GIT)",
+    "git_ignored": true
+  },
+  "wheel_contents": {
+    "native_extension": "ksycopg2/_ksycopg.cpython-312-x86_64-linux-gnu.so",
+    "bundled_libkci": "ksycopg2/libkci.so.5",
+    "contains_license": true,
+    "contains_sqlalchemy_dialect": false,
+    "contains_sqlalchemy_entry_points": false
+  },
+  "other_locations": {
+    "official_iso_driver_found": false,
+    "server_image_python_driver_found": false,
+    "formal_wheels_directory_driver_found": false,
+    "unknown_or_third_party_candidate_used": false
+  }
+}

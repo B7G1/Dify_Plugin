@@ -1,0 +1,14 @@
+_ksycopg.cpython-312-x86_64-linux-gnu.so:
+  libkci.so.5 => /tmp/kingbasees_phase95/site/ksycopg2/libkci.so.5
+  libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0
+  libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6
+  libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6
+  libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1
+  libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6
+  not found count: 0
+ELF: 64-bit x86-64
+RUNPATH: $ORIGIN
+plugin-daemon glibc: 2.39
+maximum observed extension requirement: GLIBC_2.14
+libkci SONAME: libkci.so.5
+libkci SHA-256: 0A242DDC4FE55728DDD5966D3D158AA9B1BC5DB4D36A9CA651D13177E503A3FF

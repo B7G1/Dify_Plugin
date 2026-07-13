@@ -1,0 +1,15 @@
+Route A official dialect:
+  sqlalchemy.dialects entry points: []
+  registry.load("kingbase.ksycopg2"): NoSuchModuleError
+  result: NOT_FOUND
+
+Route B process-local compatibility shim, first run:
+  DB-API connection: PASS
+  SQLAlchemy initialize: FAIL
+  error: AssertionError
+  cause: PostgreSQL version parser could not parse "KingbaseES V009R001C010"
+
+Route B process-local compatibility shim, final run:
+  override: _get_server_version_info -> (9, 1, 10)
+  SQLAlchemy 2.0.51 downgrade: no
+  create_engine/connect/query/close/dispose: PASS

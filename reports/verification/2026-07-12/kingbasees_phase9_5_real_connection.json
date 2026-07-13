@@ -1,0 +1,37 @@
+{
+  "phase": "9.5",
+  "date": "2026-07-12",
+  "status": "PASS",
+  "server": {
+    "container": "dify-plugin-phase94-kingbase",
+    "version": "KingbaseES V009R001C010",
+    "host_type": "host.docker.internal",
+    "port": 54321,
+    "database": "kingbase",
+    "username_type": "local Phase 9.4 test administrator",
+    "credential_source": "preserved server container environment",
+    "password": "***REDACTED***",
+    "server_rebuilt": false,
+    "volume_replaced": false
+  },
+  "dbapi": {
+    "status": "PASS",
+    "authentication": "PASS",
+    "select_1": 1,
+    "unicode": "金仓数据库",
+    "parameter_binding": "参数绑定",
+    "paramstyle": "pyformat",
+    "connection_closed": true
+  },
+  "sqlalchemy": {
+    "status": "PASS_WITH_EXPERIMENTAL_SHIM",
+    "version": "2.0.51",
+    "select_1": 1,
+    "unicode": "金仓数据库",
+    "parameter_binding": "参数绑定",
+    "connection_closed": true,
+    "engine_disposed": true
+  },
+  "write_operations_executed": false,
+  "end_to_end_plugin_claim": false
+}

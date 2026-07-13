@@ -1,0 +1,9 @@
+Python 3.12.3
+Target: /tmp/kingbasees_phase95/site
+Command: python3 -m pip install --no-deps --target <target> <four local wheels>
+Processing ksycopg2-2.9.1-cp312-cp312-manylinux1_x86_64.whl
+Processing sqlalchemy-2.0.51-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Processing greenlet-3.5.2-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+Processing typing_extensions-4.15.0-py3-none-any.whl
+Successfully installed greenlet-3.5.2 ksycopg2-2.9.1 sqlalchemy-2.0.51 typing-extensions-4.15.0
+System site-packages modified: no

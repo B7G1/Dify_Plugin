@@ -1,0 +1,25 @@
+{
+  "phase": "9.5",
+  "date": "2026-07-12",
+  "status": "PASS",
+  "extension": {
+    "path": "/tmp/kingbasees_phase95/site/ksycopg2/_ksycopg.cpython-312-x86_64-linux-gnu.so",
+    "elf_class": "ELF64",
+    "machine": "x86-64",
+    "runpath": "$ORIGIN",
+    "needed": ["libkci.so.5", "libpthread.so.0", "libc.so.6"],
+    "ldd_not_found_count": 0,
+    "maximum_observed_glibc_symbol_requirement": "GLIBC_2.14"
+  },
+  "libkci": {
+    "path": "/tmp/kingbasees_phase95/site/ksycopg2/libkci.so.5",
+    "sha256": "0A242DDC4FE55728DDD5966D3D158AA9B1BC5DB4D36A9CA651D13177E503A3FF",
+    "soname": "libkci.so.5",
+    "bundled_with_wheel": true,
+    "ldd_not_found_count": 0,
+    "runpath": "/home/docker/xiewanyue/code/KES_Server/release/lib",
+    "runpath_note": "build-time path is embedded, but all runtime dependencies resolved from system libraries during ldd"
+  },
+  "plugin_daemon_glibc": "2.39",
+  "external_server_client_library_required_for_import": false
+}

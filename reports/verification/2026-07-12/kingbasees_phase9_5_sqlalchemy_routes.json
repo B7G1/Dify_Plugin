@@ -1,0 +1,36 @@
+{
+  "phase": "9.5",
+  "date": "2026-07-12",
+  "status": "PASS_WITH_EXPERIMENTAL_SHIM",
+  "sqlalchemy_version": "2.0.51",
+  "sqlalchemy_downgraded": false,
+  "route_a_official_dialect": {
+    "status": "NOT_FOUND",
+    "wheel_entry_points": [],
+    "iso_dialect_found": false,
+    "registry_load": "NoSuchModuleError",
+    "engine_created": false
+  },
+  "route_b_compatibility_shim": {
+    "status": "PASS",
+    "scope": "single probe process only",
+    "product_code_modified": false,
+    "system_modules_persistently_modified": false,
+    "base_dialect": "sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2",
+    "dbapi": "ksycopg2",
+    "url_driver": "kingbase+ksycopg2",
+    "initial_failure": {
+      "error_type": "AssertionError",
+      "cause": "PostgreSQL dialect could not parse KingbaseES V009R001C010 as a PostgreSQL server version"
+    },
+    "minimal_fix": "override process-local _get_server_version_info and import_dbapi",
+    "engine_creation": "PASS",
+    "real_connection": "PASS",
+    "select_1": "PASS",
+    "unicode": "PASS",
+    "parameter_binding": "PASS",
+    "connection_close": "PASS",
+    "engine_dispose": "PASS"
+  },
+  "formal_adapter_decision": "NOT_IMPLEMENTED_IN_PHASE_9_5"
+}
