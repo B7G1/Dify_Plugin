@@ -7,9 +7,7 @@ import email
 import hashlib
 import json
 import re
-import shutil
 import subprocess
-import tarfile
 import tempfile
 import zipfile
 from datetime import datetime, timezone
@@ -64,7 +62,7 @@ def wheel_metadata(path: Path) -> dict[str, Any]:
             "python_tag": path.name.split("-")[-3] if len(path.name.split("-")) >= 5 else "py3",
             "platform_tag": path.name.rsplit("-", 1)[-1].removesuffix(".whl"),
             "wheel_tags": [line[5:] for line in wheel_text.splitlines() if line.startswith("Tag: ")],
-            "license": metadata.get("License") or "NOT_DECLARED",
+            "license": (metadata.get("License") or "NOT_DECLARED").splitlines()[0].strip(),
         }
 
 
@@ -89,7 +87,7 @@ def driver_inventory(wheel: Path) -> dict[str, Any]:
             "extension": str(extension.relative_to(temporary)),
             "libkci": str(libkci.relative_to(temporary)),
             "libkci_sha256": sha256(libkci),
-            "file": run(["file", str(extension)]),
+            "readelf_header": run(["readelf", "-h", str(extension)]),
             "readelf_dynamic": run(["readelf", "-d", str(extension)]),
             "readelf_versions": run(["readelf", "--version-info", str(extension)]),
             "ldd": run(["ldd", str(extension)]),
@@ -111,9 +109,9 @@ def driver_inventory(wheel: Path) -> dict[str, Any]:
 
 
 def package_manifest(plugin_root: Path, package: Path) -> dict[str, Any]:
-    with tarfile.open(package) as archive:
-        members = [member for member in archive.getmembers() if member.isfile()]
-        names = {member.name.removeprefix("./") for member in members}
+    with zipfile.ZipFile(package) as archive:
+        members = [member for member in archive.infolist() if not member.is_dir()]
+        names = {member.filename.removeprefix("./") for member in members}
         missing = sorted(REQUIRED_PACKAGE_PATHS - names)
         forbidden_names = sorted(
             name for name in names
@@ -123,21 +121,21 @@ def package_manifest(plugin_root: Path, package: Path) -> dict[str, Any]:
         )
         text_hits: list[dict[str, str]] = []
         patterns = {
-            "credentialed_url": re.compile(rb"[a-zA-Z][a-zA-Z0-9+.-]*://[^\s/:]+:[^\s/@]+@"),
+            "credentialed_url": re.compile(rb"[a-zA-Z][a-zA-Z0-9+.-]*://[^\s/:]+:(?!\*{3}@)[^\s/@]+@"),
             "private_key": re.compile(rb"BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY"),
             "phase95_overlay": re.compile(rb"/tmp/kingbasees_phase95"),
         }
         for member in members:
-            if member.size > 2_000_000 or member.name.endswith((".whl", ".so", ".png", ".svg")):
+            if member.file_size > 2_000_000 or member.filename.endswith((".whl", ".so", ".png", ".svg")):
                 continue
-            payload = archive.extractfile(member).read()  # type: ignore[union-attr]
+            payload = archive.read(member)
             for label, pattern in patterns.items():
                 if pattern.search(payload):
-                    text_hits.append({"path": member.name, "pattern": label})
+                    text_hits.append({"path": member.filename, "pattern": label})
         wheel_names = sorted(name for name in names if name.startswith("wheels/") and name.endswith(".whl"))
-        notice = archive.extractfile("THIRD_PARTY_NOTICES.md").read().decode("utf-8")  # type: ignore[union-attr]
-        requirements = archive.extractfile("requirements.txt").read().decode("utf-8")  # type: ignore[union-attr]
-        manifest = archive.extractfile("manifest.yaml").read().decode("utf-8")  # type: ignore[union-attr]
+        notice = archive.read("THIRD_PARTY_NOTICES.md").decode("utf-8")
+        requirements = archive.read("requirements.txt").decode("utf-8")
+        manifest = archive.read("manifest.yaml").decode("utf-8")
     checks = {
         "required_paths": not missing,
         "driver_pin": "ksycopg2==2.9.1" in requirements,
