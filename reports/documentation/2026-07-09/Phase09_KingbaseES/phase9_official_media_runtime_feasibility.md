@@ -1,9 +1,24 @@
 # Phase 9.x - KingbaseES Official Media and Runtime Feasibility Gate
 
-Date: 2026-07-09
+- Date: 2026-07-09
+- Phase: Phase 9
+- Status: SUPERSEDED
+- Database: KingbaseES
+- Scope: Official media and runtime feasibility before media intake
+- Source commit: `d237e25`
+- Runtime: Host/Docker/WSL inventory; Docker unavailable during this run
+- Canonical path: `reports/documentation/2026-07-09/Phase09_KingbaseES/phase9_official_media_runtime_feasibility.md`
+- Machine evidence: `reports/verification/2026-07-09/kingbasees_official_media_inventory.json`, `reports/verification/2026-07-09/kingbasees_driver_runtime_probe.json`
+- Logs: Not retained separately
+- Supersedes: Not applicable
+- Security classification: Internal engineering; secrets excluded
+
 Baseline branch: `feature/kingbasees-adapter`
+
 Baseline commit: `6919e83` (`docs: record long-term delivery goals`)
-Gate decision: `BLOCKED`
+
+Historical gate decision: `BLOCKED`
+
 Primary blocker: `BLOCKED_BY_OFFICIAL_MEDIA`
 
 ## 1. Phase goal
@@ -197,7 +212,7 @@ See the machine JSON for the exact command list used in evidence classification.
 
 Created:
 
-- `reports/documentation/Phase9_KingbaseES_Feasibility/phase9_kingbasees_official_media_runtime_feasibility.md`
+- `reports/documentation/2026-07-09/Phase09_KingbaseES/phase9_official_media_runtime_feasibility.md`
 - `reports/verification/2026-07-09/kingbasees_official_media_inventory.json`
 - `reports/verification/2026-07-09/kingbasees_driver_runtime_probe.json`
 

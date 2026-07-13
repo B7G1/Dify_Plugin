@@ -4,7 +4,7 @@ Status: PASS
 
 Machine evidence:
 
-- [sqlserver_tool_validation_gate.json](E:/Dify_Plugin/reports/verification/2026-07-09/sqlserver_tool_validation_gate.json)
+- [sqlserver_tool_validation_gate.json](../../verification/2026-07-09/sqlserver_tool_validation_gate.json)
 
 ## Goal
 

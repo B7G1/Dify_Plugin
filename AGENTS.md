@@ -1,5 +1,11 @@
 # Dify Plugin 长期开发目标与记录原则
 
+## REPORTING POLICY
+
+Any task involving report creation, report cleanup, report reorganization, report archiving, report consolidation, phase documentation, validation documentation, or evidence indexing MUST first read and follow `reports/REPORTING_STANDARD.md`.
+
+凡用户提出整理、生成、更新、归档、汇总、清理或补充报告，以及生成阶段或验收文档，执行者都必须先读取并严格遵守 `reports/REPORTING_STANDARD.md`。除非用户明确要求修改该规范本身，不得临时创建另一套目录、命名或归档体系。若临时要求与规范冲突，必须指出冲突，并优先保护唯一权威报告、机器证据完整性、日志可审计性、敏感信息安全和 Git 历史可追踪性。
+
 ## 适用范围
 
 本仓库是 `Multi-Database Compatibility Engineering for a Dify Plugin Runtime`，不只是数据库查询插件。
@@ -169,4 +175,3 @@ KingbaseES 是最终核心交付数据库，当前存在真实外部依赖不确
 2. 是否属于开发过程历史？
 3. 是否需要进入最终教程？
 4. 未来是否能根据当前记录复现？
-

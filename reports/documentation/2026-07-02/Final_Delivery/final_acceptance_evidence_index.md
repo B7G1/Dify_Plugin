@@ -1,5 +1,18 @@
 # Final Acceptance Evidence Index — 2026-07-01
 
+- Date: 2026-07-02
+- Phase: Final Delivery
+- Status: HISTORICAL_ONLY
+- Database: MySQL, PostgreSQL, DM8
+- Scope: Index of accepted 2026-07-01 evidence
+- Source commit: `f7b26b1`
+- Runtime: Accepted v1.0 baseline
+- Canonical path: `reports/documentation/2026-07-02/Final_Delivery/final_acceptance_evidence_index.md`
+- Machine evidence: `reports/verification/2026-07-01/`
+- Logs: `reports/verification/2026-07-01/`
+- Supersedes: NOT_APPLICABLE
+- Security classification: Internal evidence index; secrets excluded
+
 ## Snapshot
 
 - `snapshots/2026-07-01/environment_snapshot.md`

@@ -10,7 +10,7 @@ This inventory classifies the remaining dirty/untracked workspace after v1.0 bas
 | Path/group | Git state | Classification | Canonical? | Recommended action | Reason |
 | --- | --- | --- | --- | --- | --- |
 | `db_query_extended_interactive_map/` | modified + untracked nested data/assets | `ACTIVE_PROJECT_ASSET` | Yes | Stage only after map sync review. | Interactive map is a deliverable. Changes update the map UI and generated snapshots. |
-| `reports/day3_plugin_manifest_main_report.md` | restored from tracked deletion | `HISTORICAL_REPORT` | Yes, historical | Keep restored. | Contains unique Day 3 Provider/Tool/manifest evidence; not a duplicate. |
+| `reports/day3_plugin_manifest_main_report.md` | historical 2026-07-08 assessment; later SHA comparison proved it byte-identical to the Phase 2 canonical copy | `SUPERSEDED` | No | Removed 2026-07-12. | Canonical content remains at `reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md`. |
 | `reports/documentation/Phase5_DM_Adapter/architecture_notes.md` | deleted tracked | `HISTORICAL_DUPLICATE` | No | Keep deletion if compatibility README is staged. | Old file only said “Not started”; Phase 5 now points to Phase 7 DM8 evidence. |
 | `reports/documentation/Phase5_DM_Adapter/daily_summary.md` | deleted tracked | `HISTORICAL_DUPLICATE` | No | Keep deletion if compatibility README is staged. | Placeholder only; no unique evidence. |
 | `reports/documentation/Phase5_DM_Adapter/lessons_learned.md` | deleted tracked | `HISTORICAL_DUPLICATE` | No | Keep deletion if compatibility README is staged. | Placeholder only; no unique evidence. |

@@ -1,0 +1,116 @@
+{
+  "date": "2026-07-12",
+  "decision": "PARTIAL",
+  "baseline_commit": "736902d",
+  "canonical_rule": "reports/documentation/YYYY-MM-DD/PhaseXX_Subject/report.md",
+  "actions": [
+    {
+      "old_path": "reports/documentation/Phase9_KingbaseES_Feasibility/phase9_4_official_media_image_runtime_gate_2026-07-10.md",
+      "new_path": "reports/documentation/2026-07-10/Phase09_KingbaseES/phase9_4_official_media_image_runtime_gate.md",
+      "action": "MOVE",
+      "reason": "current report moved to dated canonical structure and metadata normalized",
+      "sha256_before": "48C43ED958B87887020F1254AC336A9FEA873B9D94309AB37161925E502D5C2E",
+      "sha256_after": "A56D7AD54E8313E546ACFAE0D8E43BB07DC3BC5C4463C861CF2D76B543459FAD",
+      "duplicate_group": null,
+      "canonical": true,
+      "links_updated": true,
+      "status": "CURRENT"
+    },
+    {
+      "old_path": "reports/documentation/Phase9_KingbaseES_Feasibility/phase9_kingbasees_official_media_runtime_feasibility.md",
+      "new_path": "reports/documentation/2026-07-09/Phase09_KingbaseES/phase9_official_media_runtime_feasibility.md",
+      "action": "MOVE",
+      "reason": "historical blocked run moved without losing its distinct evidence boundary",
+      "sha256_before": "3D559D1F146E5E332C9790299D0BF718431A6010D47CB808108835B35FD47647",
+      "sha256_after": "79B4BBA051FFC9F884263EB041356B2DC6D98FD44E1658094E9A770C027C7DE2",
+      "duplicate_group": null,
+      "canonical": true,
+      "links_updated": true,
+      "status": "SUPERSEDED"
+    },
+    {
+      "old_path": "FINAL_RELEASE_CHECK.md",
+      "new_path": "reports/documentation/2026-07-02/Final_Delivery/final_release_check.md",
+      "action": "MOVE",
+      "reason": "root-level acceptance report moved to dated documentation",
+      "sha256_before": "3AD059285729CCC939A722231F47F60835911CC6AA90B9503AE5E6804DAFD0EE",
+      "sha256_after": "7691A101112DFD53CA70DB02F6514AEF37C322B98A0214B33F4505C238925423",
+      "duplicate_group": null,
+      "canonical": true,
+      "links_updated": true,
+      "status": "FINAL_CANDIDATE"
+    },
+    {
+      "old_path": "Phase10_Preparation.md",
+      "new_path": "reports/documentation/2026-07-02/Phase10_KingbaseES/phase10_preparation.md",
+      "action": "MOVE",
+      "reason": "root-level phase report moved to dated documentation",
+      "sha256_before": "00210C915D63A180CC6E461CBBA36A948BCD1E54D0EA27ADAD9FEDEC64C24747",
+      "sha256_after": "6A5FE636EF3D302B77F2C4A78FF6A1BEFE0EA6A9928945C8F029DFFD128F75CF",
+      "duplicate_group": null,
+      "canonical": true,
+      "links_updated": true,
+      "status": "HISTORICAL_ONLY"
+    },
+    {
+      "old_path": "reports/FINAL_ACCEPTANCE_INDEX_2026-07-01.md",
+      "new_path": "reports/documentation/2026-07-02/Final_Delivery/final_acceptance_evidence_index.md",
+      "action": "MOVE",
+      "reason": "reports-root stage index moved to dated documentation",
+      "sha256_before": "91D03B1ECC2DE63CDA07C9854AB2F3861F311AC5FAC46791F252EE8DBF8AA2B7",
+      "sha256_after": "225B1D58FD36675A8BE0500D3974289134AC41A39378C1587FE8775BCD5A5709",
+      "duplicate_group": null,
+      "canonical": true,
+      "links_updated": true,
+      "status": "HISTORICAL_ONLY"
+    },
+    {
+      "old_path": "reports/day3_plugin_manifest_main_report.md",
+      "new_path": "reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md",
+      "action": "DELETE_EXACT_DUPLICATE",
+      "reason": "byte-identical human report already exists at the canonical retained path",
+      "sha256_before": "9456EE58A8810FD1EB294FC5D3E76B6C115488250C45AC286166599F78062DC2",
+      "sha256_after": "9456EE58A8810FD1EB294FC5D3E76B6C115488250C45AC286166599F78062DC2",
+      "duplicate_group": "human_exact_9456EE58",
+      "canonical": false,
+      "links_updated": true,
+      "status": "REMOVED"
+    },
+    {
+      "old_path": "db_query_extended_interactive_map/**/assets/code-snapshots/**",
+      "new_path": null,
+      "action": "KEEP_HISTORICAL_SNAPSHOT",
+      "reason": "historical reconstruction dependency; protected user modifications present",
+      "sha256_before": null,
+      "sha256_after": null,
+      "duplicate_group": "historical_snapshot_generated_copy",
+      "canonical": false,
+      "links_updated": false,
+      "status": "NON_AUTHORITATIVE"
+    },
+    {
+      "old_path": "reports/README.html; reports/REPORT_MAP.html; reports/html_reports/**",
+      "new_path": "reports/generated/html/YYYY-MM-DD/PhaseXX_Subject/ (future clean migration)",
+      "action": "GENERATED_ONLY",
+      "reason": "generated/HTML state is dirty or legacy and cannot be overwritten safely in this commit",
+      "sha256_before": null,
+      "sha256_after": null,
+      "duplicate_group": "legacy_generated_html",
+      "canonical": false,
+      "links_updated": false,
+      "status": "PENDING_SAFE_MIGRATION"
+    },
+    {
+      "old_path": "reports/documentation/Phase11_*; reports/documentation/Phase4_Core_Freeze/2026-06-26/recovery/**",
+      "new_path": null,
+      "action": "NON_REPORT_NO_ACTION",
+      "reason": "protected untracked user report work; no overwrite, move, or staging authorized",
+      "sha256_before": null,
+      "sha256_after": null,
+      "duplicate_group": null,
+      "canonical": false,
+      "links_updated": false,
+      "status": "PROTECTED_USER_CHANGE"
+    }
+  ]
+}

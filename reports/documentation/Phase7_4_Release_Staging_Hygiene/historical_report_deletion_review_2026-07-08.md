@@ -6,7 +6,7 @@ Date: 2026-07-08
 
 | File | Was content moved? | Canonical replacement | Rename detected? | Unique historical information? | Decision |
 | --- | --- | --- | --- | --- | --- |
-| `reports/day3_plugin_manifest_main_report.md` | No | None | No | Yes | Restored. |
+| `reports/day3_plugin_manifest_main_report.md` | Yes, established by later SHA-256 comparison | `reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md` | No | No | Removed 2026-07-12. |
 | `reports/documentation/Phase5_DM_Adapter/architecture_notes.md` | Superseded | `reports/documentation/Phase5_DM_Adapter/README.md` and `reports/documentation/Phase7_Domestic_Database_Adapters/DM8/README.md` | No | No | Keep deletion. |
 | `reports/documentation/Phase5_DM_Adapter/daily_summary.md` | Superseded | same as above | No | No | Keep deletion. |
 | `reports/documentation/Phase5_DM_Adapter/lessons_learned.md` | Superseded | same as above | No | No | Keep deletion. |
@@ -16,7 +16,7 @@ Date: 2026-07-08
 
 ## Rationale
 
-`reports/day3_plugin_manifest_main_report.md` contains a real Day 3 manifest/provider/tool report with validation results and packaging notes. It was restored because deleting it would remove unique historical evidence.
+The 2026-07-08 review treated `reports/day3_plugin_manifest_main_report.md` as unique. The 2026-07-12 byte comparison established that it was identical to `reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md`; the root duplicate was then removed without evidence loss.
 
 The Phase 5 and Phase 6 deleted files are three-line placeholders:
 

@@ -5,7 +5,7 @@ This checklist is advisory. No Git staging, commit, removal, restore, or push op
 ## Acceptable tracked deletions
 
 - Root copies of `Dify本地化插件制作流程_最新整理版.html`, `.qmd`, and all 15 `_files` resources, only when the byte-identical `过往报告/01_Dify本地化插件制作流程/` copy enters the same commit.
-- `reports/day3_plugin_manifest_main_report.md`, only when its byte-identical Phase 2 replacement enters the same commit.
+- The former `reports/day3_plugin_manifest_main_report.md` duplicate is removed; its canonical byte-identical copy is `reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md`.
 - Phase 5 `architecture_notes.md`, `daily_summary.md`, and `lessons_learned.md`; the compatibility README must remain.
 - Phase 6 `architecture_notes.md`, `daily_summary.md`, and `lessons_learned.md`; the compatibility README must remain.
 

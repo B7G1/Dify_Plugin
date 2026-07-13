@@ -150,7 +150,7 @@ High-risk deletions currently shown by git status include:
 Dify本地化插件制作流程_最新整理版.html
 Dify本地化插件制作流程_最新整理版.qmd
 Dify本地化插件制作流程_最新整理版_files/...
-reports/day3_plugin_manifest_main_report.md
+reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md
 reports/documentation/Phase5_DM_Adapter/*
 reports/documentation/Phase6_KingbaseES_Adapter/*
 ```

@@ -1,0 +1,54 @@
+{
+  "date": "2026-07-12",
+  "validation_status": "PARTIAL",
+  "scan": {
+    "candidate_count": 511,
+    "human_report_candidate_count_before": 266,
+    "tracked_human_candidate_count_before": 220,
+    "historical_snapshot_count": 96,
+    "exact_human_duplicate_group_count_before": 5,
+    "active_exact_duplicate_group_count_before": 1,
+    "high_overlap_merge_group_count": 0
+  },
+  "after": {
+    "canonical_report_count": 6,
+    "duplicate_canonical_report_count": 0,
+    "exact_active_report_duplicate_count": 0,
+    "broken_link_count": 0,
+    "root_level_phase_report_count": 0,
+    "reports_root_non_entry_protected_count": 3,
+    "machine_evidence_count": 87,
+    "log_count": 9
+  },
+  "checks": {
+    "agents_requires_reporting_standard": "PASS",
+    "reporting_standard_unique_and_active": "PASS",
+    "phase_template_exists": "PASS",
+    "report_map_references_standard": "PASS",
+    "reports_readme_references_standard": "PASS",
+    "current_kingbase_report_canonicalized": "PASS",
+    "report_map_targets_exist": "PASS",
+    "tracked_markdown_links": "PASS",
+    "interactive_map_load": "PASS",
+    "interactive_map_title": "db_query_extended · 交互式复现地图",
+    "interactive_map_h1": "从模板到 Dify 平台联调，再到 Plugin Core Freeze 的交互地图",
+    "interactive_map_anchor_count": 13,
+    "interactive_map_script_count": 4,
+    "interactive_map_console_error_count": 0,
+    "generated_html_canonicalized": "DEFERRED_PROTECTED_USER_CHANGE",
+    "legacy_phase_first_reports_migrated": "DEFERRED_PROTECTED_USER_CHANGE",
+    "machine_evidence_preserved": "PASS",
+    "logs_silently_deleted": false,
+    "product_code_changed": false,
+    "database_runtime_changed": false,
+    "final_docker_inventory_recheck": "BLOCKED_DAEMON_UNREACHABLE",
+    "docker_prune_executed": false,
+    "external_assets_ignored": "PASS",
+    "sensitive_assets_tracked": false
+  },
+  "pass_blockers": [
+    "protected untracked reports/README.html and reports/REPORT_MAP.html remain in reports root",
+    "legacy generated HTML and phase-first reports require a later clean migration",
+    "interactive-map and code-snapshot files contain protected user modifications and were not regenerated"
+  ]
+}

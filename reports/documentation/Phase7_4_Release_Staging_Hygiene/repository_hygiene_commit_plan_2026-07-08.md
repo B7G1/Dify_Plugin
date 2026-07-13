@@ -53,7 +53,7 @@ Purpose: historical report deletion review and current index repair.
 Exact staging allowlist:
 
 ```text
-reports/day3_plugin_manifest_main_report.md
+reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md
 reports/README.md
 reports/REPORT_MAP.md
 reports/archive/README.md

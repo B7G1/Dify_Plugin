@@ -21,7 +21,7 @@ Disposition: safe to accept as moved historical material, provided the archive d
 
 ### Day 3 report: 1 item
 
-`reports/day3_plugin_manifest_main_report.md` has a byte-identical replacement at `reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md`.
+The former `reports/day3_plugin_manifest_main_report.md` had a byte-identical replacement at `reports/documentation/Phase2_Plugin_Development/day3_plugin_manifest_main_report.md`; the duplicate was removed by the 2026-07-12 reporting-governance migration.
 
 Disposition: safe to accept, provided the replacement is included in the same release commit.
 

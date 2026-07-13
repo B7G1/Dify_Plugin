@@ -1,12 +1,21 @@
 # Phase 9.4 - KingbaseES Official Media Intake, Image Load and Runtime Gate
 
-Date: 2026-07-10
+- Date: 2026-07-10
+- Phase: Phase 9.4
+- Status: PASS
+- Database: KingbaseES
+- Scope: Official media intake, image load, real server runtime and real SQL
+- Source commit: `736902d`
+- Runtime: Docker Desktop Linux/amd64; KingbaseES V009R001C010
+- Canonical path: `reports/documentation/2026-07-10/Phase09_KingbaseES/phase9_4_official_media_image_runtime_gate.md`
+- Machine evidence: `reports/verification/2026-07-10/kingbasees_phase9_4_runtime_gate.json`, `reports/verification/2026-07-10/kingbasees_media_sha256_inventory.csv`
+- Logs: Not retained separately
+- Supersedes: `reports/documentation/2026-07-09/Phase09_KingbaseES/phase9_official_media_runtime_feasibility.md`
+- Security classification: Internal engineering; credentials and license contents excluded
 
 Branch baseline: `feature/kingbasees-adapter`
 
 Commit baseline: `d237e25` (`docs: assess KingbaseES official runtime feasibility`)
-
-Gate decision: **PASS — official media intake, image load, real server runtime and real SQL**
 
 This PASS is limited to the KingbaseES server/runtime layer. It is not a driver, SQLAlchemy dialect, Adapter, Provider, Tool, Workflow, offline-package, or full compatibility PASS.
 
