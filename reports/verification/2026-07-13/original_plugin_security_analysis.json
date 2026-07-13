@@ -1,0 +1,169 @@
+{
+  "suite": "original_plugin_security_analysis",
+  "generated_at": "2026-07-13T04:50:19.041993-05:00",
+  "status": "FAIL",
+  "validator": {
+    "library": "sqlparse==0.5.3",
+    "strategy": "one parsed statement and statement.get_type() == SELECT",
+    "cases": {
+      "select": {
+        "validator_result": "ALLOWED",
+        "invoke_status": "PASS",
+        "error_type": null
+      },
+      "with_select": {
+        "validator_result": "ALLOWED",
+        "invoke_status": "PASS",
+        "error_type": null
+      },
+      "insert": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "update": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "delete": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "create": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "alter": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "drop": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "truncate": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "grant": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "revoke": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "call": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "exec": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "multi_statement": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "comment_prefixed_insert": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "cte_delete": {
+        "validator_result": "ALLOWED",
+        "invoke_status": "PASS",
+        "error_type": null
+      },
+      "transaction": {
+        "validator_result": "BLOCKED",
+        "invoke_status": "ERROR",
+        "error_type": "ValueError"
+      },
+      "select_into_table": {
+        "validator_result": "ALLOWED",
+        "invoke_status": "PASS",
+        "error_type": null
+      },
+      "mysql_into_outfile": {
+        "validator_result": "ALLOWED",
+        "invoke_status": "PASS",
+        "error_type": null
+      },
+      "select_for_update": {
+        "validator_result": "ALLOWED",
+        "invoke_status": "PASS",
+        "error_type": null
+      }
+    }
+  },
+  "blocked": [
+    "insert",
+    "update",
+    "delete",
+    "create",
+    "alter",
+    "drop",
+    "truncate",
+    "grant",
+    "revoke",
+    "call",
+    "exec",
+    "multi_statement",
+    "comment_prefixed_insert",
+    "transaction"
+  ],
+  "allowed": [
+    "select",
+    "with_select",
+    "cte_delete",
+    "select_into_table",
+    "mysql_into_outfile",
+    "select_for_update"
+  ],
+  "critical_findings": [
+    {
+      "id": "OP-SEC-001",
+      "finding": "CTE containing DELETE is classified as SELECT and reaches execution",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "OP-SEC-002",
+      "finding": "SELECT INTO table and MySQL INTO OUTFILE reach execution",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "OP-SEC-003",
+      "finding": "SELECT FOR UPDATE reaches execution",
+      "severity": "HIGH"
+    },
+    {
+      "id": "OP-SEC-004",
+      "finding": "tools/db_util.py logs a fully credentialed SQLAlchemy URL at INFO",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "OP-SEC-005",
+      "finding": "Tool raises raw wrapped database errors including SQL and database object context",
+      "severity": "HIGH"
+    },
+    {
+      "id": "OP-SEC-006",
+      "finding": ".env.example contains a non-empty REMOTE_INSTALL_KEY-shaped value; treated as suspected secret",
+      "severity": "HIGH"
+    }
+  ],
+  "safe_probe_note": "Unsafe SQL cases used a fake execution sink; no write statement was sent to a database",
+  "secret_values_recorded": false
+}

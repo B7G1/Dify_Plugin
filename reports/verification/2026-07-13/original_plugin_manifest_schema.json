@@ -1,0 +1,61 @@
+{
+  "suite": "original_plugin_manifest_schema",
+  "generated_at": "2026-07-13T04:48:45.052126-05:00",
+  "status": "PASS",
+  "identity": {
+    "name": "db_query",
+    "author": "junjiem",
+    "version": "0.0.11",
+    "meta_version": "0.0.1",
+    "label": {
+      "en_US": "Database Query",
+      "zh_Hans": "数据库查询"
+    },
+    "description": {
+      "en_US": "Database Query Utils.",
+      "zh_Hans": "数据库查询工具。"
+    },
+    "verified": false
+  },
+  "runtime": {
+    "entrypoint": "main",
+    "language": "python",
+    "version": "3.12"
+  },
+  "declared_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "minimum_dify_version": null,
+  "entrypoint_file": "main.py",
+  "provider_declarations": [
+    "provider/db_query.yaml"
+  ],
+  "resource": {
+    "memory": 1048576,
+    "permission": {
+      "model": {
+        "enabled": true,
+        "llm": true
+      },
+      "tool": {
+        "enabled": true
+      }
+    }
+  },
+  "privacy": "PRIVACY.md",
+  "icon": "icon.svg",
+  "difyignore_present": true,
+  "findings": [
+    {
+      "id": "OP-MANIFEST-001",
+      "finding": "minimum_dify_version is not declared",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "OP-MANIFEST-002",
+      "finding": "manifest claims arm64, but bundled platform wheels are Linux x86_64/amd64",
+      "severity": "HIGH"
+    }
+  ]
+}

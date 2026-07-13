@@ -1,0 +1,14 @@
+2026-07-13 Original Plugin Baseline Audit (redacted)
+Artifact: junjiem-db_query_0.0.11-offline(1).difypkg
+Location: LOCAL_ONLY / NOT_TRACKED_BY_GIT
+Format: ZIP-compatible Dify plugin package
+Size: 73095087 bytes
+SHA-256: 6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560
+ZIP integrity: PASS
+Entries: 75
+Bundled wheels: 54
+Manifest: db_query 0.0.11 by junjiem
+Declared database options: mysql, oracle, oracle11g, postgresql, mssql
+Top-level LICENSE/NOTICE: absent
+Potential secret finding: .env.example contains a non-empty REMOTE_INSTALL_KEY-shaped value; value was not read into evidence or logs.
+Original artifact was not modified, moved, staged, installed into Dify, or committed.

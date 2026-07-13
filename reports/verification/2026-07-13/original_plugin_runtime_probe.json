@@ -1,0 +1,400 @@
+{
+  "suite": "original_plugin_runtime_probe",
+  "generated_at": "2026-07-13T04:50:19.041993-05:00",
+  "status": "PARTIAL",
+  "execution_layer": "ISOLATED_TOOL_CLASS_REAL_DATABASE",
+  "container": {
+    "image": "langgenius/dify-api:1.13.3",
+    "python": "3.12.13 (main, Mar 16 2026, 23:08:10) [GCC 12.2.0]",
+    "package_mount": "read-only",
+    "dependency_install": "package wheels only / --no-index"
+  },
+  "databases": {
+    "mysql": {
+      "status": "PASS",
+      "cases": {
+        "select_1": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "probe": 1
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "fixture_read": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "id": 1,
+                    "name": "中文行",
+                    "nullable_text": "",
+                    "amount": 12.34,
+                    "created_at": "2026-07-13 01:02:03"
+                  },
+                  {
+                    "id": 2,
+                    "name": "second",
+                    "nullable_text": "value",
+                    "amount": 0,
+                    "created_at": "2026-07-13 04:05:06"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "unicode_null": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "unicode_value": "中文",
+                    "null_value": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "empty_result": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": []
+              }
+            }
+          ]
+        },
+        "missing_table_error": {
+          "status": "ERROR",
+          "error_type": "RuntimeError",
+          "error": "Error executing SQL: (pymysql.err.ProgrammingError) (1146, \"Table 'plugin_test.original_plugin_missing_table' doesn't exist\")\n[SQL: SELECT * FROM original_plugin_missing_table]\n(Background on this error at: https://sqlalche.me/e/20/f405)"
+        },
+        "markdown": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "text",
+              "payload": "|   probe |\n|---------|\n|       1 |"
+            }
+          ]
+        }
+      }
+    },
+    "postgresql": {
+      "status": "PASS",
+      "cases": {
+        "select_1": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "probe": 1
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "fixture_read": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "id": 1,
+                    "name": "中文行",
+                    "nullable_text": "",
+                    "amount": 12.34,
+                    "created_at": "2026-07-13 01:02:03"
+                  },
+                  {
+                    "id": 2,
+                    "name": "second",
+                    "nullable_text": "value",
+                    "amount": 0,
+                    "created_at": "2026-07-13 04:05:06"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "unicode_null": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "unicode_value": "中文",
+                    "null_value": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "empty_result": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": []
+              }
+            }
+          ]
+        },
+        "missing_table_error": {
+          "status": "ERROR",
+          "error_type": "RuntimeError",
+          "error": "Error executing SQL: (psycopg2.errors.UndefinedTable) relation \"original_plugin_missing_table\" does not exist\nLINE 1: SELECT * FROM original_plugin_missing_table\n                      ^\n\n[SQL: SELECT * FROM original_plugin_missing_table]\n(Background on this error at: https://sqlalche.me/e/20/f405)"
+        },
+        "markdown": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "text",
+              "payload": "|   probe |\n|---------|\n|       1 |"
+            }
+          ]
+        }
+      }
+    },
+    "mssql": {
+      "status": "PASS",
+      "cases": {
+        "select_1": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "probe": 1
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "fixture_read": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "id": 1,
+                    "name": "中文行",
+                    "nullable_text": "",
+                    "amount": 12.34,
+                    "created_at": "2026-07-13 01:02:03"
+                  },
+                  {
+                    "id": 2,
+                    "name": "second",
+                    "nullable_text": "value",
+                    "amount": 0,
+                    "created_at": "2026-07-13 04:05:06"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "unicode_null": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": [
+                  {
+                    "unicode_value": "中文",
+                    "null_value": ""
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "empty_result": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "json",
+              "payload": {
+                "records": []
+              }
+            }
+          ]
+        },
+        "missing_table_error": {
+          "status": "ERROR",
+          "error_type": "RuntimeError",
+          "error": "Error executing SQL: (pymssql.exceptions.ProgrammingError) (208, b\"Invalid object name 'dbo.original_plugin_missing_table'.DB-Lib error message 20018, severity 16:\\nGeneral SQL Server error: Check messages from the SQL Server\\n\")\n[SQL: SELECT * FROM dbo.original_plugin_missing_table]\n(Background on this error at: https://sqlalche.me/e/20/f405)"
+        },
+        "markdown": {
+          "status": "PASS",
+          "messages": [
+            {
+              "message_type": "text",
+              "payload": "|   probe |\n|---------|\n|       1 |"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "oracle": {
+    "status": "NOT_TESTED",
+    "reason": "No isolated Oracle server was available"
+  },
+  "oracle11g": {
+    "status": "BLOCKED",
+    "reason": "Oracle 11g Instant Client/native libraries were not available"
+  },
+  "dify_installation": {
+    "status": "NOT_TESTED",
+    "reason": "Avoided modifying the active tenant and installed KingbaseES candidate"
+  },
+  "provider_runtime": {
+    "status": "NOT_APPLICABLE",
+    "reason": "Original Provider validation is a no-op and has no credential schema"
+  },
+  "workflow": {
+    "status": "NOT_TESTED",
+    "reason": "No isolated Dify tenant was created"
+  },
+  "security_fake_sink": {
+    "select": {
+      "validator_result": "ALLOWED",
+      "invoke_status": "PASS",
+      "error_type": null
+    },
+    "with_select": {
+      "validator_result": "ALLOWED",
+      "invoke_status": "PASS",
+      "error_type": null
+    },
+    "insert": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "update": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "delete": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "create": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "alter": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "drop": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "truncate": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "grant": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "revoke": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "call": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "exec": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "multi_statement": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "comment_prefixed_insert": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "cte_delete": {
+      "validator_result": "ALLOWED",
+      "invoke_status": "PASS",
+      "error_type": null
+    },
+    "transaction": {
+      "validator_result": "BLOCKED",
+      "invoke_status": "ERROR",
+      "error_type": "ValueError"
+    },
+    "select_into_table": {
+      "validator_result": "ALLOWED",
+      "invoke_status": "PASS",
+      "error_type": null
+    },
+    "mysql_into_outfile": {
+      "validator_result": "ALLOWED",
+      "invoke_status": "PASS",
+      "error_type": null
+    },
+    "select_for_update": {
+      "validator_result": "ALLOWED",
+      "invoke_status": "PASS",
+      "error_type": null
+    }
+  },
+  "fixture_cleanup": "PASS",
+  "active_project_plugin_modified": false,
+  "secrets_recorded": false
+}

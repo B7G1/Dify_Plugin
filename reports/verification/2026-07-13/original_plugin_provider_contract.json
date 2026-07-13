@@ -1,0 +1,34 @@
+{
+  "suite": "original_plugin_provider_contract",
+  "generated_at": "2026-07-13T04:48:45.052126-05:00",
+  "status": "PASS",
+  "provider": {
+    "identity": {
+      "name": "db_query",
+      "author": "junjiem",
+      "label": {
+        "en_US": "Database Query",
+        "zh_Hans": "数据库查询"
+      },
+      "description": {
+        "en_US": "Database Query Utils.",
+        "zh_Hans": "数据库查询工具。"
+      },
+      "icon": "icon.svg",
+      "tags": [
+        "search",
+        "utilities"
+      ]
+    },
+    "tool_declarations": [
+      "tools/sql_query.yaml"
+    ],
+    "credential_fields": [],
+    "has_credentials_for_provider": false,
+    "validation_behavior": "NO_OP",
+    "source": "provider/db_query.py"
+  },
+  "connection_ownership": "Tool parameters contain every database credential on each invocation",
+  "error_behavior": "Provider never authenticates or executes SELECT 1",
+  "security_assessment": "Database password is a Tool secret-input and database connection data is exposed at Tool invocation scope rather than persisted Provider credential scope"
+}

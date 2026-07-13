@@ -1,0 +1,9 @@
+2026-07-13 Original Plugin Reproduction Gap Audit
+Static understanding: PASS
+Behavioral baseline: PARTIAL
+Base reproduction: PARTIAL
+Final label: ORIGINAL_BASE_PLUGIN_REPRODUCTION_PARTIAL
+Blocking findings: Oracle, Oracle11g, original Workflow input migration, Markdown output, original JSON compatibility decision, SQL Server baseline reclassification, from-zero tutorial
+Recommended route: Base Plugin Reproduction Completion Gate before DM8 final delivery
+Production code changed: no
+Protected baseline worktree entries: 43

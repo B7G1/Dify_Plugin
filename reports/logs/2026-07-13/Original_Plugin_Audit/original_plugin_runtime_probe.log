@@ -1,0 +1,16 @@
+2026-07-13 Original Plugin Isolated Runtime Probe (redacted)
+Container image: langgenius/dify-api:1.13.3
+Python: 3.12.13
+Artifact mount: read-only
+Dependency install: package-owned wheels, --no-index
+Active Dify tenant/plugin modified: no
+MySQL: SELECT 1, fixture, Unicode, NULL, empty result, JSON, Markdown PASS
+PostgreSQL: SELECT 1, fixture, Unicode, NULL, empty result, JSON, Markdown PASS
+MSSQL: SELECT 1, fixture, Unicode, NULL, empty result, JSON, Markdown PASS
+Oracle: NOT_TESTED; no isolated server
+Oracle11g: BLOCKED; Instant Client/native libraries absent
+Dify install/Workflow: NOT_TESTED to protect the active tenant and installed KingbaseES candidate
+Temporary audit fixtures: removed
+Unsafe SQL probes: fake execution sink only; no write SQL reached a database
+Observed unsafe acceptance: CTE DELETE, SELECT INTO table, MySQL INTO OUTFILE, SELECT FOR UPDATE
+Secret values and credentialed URLs retained: no

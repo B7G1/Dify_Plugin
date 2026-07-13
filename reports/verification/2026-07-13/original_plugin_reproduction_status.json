@@ -1,0 +1,142 @@
+{
+  "suite": "original_plugin_reproduction_status",
+  "generated_at": "2026-07-13T04:50:19.041993-05:00",
+  "status": "PARTIAL",
+  "final_label": "ORIGINAL_BASE_PLUGIN_REPRODUCTION_PARTIAL",
+  "criteria": {
+    "A_original_reproduction": [
+      {
+        "criterion": "All original database options implemented or approved exclusions",
+        "status": "FAIL"
+      },
+      {
+        "criterion": "Original Tool workflow inputs have compatibility or migration",
+        "status": "FAIL"
+      },
+      {
+        "criterion": "Original JSON and Markdown outputs have parity or approved migration",
+        "status": "FAIL"
+      },
+      {
+        "criterion": "Read-only intent preserved without known bypasses",
+        "status": "PASS"
+      },
+      {
+        "criterion": "Offline install and Workflow path verified",
+        "status": "PARTIAL"
+      }
+    ],
+    "B_dm8_extension": [
+      {
+        "criterion": "Adds DM8 without regressing accepted original baseline",
+        "status": "PARTIAL"
+      },
+      {
+        "criterion": "DM8 Provider/Tool/Workflow",
+        "status": "PASS"
+      },
+      {
+        "criterion": "DM8 final offline installed end-to-end",
+        "status": "PARTIAL"
+      }
+    ],
+    "C_kingbasees_extension": [
+      {
+        "criterion": "Adds KingbaseES without regressing accepted original baseline",
+        "status": "PARTIAL"
+      },
+      {
+        "criterion": "KingbaseES installed Provider/Tool/Workflow",
+        "status": "PASS"
+      },
+      {
+        "criterion": "KingbaseES final offline technical chain",
+        "status": "PASS"
+      }
+    ],
+    "D_non_scope": {
+      "sqlserver": "Original baseline capability, not a new extension; optional only as a core final deliverable if explicitly separated from reproduction.",
+      "other_databases": [
+        "SQLite",
+        "OceanBase",
+        "ClickHouse"
+      ],
+      "status": "NOT_APPLICABLE"
+    }
+  },
+  "project_statuses": [
+    {
+      "item": "ORIGINAL_PLUGIN_STATIC_UNDERSTANDING",
+      "status": "PASS",
+      "evidence_or_gap": "Static package facts complete."
+    },
+    {
+      "item": "ORIGINAL_PLUGIN_BEHAVIORAL_BASELINE",
+      "status": "PARTIAL",
+      "evidence_or_gap": "MySQL/PostgreSQL/MSSQL passed; Oracle/Oracle11g and Dify Workflow not tested."
+    },
+    {
+      "item": "BASE_PLUGIN_REPRODUCTION",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Oracle, Markdown, output and Workflow-input compatibility unresolved."
+    },
+    {
+      "item": "MYSQL_REPRODUCTION",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Execution passes; user contract incompatible."
+    },
+    {
+      "item": "POSTGRESQL_REPRODUCTION",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Execution passes; user contract incompatible."
+    },
+    {
+      "item": "DM8_EXTENSION",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Provider/Tool/Workflow pass; final offline and base prerequisite open."
+    },
+    {
+      "item": "KINGBASEES_EXTENSION",
+      "status": "PASS",
+      "evidence_or_gap": "Installed offline technical chain passed; redistribution separate."
+    },
+    {
+      "item": "OPTIONAL_SQLSERVER_EXTENSION",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Provider/Tool pass, but original capability is misclassified and Workflow mapping open."
+    },
+    {
+      "item": "FINAL_OFFLINE_DELIVERY",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Kingbase technical pass; DM8 and redistribution open."
+    },
+    {
+      "item": "DEVELOPMENT_PROCESS_DOCUMENT",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Phase records exist; final document incomplete."
+    },
+    {
+      "item": "FROM_ZERO_REPRODUCTION_TUTORIAL",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Complete independent tutorial absent."
+    },
+    {
+      "item": "FINAL_PROJECT_DELIVERY",
+      "status": "PARTIAL",
+      "evidence_or_gap": "Base reproduction, DM8, docs, tutorial and legal boundaries open."
+    }
+  ],
+  "assignment_decision": "A safer, broader, architecturally improved SQL plugin exists, but the mentor plugin user contract is not completely reproduced.",
+  "blocking_gaps": [
+    "Oracle",
+    "Oracle11g or approved exclusion",
+    "original Workflow/input migration",
+    "Markdown output",
+    "original JSON compatibility or approved migration",
+    "SQL Server reclassification and Workflow boundary",
+    "from-zero tutorial"
+  ],
+  "recommended_route": "ROUTE_C: Base Plugin Reproduction Completion Gate -> DM8 Final Delivery -> Unified Regression -> Development Process Document -> From-Zero Tutorial -> Final Delivery Audit",
+  "contract_change_required": true,
+  "contract_change_reason": "Contract omits the mentor plugin reproduction prerequisite and treats SQL Server as purely optional despite the original baseline."
+}

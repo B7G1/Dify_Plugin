@@ -1,0 +1,378 @@
+{
+  "suite": "current_plugin_comparison_inventory",
+  "generated_at": "2026-07-13T04:50:19.041993-05:00",
+  "status": "PASS",
+  "source_commit": "4be108c",
+  "manifest": {
+    "name": "db_query_extended",
+    "author": "li_zijun",
+    "version": "0.1.1",
+    "minimum_dify_version": "1.0.0",
+    "arch": [
+      "amd64"
+    ],
+    "runner": {
+      "language": "python",
+      "version": "3.12",
+      "entrypoint": "main"
+    }
+  },
+  "provider": {
+    "fields": [
+      {
+        "name": "database_type",
+        "type": "select",
+        "required": true,
+        "default": "mysql",
+        "options": [
+          {
+            "value": "mysql",
+            "label": {
+              "en_US": "MySQL",
+              "zh_Hans": "MySQL"
+            }
+          },
+          {
+            "value": "postgresql",
+            "label": {
+              "en_US": "PostgreSQL",
+              "zh_Hans": "PostgreSQL"
+            }
+          },
+          {
+            "value": "dm",
+            "label": {
+              "en_US": "DM8",
+              "zh_Hans": "DM8"
+            }
+          },
+          {
+            "value": "sqlserver",
+            "label": {
+              "en_US": "SQL Server",
+              "zh_Hans": "SQL Server"
+            }
+          },
+          {
+            "value": "kingbasees",
+            "label": {
+              "en_US": "KingbaseES",
+              "zh_Hans": "KingbaseES（预览）"
+            }
+          }
+        ],
+        "label": {
+          "en_US": "Database type",
+          "zh_Hans": "数据库类型"
+        }
+      },
+      {
+        "name": "host",
+        "type": "text-input",
+        "required": true,
+        "default": "localhost",
+        "label": {
+          "en_US": "Host",
+          "zh_Hans": "主机地址"
+        },
+        "help": {
+          "en_US": "Database hostname. Use localhost for the standard local test environment.",
+          "zh_Hans": "数据库主机地址。标准本地测试环境使用 localhost。"
+        }
+      },
+      {
+        "name": "port",
+        "type": "text-input",
+        "required": true,
+        "label": {
+          "en_US": "Port",
+          "zh_Hans": "端口"
+        },
+        "help": {
+          "en_US": "Enter the database server port explicitly. KingbaseES ports are deployment-specific; 54321 is only the local test mapping.",
+          "zh_Hans": "MySQL 通常使用 3306；PostgreSQL 使用 5432；SQL Server 使用 1433；DM8 使用 5236；KingbaseES 使用 54321。"
+        }
+      },
+      {
+        "name": "username",
+        "type": "text-input",
+        "required": true,
+        "label": {
+          "en_US": "Username",
+          "zh_Hans": "用户名"
+        }
+      },
+      {
+        "name": "password",
+        "type": "secret-input",
+        "required": true,
+        "label": {
+          "en_US": "Password",
+          "zh_Hans": "密码"
+        }
+      },
+      {
+        "name": "database",
+        "type": "text-input",
+        "required": true,
+        "default": "plugin_test",
+        "label": {
+          "en_US": "Database",
+          "zh_Hans": "数据库名"
+        }
+      },
+      {
+        "name": "schema",
+        "type": "text-input",
+        "required": false,
+        "label": {
+          "en_US": "Schema (optional)",
+          "zh_Hans": "Schema（可选）"
+        },
+        "help": {
+          "en_US": "Optional schema/search_path. The KingbaseES local integration fixture uses phase97_fixture.",
+          "zh_Hans": "可选 schema/search_path；KingbaseES 本地规划值为 plugin_test。"
+        }
+      },
+      {
+        "name": "connection_timeout",
+        "type": "text-input",
+        "required": false,
+        "default": "10",
+        "label": {
+          "en_US": "Connection timeout in seconds",
+          "zh_Hans": "连接超时（秒）"
+        },
+        "help": {
+          "en_US": "Maximum time to establish a database connection, in seconds.",
+          "zh_Hans": "建立数据库连接的最长等待时间，单位为秒。"
+        }
+      },
+      {
+        "name": "ssl_mode",
+        "type": "select",
+        "required": false,
+        "default": "disable",
+        "options": [
+          {
+            "value": "disable",
+            "label": {
+              "en_US": "Disable",
+              "zh_Hans": "禁用"
+            }
+          },
+          {
+            "value": "prefer",
+            "label": {
+              "en_US": "Prefer",
+              "zh_Hans": "优先使用"
+            }
+          },
+          {
+            "value": "require",
+            "label": {
+              "en_US": "Require",
+              "zh_Hans": "强制使用"
+            }
+          }
+        ],
+        "label": {
+          "en_US": "SSL mode",
+          "zh_Hans": "SSL 模式"
+        },
+        "help": {
+          "en_US": "Disable is intended for local testing; prefer and require are for future secure deployment scenarios.",
+          "zh_Hans": "本地测试使用禁用；优先使用和强制使用为后续安全部署场景预留。"
+        }
+      }
+    ],
+    "field_order": [
+      "database_type",
+      "host",
+      "port",
+      "username",
+      "password",
+      "database",
+      "schema",
+      "connection_timeout",
+      "ssl_mode"
+    ],
+    "database_options": [
+      "mysql",
+      "postgresql",
+      "dm",
+      "sqlserver",
+      "kingbasees"
+    ],
+    "validation": "normalized config -> real engine -> SELECT 1 -> close/dispose"
+  },
+  "tool": {
+    "parameters": [
+      {
+        "name": "sql",
+        "type": "string",
+        "required": true,
+        "label": {
+          "en_US": "SQL statement",
+          "zh_Hans": "SQL 语句"
+        },
+        "human_description": {
+          "en_US": "One read-only SELECT or WITH statement. Multiple statements and write operations are rejected.",
+          "zh_Hans": "一条只读 SELECT 或 WITH 语句。多语句和写操作会被拒绝。"
+        },
+        "llm_description": "One read-only SQL statement. Do not generate semicolons, multiple statements, DDL, DML, procedure calls, or file operations.",
+        "form": "llm"
+      },
+      {
+        "name": "max_rows",
+        "type": "number",
+        "required": false,
+        "default": 100,
+        "label": {
+          "en_US": "Maximum rows",
+          "zh_Hans": "最大返回行数"
+        },
+        "human_description": {
+          "en_US": "Maximum rows returned by the query. Allowed range is 1 to 1000.",
+          "zh_Hans": "查询最多返回的行数，允许范围为 1 到 1000。"
+        },
+        "form": "form"
+      },
+      {
+        "name": "timeout_seconds",
+        "type": "number",
+        "required": false,
+        "default": 30,
+        "label": {
+          "en_US": "Query timeout (seconds)",
+          "zh_Hans": "查询超时（秒）"
+        },
+        "human_description": {
+          "en_US": "Maximum execution time in seconds. Allowed range is 1 to 120.",
+          "zh_Hans": "单次 SQL 最大执行时间，单位为秒，范围为 1 到 120。"
+        },
+        "form": "form"
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "required": false,
+        "default": true,
+        "label": {
+          "en_US": "Read-only mode",
+          "zh_Hans": "只读模式"
+        },
+        "human_description": {
+          "en_US": "Must remain enabled. Requests with readonly=false are rejected.",
+          "zh_Hans": "必须保持启用；readonly=false 的请求会被拒绝。"
+        },
+        "form": "form"
+      },
+      {
+        "name": "output_format",
+        "type": "select",
+        "required": false,
+        "default": "json",
+        "options": [
+          {
+            "value": "json",
+            "label": {
+              "en_US": "JSON",
+              "zh_Hans": "JSON"
+            }
+          },
+          {
+            "value": "markdown",
+            "label": {
+              "en_US": "Markdown",
+              "zh_Hans": "Markdown"
+            }
+          }
+        ],
+        "label": {
+          "en_US": "Output format",
+          "zh_Hans": "输出格式"
+        },
+        "human_description": {
+          "en_US": "JSON is the supported structured response. Markdown is reserved for a future presentation-layer extension.",
+          "zh_Hans": "当前支持 JSON 结构化响应；Markdown 为后续展示层扩展预留。"
+        },
+        "form": "form"
+      }
+    ],
+    "parameter_order": [
+      "sql",
+      "max_rows",
+      "timeout_seconds",
+      "readonly",
+      "output_format"
+    ],
+    "runtime_output_format": "json only",
+    "output_keys": [
+      "success",
+      "database_type",
+      "execution_time_ms",
+      "columns",
+      "rows",
+      "row_count",
+      "truncated",
+      "max_rows",
+      "generated_at",
+      "warning",
+      "error"
+    ]
+  },
+  "architecture": {
+    "pattern": "Provider/Tool -> validation -> common database utility -> dynamic Adapter -> SQLAlchemy/driver -> formatter",
+    "pool": "NullPool",
+    "cleanup": "connection context plus engine.dispose()",
+    "validator": "custom conservative SQL lexer"
+  },
+  "databases": {
+    "mysql": {
+      "status": "PASS",
+      "evidence": "reports/verification/2026-07-07/phase7_3_tool_result.json"
+    },
+    "postgresql": {
+      "status": "PASS",
+      "evidence": "reports/verification/2026-07-07/phase7_3_tool_result.json"
+    },
+    "dm": {
+      "status": "PASS_FOR_EXISTING_PROVIDER_TOOL_WORKFLOW / FINAL_OFFLINE_DELIVERY_OPEN",
+      "evidence": "reports/documentation/Phase7_3_Full_Adapter_Regression/README.md"
+    },
+    "sqlserver": {
+      "status": "OPTIONAL_PROVIDER_TOOL_PASS / WORKFLOW_NOT_CLAIMED",
+      "evidence": "reports/documentation/Phase8_Database_Compatibility/sqlserver_optional_gate_status_2026-07-09.md"
+    },
+    "kingbasees": {
+      "status": "FINAL_OFFLINE_PLUGIN_TECHNICAL_PASS",
+      "evidence": "reports/documentation/2026-07-13/Phase09_KingbaseES/phase9_9_kingbasees_installed_workflow_end_to_end_gate.md"
+    },
+    "oracle": {
+      "status": "UNSUPPORTED"
+    },
+    "oracle11g": {
+      "status": "UNSUPPORTED"
+    }
+  },
+  "packaging": {
+    "offline_requirements": true,
+    "wheel_count": 44,
+    "third_party_notices": true,
+    "active_kingbase_checksum": "bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+  },
+  "file_hashes": {
+    "db_query_extended/manifest.yaml": "C29B0D212F9D4E1FBD1840B70954F4CFC7DC752E4A1879C110DB39FBEFF051FF",
+    "db_query_extended/provider/db_query_extended.yaml": "4CDA659FD3454329837464F848AACBA1880BC1D21A40A89D12B463376DCF5678",
+    "db_query_extended/provider/db_query_extended.py": "D6483DCDBDC1C85A0E17ED43D17875ABCA992D225DF636CC25C25987DEC55831",
+    "db_query_extended/tools/db_query_extended.yaml": "6FC18DACD38FE7734FEF134DE42D386614FCCBA213ACA3F9AAAC26476C9B1F71",
+    "db_query_extended/tools/db_query_extended.py": "64C31A32B985EA3BA002617618C681029C3E8EA6DF29190512D78B92C8E6EFA4",
+    "db_query_extended/utils/database.py": "30E41322BAA0BD7D008184D1365B8D2DD16F7BA109E40F153AE655DB1FF6E468",
+    "db_query_extended/utils/validation.py": "1E7EA8083999209906BEC116011FF77B241539325E517509274B20035820959F",
+    "db_query_extended/utils/sql_validator.py": "043852E4D676C20EC2EB0FF7D336DAA60C32FDCB489C569FCF8A4BAB2304B5C0",
+    "db_query_extended/utils/formatter.py": "D2B728948858D5FE842D4711531F3E4A27478D2E47203B890B0E6799C3EDC6B8",
+    "db_query_extended/utils/result_formatter.py": "A54FCB41107BC1814CD2DB9514AAF334AB5131AE7F43684770D6C55291D80F2E",
+    "db_query_extended/utils/adapters/__init__.py": "9B8C530C22CAED644A61E9860F91E04F1450057E4542F8ABC4E4364633C7D984"
+  }
+}

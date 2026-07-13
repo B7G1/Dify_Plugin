@@ -1,0 +1,392 @@
+{
+  "suite": "original_plugin_gap_matrix",
+  "generated_at": "2026-07-13T04:50:19.041993-05:00",
+  "status": "PARTIAL",
+  "classification_counts": {
+    "EXACT_MATCH": 2,
+    "FUNCTIONAL_PARITY_DIFFERENT_IMPLEMENTATION": 5,
+    "INCOMPATIBLE_CHANGE": 8,
+    "INTENTIONAL_IMPROVEMENT": 6,
+    "INTENTIONAL_SCOPE_EXTENSION": 2,
+    "MISSING_FROM_CURRENT": 6,
+    "ORIGINAL_PLUGIN_LIMITATION_FIXED": 7
+  },
+  "blocking_gap_ids": [
+    "GAP-006",
+    "GAP-007",
+    "GAP-008",
+    "GAP-009",
+    "GAP-010",
+    "GAP-011",
+    "GAP-014",
+    "GAP-026",
+    "GAP-027",
+    "GAP-028",
+    "GAP-034",
+    "GAP-036"
+  ],
+  "gaps": [
+    {
+      "id": "GAP-001",
+      "area": "Plugin",
+      "item": "runner / entrypoint",
+      "original": "Python 3.12 / main",
+      "current": "Python 3.12 / main",
+      "classification": "EXACT_MATCH",
+      "severity": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "GAP-002",
+      "area": "Plugin",
+      "item": "identity",
+      "original": "junjiem/db_query 0.0.11",
+      "current": "li_zijun/db_query_extended 0.1.1",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "MEDIUM",
+      "blocking": false
+    },
+    {
+      "id": "GAP-003",
+      "area": "Plugin",
+      "item": "architecture claim",
+      "original": "amd64 and arm64 despite x86_64 wheels",
+      "current": "amd64 only",
+      "classification": "ORIGINAL_PLUGIN_LIMITATION_FIXED",
+      "severity": "MEDIUM",
+      "blocking": false
+    },
+    {
+      "id": "GAP-004",
+      "area": "Provider",
+      "item": "credential schema",
+      "original": "none",
+      "current": "nine persisted Provider fields",
+      "classification": "INTENTIONAL_IMPROVEMENT",
+      "severity": "HIGH",
+      "blocking": false
+    },
+    {
+      "id": "GAP-005",
+      "area": "Provider",
+      "item": "credential validation",
+      "original": "no-op",
+      "current": "real connection, SELECT 1, dispose",
+      "classification": "ORIGINAL_PLUGIN_LIMITATION_FIXED",
+      "severity": "HIGH",
+      "blocking": false
+    },
+    {
+      "id": "GAP-006",
+      "area": "Tool",
+      "item": "database credentials",
+      "original": "inline db_* on every invocation",
+      "current": "Provider credential binding",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "HIGH",
+      "blocking": true
+    },
+    {
+      "id": "GAP-007",
+      "area": "Tool",
+      "item": "SQL parameter",
+      "original": "query_sql",
+      "current": "sql",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "HIGH",
+      "blocking": true
+    },
+    {
+      "id": "GAP-008",
+      "area": "Tool",
+      "item": "SQL Server value",
+      "original": "mssql",
+      "current": "sqlserver",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "MEDIUM",
+      "blocking": true
+    },
+    {
+      "id": "GAP-009",
+      "area": "Tool",
+      "item": "default output",
+      "original": "markdown",
+      "current": "json",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "HIGH",
+      "blocking": true
+    },
+    {
+      "id": "GAP-010",
+      "area": "Tool",
+      "item": "Markdown output",
+      "original": "implemented",
+      "current": "declared but rejected at runtime",
+      "classification": "MISSING_FROM_CURRENT",
+      "severity": "HIGH",
+      "blocking": true
+    },
+    {
+      "id": "GAP-011",
+      "area": "Tool",
+      "item": "JSON output shape",
+      "original": {
+        "records": "list[object]"
+      },
+      "current": "structured success/database_type/columns/rows contract",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "HIGH",
+      "blocking": true
+    },
+    {
+      "id": "GAP-012",
+      "area": "Tool",
+      "item": "NULL output",
+      "original": "empty string",
+      "current": "JSON null",
+      "classification": "INTENTIONAL_IMPROVEMENT",
+      "severity": "MEDIUM",
+      "blocking": false
+    },
+    {
+      "id": "GAP-013",
+      "area": "Tool",
+      "item": "row limit",
+      "original": "unbounded full pandas read",
+      "current": "max_rows 100, fetch max+1",
+      "classification": "INTENTIONAL_IMPROVEMENT",
+      "severity": "HIGH",
+      "blocking": false
+    },
+    {
+      "id": "GAP-014",
+      "area": "Tool",
+      "item": "large results",
+      "original": "returns all",
+      "current": "truncates by default",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "MEDIUM",
+      "blocking": true
+    },
+    {
+      "id": "GAP-015",
+      "area": "Tool",
+      "item": "timeout",
+      "original": "none",
+      "current": "1-120 seconds",
+      "classification": "INTENTIONAL_IMPROVEMENT",
+      "severity": "HIGH",
+      "blocking": false
+    },
+    {
+      "id": "GAP-016",
+      "area": "Security",
+      "item": "DML/DDL/multi",
+      "original": "sqlparse first-type guard",
+      "current": "conservative lexer and deny set",
+      "classification": "ORIGINAL_PLUGIN_LIMITATION_FIXED",
+      "severity": "CRITICAL",
+      "blocking": false
+    },
+    {
+      "id": "GAP-017",
+      "area": "Security",
+      "item": "write bypasses",
+      "original": "CTE write / INTO / OUTFILE / FOR UPDATE allowed",
+      "current": "blocked",
+      "classification": "ORIGINAL_PLUGIN_LIMITATION_FIXED",
+      "severity": "CRITICAL",
+      "blocking": false
+    },
+    {
+      "id": "GAP-018",
+      "area": "Security",
+      "item": "URL logging",
+      "original": "full credentialed URL logged",
+      "current": "no credential URL logging",
+      "classification": "ORIGINAL_PLUGIN_LIMITATION_FIXED",
+      "severity": "CRITICAL",
+      "blocking": false
+    },
+    {
+      "id": "GAP-019",
+      "area": "Security",
+      "item": "errors",
+      "original": "raw error and SQL raised",
+      "current": "structured redacted error",
+      "classification": "ORIGINAL_PLUGIN_LIMITATION_FIXED",
+      "severity": "HIGH",
+      "blocking": false
+    },
+    {
+      "id": "GAP-020",
+      "area": "Runtime",
+      "item": "URL build",
+      "original": "manual quote_plus string",
+      "current": "URL.create per Adapter",
+      "classification": "FUNCTIONAL_PARITY_DIFFERENT_IMPLEMENTATION",
+      "severity": "MEDIUM",
+      "blocking": false
+    },
+    {
+      "id": "GAP-021",
+      "area": "Runtime",
+      "item": "pool",
+      "original": "QueuePool 100/recycle 36",
+      "current": "NullPool per call",
+      "classification": "INTENTIONAL_IMPROVEMENT",
+      "severity": "MEDIUM",
+      "blocking": false
+    },
+    {
+      "id": "GAP-022",
+      "area": "Runtime",
+      "item": "cleanup",
+      "original": "context dispose",
+      "current": "context connection and finally dispose",
+      "classification": "EXACT_MATCH",
+      "severity": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "GAP-023",
+      "area": "Runtime",
+      "item": "formatting",
+      "original": "pandas/numpy/tabulate",
+      "current": "SQLAlchemy mappings and stdlib",
+      "classification": "FUNCTIONAL_PARITY_DIFFERENT_IMPLEMENTATION",
+      "severity": "MEDIUM",
+      "blocking": false
+    },
+    {
+      "id": "GAP-024",
+      "area": "Database",
+      "item": "MySQL",
+      "original": "runtime PASS",
+      "current": "project PASS",
+      "classification": "FUNCTIONAL_PARITY_DIFFERENT_IMPLEMENTATION",
+      "severity": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "GAP-025",
+      "area": "Database",
+      "item": "PostgreSQL",
+      "original": "runtime PASS",
+      "current": "project PASS",
+      "classification": "FUNCTIONAL_PARITY_DIFFERENT_IMPLEMENTATION",
+      "severity": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "GAP-026",
+      "area": "Database",
+      "item": "Oracle",
+      "original": "supported",
+      "current": "unsupported",
+      "classification": "MISSING_FROM_CURRENT",
+      "severity": "CRITICAL",
+      "blocking": true
+    },
+    {
+      "id": "GAP-027",
+      "area": "Database",
+      "item": "Oracle11g",
+      "original": "thick mode supported",
+      "current": "unsupported",
+      "classification": "MISSING_FROM_CURRENT",
+      "severity": "CRITICAL",
+      "blocking": true
+    },
+    {
+      "id": "GAP-028",
+      "area": "Database",
+      "item": "SQL Server",
+      "original": "original mssql and runtime PASS",
+      "current": "optional Provider/Tool PASS; no Workflow claim",
+      "classification": "MISSING_FROM_CURRENT",
+      "severity": "HIGH",
+      "blocking": true
+    },
+    {
+      "id": "GAP-029",
+      "area": "Database",
+      "item": "DM8",
+      "original": "absent",
+      "current": "added",
+      "classification": "INTENTIONAL_SCOPE_EXTENSION",
+      "severity": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "GAP-030",
+      "area": "Database",
+      "item": "KingbaseES",
+      "original": "absent",
+      "current": "installed end-to-end technical PASS",
+      "classification": "INTENTIONAL_SCOPE_EXTENSION",
+      "severity": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "GAP-031",
+      "area": "Packaging",
+      "item": "offline wheels",
+      "original": "54 wheels",
+      "current": "44-wheel current closure",
+      "classification": "FUNCTIONAL_PARITY_DIFFERENT_IMPLEMENTATION",
+      "severity": "NONE",
+      "blocking": false
+    },
+    {
+      "id": "GAP-032",
+      "area": "Packaging",
+      "item": "notices",
+      "original": "none",
+      "current": "THIRD_PARTY_NOTICES; redistribution pending",
+      "classification": "ORIGINAL_PLUGIN_LIMITATION_FIXED",
+      "severity": "HIGH",
+      "blocking": false
+    },
+    {
+      "id": "GAP-033",
+      "area": "Packaging",
+      "item": "minimum Dify",
+      "original": "not declared",
+      "current": "1.0.0",
+      "classification": "INTENTIONAL_IMPROVEMENT",
+      "severity": "LOW",
+      "blocking": false
+    },
+    {
+      "id": "GAP-034",
+      "area": "Workflow",
+      "item": "reuse",
+      "original": "inline db_* and query_sql",
+      "current": "Provider-bound sql/max_rows",
+      "classification": "INCOMPATIBLE_CHANGE",
+      "severity": "CRITICAL",
+      "blocking": true
+    },
+    {
+      "id": "GAP-035",
+      "area": "Documentation",
+      "item": "README scope",
+      "original": "five original types",
+      "current": "current README stale",
+      "classification": "MISSING_FROM_CURRENT",
+      "severity": "MEDIUM",
+      "blocking": false
+    },
+    {
+      "id": "GAP-036",
+      "area": "Documentation",
+      "item": "from-zero baseline",
+      "original": "not formally captured",
+      "current": "tutorial incomplete",
+      "classification": "MISSING_FROM_CURRENT",
+      "severity": "HIGH",
+      "blocking": true
+    }
+  ]
+}

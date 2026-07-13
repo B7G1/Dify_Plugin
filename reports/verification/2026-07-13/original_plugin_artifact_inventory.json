@@ -1,0 +1,592 @@
+{
+  "suite": "original_plugin_artifact_inventory",
+  "generated_at": "2026-07-13T04:48:45.052126-05:00",
+  "status": "PASS",
+  "artifact": {
+    "filename": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "location": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "format": "ZIP-compatible Dify plugin package",
+    "size_bytes": 73095087,
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560",
+    "zip_integrity": "PASS",
+    "entry_count": 75,
+    "modified": false
+  },
+  "root_files": [
+    ".difyignore",
+    ".env.example",
+    ".verification.dify.json",
+    "GUIDE.md",
+    "PRIVACY.md",
+    "README.md",
+    "main.py",
+    "manifest.yaml",
+    "requirements.txt"
+  ],
+  "top_level_directories": [
+    "_assets",
+    "provider",
+    "tools",
+    "wheels"
+  ],
+  "files": [
+    {
+      "path": ".difyignore",
+      "size": 3603,
+      "compressed_size": 1568,
+      "sha256": "02D2B586B189CCFBDA4BAD731E05F57AE746C1515C4471BE6ECF0AD482BA8CF7",
+      "encrypted": false
+    },
+    {
+      "path": ".env.example",
+      "size": 149,
+      "compressed_size": 90,
+      "sha256": "ACFE825E96581CBC2C421B7E401EB9BAA2C7B18DC13E3358E312165AB6DA4372",
+      "encrypted": false
+    },
+    {
+      "path": ".verification.dify.json",
+      "size": 35,
+      "compressed_size": 41,
+      "sha256": "6C1558142D852D376DF6AB38F7CAE98E9585DC7E324D3E207C8AB488C33F8042",
+      "encrypted": false
+    },
+    {
+      "path": "GUIDE.md",
+      "size": 6994,
+      "compressed_size": 2704,
+      "sha256": "77D4CF22E8C79BE5A678ED509618AF1B71D7EC1E91843588BB37B282783B6B87",
+      "encrypted": false
+    },
+    {
+      "path": "PRIVACY.md",
+      "size": 693,
+      "compressed_size": 358,
+      "sha256": "7663E689CD2F470A817BF729177E38B60798B96FB577455BDBE276EB6696CD16",
+      "encrypted": false
+    },
+    {
+      "path": "README.md",
+      "size": 4462,
+      "compressed_size": 1960,
+      "sha256": "E8424395B241D5FC7236E1632327A9BCA362B1748A16D3EB2E5F1330433D78AF",
+      "encrypted": false
+    },
+    {
+      "path": "_assets/db_query.png",
+      "size": 22763,
+      "compressed_size": 18334,
+      "sha256": "C031DC62ADA0EFABE4B99CD6ED54C526FF52D8C5ABD37621E9337898995233A1",
+      "encrypted": false
+    },
+    {
+      "path": "_assets/db_query_chatflow.png",
+      "size": 73915,
+      "compressed_size": 71159,
+      "sha256": "E70181EF7D217CFA47D499763D0800E6055736F6914AE94AAEB05387532AD010",
+      "encrypted": false
+    },
+    {
+      "path": "_assets/db_query_sql_query.png",
+      "size": 4928,
+      "compressed_size": 4444,
+      "sha256": "AD76977F34B498637E223B3237A0396B67E1D52D84236E76399B7C35EEED5159",
+      "encrypted": false
+    },
+    {
+      "path": "_assets/icon.svg",
+      "size": 1603,
+      "compressed_size": 707,
+      "sha256": "6C204F71EA43D9066C968027E3C7C0BDADACA37403B9E712F5C585D944040AB4",
+      "encrypted": false
+    },
+    {
+      "path": "_assets/llm_riddles1.png",
+      "size": 11876,
+      "compressed_size": 11017,
+      "sha256": "CEB26368191285E928A92C6C54D048482D9726649D0B47FADFC662047B21EB7C",
+      "encrypted": false
+    },
+    {
+      "path": "_assets/llm_riddles2.png",
+      "size": 49158,
+      "compressed_size": 46481,
+      "sha256": "F9C931F598E4675F40C89F35875AD3B2D21316E477956258FDC767EC38A9CDA6",
+      "encrypted": false
+    },
+    {
+      "path": "_assets/llm_riddles3.png",
+      "size": 53700,
+      "compressed_size": 45283,
+      "sha256": "38C21E89E8F4A3101837B4276F27066C3515C06AACABAAE940AC02A8B9D7C7FE",
+      "encrypted": false
+    },
+    {
+      "path": "main.py",
+      "size": 154,
+      "compressed_size": 126,
+      "sha256": "2717A765BE280E8740913F49B596F210E843C0BD0C7CF40B8F6E9A7F53783E17",
+      "encrypted": false
+    },
+    {
+      "path": "manifest.yaml",
+      "size": 656,
+      "compressed_size": 406,
+      "sha256": "2C57C0E8DD21814AEC18628F32018AC68A141A01530A35C4A64B879E5D8DC522",
+      "encrypted": false
+    },
+    {
+      "path": "provider/db_query.py",
+      "size": 159,
+      "compressed_size": 124,
+      "sha256": "C57D48D51DA46532443EA48A7131BA67DE51F13C5D0043041F64703BCA9AFF71",
+      "encrypted": false
+    },
+    {
+      "path": "provider/db_query.yaml",
+      "size": 347,
+      "compressed_size": 229,
+      "sha256": "0925FEA89C12E4C433B93B3583A0843AF4751410492296B313FD9F3F17D78803",
+      "encrypted": false
+    },
+    {
+      "path": "requirements.txt",
+      "size": 195,
+      "compressed_size": 162,
+      "sha256": "A792E8600F9C3BC2F036FD77255663582EC306A980BCFE60C436CC342CFBC221",
+      "encrypted": false
+    },
+    {
+      "path": "tools/db_util.py",
+      "size": 3806,
+      "compressed_size": 1185,
+      "sha256": "D6754E4CD5F9A565266780E53DE12A25ADE221AAC4BF36B8776437F97B3B7DA1",
+      "encrypted": false
+    },
+    {
+      "path": "tools/sql_query.py",
+      "size": 2594,
+      "compressed_size": 830,
+      "sha256": "11128D3F3661AB5AB212BDEF075FDECB3542702551A4E995488F9526BB9A30C0",
+      "encrypted": false
+    },
+    {
+      "path": "tools/sql_query.yaml",
+      "size": 4105,
+      "compressed_size": 1079,
+      "sha256": "35C87D57F63149302C065FE404D466A88F012734C1F9145BB0DEFD132527CE2F",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/PyMySQL-1.1.1-py3-none-any.whl",
+      "size": 44972,
+      "compressed_size": 43352,
+      "sha256": "4DE15DA4C61DC132F4FB9AB763063E693D521A80FD0E87943B9A453DD4C19D6C",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/SQLAlchemy-2.0.35-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 3240649,
+      "compressed_size": 3212915,
+      "sha256": "93A71C8601E823236AC0E5D087E4F397874A421017B3318FD92C0B14ACF2B6DB",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/annotated_types-0.7.0-py3-none-any.whl",
+      "size": 13643,
+      "compressed_size": 13035,
+      "sha256": "1F02E8B43A8FBBC3F3E0D4F0F4BFC8131BCB4EEBE8849B8E5C773F3A1C582A53",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/anyio-4.13.0-py3-none-any.whl",
+      "size": 114353,
+      "compressed_size": 110925,
+      "sha256": "08B310F9E24A9594186FD75B4F73F4A4152069E3853F1ED8BFBF58369F4AD708",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/blinker-1.9.0-py3-none-any.whl",
+      "size": 8458,
+      "compressed_size": 7877,
+      "sha256": "BA0EFAA9080B619FF2F3459D1D500C57BDDEA4A6B424B60A91141DB6FD2F08BC",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/certifi-2026.4.22-py3-none-any.whl",
+      "size": 135707,
+      "compressed_size": 135052,
+      "sha256": "3CB2210C8F88BA2318D29B0388D1023C8492FF72ECDDE4EBDADDBB13A31B1C4A",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/cffi-2.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "size": 219572,
+      "compressed_size": 217235,
+      "sha256": "3E17ED538242334BF70832644A32A7AAE3D83B57567F9FD60A26257E992B79BA",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "size": 216589,
+      "compressed_size": 213242,
+      "sha256": "5649FD1C7BADE02F320A462FDEFD0B4BD3CE036065836D4F42E0DE958038E116",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/click-8.3.3-py3-none-any.whl",
+      "size": 110502,
+      "compressed_size": 109410,
+      "sha256": "A2BF429BB3033C89FA4936FFB35D5CB471E3719E1F3C8A7C3FFF0B8314305613",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/cryptography-48.0.0-cp311-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "size": 4710620,
+      "compressed_size": 4666335,
+      "sha256": "7995EF305D7165C3F11AE07F2517E5A4F1D5C18DA1376A0A9ED496336B69E5F3",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/dify_plugin-0.2.1-py3-none-any.whl",
+      "size": 305769,
+      "compressed_size": 294603,
+      "sha256": "84E6AFA2ECEE28C0816D8CF54115250C0E4D84AEB1F67296AC39E303B1F723E8",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/dpkt-1.9.8-py3-none-any.whl",
+      "size": 194973,
+      "compressed_size": 190781,
+      "sha256": "4DA4D111D7BF67575B571F5C678C71BDDD2D8A01A3D57D489FAF0A92C748FBFD",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/flask-3.0.3-py3-none-any.whl",
+      "size": 101735,
+      "compressed_size": 100000,
+      "sha256": "34E815DFAA43340D1D15A5C3A02B8476004037EB4840B34910C6E21679D288F3",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/gevent-24.11.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 6775163,
+      "compressed_size": 6724193,
+      "sha256": "B24D800328C39456534E3BC3E1684A28747729082684634789C2F5A8FEBE7671",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/greenlet-3.2.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "size": 655426,
+      "compressed_size": 644877,
+      "sha256": "45FCEA7B697B91290B36EAFC12FFF479ACA6BA6500D98EF6F34D5634C7119CBE",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/h11-0.16.0-py3-none-any.whl",
+      "size": 37515,
+      "compressed_size": 36532,
+      "sha256": "63CF8BBE7522DE3BF65932FDA1D9C2772064FFB3DAE62D55932DA54B31CB6C86",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/httpcore-1.0.9-py3-none-any.whl",
+      "size": 78784,
+      "compressed_size": 75796,
+      "sha256": "2D400746A40668FC9DEC9810239072B40B4484B640A8C38FD654A024C7A1BF55",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/httpx-0.27.2-py3-none-any.whl",
+      "size": 76395,
+      "compressed_size": 74492,
+      "sha256": "7BB2708E112D8FDD7829CD4243970F0C223274051CB35EE80C03301EE29A3DF0",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/idna-3.13-py3-none-any.whl",
+      "size": 68629,
+      "compressed_size": 63318,
+      "sha256": "892EA0CDE124A99CE773DECBA204C5552B69C3C67FFD5F232EB7696135BC8BB3",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/itsdangerous-2.2.0-py3-none-any.whl",
+      "size": 16234,
+      "compressed_size": 15178,
+      "sha256": "C6242FC49E35958C8B15141343AA660DB5FC54D4F13A1DB01A3F5891B98700EF",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/jinja2-3.1.6-py3-none-any.whl",
+      "size": 134899,
+      "compressed_size": 133252,
+      "sha256": "85ECE4451F492D0C13C5DD7C13A64681A86AFAE63A5F347908DAF103CE6D2F67",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "size": 22947,
+      "compressed_size": 21657,
+      "sha256": "D6DD0BE5B5B189D31DB7CDA48B91D7E0A9795F31430B7F271219AB30F1D3AC9D",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "size": 256322,
+      "compressed_size": 254930,
+      "sha256": "BFDE23EF6ED9DB7EAEE6C37DCEC08524CB43903C60B285B172B6C094711B3961",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 16527618,
+      "compressed_size": 16325494,
+      "sha256": "FD83C01228A688733F1DED5201C678F0C53ECC1006FFBC404DB9F7A899AC6249",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/oracledb-2.2.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 11950663,
+      "compressed_size": 11810366,
+      "sha256": "193E1888411BC21187ADE4B16B76820BD1E8F216E25602F6CD0A97D45723C1DC",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 12739445,
+      "compressed_size": 12549724,
+      "sha256": "FFFB8AE78D8AF97F849404F21411C95062DB1496AEB3E56F146F0355C9989319",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/propcache-0.4.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "size": 221575,
+      "compressed_size": 220018,
+      "sha256": "15932AB57837C3368B024473A525E25D316D8353016E7CC0E5BA9EB343FBB1CF",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/psycopg2_binary-2.9.10-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 3020968,
+      "compressed_size": 2995846,
+      "sha256": "8CD9B4F2CFAB88ED4A9106192DE509464B75A906462FB846B936EABE45C2063E",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pycparser-3.0-py3-none-any.whl",
+      "size": 48172,
+      "compressed_size": 47351,
+      "sha256": "B727414169A36B7D524C1C3E31839A521725078D7B2FF038656844266160A992",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pydantic-2.13.3-py3-none-any.whl",
+      "size": 471981,
+      "compressed_size": 464151,
+      "sha256": "6DB14AC8DFC9A1E57F87EA2C0DE670C251240F43CB0C30A5130E9720DC612927",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pydantic_core-2.46.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 2094380,
+      "compressed_size": 2087043,
+      "sha256": "FB528E295ED31570AC3DCC9BFDD6E0150BC11CE6168AC87A8082055CF1A67395",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pydantic_settings-2.14.0-py3-none-any.whl",
+      "size": 60940,
+      "compressed_size": 58284,
+      "sha256": "FC8D5D692EB7092E43C8647C1C35A3ECD00E040FCF02ED86F4CB5458CA62182E",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pydub-0.25.1-py2.py3-none-any.whl",
+      "size": 32327,
+      "compressed_size": 31130,
+      "sha256": "65617E33033874B59D87DB603AA1ED450633288AEFEAD953B30BDED59CB599A6",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pymssql-2.3.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 4381934,
+      "compressed_size": 4351259,
+      "sha256": "C2C1C8D3632630D52387E5B5B4483027494B5CB8F65401573715B74E7A3F16E5",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+      "size": 229892,
+      "compressed_size": 228260,
+      "sha256": "A8B2BC7BFFAE282281C8140A97D3AA9C14DA0B136DFE83F850EEA9A5F7470427",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/python_dotenv-1.2.2-py3-none-any.whl",
+      "size": 22101,
+      "compressed_size": 20963,
+      "sha256": "1D8214789A24DE455A8B8BD8AE6FE3C6B69A5E3D64AA8A8E5D68E694BBCB285A",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pytz-2026.2-py2.py3-none-any.whl",
+      "size": 510141,
+      "compressed_size": 377597,
+      "sha256": "04156E608BEE23D3792FD45C94AE47FAE1036688E75032EEA2E3BF0323D1F126",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "size": 807870,
+      "compressed_size": 804101,
+      "sha256": "BA1CC08A7CCDE2D2EC775841541641E4548226580AB850948CBFDA66A1BEFCDC",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/regex-2026.4.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "size": 801126,
+      "compressed_size": 798215,
+      "sha256": "993F657A7C1C6EC51B5E0BA97C9817D06B84EA5FA8D82E43B9405DE0DEFDC2B9",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/requests-2.32.5-py3-none-any.whl",
+      "size": 64738,
+      "compressed_size": 63354,
+      "sha256": "2462F94637A34FD532264295E186976DB0F5D453D1CDD31473C85A6A161AFFB6",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/six-1.17.0-py2.py3-none-any.whl",
+      "size": 11050,
+      "compressed_size": 10630,
+      "sha256": "4721F391ED90541FDDACAB5ACF947AA0D3DC7D27B2E1E8EDA2BE8970586C3274",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/sniffio-1.3.1-py3-none-any.whl",
+      "size": 10235,
+      "compressed_size": 9142,
+      "sha256": "2F6DA418D1F1E0FDDD844478F41680E794E6051915791A034FF65E5F100525A2",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/socksio-1.0.0-py3-none-any.whl",
+      "size": 12763,
+      "compressed_size": 11919,
+      "sha256": "95DC1F15F9B34E8D7B16F06D74B8CCF48F609AF32AB33C608D08761C5DCBB1F3",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/sqlparse-0.5.3-py3-none-any.whl",
+      "size": 44415,
+      "compressed_size": 42313,
+      "sha256": "CF2196ED3418F3BA5DE6AF7E82C694A9FBDBFECCCDFC72E281548517081F16CA",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/tabulate-0.9.0-py3-none-any.whl",
+      "size": 35252,
+      "compressed_size": 34665,
+      "sha256": "024CA478DF22E9340661486F85298CFF5F6DCDBA14F3813E8830015B9ED1948F",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/tiktoken-0.8.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "size": 1175432,
+      "compressed_size": 1155348,
+      "sha256": "D2908C0D043A7D03EBD80347266B0E58440BDEF5564F84F4D29FB235B5DF3B04",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/typing_extensions-4.15.0-py3-none-any.whl",
+      "size": 44614,
+      "compressed_size": 44223,
+      "sha256": "F0FA19C6845758AB08074A0CFA8B7AECB71C999CA73D62883BC25CC018C4E548",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/typing_inspection-0.4.2-py3-none-any.whl",
+      "size": 14611,
+      "compressed_size": 13742,
+      "sha256": "4ED1CACBDC298C220F1BD249ED5287CAA16F34D44EF4E9C3D0CBAD5B521545E7",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/tzdata-2026.2-py2.py3-none-any.whl",
+      "size": 349321,
+      "compressed_size": 238382,
+      "sha256": "BBE9AF844F658DA81A5F95019480DA3A89415801F6CC966806612CC7169BFFE7",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/urllib3-2.6.3-py3-none-any.whl",
+      "size": 131584,
+      "compressed_size": 128747,
+      "sha256": "BF272323E553DFB2E87D9BFD225CA7B0F467B919D7BBD355436D3FD37CB0ACD4",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/werkzeug-3.0.6-py3-none-any.whl",
+      "size": 227979,
+      "compressed_size": 222672,
+      "sha256": "1BC0C2310D2FBB07B1DD1105EBA2F7AF72F322E1E455F2F93C993BEE8C8A5F17",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/yarl-1.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "size": 100132,
+      "compressed_size": 98816,
+      "sha256": "A3D2BFF8F37F8D0F96C7EC554D16945050D54462D6E95414BABAA18BFAFC7F51",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/zope_event-6.2-py3-none-any.whl",
+      "size": 6525,
+      "compressed_size": 5881,
+      "sha256": "5E755153AC4FAF64C10A4B6DD3307680166A3EDF65B38DF22DF592610F8FA874",
+      "encrypted": false
+    },
+    {
+      "path": "wheels/zope_interface-8.4-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl",
+      "size": 269829,
+      "compressed_size": 264203,
+      "sha256": "EEF0A49E041F4DC4D2A6AB894B4FD0C5354E0E8037E731FB953531E59B0D3D33",
+      "encrypted": false
+    }
+  ],
+  "sensitive_inventory": {
+    "env_example": [
+      {
+        "key": "INSTALL_METHOD",
+        "nonempty": true,
+        "length": 6,
+        "value_recorded": false
+      },
+      {
+        "key": "REMOTE_INSTALL_HOST",
+        "nonempty": true,
+        "length": 21,
+        "value_recorded": false
+      },
+      {
+        "key": "REMOTE_INSTALL_PORT",
+        "nonempty": true,
+        "length": 4,
+        "value_recorded": false
+      },
+      {
+        "key": "REMOTE_INSTALL_KEY",
+        "nonempty": true,
+        "length": 36,
+        "value_recorded": false
+      }
+    ],
+    "private_key_files": [],
+    "credential_files": [],
+    "potential_nonempty_remote_install_key": true,
+    "raw_values_recorded": false
+  },
+  "redistribution": "ANALYSIS_ALLOWED / PUBLIC_REDISTRIBUTION_NOT_ASSUMED"
+}
