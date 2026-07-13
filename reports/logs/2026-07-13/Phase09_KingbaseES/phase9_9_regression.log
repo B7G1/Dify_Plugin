@@ -1,0 +1,12 @@
+2026-07-13 Phase 9.9 targeted regression (redacted)
+Source: kingbasees_phase9_9_regression.json
+Status: PASS
+Cases: 7 passed, 0 failed, 0 skipped
+- PostgreSQL Provider real validation: PASS
+- PostgreSQL Tool real SELECT 1: PASS
+- Existing DM Workflow API SELECT 1: PASS
+- Provider schema: PASS
+- Tool schema: PASS
+- Active installed plugin identifier unchanged: PASS
+- Adapter and dialect identity: PASS
+No full cross-database or DM8 final-release claim is made by this gate.

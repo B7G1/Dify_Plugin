@@ -1,0 +1,11 @@
+2026-07-13 Phase 9.9 security cases (redacted)
+Source: kingbasees_phase9_9_workflow_security.json
+Status: PASS
+Cases: 5 passed, 0 failed, 0 skipped
+- dml_rejection: ReadOnlyViolationError
+- ddl_rejection: ReadOnlyViolationError
+- multi_statement_rejection: ReadOnlyViolationError
+- database_error_redaction: SqlExecutionError with no credential or secret disclosure
+- database_integrity_after_rejection: fixture probe for id=999 returned count 0
+Validation layer: public SQL validator blocked prohibited statements before database permission handling.
+Database account: dedicated read-only KingbaseES credential from Phase 9.8.

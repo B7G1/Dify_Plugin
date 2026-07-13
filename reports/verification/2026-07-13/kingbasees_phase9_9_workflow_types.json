@@ -1,0 +1,382 @@
+{
+  "suite": "kingbasees_phase9_9_workflow_types",
+  "generated_at": "2026-07-13T08:02:15.336296+00:00",
+  "status": "PASS",
+  "summary": {
+    "pass": 5,
+    "fail": 0,
+    "skip": 0
+  },
+  "cases": [
+    {
+      "case": "unicode",
+      "expected": "real Workflow API returns exact installed KingbaseES data",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "326e2df7-13f3-4968-b108-ce99651dc054",
+        "task_id": "7b788729-2a15-411e-ae55-fe0c94d30c89",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT unicode_text FROM phase97_fixture.sample_data WHERE id=1",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-unicode"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "unicode_text"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 55,
+              "generated_at": "2026-07-13T08:02:12.976Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "unicode_text": "金仓只读验证"
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "unicode_text"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 55,
+          "generated_at": "2026-07-13T08:02:12.976Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "unicode_text": "金仓只读验证"
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 229.888,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 235.259,
+      "error": null
+    },
+    {
+      "case": "null",
+      "expected": "real Workflow API returns exact installed KingbaseES data",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "ed802465-c884-4646-8c0c-45ee5e87250b",
+        "task_id": "0ead6d2d-dd8f-4b5c-97d6-77ac8f587e8c",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT nullable_text FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-null"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "nullable_text"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 51,
+              "generated_at": "2026-07-13T08:02:13.206Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "nullable_text": null
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "nullable_text"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 51,
+          "generated_at": "2026-07-13T08:02:13.206Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "nullable_text": null
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 224.291,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 229.422,
+      "error": null
+    },
+    {
+      "case": "numeric",
+      "expected": "real Workflow API returns exact installed KingbaseES data",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "80c0c2cb-4f9d-4474-b722-e797f05dcbef",
+        "task_id": "d04b06cf-e465-4603-84bf-00b27c00fda5",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT amount FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-numeric"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "amount"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 60,
+              "generated_at": "2026-07-13T08:02:13.453Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "amount": "2.50"
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "amount"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 60,
+          "generated_at": "2026-07-13T08:02:13.453Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "amount": "2.50"
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 239.981,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 244.137,
+      "error": null
+    },
+    {
+      "case": "date",
+      "expected": "real Workflow API returns exact installed KingbaseES data",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "540aea3d-e651-445b-b4c4-6fdb24b949c5",
+        "task_id": "bce5a8b7-0850-411a-ac5e-9ea536fea204",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT event_date FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-date"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "event_date"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 53,
+              "generated_at": "2026-07-13T08:02:13.675Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "event_date": "2026-07-02"
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "event_date"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 53,
+          "generated_at": "2026-07-13T08:02:13.675Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "event_date": "2026-07-02"
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 230.953,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 236.395,
+      "error": null
+    },
+    {
+      "case": "timestamp",
+      "expected": "real Workflow API returns exact installed KingbaseES data",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "f3931852-7765-434c-999e-5b9145780e8f",
+        "task_id": "309cc9e1-9239-4f47-b7f3-da893b93bca4",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT event_time FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-timestamp"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "event_time"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 66,
+              "generated_at": "2026-07-13T08:02:13.949Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "event_time": "2026-07-02 12:34:56"
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "event_time"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 66,
+          "generated_at": "2026-07-13T08:02:13.949Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "event_time": "2026-07-02 12:34:56"
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 270.493,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 276.38,
+      "error": null
+    }
+  ]
+}

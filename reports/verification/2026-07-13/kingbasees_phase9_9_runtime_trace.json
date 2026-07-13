@@ -1,0 +1,4400 @@
+{
+  "suite": "kingbasees_phase9_9_runtime_trace",
+  "generated_at": "2026-07-13T08:02:18.148572+00:00",
+  "status": "PASS",
+  "active_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+  "installed_runtime_root": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+  "api_call_count": 22,
+  "traces": [
+    {
+      "case": "select_1",
+      "workflow_run_id": "56e3ab9a-4a85-47f2-8e0c-eb90408f598a",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT 1 AS probe",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-select_1",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "56e3ab9a-4a85-47f2-8e0c-eb90408f598a",
+        "sys.timestamp": 1783929732
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "probe"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 158,
+            "generated_at": "2026-07-13T08:02:12.411Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "probe": 1
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.405274,
+      "nodes": [
+        {
+          "execution_id": "f3d3243e-fdd7-4e45-818e-14ea1e6f9c9d",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-select_1",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "56e3ab9a-4a85-47f2-8e0c-eb90408f598a",
+            "sys.timestamp": 1783929732
+          },
+          "outputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-select_1",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "56e3ab9a-4a85-47f2-8e0c-eb90408f598a",
+            "sys.timestamp": 1783929732
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000319
+        },
+        {
+          "execution_id": "81ab8e1a-6211-46b8-88e5-d640ca6c3767",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 158,
+                "generated_at": "2026-07-13T08:02:12.411Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.293557
+        },
+        {
+          "execution_id": "4bb00e06-19e7-4ff1-bd13-1a876d3390a8",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 158,
+                "generated_at": "2026-07-13T08:02:12.411Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 158,
+                "generated_at": "2026-07-13T08:02:12.411Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000105
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "fixture_rows",
+      "workflow_run_id": "2bb536d9-fbba-4500-b584-5773b9846b56",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-fixture_rows",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "2bb536d9-fbba-4500-b584-5773b9846b56",
+        "sys.timestamp": 1783929732
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "id",
+              "label"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 69,
+            "generated_at": "2026-07-13T08:02:12.714Z",
+            "max_rows": 100,
+            "row_count": 12,
+            "rows": [
+              {
+                "id": 1,
+                "label": "row-01"
+              },
+              {
+                "id": 2,
+                "label": "row-02"
+              },
+              {
+                "id": 3,
+                "label": "row-03"
+              },
+              {
+                "id": 4,
+                "label": "row-04"
+              },
+              {
+                "id": 5,
+                "label": "row-05"
+              },
+              {
+                "id": 6,
+                "label": "row-06"
+              },
+              {
+                "id": 7,
+                "label": "row-07"
+              },
+              {
+                "id": 8,
+                "label": "row-08"
+              },
+              {
+                "id": 9,
+                "label": "row-09"
+              },
+              {
+                "id": 10,
+                "label": "row-10"
+              },
+              {
+                "id": 11,
+                "label": "row-11"
+              },
+              {
+                "id": 12,
+                "label": "row-12"
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.237573,
+      "nodes": [
+        {
+          "execution_id": "e474125d-311b-4356-b34c-32d8788c361d",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-fixture_rows",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "2bb536d9-fbba-4500-b584-5773b9846b56",
+            "sys.timestamp": 1783929732
+          },
+          "outputs": {
+            "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-fixture_rows",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "2bb536d9-fbba-4500-b584-5773b9846b56",
+            "sys.timestamp": 1783929732
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000108
+        },
+        {
+          "execution_id": "edd42fcf-2d27-41a6-8984-083ff79218d7",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "id",
+                  "label"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 69,
+                "generated_at": "2026-07-13T08:02:12.714Z",
+                "max_rows": 100,
+                "row_count": 12,
+                "rows": [
+                  {
+                    "id": 1,
+                    "label": "row-01"
+                  },
+                  {
+                    "id": 2,
+                    "label": "row-02"
+                  },
+                  {
+                    "id": 3,
+                    "label": "row-03"
+                  },
+                  {
+                    "id": 4,
+                    "label": "row-04"
+                  },
+                  {
+                    "id": 5,
+                    "label": "row-05"
+                  },
+                  {
+                    "id": 6,
+                    "label": "row-06"
+                  },
+                  {
+                    "id": 7,
+                    "label": "row-07"
+                  },
+                  {
+                    "id": 8,
+                    "label": "row-08"
+                  },
+                  {
+                    "id": 9,
+                    "label": "row-09"
+                  },
+                  {
+                    "id": 10,
+                    "label": "row-10"
+                  },
+                  {
+                    "id": 11,
+                    "label": "row-11"
+                  },
+                  {
+                    "id": 12,
+                    "label": "row-12"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.154587
+        },
+        {
+          "execution_id": "aee98b28-58fb-4dd1-82a6-39ecd3b770b5",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "id",
+                  "label"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 69,
+                "generated_at": "2026-07-13T08:02:12.714Z",
+                "max_rows": 100,
+                "row_count": 12,
+                "rows": [
+                  {
+                    "id": 1,
+                    "label": "row-01"
+                  },
+                  {
+                    "id": 2,
+                    "label": "row-02"
+                  },
+                  {
+                    "id": 3,
+                    "label": "row-03"
+                  },
+                  {
+                    "id": 4,
+                    "label": "row-04"
+                  },
+                  {
+                    "id": 5,
+                    "label": "row-05"
+                  },
+                  {
+                    "id": 6,
+                    "label": "row-06"
+                  },
+                  {
+                    "id": 7,
+                    "label": "row-07"
+                  },
+                  {
+                    "id": 8,
+                    "label": "row-08"
+                  },
+                  {
+                    "id": 9,
+                    "label": "row-09"
+                  },
+                  {
+                    "id": 10,
+                    "label": "row-10"
+                  },
+                  {
+                    "id": 11,
+                    "label": "row-11"
+                  },
+                  {
+                    "id": 12,
+                    "label": "row-12"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "id",
+                  "label"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 69,
+                "generated_at": "2026-07-13T08:02:12.714Z",
+                "max_rows": 100,
+                "row_count": 12,
+                "rows": [
+                  {
+                    "id": 1,
+                    "label": "row-01"
+                  },
+                  {
+                    "id": 2,
+                    "label": "row-02"
+                  },
+                  {
+                    "id": 3,
+                    "label": "row-03"
+                  },
+                  {
+                    "id": 4,
+                    "label": "row-04"
+                  },
+                  {
+                    "id": 5,
+                    "label": "row-05"
+                  },
+                  {
+                    "id": 6,
+                    "label": "row-06"
+                  },
+                  {
+                    "id": 7,
+                    "label": "row-07"
+                  },
+                  {
+                    "id": 8,
+                    "label": "row-08"
+                  },
+                  {
+                    "id": 9,
+                    "label": "row-09"
+                  },
+                  {
+                    "id": 10,
+                    "label": "row-10"
+                  },
+                  {
+                    "id": 11,
+                    "label": "row-11"
+                  },
+                  {
+                    "id": 12,
+                    "label": "row-12"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000144
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "unicode",
+      "workflow_run_id": "326e2df7-13f3-4968-b108-ce99651dc054",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT unicode_text FROM phase97_fixture.sample_data WHERE id=1",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-unicode",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "326e2df7-13f3-4968-b108-ce99651dc054",
+        "sys.timestamp": 1783929732
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "unicode_text"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 55,
+            "generated_at": "2026-07-13T08:02:12.976Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "unicode_text": "金仓只读验证"
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.203223,
+      "nodes": [
+        {
+          "execution_id": "ef1eac85-22a3-4268-834e-b5c448e78ba2",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT unicode_text FROM phase97_fixture.sample_data WHERE id=1",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-unicode",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "326e2df7-13f3-4968-b108-ce99651dc054",
+            "sys.timestamp": 1783929732
+          },
+          "outputs": {
+            "sql": "SELECT unicode_text FROM phase97_fixture.sample_data WHERE id=1",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-unicode",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "326e2df7-13f3-4968-b108-ce99651dc054",
+            "sys.timestamp": 1783929732
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000105
+        },
+        {
+          "execution_id": "41bfae5b-ca0e-4151-b7f8-900a1007bb0b",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT unicode_text FROM phase97_fixture.sample_data WHERE id=1"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "unicode_text"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 55,
+                "generated_at": "2026-07-13T08:02:12.976Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "unicode_text": "金仓只读验证"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.141301
+        },
+        {
+          "execution_id": "c0d53012-15ea-4d37-8844-0bec8854003b",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "unicode_text"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 55,
+                "generated_at": "2026-07-13T08:02:12.976Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "unicode_text": "金仓只读验证"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "unicode_text"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 55,
+                "generated_at": "2026-07-13T08:02:12.976Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "unicode_text": "金仓只读验证"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 8.8e-05
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "null",
+      "workflow_run_id": "ed802465-c884-4646-8c0c-45ee5e87250b",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT nullable_text FROM phase97_fixture.sample_data WHERE id=2",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-null",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "ed802465-c884-4646-8c0c-45ee5e87250b",
+        "sys.timestamp": 1783929733
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "nullable_text"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 51,
+            "generated_at": "2026-07-13T08:02:13.206Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "nullable_text": null
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.194761,
+      "nodes": [
+        {
+          "execution_id": "8dfb5612-edc8-4c39-8fce-fb9d2bdbfa79",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT nullable_text FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-null",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "ed802465-c884-4646-8c0c-45ee5e87250b",
+            "sys.timestamp": 1783929733
+          },
+          "outputs": {
+            "sql": "SELECT nullable_text FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-null",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "ed802465-c884-4646-8c0c-45ee5e87250b",
+            "sys.timestamp": 1783929733
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000101
+        },
+        {
+          "execution_id": "4185c10b-a98a-47b6-8034-cdb0c3f0568b",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT nullable_text FROM phase97_fixture.sample_data WHERE id=2"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "nullable_text"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 51,
+                "generated_at": "2026-07-13T08:02:13.206Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "nullable_text": null
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.134542
+        },
+        {
+          "execution_id": "332d1f80-3942-4525-b396-29efbbc83f54",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "nullable_text"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 51,
+                "generated_at": "2026-07-13T08:02:13.206Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "nullable_text": null
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "nullable_text"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 51,
+                "generated_at": "2026-07-13T08:02:13.206Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "nullable_text": null
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.00018
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "numeric",
+      "workflow_run_id": "80c0c2cb-4f9d-4474-b722-e797f05dcbef",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT amount FROM phase97_fixture.sample_data WHERE id=2",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-numeric",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "80c0c2cb-4f9d-4474-b722-e797f05dcbef",
+        "sys.timestamp": 1783929733
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "amount"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 60,
+            "generated_at": "2026-07-13T08:02:13.453Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "amount": "2.50"
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.20889,
+      "nodes": [
+        {
+          "execution_id": "4e8d7350-0d4d-48fd-9464-d59a14bc553d",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT amount FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-numeric",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "80c0c2cb-4f9d-4474-b722-e797f05dcbef",
+            "sys.timestamp": 1783929733
+          },
+          "outputs": {
+            "sql": "SELECT amount FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-numeric",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "80c0c2cb-4f9d-4474-b722-e797f05dcbef",
+            "sys.timestamp": 1783929733
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000308
+        },
+        {
+          "execution_id": "f92e40fc-9346-4b18-919e-5cc100e1d2e4",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT amount FROM phase97_fixture.sample_data WHERE id=2"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "amount"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:13.453Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "amount": "2.50"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.146393
+        },
+        {
+          "execution_id": "7a633bc5-4eb1-4239-98fe-c9463c72b230",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "amount"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:13.453Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "amount": "2.50"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "amount"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:13.453Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "amount": "2.50"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000144
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "date",
+      "workflow_run_id": "540aea3d-e651-445b-b4c4-6fdb24b949c5",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT event_date FROM phase97_fixture.sample_data WHERE id=2",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-date",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "540aea3d-e651-445b-b4c4-6fdb24b949c5",
+        "sys.timestamp": 1783929733
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "event_date"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 53,
+            "generated_at": "2026-07-13T08:02:13.675Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "event_date": "2026-07-02"
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.202499,
+      "nodes": [
+        {
+          "execution_id": "1f0b9d1a-1457-4dd4-85e3-1a8d484667cd",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT event_date FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-date",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "540aea3d-e651-445b-b4c4-6fdb24b949c5",
+            "sys.timestamp": 1783929733
+          },
+          "outputs": {
+            "sql": "SELECT event_date FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-date",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "540aea3d-e651-445b-b4c4-6fdb24b949c5",
+            "sys.timestamp": 1783929733
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 9.9e-05
+        },
+        {
+          "execution_id": "8558ed27-445a-43f4-bb93-75bcc03d2030",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT event_date FROM phase97_fixture.sample_data WHERE id=2"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "event_date"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 53,
+                "generated_at": "2026-07-13T08:02:13.675Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "event_date": "2026-07-02"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.133292
+        },
+        {
+          "execution_id": "dcb2976d-6028-453c-95e5-09e6d875eb6e",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "event_date"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 53,
+                "generated_at": "2026-07-13T08:02:13.675Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "event_date": "2026-07-02"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "event_date"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 53,
+                "generated_at": "2026-07-13T08:02:13.675Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "event_date": "2026-07-02"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000103
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "timestamp",
+      "workflow_run_id": "f3931852-7765-434c-999e-5b9145780e8f",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT event_time FROM phase97_fixture.sample_data WHERE id=2",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-timestamp",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "f3931852-7765-434c-999e-5b9145780e8f",
+        "sys.timestamp": 1783929733
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "event_time"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 66,
+            "generated_at": "2026-07-13T08:02:13.949Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "event_time": "2026-07-02 12:34:56"
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.234871,
+      "nodes": [
+        {
+          "execution_id": "588964c9-6d27-46c8-a519-0f871498f8d1",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT event_time FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-timestamp",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "f3931852-7765-434c-999e-5b9145780e8f",
+            "sys.timestamp": 1783929733
+          },
+          "outputs": {
+            "sql": "SELECT event_time FROM phase97_fixture.sample_data WHERE id=2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-timestamp",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "f3931852-7765-434c-999e-5b9145780e8f",
+            "sys.timestamp": 1783929733
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000142
+        },
+        {
+          "execution_id": "82575597-15a0-444f-90df-3502d78ec0df",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT event_time FROM phase97_fixture.sample_data WHERE id=2"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "event_time"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 66,
+                "generated_at": "2026-07-13T08:02:13.949Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "event_time": "2026-07-02 12:34:56"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.158185
+        },
+        {
+          "execution_id": "7c9a04e3-ea11-41a7-a5a5-ba62579e1110",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "event_time"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 66,
+                "generated_at": "2026-07-13T08:02:13.949Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "event_time": "2026-07-02 12:34:56"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "event_time"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 66,
+                "generated_at": "2026-07-13T08:02:13.949Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "event_time": "2026-07-02 12:34:56"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000121
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "schema_qualified",
+      "workflow_run_id": "157be0a9-861a-4900-872b-3251e1530678",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT COUNT(*) AS total FROM phase97_fixture.sample_data",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-schema_qualified",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "157be0a9-861a-4900-872b-3251e1530678",
+        "sys.timestamp": 1783929734
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "total"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 60,
+            "generated_at": "2026-07-13T08:02:14.215Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "total": 12
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.208134,
+      "nodes": [
+        {
+          "execution_id": "ec628a96-63a9-43b5-9cae-ac2b885eb5ae",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT COUNT(*) AS total FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-schema_qualified",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "157be0a9-861a-4900-872b-3251e1530678",
+            "sys.timestamp": 1783929734
+          },
+          "outputs": {
+            "sql": "SELECT COUNT(*) AS total FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-schema_qualified",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "157be0a9-861a-4900-872b-3251e1530678",
+            "sys.timestamp": 1783929734
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000172
+        },
+        {
+          "execution_id": "afc8b014-af9b-4b12-a639-f926916f0d6b",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT COUNT(*) AS total FROM phase97_fixture.sample_data"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "total"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:14.215Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "total": 12
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.146437
+        },
+        {
+          "execution_id": "c4e7a36b-bd23-4d99-a72c-dff9c57c03c9",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "total"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:14.215Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "total": 12
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "total"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:14.215Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "total": 12
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 9e-05
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "max_rows",
+      "workflow_run_id": "48f68453-81ac-48ad-9483-26ecbdd55dac",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id",
+        "max_rows": 5,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-max_rows",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "48f68453-81ac-48ad-9483-26ecbdd55dac",
+        "sys.timestamp": 1783929734
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "id"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 63,
+            "generated_at": "2026-07-13T08:02:14.456Z",
+            "max_rows": 5,
+            "row_count": 5,
+            "rows": [
+              {
+                "id": 1
+              },
+              {
+                "id": 2
+              },
+              {
+                "id": 3
+              },
+              {
+                "id": 4
+              },
+              {
+                "id": 5
+              }
+            ],
+            "success": true,
+            "truncated": true,
+            "warning": "Result was truncated to max_rows=5."
+          }
+        ]
+      },
+      "elapsed_time": 0.214973,
+      "nodes": [
+        {
+          "execution_id": "e84dfda1-9c3e-40dd-b29d-ed8a244cb675",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id",
+            "max_rows": 5,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-max_rows",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "48f68453-81ac-48ad-9483-26ecbdd55dac",
+            "sys.timestamp": 1783929734
+          },
+          "outputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id",
+            "max_rows": 5,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-max_rows",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "48f68453-81ac-48ad-9483-26ecbdd55dac",
+            "sys.timestamp": 1783929734
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 9.7e-05
+        },
+        {
+          "execution_id": "056e0fbf-8d99-444f-ac5e-b2609511b1fe",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 63,
+                "generated_at": "2026-07-13T08:02:14.456Z",
+                "max_rows": 5,
+                "row_count": 5,
+                "rows": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  },
+                  {
+                    "id": 3
+                  },
+                  {
+                    "id": 4
+                  },
+                  {
+                    "id": 5
+                  }
+                ],
+                "success": true,
+                "truncated": true,
+                "warning": "Result was truncated to max_rows=5."
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.146442
+        },
+        {
+          "execution_id": "a91c1894-8395-4d1f-a382-e77a28925929",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 63,
+                "generated_at": "2026-07-13T08:02:14.456Z",
+                "max_rows": 5,
+                "row_count": 5,
+                "rows": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  },
+                  {
+                    "id": 3
+                  },
+                  {
+                    "id": 4
+                  },
+                  {
+                    "id": 5
+                  }
+                ],
+                "success": true,
+                "truncated": true,
+                "warning": "Result was truncated to max_rows=5."
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 63,
+                "generated_at": "2026-07-13T08:02:14.456Z",
+                "max_rows": 5,
+                "row_count": 5,
+                "rows": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  },
+                  {
+                    "id": 3
+                  },
+                  {
+                    "id": 4
+                  },
+                  {
+                    "id": 5
+                  }
+                ],
+                "success": true,
+                "truncated": true,
+                "warning": "Result was truncated to max_rows=5."
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000103
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "empty_result",
+      "workflow_run_id": "802e7c32-db10-492e-a664-bf965bc971d8",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT id FROM phase97_fixture.sample_data WHERE id<0",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-empty_result",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "802e7c32-db10-492e-a664-bf965bc971d8",
+        "sys.timestamp": 1783929734
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "id"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 64,
+            "generated_at": "2026-07-13T08:02:14.709Z",
+            "max_rows": 100,
+            "row_count": 0,
+            "rows": [],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.222691,
+      "nodes": [
+        {
+          "execution_id": "32bb6da8-453c-4394-af9b-0ccc44e977d7",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data WHERE id<0",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-empty_result",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "802e7c32-db10-492e-a664-bf965bc971d8",
+            "sys.timestamp": 1783929734
+          },
+          "outputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data WHERE id<0",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-empty_result",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "802e7c32-db10-492e-a664-bf965bc971d8",
+            "sys.timestamp": 1783929734
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000108
+        },
+        {
+          "execution_id": "ea7dbe64-5cd9-47ed-a8e6-00d1657ec42b",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data WHERE id<0"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 64,
+                "generated_at": "2026-07-13T08:02:14.709Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.150869
+        },
+        {
+          "execution_id": "240edd58-8583-4118-b9ad-5b0ce8b4f166",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 64,
+                "generated_at": "2026-07-13T08:02:14.709Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 64,
+                "generated_at": "2026-07-13T08:02:14.709Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000105
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "aggregate",
+      "workflow_run_id": "0547b210-4e01-4e77-89f4-7fbe1879fe2a",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT SUM(amount) AS total FROM phase97_fixture.sample_data",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-aggregate",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "0547b210-4e01-4e77-89f4-7fbe1879fe2a",
+        "sys.timestamp": 1783929734
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "total"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 60,
+            "generated_at": "2026-07-13T08:02:15.003Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "total": "84.00"
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.243546,
+      "nodes": [
+        {
+          "execution_id": "26c894ce-8c8e-48e8-9b76-5b9101f72a59",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT SUM(amount) AS total FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-aggregate",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "0547b210-4e01-4e77-89f4-7fbe1879fe2a",
+            "sys.timestamp": 1783929734
+          },
+          "outputs": {
+            "sql": "SELECT SUM(amount) AS total FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-aggregate",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "0547b210-4e01-4e77-89f4-7fbe1879fe2a",
+            "sys.timestamp": 1783929734
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000391
+        },
+        {
+          "execution_id": "122c7d06-d619-4a6e-89df-e0aa68469b0b",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT SUM(amount) AS total FROM phase97_fixture.sample_data"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "total"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:15.003Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "total": "84.00"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.170454
+        },
+        {
+          "execution_id": "cf4f3134-7b90-47a1-a8cc-ebdba3b3aecc",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "total"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:15.003Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "total": "84.00"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "total"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 60,
+                "generated_at": "2026-07-13T08:02:15.003Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "total": "84.00"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000165
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "order_by",
+      "workflow_run_id": "ff2a6cb1-29f7-4708-bf2e-41fa2a600bf9",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id DESC",
+        "max_rows": 3,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-order_by",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "ff2a6cb1-29f7-4708-bf2e-41fa2a600bf9",
+        "sys.timestamp": 1783929735
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "id"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 59,
+            "generated_at": "2026-07-13T08:02:15.264Z",
+            "max_rows": 3,
+            "row_count": 3,
+            "rows": [
+              {
+                "id": 12
+              },
+              {
+                "id": 11
+              },
+              {
+                "id": 10
+              }
+            ],
+            "success": true,
+            "truncated": true,
+            "warning": "Result was truncated to max_rows=3."
+          }
+        ]
+      },
+      "elapsed_time": 0.215686,
+      "nodes": [
+        {
+          "execution_id": "ff43c5f4-2f65-4d70-a794-3c9aafd4a0b4",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id DESC",
+            "max_rows": 3,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-order_by",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "ff2a6cb1-29f7-4708-bf2e-41fa2a600bf9",
+            "sys.timestamp": 1783929735
+          },
+          "outputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id DESC",
+            "max_rows": 3,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-order_by",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "ff2a6cb1-29f7-4708-bf2e-41fa2a600bf9",
+            "sys.timestamp": 1783929735
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000173
+        },
+        {
+          "execution_id": "1f1ed5c8-f44c-40e2-be72-9fd0b8f174be",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id FROM phase97_fixture.sample_data ORDER BY id DESC"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 59,
+                "generated_at": "2026-07-13T08:02:15.264Z",
+                "max_rows": 3,
+                "row_count": 3,
+                "rows": [
+                  {
+                    "id": 12
+                  },
+                  {
+                    "id": 11
+                  },
+                  {
+                    "id": 10
+                  }
+                ],
+                "success": true,
+                "truncated": true,
+                "warning": "Result was truncated to max_rows=3."
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.148638
+        },
+        {
+          "execution_id": "6b3eebae-bda2-4cf4-8dd2-5c6f4dfcb472",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 59,
+                "generated_at": "2026-07-13T08:02:15.264Z",
+                "max_rows": 3,
+                "row_count": 3,
+                "rows": [
+                  {
+                    "id": 12
+                  },
+                  {
+                    "id": 11
+                  },
+                  {
+                    "id": 10
+                  }
+                ],
+                "success": true,
+                "truncated": true,
+                "warning": "Result was truncated to max_rows=3."
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "id"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 59,
+                "generated_at": "2026-07-13T08:02:15.264Z",
+                "max_rows": 3,
+                "row_count": 3,
+                "rows": [
+                  {
+                    "id": 12
+                  },
+                  {
+                    "id": 11
+                  },
+                  {
+                    "id": 10
+                  }
+                ],
+                "success": true,
+                "truncated": true,
+                "warning": "Result was truncated to max_rows=3."
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000177
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "dml_rejection",
+      "workflow_run_id": "d4db57c2-a609-4169-b1b6-9a2e1519a946",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "INSERT INTO phase97_fixture.sample_data (id, label) VALUES (999, 'blocked')",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-dml_rejection",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "d4db57c2-a609-4169-b1b6-9a2e1519a946",
+        "sys.timestamp": 1783929735
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [],
+            "database_type": null,
+            "error": {
+              "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+              "type": "ReadOnlyViolationError"
+            },
+            "execution_time_ms": 0,
+            "generated_at": "2026-07-13T08:02:15.531Z",
+            "max_rows": 100,
+            "row_count": 0,
+            "rows": [],
+            "success": false,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.219998,
+      "nodes": [
+        {
+          "execution_id": "f7111591-fa25-47c2-9b44-335590d7d456",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "INSERT INTO phase97_fixture.sample_data (id, label) VALUES (999, 'blocked')",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-dml_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "d4db57c2-a609-4169-b1b6-9a2e1519a946",
+            "sys.timestamp": 1783929735
+          },
+          "outputs": {
+            "sql": "INSERT INTO phase97_fixture.sample_data (id, label) VALUES (999, 'blocked')",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-dml_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "d4db57c2-a609-4169-b1b6-9a2e1519a946",
+            "sys.timestamp": 1783929735
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000181
+        },
+        {
+          "execution_id": "ed865411-5a06-4e12-ab0a-aa4802ad2c67",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "INSERT INTO phase97_fixture.sample_data (id, label) VALUES (999, 'blocked')"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.531Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.147232
+        },
+        {
+          "execution_id": "5972aeff-fdde-4131-87e7-9ed04fe1f726",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.531Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.531Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000113
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "ddl_rejection",
+      "workflow_run_id": "a205de5f-e945-4f46-bcf3-16d6259143fa",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "CREATE TABLE phase97_fixture.phase99_blocked(id int)",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-ddl_rejection",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "a205de5f-e945-4f46-bcf3-16d6259143fa",
+        "sys.timestamp": 1783929735
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [],
+            "database_type": null,
+            "error": {
+              "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+              "type": "ReadOnlyViolationError"
+            },
+            "execution_time_ms": 0,
+            "generated_at": "2026-07-13T08:02:15.749Z",
+            "max_rows": 100,
+            "row_count": 0,
+            "rows": [],
+            "success": false,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.168365,
+      "nodes": [
+        {
+          "execution_id": "66df77ce-16df-406f-ad09-7a1918ba4adf",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "CREATE TABLE phase97_fixture.phase99_blocked(id int)",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-ddl_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "a205de5f-e945-4f46-bcf3-16d6259143fa",
+            "sys.timestamp": 1783929735
+          },
+          "outputs": {
+            "sql": "CREATE TABLE phase97_fixture.phase99_blocked(id int)",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-ddl_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "a205de5f-e945-4f46-bcf3-16d6259143fa",
+            "sys.timestamp": 1783929735
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000107
+        },
+        {
+          "execution_id": "06499065-ffb0-41bd-81db-fa7a6b91e30e",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "CREATE TABLE phase97_fixture.phase99_blocked(id int)"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.749Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.105906
+        },
+        {
+          "execution_id": "bbedfb1c-a9f6-41ed-8ca3-5d037b11ac2b",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.749Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.749Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000113
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "multi_statement_rejection",
+      "workflow_run_id": "db0f059c-bf19-4b10-b856-60efe15239c4",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT 1; SELECT 2",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-multi_statement_rejection",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "db0f059c-bf19-4b10-b856-60efe15239c4",
+        "sys.timestamp": 1783929735
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [],
+            "database_type": null,
+            "error": {
+              "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+              "type": "ReadOnlyViolationError"
+            },
+            "execution_time_ms": 0,
+            "generated_at": "2026-07-13T08:02:15.976Z",
+            "max_rows": 100,
+            "row_count": 0,
+            "rows": [],
+            "success": false,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.180636,
+      "nodes": [
+        {
+          "execution_id": "ca044fd6-7009-4ae3-9685-67991fef169a",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1; SELECT 2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-multi_statement_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "db0f059c-bf19-4b10-b856-60efe15239c4",
+            "sys.timestamp": 1783929735
+          },
+          "outputs": {
+            "sql": "SELECT 1; SELECT 2",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-multi_statement_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "db0f059c-bf19-4b10-b856-60efe15239c4",
+            "sys.timestamp": 1783929735
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000157
+        },
+        {
+          "execution_id": "1f593165-503f-4598-ba53-4270f29aeaa8",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1; SELECT 2"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.976Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.099964
+        },
+        {
+          "execution_id": "16d104c2-af09-4658-8927-68e8ca6be9f2",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.976Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:15.976Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.00013
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "database_error_redaction",
+      "workflow_run_id": "38496c6e-3345-4231-a83c-1774acc344ae",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT phase99_missing_column FROM phase97_fixture.sample_data",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-database_error_redaction",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "38496c6e-3345-4231-a83c-1774acc344ae",
+        "sys.timestamp": 1783929736
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [],
+            "database_type": "kingbasees",
+            "error": {
+              "message": "SQL execution failed. Check SQL syntax and referenced database objects.",
+              "type": "SqlExecutionError"
+            },
+            "execution_time_ms": 0,
+            "generated_at": "2026-07-13T08:02:16.312Z",
+            "max_rows": 100,
+            "row_count": 0,
+            "rows": [],
+            "success": false,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.27238,
+      "nodes": [
+        {
+          "execution_id": "69f77b80-6d89-4e5a-a3c0-a622394f7870",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT phase99_missing_column FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-database_error_redaction",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "38496c6e-3345-4231-a83c-1774acc344ae",
+            "sys.timestamp": 1783929736
+          },
+          "outputs": {
+            "sql": "SELECT phase99_missing_column FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-database_error_redaction",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "38496c6e-3345-4231-a83c-1774acc344ae",
+            "sys.timestamp": 1783929736
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000249
+        },
+        {
+          "execution_id": "d6ca761e-7eef-4fbf-845e-7382bd5a7a69",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT phase99_missing_column FROM phase97_fixture.sample_data"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [],
+                "database_type": "kingbasees",
+                "error": {
+                  "message": "SQL execution failed. Check SQL syntax and referenced database objects.",
+                  "type": "SqlExecutionError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:16.312Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.199126
+        },
+        {
+          "execution_id": "acfbf493-0259-4266-a030-7a972c340716",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": "kingbasees",
+                "error": {
+                  "message": "SQL execution failed. Check SQL syntax and referenced database objects.",
+                  "type": "SqlExecutionError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:16.312Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": "kingbasees",
+                "error": {
+                  "message": "SQL execution failed. Check SQL syntax and referenced database objects.",
+                  "type": "SqlExecutionError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:16.312Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000111
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "database_integrity_after_rejection",
+      "workflow_run_id": "b474877d-66d7-4a32-aef4-42b6128fccbf",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT COUNT(*) AS blocked_count FROM phase97_fixture.sample_data WHERE id=999",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-database_integrity_after_rejection",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "b474877d-66d7-4a32-aef4-42b6128fccbf",
+        "sys.timestamp": 1783929736
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "blocked_count"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 56,
+            "generated_at": "2026-07-13T08:02:16.574Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "blocked_count": 0
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.217586,
+      "nodes": [
+        {
+          "execution_id": "9803d8a1-26b3-4d3f-8747-16e5e1177ae5",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT COUNT(*) AS blocked_count FROM phase97_fixture.sample_data WHERE id=999",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-database_integrity_after_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "b474877d-66d7-4a32-aef4-42b6128fccbf",
+            "sys.timestamp": 1783929736
+          },
+          "outputs": {
+            "sql": "SELECT COUNT(*) AS blocked_count FROM phase97_fixture.sample_data WHERE id=999",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-database_integrity_after_rejection",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "b474877d-66d7-4a32-aef4-42b6128fccbf",
+            "sys.timestamp": 1783929736
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000108
+        },
+        {
+          "execution_id": "dd9323af-ed02-47cb-b4c6-b331f5554465",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT COUNT(*) AS blocked_count FROM phase97_fixture.sample_data WHERE id=999"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "blocked_count"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 56,
+                "generated_at": "2026-07-13T08:02:16.574Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "blocked_count": 0
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.156059
+        },
+        {
+          "execution_id": "33db0798-6645-4c1c-8fbb-f371807e876c",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "blocked_count"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 56,
+                "generated_at": "2026-07-13T08:02:16.574Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "blocked_count": 0
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "blocked_count"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 56,
+                "generated_at": "2026-07-13T08:02:16.574Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "blocked_count": 0
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000122
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "initial_success",
+      "workflow_run_id": "9863dc48-2794-407f-bba7-aaac06ff5c07",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT 1 AS probe",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-initial_success",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "9863dc48-2794-407f-bba7-aaac06ff5c07",
+        "sys.timestamp": 1783929736
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "probe"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 61,
+            "generated_at": "2026-07-13T08:02:16.814Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "probe": 1
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.22729,
+      "nodes": [
+        {
+          "execution_id": "fa7de60a-49d4-48d9-9f3c-439584d42705",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-initial_success",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "9863dc48-2794-407f-bba7-aaac06ff5c07",
+            "sys.timestamp": 1783929736
+          },
+          "outputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-initial_success",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "9863dc48-2794-407f-bba7-aaac06ff5c07",
+            "sys.timestamp": 1783929736
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000105
+        },
+        {
+          "execution_id": "47389a52-457e-4733-8636-f02e56a7f754",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 61,
+                "generated_at": "2026-07-13T08:02:16.814Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.144508
+        },
+        {
+          "execution_id": "4ea7507e-cbf8-4929-89ec-aa6090ed886c",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 61,
+                "generated_at": "2026-07-13T08:02:16.814Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 61,
+                "generated_at": "2026-07-13T08:02:16.814Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000149
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "controlled_failure",
+      "workflow_run_id": "ccd90c75-e92e-436e-b527-903c057ab047",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "DELETE FROM phase97_fixture.sample_data",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-controlled_failure",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "ccd90c75-e92e-436e-b527-903c057ab047",
+        "sys.timestamp": 1783929736
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [],
+            "database_type": null,
+            "error": {
+              "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+              "type": "ReadOnlyViolationError"
+            },
+            "execution_time_ms": 0,
+            "generated_at": "2026-07-13T08:02:17.041Z",
+            "max_rows": 100,
+            "row_count": 0,
+            "rows": [],
+            "success": false,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.17049,
+      "nodes": [
+        {
+          "execution_id": "74ab48f2-bf27-4039-a8ac-df0f8fc13bbb",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "DELETE FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-controlled_failure",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "ccd90c75-e92e-436e-b527-903c057ab047",
+            "sys.timestamp": 1783929736
+          },
+          "outputs": {
+            "sql": "DELETE FROM phase97_fixture.sample_data",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-controlled_failure",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "ccd90c75-e92e-436e-b527-903c057ab047",
+            "sys.timestamp": 1783929736
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000114
+        },
+        {
+          "execution_id": "f4c6850e-d33f-4081-9bf2-7bf40fda05f5",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "DELETE FROM phase97_fixture.sample_data"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:17.041Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.089708
+        },
+        {
+          "execution_id": "2d28f4e5-5dc4-4a9d-9dfc-2f7a5b8ab614",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:17.041Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [],
+                "database_type": null,
+                "error": {
+                  "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                  "type": "ReadOnlyViolationError"
+                },
+                "execution_time_ms": 0,
+                "generated_at": "2026-07-13T08:02:17.041Z",
+                "max_rows": 100,
+                "row_count": 0,
+                "rows": [],
+                "success": false,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000103
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "post_failure_select_1",
+      "workflow_run_id": "3ab962cd-3a43-46b7-8321-4692fad429fd",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT 1 AS probe",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-post_failure_select_1",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "3ab962cd-3a43-46b7-8321-4692fad429fd",
+        "sys.timestamp": 1783929737
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "probe"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 63,
+            "generated_at": "2026-07-13T08:02:17.317Z",
+            "max_rows": 100,
+            "row_count": 1,
+            "rows": [
+              {
+                "probe": 1
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.224865,
+      "nodes": [
+        {
+          "execution_id": "4d9eb663-12b8-433e-b615-ea312cfa13d6",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-post_failure_select_1",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "3ab962cd-3a43-46b7-8321-4692fad429fd",
+            "sys.timestamp": 1783929737
+          },
+          "outputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-post_failure_select_1",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "3ab962cd-3a43-46b7-8321-4692fad429fd",
+            "sys.timestamp": 1783929737
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000198
+        },
+        {
+          "execution_id": "ae6277a8-3d56-40c2-a1cc-ecd3ee3a4ac0",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 63,
+                "generated_at": "2026-07-13T08:02:17.317Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.153478
+        },
+        {
+          "execution_id": "1d56cacf-eec7-4254-9baa-8070771a2f82",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 63,
+                "generated_at": "2026-07-13T08:02:17.317Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 63,
+                "generated_at": "2026-07-13T08:02:17.317Z",
+                "max_rows": 100,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 8.9e-05
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "post_failure_fixture",
+      "workflow_run_id": "98e97648-78e2-4a53-8f51-3756de074cc4",
+      "app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+      "workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id",
+        "max_rows": 100,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-post_failure_fixture",
+        "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+        "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+        "sys.workflow_run_id": "98e97648-78e2-4a53-8f51-3756de074cc4",
+        "sys.timestamp": 1783929737
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "id",
+              "label"
+            ],
+            "database_type": "kingbasees",
+            "error": null,
+            "execution_time_ms": 67,
+            "generated_at": "2026-07-13T08:02:17.580Z",
+            "max_rows": 100,
+            "row_count": 12,
+            "rows": [
+              {
+                "id": 1,
+                "label": "row-01"
+              },
+              {
+                "id": 2,
+                "label": "row-02"
+              },
+              {
+                "id": 3,
+                "label": "row-03"
+              },
+              {
+                "id": 4,
+                "label": "row-04"
+              },
+              {
+                "id": 5,
+                "label": "row-05"
+              },
+              {
+                "id": 6,
+                "label": "row-06"
+              },
+              {
+                "id": 7,
+                "label": "row-07"
+              },
+              {
+                "id": 8,
+                "label": "row-08"
+              },
+              {
+                "id": 9,
+                "label": "row-09"
+              },
+              {
+                "id": 10,
+                "label": "row-10"
+              },
+              {
+                "id": 11,
+                "label": "row-11"
+              },
+              {
+                "id": 12,
+                "label": "row-12"
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.219676,
+      "nodes": [
+        {
+          "execution_id": "38599e8f-ac55-4767-aaeb-7ebba31f0ab1",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-post_failure_fixture",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "98e97648-78e2-4a53-8f51-3756de074cc4",
+            "sys.timestamp": 1783929737
+          },
+          "outputs": {
+            "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id",
+            "max_rows": 100,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-post_failure_fixture",
+            "sys.app_id": "98858e19-ec52-42ef-ad46-9114d16d545c",
+            "sys.workflow_id": "98a0fe03-b7df-4119-8ddd-7f0c8a5b69ac",
+            "sys.workflow_run_id": "98e97648-78e2-4a53-8f51-3756de074cc4",
+            "sys.timestamp": 1783929737
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 9.3e-05
+        },
+        {
+          "execution_id": "76d91e98-c89d-4afa-8b08-742008f7f732",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "id",
+                  "label"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 67,
+                "generated_at": "2026-07-13T08:02:17.580Z",
+                "max_rows": 100,
+                "row_count": 12,
+                "rows": [
+                  {
+                    "id": 1,
+                    "label": "row-01"
+                  },
+                  {
+                    "id": 2,
+                    "label": "row-02"
+                  },
+                  {
+                    "id": 3,
+                    "label": "row-03"
+                  },
+                  {
+                    "id": 4,
+                    "label": "row-04"
+                  },
+                  {
+                    "id": 5,
+                    "label": "row-05"
+                  },
+                  {
+                    "id": 6,
+                    "label": "row-06"
+                  },
+                  {
+                    "id": 7,
+                    "label": "row-07"
+                  },
+                  {
+                    "id": 8,
+                    "label": "row-08"
+                  },
+                  {
+                    "id": 9,
+                    "label": "row-09"
+                  },
+                  {
+                    "id": 10,
+                    "label": "row-10"
+                  },
+                  {
+                    "id": 11,
+                    "label": "row-11"
+                  },
+                  {
+                    "id": 12,
+                    "label": "row-12"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.159853
+        },
+        {
+          "execution_id": "50a4d82f-b4c4-4968-b9e8-7b7a4e9920bb",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "id",
+                  "label"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 67,
+                "generated_at": "2026-07-13T08:02:17.580Z",
+                "max_rows": 100,
+                "row_count": 12,
+                "rows": [
+                  {
+                    "id": 1,
+                    "label": "row-01"
+                  },
+                  {
+                    "id": 2,
+                    "label": "row-02"
+                  },
+                  {
+                    "id": 3,
+                    "label": "row-03"
+                  },
+                  {
+                    "id": 4,
+                    "label": "row-04"
+                  },
+                  {
+                    "id": 5,
+                    "label": "row-05"
+                  },
+                  {
+                    "id": 6,
+                    "label": "row-06"
+                  },
+                  {
+                    "id": 7,
+                    "label": "row-07"
+                  },
+                  {
+                    "id": 8,
+                    "label": "row-08"
+                  },
+                  {
+                    "id": 9,
+                    "label": "row-09"
+                  },
+                  {
+                    "id": 10,
+                    "label": "row-10"
+                  },
+                  {
+                    "id": 11,
+                    "label": "row-11"
+                  },
+                  {
+                    "id": 12,
+                    "label": "row-12"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "id",
+                  "label"
+                ],
+                "database_type": "kingbasees",
+                "error": null,
+                "execution_time_ms": 67,
+                "generated_at": "2026-07-13T08:02:17.580Z",
+                "max_rows": 100,
+                "row_count": 12,
+                "rows": [
+                  {
+                    "id": 1,
+                    "label": "row-01"
+                  },
+                  {
+                    "id": 2,
+                    "label": "row-02"
+                  },
+                  {
+                    "id": 3,
+                    "label": "row-03"
+                  },
+                  {
+                    "id": 4,
+                    "label": "row-04"
+                  },
+                  {
+                    "id": 5,
+                    "label": "row-05"
+                  },
+                  {
+                    "id": 6,
+                    "label": "row-06"
+                  },
+                  {
+                    "id": 7,
+                    "label": "row-07"
+                  },
+                  {
+                    "id": 8,
+                    "label": "row-08"
+                  },
+                  {
+                    "id": 9,
+                    "label": "row-09"
+                  },
+                  {
+                    "id": 10,
+                    "label": "row-10"
+                  },
+                  {
+                    "id": 11,
+                    "label": "row-11"
+                  },
+                  {
+                    "id": 12,
+                    "label": "row-12"
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000128
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    },
+    {
+      "case": "dm_regression",
+      "workflow_run_id": "f38e5b48-e1a6-4a97-b897-763b91ac9a1e",
+      "app_id": "ec11fbde-d77c-4818-bcdf-b2b483dffe3d",
+      "workflow_id": "30a139b9-110d-455b-9135-298b928ca14c",
+      "status": "succeeded",
+      "inputs": {
+        "sql": "SELECT 1 AS probe",
+        "max_rows": 1,
+        "sys.files": [],
+        "sys.user_id": "phase9.9-dm_regression",
+        "sys.app_id": "ec11fbde-d77c-4818-bcdf-b2b483dffe3d",
+        "sys.workflow_id": "30a139b9-110d-455b-9135-298b928ca14c",
+        "sys.workflow_run_id": "f38e5b48-e1a6-4a97-b897-763b91ac9a1e",
+        "sys.timestamp": 1783929737
+      },
+      "outputs": {
+        "result": [
+          {
+            "columns": [
+              "probe"
+            ],
+            "database_type": "dm",
+            "error": null,
+            "execution_time_ms": 59,
+            "generated_at": "2026-07-13T08:02:18.002Z",
+            "max_rows": 1,
+            "row_count": 1,
+            "rows": [
+              {
+                "probe": 1
+              }
+            ],
+            "success": true,
+            "truncated": false,
+            "warning": null
+          }
+        ]
+      },
+      "elapsed_time": 0.216189,
+      "nodes": [
+        {
+          "execution_id": "adc0ca1d-3743-44f9-9ced-fb8b3f60f422",
+          "node_id": "1782898551515",
+          "node_type": "start",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 1,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-dm_regression",
+            "sys.app_id": "ec11fbde-d77c-4818-bcdf-b2b483dffe3d",
+            "sys.workflow_id": "30a139b9-110d-455b-9135-298b928ca14c",
+            "sys.workflow_run_id": "f38e5b48-e1a6-4a97-b897-763b91ac9a1e",
+            "sys.timestamp": 1783929737
+          },
+          "outputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 1,
+            "sys.files": [],
+            "sys.user_id": "phase9.9-dm_regression",
+            "sys.app_id": "ec11fbde-d77c-4818-bcdf-b2b483dffe3d",
+            "sys.workflow_id": "30a139b9-110d-455b-9135-298b928ca14c",
+            "sys.workflow_run_id": "f38e5b48-e1a6-4a97-b897-763b91ac9a1e",
+            "sys.timestamp": 1783929737
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000115
+        },
+        {
+          "execution_id": "86148398-cb0d-45a6-b960-e94b5a792dd9",
+          "node_id": "1782898655231",
+          "node_type": "tool",
+          "status": "succeeded",
+          "inputs": {
+            "sql": "SELECT 1 AS probe"
+          },
+          "outputs": {
+            "text": "",
+            "files": [],
+            "json": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "dm",
+                "error": null,
+                "execution_time_ms": 59,
+                "generated_at": "2026-07-13T08:02:18.002Z",
+                "max_rows": 1,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {
+            "tool_info": {
+              "provider_type": "builtin",
+              "provider_id": "li_zijun/db_query_extended/db_query_extended",
+              "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@81c92f7804b3b306c52e2f028b6fb1f0d9bd579236763c728f310dc90fa92dc7"
+            }
+          },
+          "error": null,
+          "elapsed_time": 0.146018
+        },
+        {
+          "execution_id": "2ab8943f-c3ea-4276-b96b-339c616a0005",
+          "node_id": "1782898779534",
+          "node_type": "end",
+          "status": "succeeded",
+          "inputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "dm",
+                "error": null,
+                "execution_time_ms": 59,
+                "generated_at": "2026-07-13T08:02:18.002Z",
+                "max_rows": 1,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "outputs": {
+            "result": [
+              {
+                "columns": [
+                  "probe"
+                ],
+                "database_type": "dm",
+                "error": null,
+                "execution_time_ms": 59,
+                "generated_at": "2026-07-13T08:02:18.002Z",
+                "max_rows": 1,
+                "row_count": 1,
+                "rows": [
+                  {
+                    "probe": 1
+                  }
+                ],
+                "success": true,
+                "truncated": false,
+                "warning": null
+              }
+            ]
+          },
+          "execution_metadata": {},
+          "error": null,
+          "elapsed_time": 0.000104
+        }
+      ],
+      "checks": {
+        "run_succeeded": true,
+        "run_input_sql_non_null": true,
+        "run_input_max_rows": true,
+        "start_input_sql_non_null": true,
+        "tool_resolved_sql_non_null": true,
+        "tool_invocation_payload_non_null": true,
+        "tool_output_matches_workflow": true,
+        "end_output_matches_tool": true,
+        "run_output_matches_end": true,
+        "plugin_identifier_metadata": true
+      },
+      "correlation": "Dify workflow_run_id plus node execution IDs; plugin logs correlated by timestamp window"
+    }
+  ]
+}

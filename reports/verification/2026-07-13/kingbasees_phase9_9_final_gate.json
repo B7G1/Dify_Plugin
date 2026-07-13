@@ -1,0 +1,32 @@
+{
+  "suite": "kingbasees_phase9_9_final_gate",
+  "generated_at": "2026-07-13T08:02:18.169810+00:00",
+  "status": "PASS",
+  "phase_status": "PHASE_9_9_PASS",
+  "active_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+  "api_call_count": 22,
+  "gates": {
+    "kingbasees_phase9_9_preflight": "PASS",
+    "kingbasees_phase9_9_workflow_positive": "PASS",
+    "kingbasees_phase9_9_workflow_types": "PASS",
+    "kingbasees_phase9_9_workflow_contract": "PASS",
+    "kingbasees_phase9_9_workflow_security": "PASS",
+    "kingbasees_phase9_9_failure_recovery": "PASS",
+    "kingbasees_phase9_9_runtime_trace": "PASS",
+    "kingbasees_phase9_9_regression": "PASS"
+  },
+  "skip_count": 0,
+  "allowed_conclusions": [
+    "KINGBASEES_INSTALLED_WORKFLOW_API_PASS",
+    "KINGBASEES_END_TO_END_PASS",
+    "KINGBASEES_FINAL_OFFLINE_PLUGIN_TECHNICAL_PASS"
+  ],
+  "not_yet_proven": [
+    "FINAL_PROJECT_DELIVERY_PASS",
+    "PUBLIC_REDISTRIBUTION_APPROVED",
+    "DM8_FINAL_DELIVERY_PASS",
+    "DEVELOPMENT_PROCESS_DOCUMENTATION_COMPLETE",
+    "FROM_ZERO_REPRODUCTION_TUTORIAL_COMPLETE"
+  ],
+  "redistribution_status": "REDISTRIBUTION_REVIEW_PENDING"
+}

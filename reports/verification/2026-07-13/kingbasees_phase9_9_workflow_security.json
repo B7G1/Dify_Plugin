@@ -1,0 +1,359 @@
+{
+  "suite": "kingbasees_phase9_9_workflow_security",
+  "generated_at": "2026-07-13T08:02:16.635668+00:00",
+  "status": "PASS",
+  "summary": {
+    "pass": 5,
+    "fail": 0,
+    "skip": 0
+  },
+  "cases": [
+    {
+      "case": "dml_rejection",
+      "expected": "Workflow blocks or safely reports the request without data mutation or secret leakage",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "d4db57c2-a609-4169-b1b6-9a2e1519a946",
+        "task_id": "92376fb0-8082-466d-9701-e82776a6059a",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "INSERT INTO phase97_fixture.sample_data (id, label) VALUES (999, 'blocked')",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-dml_rejection"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [],
+              "database_type": null,
+              "error": {
+                "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                "type": "ReadOnlyViolationError"
+              },
+              "execution_time_ms": 0,
+              "generated_at": "2026-07-13T08:02:15.531Z",
+              "max_rows": 100,
+              "row_count": 0,
+              "rows": [],
+              "success": false,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [],
+          "database_type": null,
+          "error": {
+            "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+            "type": "ReadOnlyViolationError"
+          },
+          "execution_time_ms": 0,
+          "generated_at": "2026-07-13T08:02:15.531Z",
+          "max_rows": 100,
+          "row_count": 0,
+          "rows": [],
+          "success": false,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 257.134,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 264.47,
+      "error": null
+    },
+    {
+      "case": "ddl_rejection",
+      "expected": "Workflow blocks or safely reports the request without data mutation or secret leakage",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "a205de5f-e945-4f46-bcf3-16d6259143fa",
+        "task_id": "69540294-e5c8-4e0f-8ead-14d15259eef1",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "CREATE TABLE phase97_fixture.phase99_blocked(id int)",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-ddl_rejection"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [],
+              "database_type": null,
+              "error": {
+                "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                "type": "ReadOnlyViolationError"
+              },
+              "execution_time_ms": 0,
+              "generated_at": "2026-07-13T08:02:15.749Z",
+              "max_rows": 100,
+              "row_count": 0,
+              "rows": [],
+              "success": false,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [],
+          "database_type": null,
+          "error": {
+            "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+            "type": "ReadOnlyViolationError"
+          },
+          "execution_time_ms": 0,
+          "generated_at": "2026-07-13T08:02:15.749Z",
+          "max_rows": 100,
+          "row_count": 0,
+          "rows": [],
+          "success": false,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 207.238,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 215.789,
+      "error": null
+    },
+    {
+      "case": "multi_statement_rejection",
+      "expected": "Workflow blocks or safely reports the request without data mutation or secret leakage",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "db0f059c-bf19-4b10-b856-60efe15239c4",
+        "task_id": "a391b80e-2f7a-4f55-93b5-e307d7a40492",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT 1; SELECT 2",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-multi_statement_rejection"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [],
+              "database_type": null,
+              "error": {
+                "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                "type": "ReadOnlyViolationError"
+              },
+              "execution_time_ms": 0,
+              "generated_at": "2026-07-13T08:02:15.976Z",
+              "max_rows": 100,
+              "row_count": 0,
+              "rows": [],
+              "success": false,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [],
+          "database_type": null,
+          "error": {
+            "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+            "type": "ReadOnlyViolationError"
+          },
+          "execution_time_ms": 0,
+          "generated_at": "2026-07-13T08:02:15.976Z",
+          "max_rows": 100,
+          "row_count": 0,
+          "rows": [],
+          "success": false,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 232.308,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 241.142,
+      "error": null
+    },
+    {
+      "case": "database_error_redaction",
+      "expected": "Workflow blocks or safely reports the request without data mutation or secret leakage",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "38496c6e-3345-4231-a83c-1774acc344ae",
+        "task_id": "0b39a435-3b28-40bd-bfea-fe2e1c1cdf15",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT phase99_missing_column FROM phase97_fixture.sample_data",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-database_error_redaction"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [],
+              "database_type": "kingbasees",
+              "error": {
+                "message": "SQL execution failed. Check SQL syntax and referenced database objects.",
+                "type": "SqlExecutionError"
+              },
+              "execution_time_ms": 0,
+              "generated_at": "2026-07-13T08:02:16.312Z",
+              "max_rows": 100,
+              "row_count": 0,
+              "rows": [],
+              "success": false,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [],
+          "database_type": "kingbasees",
+          "error": {
+            "message": "SQL execution failed. Check SQL syntax and referenced database objects.",
+            "type": "SqlExecutionError"
+          },
+          "execution_time_ms": 0,
+          "generated_at": "2026-07-13T08:02:16.312Z",
+          "max_rows": 100,
+          "row_count": 0,
+          "rows": [],
+          "success": false,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 311.984,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 320.318,
+      "error": null
+    },
+    {
+      "case": "database_integrity_after_rejection",
+      "expected": "Workflow blocks or safely reports the request without data mutation or secret leakage",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "b474877d-66d7-4a32-aef4-42b6128fccbf",
+        "task_id": "377cb643-5e1a-4a1e-8300-213ac9f56cfc",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT COUNT(*) AS blocked_count FROM phase97_fixture.sample_data WHERE id=999",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-database_integrity_after_rejection"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "blocked_count"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 56,
+              "generated_at": "2026-07-13T08:02:16.574Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "blocked_count": 0
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "blocked_count"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 56,
+          "generated_at": "2026-07-13T08:02:16.574Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "blocked_count": 0
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 248.776,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 254.859,
+      "error": null
+    }
+  ],
+  "no_secret_leak": true
+}

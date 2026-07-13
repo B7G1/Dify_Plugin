@@ -1,0 +1,25 @@
+2026-07-13 Phase 9.9 preflight (redacted)
+Branch: feature/kingbasees-adapter
+Baseline commit: 2d9d187
+Installed plugin: li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9
+Dify: 1.13.3
+plugin-daemon: 0.5.3-local
+KingbaseES container: dify-plugin-phase94-kingbase | running | kingbase_v009r001c010b0004_single_x86:v1
+PostgreSQL container: dify-db_postgres-1 | running/healthy | postgres:15-alpine
+Dify API container: dify-api-1 | running | langgenius/dify-api:1.13.3
+Dify worker container: dify-worker-1 | running | langgenius/dify-api:1.13.3
+Dify plugin-daemon container: dify-plugin_daemon-1 | running | langgenius/dify-plugin-daemon:0.5.3-local
+Host DIFY_WORKFLOW_API_URL: absent
+Host DIFY_WORKFLOW_API_KEY: absent
+Credential source: Dify application credential; value was not emitted.
+Installed runtime probe: PASS
+Dedicated KingbaseES workflow created/published/API-enabled: PASS
+Explicit KingbaseES credential binding: PASS
+
+Baseline incident:
+- Observed: initial existing DM Workflow API request timed out; nginx recorded HTTP 499; no WorkflowRun was created.
+- Evidence: dify-api container-local health/setup requests also timed out while Gunicorn processes remained present.
+- Root cause: the existing dify-api service process was unresponsive.
+- Action: restarted only the existing dify-api-1 container.
+- Validation: setup endpoint recovered to HTTP 200; existing DM Workflow API smoke passed; all 22 formal Phase 9.9 calls returned HTTP 200.
+- Preserved: KingbaseES container/volume, PostgreSQL, plugin-daemon, installed plugin, and all user data. No prune/rebuild/reinstall was performed.

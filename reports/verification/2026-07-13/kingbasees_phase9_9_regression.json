@@ -1,0 +1,352 @@
+{
+  "suite": "kingbasees_phase9_9_regression",
+  "generated_at": "2026-07-13T08:02:18.147326+00:00",
+  "status": "PASS",
+  "summary": {
+    "pass": 7,
+    "fail": 0,
+    "skip": 0
+  },
+  "cases": [
+    {
+      "case": "postgresql_provider_smoke",
+      "actual": true,
+      "status": "PASS",
+      "duration_ms": 105.597,
+      "error": null
+    },
+    {
+      "case": "postgresql_tool_select_1",
+      "actual": {
+        "columns": [
+          "probe"
+        ],
+        "database_type": "postgresql",
+        "error": null,
+        "execution_time_ms": 16,
+        "generated_at": "2026-07-13T08:02:17.805Z",
+        "max_rows": 100,
+        "row_count": 1,
+        "rows": [
+          {
+            "probe": 1
+          }
+        ],
+        "success": true,
+        "truncated": false,
+        "warning": null
+      },
+      "status": "PASS",
+      "duration_ms": 57.938,
+      "error": null
+    },
+    {
+      "case": "existing_dm_workflow_api",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "f38e5b48-e1a6-4a97-b897-763b91ac9a1e",
+        "task_id": "57482972-9da2-4d34-bc02-96f60a2bf1cf",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 1
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-dm_regression"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "probe"
+              ],
+              "database_type": "dm",
+              "error": null,
+              "execution_time_ms": 59,
+              "generated_at": "2026-07-13T08:02:18.002Z",
+              "max_rows": 1,
+              "row_count": 1,
+              "rows": [
+                {
+                  "probe": 1
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "probe"
+          ],
+          "database_type": "dm",
+          "error": null,
+          "execution_time_ms": 59,
+          "generated_at": "2026-07-13T08:02:18.002Z",
+          "max_rows": 1,
+          "row_count": 1,
+          "rows": [
+            {
+              "probe": 1
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 250.367,
+        "redaction_check": true
+      },
+      "status": "PASS",
+      "duration_ms": 267.628,
+      "error": null
+    },
+    {
+      "case": "provider_schema_order",
+      "actual": [
+        "mysql",
+        "postgresql",
+        "dm",
+        "sqlserver",
+        "kingbasees"
+      ],
+      "status": "PASS",
+      "duration_ms": 0.004,
+      "error": null
+    },
+    {
+      "case": "tool_schema",
+      "actual": [
+        {
+          "identity": {
+            "author": "li_zijun",
+            "name": "db_query_extended",
+            "label": {
+              "en_US": "Read-only SQL Query",
+              "zh_Hans": "只读 SQL 查询",
+              "pt_BR": "Read-only SQL Query",
+              "ja_JP": "Read-only SQL Query"
+            },
+            "provider": "li_zijun/db_query_extended/db_query_extended",
+            "icon": null
+          },
+          "parameters": [
+            {
+              "name": "sql",
+              "label": {
+                "en_US": "SQL statement",
+                "zh_Hans": "SQL 语句",
+                "pt_BR": "SQL statement",
+                "ja_JP": "SQL statement"
+              },
+              "placeholder": null,
+              "scope": null,
+              "auto_generate": null,
+              "template": null,
+              "required": true,
+              "default": null,
+              "min": null,
+              "max": null,
+              "precision": null,
+              "options": [],
+              "type": "string",
+              "human_description": {
+                "en_US": "One read-only SELECT or WITH statement. Multiple statements and write operations are rejected.",
+                "zh_Hans": "一条只读 SELECT 或 WITH 语句。多语句和写操作会被拒绝。",
+                "pt_BR": "One read-only SELECT or WITH statement. Multiple statements and write operations are rejected.",
+                "ja_JP": "One read-only SELECT or WITH statement. Multiple statements and write operations are rejected."
+              },
+              "form": "llm",
+              "llm_description": "One read-only SQL statement. Do not generate semicolons, multiple statements, DDL, DML, procedure calls, or file operations.",
+              "input_schema": null
+            },
+            {
+              "name": "max_rows",
+              "label": {
+                "en_US": "Maximum rows",
+                "zh_Hans": "最大返回行数",
+                "pt_BR": "Maximum rows",
+                "ja_JP": "Maximum rows"
+              },
+              "placeholder": null,
+              "scope": null,
+              "auto_generate": null,
+              "template": null,
+              "required": false,
+              "default": 100,
+              "min": null,
+              "max": null,
+              "precision": null,
+              "options": [],
+              "type": "number",
+              "human_description": {
+                "en_US": "Maximum rows returned by the query. Allowed range is 1 to 1000.",
+                "zh_Hans": "查询最多返回的行数，允许范围为 1 到 1000。",
+                "pt_BR": "Maximum rows returned by the query. Allowed range is 1 to 1000.",
+                "ja_JP": "Maximum rows returned by the query. Allowed range is 1 to 1000."
+              },
+              "form": "form",
+              "llm_description": "",
+              "input_schema": null
+            },
+            {
+              "name": "timeout_seconds",
+              "label": {
+                "en_US": "Query timeout (seconds)",
+                "zh_Hans": "查询超时（秒）",
+                "pt_BR": "Query timeout (seconds)",
+                "ja_JP": "Query timeout (seconds)"
+              },
+              "placeholder": null,
+              "scope": null,
+              "auto_generate": null,
+              "template": null,
+              "required": false,
+              "default": 30,
+              "min": null,
+              "max": null,
+              "precision": null,
+              "options": [],
+              "type": "number",
+              "human_description": {
+                "en_US": "Maximum execution time in seconds. Allowed range is 1 to 120.",
+                "zh_Hans": "单次 SQL 最大执行时间，单位为秒，范围为 1 到 120。",
+                "pt_BR": "Maximum execution time in seconds. Allowed range is 1 to 120.",
+                "ja_JP": "Maximum execution time in seconds. Allowed range is 1 to 120."
+              },
+              "form": "form",
+              "llm_description": "",
+              "input_schema": null
+            },
+            {
+              "name": "readonly",
+              "label": {
+                "en_US": "Read-only mode",
+                "zh_Hans": "只读模式",
+                "pt_BR": "Read-only mode",
+                "ja_JP": "Read-only mode"
+              },
+              "placeholder": null,
+              "scope": null,
+              "auto_generate": null,
+              "template": null,
+              "required": false,
+              "default": true,
+              "min": null,
+              "max": null,
+              "precision": null,
+              "options": [],
+              "type": "boolean",
+              "human_description": {
+                "en_US": "Must remain enabled. Requests with readonly=false are rejected.",
+                "zh_Hans": "必须保持启用；readonly=false 的请求会被拒绝。",
+                "pt_BR": "Must remain enabled. Requests with readonly=false are rejected.",
+                "ja_JP": "Must remain enabled. Requests with readonly=false are rejected."
+              },
+              "form": "form",
+              "llm_description": "",
+              "input_schema": null
+            },
+            {
+              "name": "output_format",
+              "label": {
+                "en_US": "Output format",
+                "zh_Hans": "输出格式",
+                "pt_BR": "Output format",
+                "ja_JP": "Output format"
+              },
+              "placeholder": null,
+              "scope": null,
+              "auto_generate": null,
+              "template": null,
+              "required": false,
+              "default": "json",
+              "min": null,
+              "max": null,
+              "precision": null,
+              "options": [
+                {
+                  "value": "json",
+                  "label": {
+                    "en_US": "JSON",
+                    "zh_Hans": "JSON",
+                    "pt_BR": "JSON",
+                    "ja_JP": "JSON"
+                  },
+                  "icon": ""
+                },
+                {
+                  "value": "markdown",
+                  "label": {
+                    "en_US": "Markdown",
+                    "zh_Hans": "Markdown",
+                    "pt_BR": "Markdown",
+                    "ja_JP": "Markdown"
+                  },
+                  "icon": ""
+                }
+              ],
+              "type": "select",
+              "human_description": {
+                "en_US": "JSON is the supported structured response. Markdown is reserved for a future presentation-layer extension.",
+                "zh_Hans": "当前支持 JSON 结构化响应；Markdown 为后续展示层扩展预留。",
+                "pt_BR": "JSON is the supported structured response. Markdown is reserved for a future presentation-layer extension.",
+                "ja_JP": "JSON is the supported structured response. Markdown is reserved for a future presentation-layer extension."
+              },
+              "form": "form",
+              "llm_description": "",
+              "input_schema": null
+            }
+          ],
+          "description": {
+            "human": {
+              "en_US": "Execute exactly one read-only SQL statement against the configured database.",
+              "zh_Hans": "针对已配置的 MySQL 或 PostgreSQL 数据库执行一条只读 SQL。",
+              "pt_BR": "Execute exactly one read-only SQL statement against the configured database.",
+              "ja_JP": "Execute exactly one read-only SQL statement against the configured database."
+            },
+            "llm": "Execute one read-only SQL statement only. Allowed statements are SELECT and WITH. Reject INSERT, UPDATE, DELETE, DROP, ALTER, CREATE, TRUNCATE, CALL, EXEC, MERGE, COPY, LOAD DATA, transaction control, file operations, and multiple statements."
+          },
+          "output_schema": {},
+          "has_runtime_parameters": false
+        }
+      ],
+      "status": "PASS",
+      "duration_ms": 0.007,
+      "error": null
+    },
+    {
+      "case": "active_plugin_unchanged",
+      "actual": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+      "status": "PASS",
+      "duration_ms": 0.001,
+      "error": null
+    },
+    {
+      "case": "installed_adapter_and_dialect_identity",
+      "actual": {
+        "installed_checksum_path": true,
+        "ksycopg2_installed_path": true,
+        "libkci_installed_path": true,
+        "sqlalchemy_2_0_51": true,
+        "no_phase95_overlay": true,
+        "pythonpath_has_no_probe_overlay": true,
+        "provider_schema": true,
+        "tool_schema": true,
+        "adapter_import_smoke": true,
+        "psycopg2_identity": true,
+        "postgresql_dialect_identity": true
+      },
+      "status": "PASS",
+      "duration_ms": 0.033,
+      "error": null
+    }
+  ],
+  "sqlserver_role": "OPTIONAL"
+}

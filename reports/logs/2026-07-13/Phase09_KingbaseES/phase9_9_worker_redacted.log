@@ -1,0 +1,6 @@
+2026-07-13 Phase 9.9 worker observation (redacted)
+The independent verification process ran inside dify-worker-1 and invoked the public Dify Workflow API through http://nginx/v1/workflows/run.
+Blocking Workflow API execution was handled by dify-api; the worker service log had no correlated application entries in the capture window.
+Harness result: PASS; 22 formal API calls; 0 skipped cases.
+Per-run WorkflowRun and WorkflowNodeExecution records are preserved in kingbasees_phase9_9_runtime_trace.json.
+No credential value, authorization header, or credentialed URL is recorded here.

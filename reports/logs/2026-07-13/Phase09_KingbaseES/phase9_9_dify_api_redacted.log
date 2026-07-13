@@ -1,0 +1,154 @@
+﻿2026-07-13T08:02:12.178794080Z [32;1m[1;3m
+2026-07-13T08:02:12.178926569Z [on_tool_execution]
+2026-07-13T08:02:12.178935605Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:12.178941081Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["probe"],"database_type":"dm","error":null,"execution_time_ms":243,"generated_at":"2026-07-13T07:54:31.465Z","max_rows":1,"row_count":1,"rows":[{"probe":1}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:12.178946980Z [0m
+2026-07-13T08:02:12.178951169Z 2026-07-13 08:02:12.177 INFO [GraphWorker-0] [_client.py:1025] b8f7351cf133599aaa030b605c073618 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:12.414690675Z 2026-07-13 08:02:12.413 INFO [GraphWorker-0] [_client.py:1025] b8f7351cf133599aaa030b605c073618 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:12.603313239Z [32;1m[1;3m
+2026-07-13T08:02:12.603353460Z [on_tool_execution]
+2026-07-13T08:02:12.603359312Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:12.603364563Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["probe"],"database_type":"kingbasees","error":null,"execution_time_ms":158,"generated_at":"2026-07-13T08:02:12.411Z","max_rows":100,"row_count":1,"rows":[{"probe":1}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:12.603456380Z [0m
+2026-07-13T08:02:12.603464655Z 2026-07-13 08:02:12.602 INFO [GraphWorker-0] [_client.py:1025] f6fa40c17cf156c09ee58fb0037f668f - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:12.717986217Z 2026-07-13 08:02:12.716 INFO [GraphWorker-0] [_client.py:1025] f6fa40c17cf156c09ee58fb0037f668f - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:12.875642319Z [32;1m[1;3m
+2026-07-13T08:02:12.875681498Z [on_tool_execution]
+2026-07-13T08:02:12.875685283Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:12.875689209Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["id","label"],"database_type":"kingbasees","error":null,"execution_time_ms":69,"generated_at":"2026-07-13T08:02:12.714Z","max_rows":100,"row_count":12,"rows":[{"id":1,"label":"row-01"},{"id":2,"label":"row-02"},{"id":3,"label":"row-03"},{"id":4,"label":"row-04"},{"id":5,"label":"row-05"},{"id":6,"label":"row-06"},{"id":7,"label":"row-07"},{"id":8,"label":"row-08"},{"id":9,"label":"row-09"},{"id":10,"label":"row-10"},{"id":11,"label":"row-11"},{"id":12,"label":"row-12"}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:12.875696902Z [0m
+2026-07-13T08:02:12.875699617Z 2026-07-13 08:02:12.874 INFO [GraphWorker-0] [_client.py:1025] 3f9d6724967d58819af428cead6bbc3b - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:12.978940362Z 2026-07-13 08:02:12.978 INFO [GraphWorker-0] [_client.py:1025] 3f9d6724967d58819af428cead6bbc3b - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.111031863Z [32;1m[1;3m
+2026-07-13T08:02:13.111063640Z [on_tool_execution]
+2026-07-13T08:02:13.111066279Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:13.111068627Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["unicode_text"],"database_type":"kingbasees","error":null,"execution_time_ms":55,"generated_at":"2026-07-13T08:02:12.976Z","max_rows":100,"row_count":1,"rows":[{"unicode_text":"金仓只读验证"}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:13.111072845Z [0m
+2026-07-13T08:02:13.111074958Z 2026-07-13 08:02:13.110 INFO [GraphWorker-0] [_client.py:1025] 76ad462984f45889a1398b776333f4e6 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.208738908Z 2026-07-13 08:02:13.208 INFO [GraphWorker-0] [_client.py:1025] 76ad462984f45889a1398b776333f4e6 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.346855779Z [32;1m[1;3m
+2026-07-13T08:02:13.346929806Z [on_tool_execution]
+2026-07-13T08:02:13.346935846Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:13.346939350Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["nullable_text"],"database_type":"kingbasees","error":null,"execution_time_ms":51,"generated_at":"2026-07-13T08:02:13.206Z","max_rows":100,"row_count":1,"rows":[{"nullable_text":null}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:13.346943980Z [0m
+2026-07-13T08:02:13.346946676Z 2026-07-13 08:02:13.346 INFO [GraphWorker-0] [_client.py:1025] 8520e0c5ff9e5d82be7df037e2de7c12 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.455477718Z 2026-07-13 08:02:13.454 INFO [GraphWorker-0] [_client.py:1025] 8520e0c5ff9e5d82be7df037e2de7c12 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.583238588Z [32;1m[1;3m
+2026-07-13T08:02:13.583272122Z [on_tool_execution]
+2026-07-13T08:02:13.583278208Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:13.583280679Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["amount"],"database_type":"kingbasees","error":null,"execution_time_ms":60,"generated_at":"2026-07-13T08:02:13.453Z","max_rows":100,"row_count":1,"rows":[{"amount":"2.50"}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:13.583284182Z [0m
+2026-07-13T08:02:13.583286268Z 2026-07-13 08:02:13.582 INFO [GraphWorker-0] [_client.py:1025] b2d99a7cbbc150f0b817370565c4673e - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.677741105Z 2026-07-13 08:02:13.676 INFO [GraphWorker-0] [_client.py:1025] b2d99a7cbbc150f0b817370565c4673e - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.841758872Z [32;1m[1;3m
+2026-07-13T08:02:13.841797825Z [on_tool_execution]
+2026-07-13T08:02:13.841801310Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:13.841804222Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["event_date"],"database_type":"kingbasees","error":null,"execution_time_ms":53,"generated_at":"2026-07-13T08:02:13.675Z","max_rows":100,"row_count":1,"rows":[{"event_date":"2026-07-02"}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:13.841808787Z [0m
+2026-07-13T08:02:13.841811445Z 2026-07-13 08:02:13.840 INFO [GraphWorker-0] [_client.py:1025] 074440083aca52dc8fed592c53c25239 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:13.952301650Z 2026-07-13 08:02:13.951 INFO [GraphWorker-0] [_client.py:1025] 074440083aca52dc8fed592c53c25239 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:14.109403903Z [32;1m[1;3m
+2026-07-13T08:02:14.109453715Z [on_tool_execution]
+2026-07-13T08:02:14.109456674Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:14.109459266Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["event_time"],"database_type":"kingbasees","error":null,"execution_time_ms":66,"generated_at":"2026-07-13T08:02:13.949Z","max_rows":100,"row_count":1,"rows":[{"event_time":"2026-07-02 12:34:56"}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:14.109463061Z [0m
+2026-07-13T08:02:14.109465531Z 2026-07-13 08:02:14.108 INFO [GraphWorker-0] [_client.py:1025] 377eff301bfb5262b33f12f3437d5768 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:14.217567279Z 2026-07-13 08:02:14.216 INFO [GraphWorker-0] [_client.py:1025] 377eff301bfb5262b33f12f3437d5768 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:14.348133810Z [32;1m[1;3m
+2026-07-13T08:02:14.348178793Z [on_tool_execution]
+2026-07-13T08:02:14.348182644Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:14.348185368Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["total"],"database_type":"kingbasees","error":null,"execution_time_ms":60,"generated_at":"2026-07-13T08:02:14.215Z","max_rows":100,"row_count":1,"rows":[{"total":12}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:14.348189511Z [0m
+2026-07-13T08:02:14.348192009Z 2026-07-13 08:02:14.347 INFO [GraphWorker-0] [_client.py:1025] 0c614c266f015128bc45a2918617ebe0 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:14.458536706Z 2026-07-13 08:02:14.457 INFO [GraphWorker-0] [_client.py:1025] 0c614c266f015128bc45a2918617ebe0 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:14.601521318Z [32;1m[1;3m
+2026-07-13T08:02:14.601549563Z [on_tool_execution]
+2026-07-13T08:02:14.601552222Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:14.601554570Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["id"],"database_type":"kingbasees","error":null,"execution_time_ms":63,"generated_at":"2026-07-13T08:02:14.456Z","max_rows":5,"row_count":5,"rows":[{"id":1},{"id":2},{"id":3},{"id":4},{"id":5}],"success":true,"truncated":true,"warning":"Result was truncated to max_rows=5."},"suppress_output":false},"meta":null}
+2026-07-13T08:02:14.601579133Z [0m
+2026-07-13T08:02:14.601581612Z 2026-07-13 08:02:14.600 INFO [GraphWorker-0] [_client.py:1025] 2b89b2f450155bd1a66be269ead5697e - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:14.712666023Z 2026-07-13 08:02:14.711 INFO [GraphWorker-0] [_client.py:1025] 2b89b2f450155bd1a66be269ead5697e - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:14.884961538Z [32;1m[1;3m
+2026-07-13T08:02:14.885000632Z [on_tool_execution]
+2026-07-13T08:02:14.885003901Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:14.885006249Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["id"],"database_type":"kingbasees","error":null,"execution_time_ms":64,"generated_at":"2026-07-13T08:02:14.709Z","max_rows":100,"row_count":0,"rows":[],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:14.885009762Z [0m
+2026-07-13T08:02:14.885015210Z 2026-07-13 08:02:14.884 INFO [GraphWorker-0] [_client.py:1025] 58c83a4eec5151bba2145a10c49f9947 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.006463780Z 2026-07-13 08:02:15.005 INFO [GraphWorker-0] [_client.py:1025] 58c83a4eec5151bba2145a10c49f9947 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.156788947Z [32;1m[1;3m
+2026-07-13T08:02:15.156815614Z [on_tool_execution]
+2026-07-13T08:02:15.156818187Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:15.156820648Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["total"],"database_type":"kingbasees","error":null,"execution_time_ms":60,"generated_at":"2026-07-13T08:02:15.003Z","max_rows":100,"row_count":1,"rows":[{"total":"84.00"}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:15.156824208Z [0m
+2026-07-13T08:02:15.156826341Z 2026-07-13 08:02:15.156 INFO [GraphWorker-0] [_client.py:1025] 65d6474160195d38bc0532d77dd744ef - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.267124495Z 2026-07-13 08:02:15.266 INFO [GraphWorker-0] [_client.py:1025] 65d6474160195d38bc0532d77dd744ef - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.461386944Z [32;1m[1;3m
+2026-07-13T08:02:15.461445782Z [on_tool_execution]
+2026-07-13T08:02:15.461449182Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:15.461452010Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["id"],"database_type":"kingbasees","error":null,"execution_time_ms":59,"generated_at":"2026-07-13T08:02:15.264Z","max_rows":3,"row_count":3,"rows":[{"id":12},{"id":11},{"id":10}],"success":true,"truncated":true,"warning":"Result was truncated to max_rows=3."},"suppress_output":false},"meta":null}
+2026-07-13T08:02:15.461456377Z [0m
+2026-07-13T08:02:15.461466879Z 2026-07-13 08:02:15.460 INFO [GraphWorker-0] [_client.py:1025] 2999a39c700c5e1a9c541587012f8337 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.534345783Z 2026-07-13 08:02:15.533 INFO [GraphWorker-0] [_client.py:1025] 2999a39c700c5e1a9c541587012f8337 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.693281731Z [32;1m[1;3m
+2026-07-13T08:02:15.693381890Z [on_tool_execution]
+2026-07-13T08:02:15.693393255Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:15.693397022Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":[],"database_type":null,"error":{"message":"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.","type":"ReadOnlyViolationError"},"execution_time_ms":0,"generated_at":"2026-07-13T08:02:15.531Z","max_rows":100,"row_count":0,"rows":[],"success":false,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:15.693404330Z [0m
+2026-07-13T08:02:15.693413629Z 2026-07-13 08:02:15.692 INFO [GraphWorker-0] [_client.py:1025] d336c3f0034e5819bbc7721105046db5 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.753576331Z 2026-07-13 08:02:15.752 INFO [GraphWorker-0] [_client.py:1025] d336c3f0034e5819bbc7721105046db5 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.919916436Z [32;1m[1;3m
+2026-07-13T08:02:15.919953388Z [on_tool_execution]
+2026-07-13T08:02:15.919960903Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:15.919964228Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":[],"database_type":null,"error":{"message":"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.","type":"ReadOnlyViolationError"},"execution_time_ms":0,"generated_at":"2026-07-13T08:02:15.749Z","max_rows":100,"row_count":0,"rows":[],"success":false,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:15.920043036Z [0m
+2026-07-13T08:02:15.920048775Z 2026-07-13 08:02:15.919 INFO [GraphWorker-0] [_client.py:1025] 069f720a29cb5e0cbcfd486b6e8820a6 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:15.978248274Z 2026-07-13 08:02:15.977 INFO [GraphWorker-0] [_client.py:1025] 069f720a29cb5e0cbcfd486b6e8820a6 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:16.189420929Z [32;1m[1;3m
+2026-07-13T08:02:16.189464147Z [on_tool_execution]
+2026-07-13T08:02:16.189467988Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:16.189470975Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":[],"database_type":null,"error":{"message":"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.","type":"ReadOnlyViolationError"},"execution_time_ms":0,"generated_at":"2026-07-13T08:02:15.976Z","max_rows":100,"row_count":0,"rows":[],"success":false,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:16.189475700Z [0m
+2026-07-13T08:02:16.189478349Z 2026-07-13 08:02:16.188 INFO [GraphWorker-0] [_client.py:1025] b36744f163a35192bfba48a5cf4c0986 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:16.315077251Z 2026-07-13 08:02:16.314 INFO [GraphWorker-0] [_client.py:1025] b36744f163a35192bfba48a5cf4c0986 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:16.470093107Z [32;1m[1;3m
+2026-07-13T08:02:16.470137191Z [on_tool_execution]
+2026-07-13T08:02:16.470145041Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:16.470148149Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":[],"database_type":"kingbasees","error":{"message":"SQL execution failed. Check SQL syntax and referenced database objects.","type":"SqlExecutionError"},"execution_time_ms":0,"generated_at":"2026-07-13T08:02:16.312Z","max_rows":100,"row_count":0,"rows":[],"success":false,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:16.470154011Z [0m
+2026-07-13T08:02:16.470156233Z 2026-07-13 08:02:16.469 INFO [GraphWorker-0] [_client.py:1025] 12320debb4015503a994a752492d5802 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:16.576778080Z 2026-07-13 08:02:16.575 INFO [GraphWorker-0] [_client.py:1025] 12320debb4015503a994a752492d5802 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:16.712765551Z [32;1m[1;3m
+2026-07-13T08:02:16.712797847Z [on_tool_execution]
+2026-07-13T08:02:16.712800386Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:16.712802701Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["blocked_count"],"database_type":"kingbasees","error":null,"execution_time_ms":56,"generated_at":"2026-07-13T08:02:16.574Z","max_rows":100,"row_count":1,"rows":[{"blocked_count":0}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:16.712806182Z [0m
+2026-07-13T08:02:16.712808273Z 2026-07-13 08:02:16.712 INFO [GraphWorker-0] [_client.py:1025] f67bbf25684e5769a636d1997d9d763d - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:16.816716198Z 2026-07-13 08:02:16.815 INFO [GraphWorker-0] [_client.py:1025] f67bbf25684e5769a636d1997d9d763d - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:16.992999273Z [32;1m[1;3m
+2026-07-13T08:02:16.993041211Z [on_tool_execution]
+2026-07-13T08:02:16.993044814Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:16.993047586Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["probe"],"database_type":"kingbasees","error":null,"execution_time_ms":61,"generated_at":"2026-07-13T08:02:16.814Z","max_rows":100,"row_count":1,"rows":[{"probe":1}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:16.993051824Z [0m
+2026-07-13T08:02:16.993054344Z 2026-07-13 08:02:16.992 INFO [GraphWorker-0] [_client.py:1025] bd00fe40b15c59ff929eb9e83ea7d684 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:17.044678490Z 2026-07-13 08:02:17.043 INFO [GraphWorker-0] [_client.py:1025] bd00fe40b15c59ff929eb9e83ea7d684 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:17.209347190Z [32;1m[1;3m
+2026-07-13T08:02:17.209392721Z [on_tool_execution]
+2026-07-13T08:02:17.209396119Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:17.209398788Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":[],"database_type":null,"error":{"message":"Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.","type":"ReadOnlyViolationError"},"execution_time_ms":0,"generated_at":"2026-07-13T08:02:17.041Z","max_rows":100,"row_count":0,"rows":[],"success":false,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:17.209406265Z [0m
+2026-07-13T08:02:17.209437870Z 2026-07-13 08:02:17.208 INFO [GraphWorker-0] [_client.py:1025] a0c0807e69085ebca99f927608aa57a9 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:17.319598821Z 2026-07-13 08:02:17.318 INFO [GraphWorker-0] [_client.py:1025] a0c0807e69085ebca99f927608aa57a9 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:17.458045971Z [32;1m[1;3m
+2026-07-13T08:02:17.458078958Z [on_tool_execution]
+2026-07-13T08:02:17.458081562Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:17.458083905Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["probe"],"database_type":"kingbasees","error":null,"execution_time_ms":63,"generated_at":"2026-07-13T08:02:17.317Z","max_rows":100,"row_count":1,"rows":[{"probe":1}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:17.458087330Z [0m
+2026-07-13T08:02:17.458089524Z 2026-07-13 08:02:17.457 INFO [GraphWorker-0] [_client.py:1025] 273158f0d2c052278e1c261cfb77fe09 - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:17.583143240Z 2026-07-13 08:02:17.582 INFO [GraphWorker-0] [_client.py:1025] 273158f0d2c052278e1c261cfb77fe09 - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"
+2026-07-13T08:02:17.893255307Z [32;1m[1;3m
+2026-07-13T08:02:17.893300410Z [on_tool_execution]
+2026-07-13T08:02:17.893348508Z [0m[32;1m[1;3mTool: db_query_extended
+2026-07-13T08:02:17.893365608Z [0m[32;1m[1;3mOutputs: {"type":"json","message":{"json_object":{"columns":["id","label"],"database_type":"kingbasees","error":null,"execution_time_ms":67,"generated_at":"2026-07-13T08:02:17.580Z","max_rows":100,"row_count":12,"rows":[{"id":1,"label":"row-01"},{"id":2,"label":"row-02"},{"id":3,"label":"row-03"},{"id":4,"label":"row-04"},{"id":5,"label":"row-05"},{"id":6,"label":"row-06"},{"id":7,"label":"row-07"},{"id":8,"label":"row-08"},{"id":9,"label":"row-09"},{"id":10,"label":"row-10"},{"id":11,"label":"row-11"},{"id":12,"label":"row-12"}],"success":true,"truncated":false,"warning":null},"suppress_output":false},"meta":null}
+2026-07-13T08:02:17.893374456Z [0m
+2026-07-13T08:02:17.893377499Z 2026-07-13 08:02:17.892 INFO [GraphWorker-0] [_client.py:1025] fe6bfd282e9b564ea31468f244ff0f0b - HTTP Request: GET http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/management/tool?provider=db_query_extended&plugin_id=li_zijun%2Fdb_query_extended "HTTP/1.1 200 OK"
+2026-07-13T08:02:18.004054134Z 2026-07-13 08:02:18.003 INFO [GraphWorker-0] [_client.py:1025] fe6bfd282e9b564ea31468f244ff0f0b - HTTP Request: POST http://plugin_daemon:5002/plugin/518158e9-5645-41fc-b609-c3f0bcb16561/dispatch/tool/invoke "HTTP/1.1 200 OK"

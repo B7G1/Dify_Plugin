@@ -1,0 +1,132 @@
+{
+  "suite": "kingbasees_phase9_9_workflow_contract",
+  "generated_at": "2026-07-13T08:02:15.338006+00:00",
+  "status": "PASS",
+  "summary": {
+    "pass": 12,
+    "fail": 0,
+    "skip": 0
+  },
+  "cases": [
+    {
+      "case": "select_1",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "fixture_rows",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "unicode",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "null",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "numeric",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "date",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "timestamp",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "schema_qualified",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "max_rows",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "empty_result",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "aggregate",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case": "order_by",
+      "checks": {
+        "output_fields": true,
+        "workflow_wrapper": true,
+        "raw_and_parsed_match": true,
+        "database_type": true
+      },
+      "status": "PASS"
+    }
+  ]
+}

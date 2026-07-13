@@ -1,0 +1,397 @@
+{
+  "suite": "kingbasees_phase9_9_failure_recovery",
+  "generated_at": "2026-07-13T08:02:17.641578+00:00",
+  "status": "PASS",
+  "summary": {
+    "pass": 4,
+    "fail": 0,
+    "skip": 0
+  },
+  "cases": [
+    {
+      "case": "initial_success",
+      "expected": "Workflow remains usable without restart after a controlled failure",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "9863dc48-2794-407f-bba7-aaac06ff5c07",
+        "task_id": "f685a378-62cb-48d3-9c85-62270501964b",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-initial_success"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "probe"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 61,
+              "generated_at": "2026-07-13T08:02:16.814Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "probe": 1
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "probe"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 61,
+          "generated_at": "2026-07-13T08:02:16.814Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "probe": 1
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 259.026,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 264.193,
+      "error": null
+    },
+    {
+      "case": "controlled_failure",
+      "expected": "Workflow remains usable without restart after a controlled failure",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "ccd90c75-e92e-436e-b527-903c057ab047",
+        "task_id": "3bd2c5e9-976e-4d05-9c7d-6c1daf58c3c7",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "DELETE FROM phase97_fixture.sample_data",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-controlled_failure"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [],
+              "database_type": null,
+              "error": {
+                "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+                "type": "ReadOnlyViolationError"
+              },
+              "execution_time_ms": 0,
+              "generated_at": "2026-07-13T08:02:17.041Z",
+              "max_rows": 100,
+              "row_count": 0,
+              "rows": [],
+              "success": false,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [],
+          "database_type": null,
+          "error": {
+            "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+            "type": "ReadOnlyViolationError"
+          },
+          "execution_time_ms": 0,
+          "generated_at": "2026-07-13T08:02:17.041Z",
+          "max_rows": 100,
+          "row_count": 0,
+          "rows": [],
+          "success": false,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 214.022,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 219.815,
+      "error": null
+    },
+    {
+      "case": "post_failure_select_1",
+      "expected": "Workflow remains usable without restart after a controlled failure",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "3ab962cd-3a43-46b7-8321-4692fad429fd",
+        "task_id": "83f794e7-eea7-42ea-b74b-a3db3557eb28",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT 1 AS probe",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-post_failure_select_1"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "probe"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 63,
+              "generated_at": "2026-07-13T08:02:17.317Z",
+              "max_rows": 100,
+              "row_count": 1,
+              "rows": [
+                {
+                  "probe": 1
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "probe"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 63,
+          "generated_at": "2026-07-13T08:02:17.317Z",
+          "max_rows": 100,
+          "row_count": 1,
+          "rows": [
+            {
+              "probe": 1
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 258.901,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 265.125,
+      "error": null
+    },
+    {
+      "case": "post_failure_fixture",
+      "expected": "Workflow remains usable without restart after a controlled failure",
+      "actual": {
+        "http_status": 200,
+        "workflow_run_id": "98e97648-78e2-4a53-8f51-3756de074cc4",
+        "task_id": "2502a115-169f-49be-b2b9-3dd8bf7c12aa",
+        "workflow_status": "succeeded",
+        "request": {
+          "endpoint": "http://nginx/v1/workflows/run",
+          "method": "POST",
+          "authorization_present": true,
+          "inputs": {
+            "sql": "SELECT id, label FROM phase97_fixture.sample_data ORDER BY id",
+            "max_rows": 100
+          },
+          "response_mode": "blocking",
+          "user": "phase9.9-post_failure_fixture"
+        },
+        "workflow_outputs": {
+          "result": [
+            {
+              "columns": [
+                "id",
+                "label"
+              ],
+              "database_type": "kingbasees",
+              "error": null,
+              "execution_time_ms": 67,
+              "generated_at": "2026-07-13T08:02:17.580Z",
+              "max_rows": 100,
+              "row_count": 12,
+              "rows": [
+                {
+                  "id": 1,
+                  "label": "row-01"
+                },
+                {
+                  "id": 2,
+                  "label": "row-02"
+                },
+                {
+                  "id": 3,
+                  "label": "row-03"
+                },
+                {
+                  "id": 4,
+                  "label": "row-04"
+                },
+                {
+                  "id": 5,
+                  "label": "row-05"
+                },
+                {
+                  "id": 6,
+                  "label": "row-06"
+                },
+                {
+                  "id": 7,
+                  "label": "row-07"
+                },
+                {
+                  "id": 8,
+                  "label": "row-08"
+                },
+                {
+                  "id": 9,
+                  "label": "row-09"
+                },
+                {
+                  "id": 10,
+                  "label": "row-10"
+                },
+                {
+                  "id": 11,
+                  "label": "row-11"
+                },
+                {
+                  "id": 12,
+                  "label": "row-12"
+                }
+              ],
+              "success": true,
+              "truncated": false,
+              "warning": null
+            }
+          ]
+        },
+        "tool_json": {
+          "columns": [
+            "id",
+            "label"
+          ],
+          "database_type": "kingbasees",
+          "error": null,
+          "execution_time_ms": 67,
+          "generated_at": "2026-07-13T08:02:17.580Z",
+          "max_rows": 100,
+          "row_count": 12,
+          "rows": [
+            {
+              "id": 1,
+              "label": "row-01"
+            },
+            {
+              "id": 2,
+              "label": "row-02"
+            },
+            {
+              "id": 3,
+              "label": "row-03"
+            },
+            {
+              "id": 4,
+              "label": "row-04"
+            },
+            {
+              "id": 5,
+              "label": "row-05"
+            },
+            {
+              "id": 6,
+              "label": "row-06"
+            },
+            {
+              "id": 7,
+              "label": "row-07"
+            },
+            {
+              "id": 8,
+              "label": "row-08"
+            },
+            {
+              "id": 9,
+              "label": "row-09"
+            },
+            {
+              "id": 10,
+              "label": "row-10"
+            },
+            {
+              "id": 11,
+              "label": "row-11"
+            },
+            {
+              "id": 12,
+              "label": "row-12"
+            }
+          ],
+          "success": true,
+          "truncated": false,
+          "warning": null
+        },
+        "elapsed_ms": 250.683,
+        "redaction_check": true
+      },
+      "assertions": {
+        "http_200": true,
+        "workflow_succeeded": true,
+        "predicate": true,
+        "redacted": true
+      },
+      "status": "PASS",
+      "duration_ms": 255.647,
+      "error": null
+    }
+  ],
+  "container_restart_required": false,
+  "credential_preserved": true,
+  "runtime_crash": false
+}
