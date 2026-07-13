@@ -13,6 +13,34 @@
 
 它不是某一个 Phase 的验收报告，也不能被单次 Provider、Tool、Workflow、打包或安装 PASS 所取代。所有后续 Phase 规划、验收、报告、发布判断和项目收尾都必须先读取本文件。
 
+### 1.1 Original Reference Plugin Reproduction Prerequisite
+
+最终项目必须先证明导师提供的原始 SQL 查询插件能力已被理解并完成兼容复现，或者对未复现能力取得明确、可审计的范围批准。不能只证明新增 DM8/KingbaseES 后能够查询数据库，就跳过原始插件基线。
+
+2026-07-13 审计确认的本地参考资产为：
+
+```text
+junjiem-db_query_0.0.11-offline(1).difypkg
+SHA-256: 6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560
+Security: LOCAL_ONLY / NOT_TRACKED_BY_GIT / REDISTRIBUTION_NOT_ASSUMED
+```
+
+该原始插件实际声明的数据库类型为：
+
+```text
+mysql
+oracle
+oracle11g
+postgresql
+mssql
+```
+
+原始复现门禁至少覆盖：数据库范围、Provider/Tool 用户路径、参数和默认值、Markdown/JSON 输出、Workflow 迁移、安全意图、连接生命周期、离线安装及用户可见操作。更安全的重构可以替代原始实现，但不兼容变化必须有明确的兼容层、迁移方法或批准后的范围说明。
+
+Canonical audit：
+
+`reports/documentation/2026-07-13/Original_Plugin_Audit/original_plugin_reproduction_gap_audit.md`
+
 ## 2. Final Deliverable 1 — Offline Installable Plugins
 
 最终必须形成 DM8 与 KingbaseES 两套可离线安装并经过真实验证的插件交付物。每套交付物必须包含：
@@ -51,6 +79,8 @@ OPTIONAL COMPATIBILITY GATE
 
 SQL Server 用于证明适配架构和兼容流水线，但不替代 DM8 或 KingbaseES 的最终核心交付。
 
+上述 `OPTIONAL COMPATIBILITY GATE` 仅表示 SQL Server 不是 DM8/KingbaseES 两套核心最终离线包之一。对于导师原插件复现门禁，`mssql` 是原始基线能力；除非取得明确批准的范围排除，否则不能把它作为纯额外功能跳过。当前 `mssql` 到 `sqlserver` 的参数迁移及 Workflow 兼容仍需独立闭合。
+
 以下结果均不能单独等同于最终交付完成：
 
 - Adapter import PASS；
@@ -67,9 +97,10 @@ SQL Server 用于证明适配架构和兼容流水线，但不替代 DM8 或 Kin
 
 ## 3. Final Deliverable 2 — Development Process Documentation
 
-必须形成一份面向技术人员和技术领导的完整开发过程说明。文档必须从原始插件模板和最初环境开始，记录：
+必须形成一份面向技术人员和技术领导的完整开发过程说明。文档必须从初始 Dify 模板、导师原始参考插件行为基线和最初环境开始，记录：
 
 - 初始模板来源和结构；
+- 导师原始参考插件的真实结构、五种数据库范围、用户契约、安全局限和复现差距；
 - 最初需求和范围；
 - 环境和版本；
 - 目录演进；
@@ -113,8 +144,10 @@ SQL Server 用于证明适配架构和兼容流水线，但不替代 DM8 或 Kin
 读者假设：
 
 ```text
-只拥有原始插件模板、教程和合法取得的数据库/驱动介质。
+只拥有初始 Dify Tool 插件模板、教程、导师原始插件的审计行为基线，以及合法取得的数据库/驱动介质。
 ```
+
+教程不得要求读者复制导师原插件源码。教程应从初始 Dify 模板独立实现，但以已审计的原始功能和用户契约作为复现验收基线，并明确记录安全修复、兼容层、迁移方式和批准后的范围排除。
 
 教程不能假设读者已经拥有当前工作目录、现有容器、现有插件安装、现有数据库 fixture 或当前开发者的本地环境。教程必须明确说明：
 
@@ -172,7 +205,30 @@ FAIL 含义
 
 ## 5. Current Project State
 
-截至 2026-07-12：
+截至 2026-07-13：
+
+### Original Plugin Reproduction Audit
+
+状态：
+
+```text
+ORIGINAL_BASE_PLUGIN_REPRODUCTION_PARTIAL
+```
+
+已确认：
+
+- 原始插件支持 MySQL、Oracle、Oracle11g、PostgreSQL 和 MSSQL；
+- MySQL、PostgreSQL、MSSQL 的隔离真实 Tool 查询通过；
+- 当前 MySQL/PostgreSQL 查询能力存在，且 Provider、Adapter、安全和离线机制有明确改进；
+- 当前 DM8 和 KingbaseES 属于合理范围扩展。
+
+尚未闭合：
+
+- Oracle 和 Oracle11g，或明确批准的范围排除；
+- 原始 Tool/Workflow 参数迁移；
+- 原始 Markdown 和 JSON records 输出兼容决定；
+- SQL Server 原始基线角色及 Workflow 边界；
+- 从初始模板独立复现的最终教程。
 
 ### KingbaseES Phase 9.8
 
@@ -227,6 +283,34 @@ Phase 9.8 canonical report：
 
 `reports/documentation/2026-07-12/Phase09_KingbaseES/phase9_8_kingbasees_offline_packaging_installed_plugin_gate.md`
 
+### KingbaseES Phase 9.9
+
+状态：
+
+```text
+PASS
+```
+
+已证明：
+
+```text
+KINGBASEES_INSTALLED_WORKFLOW_API_PASS
+KINGBASEES_END_TO_END_PASS
+KINGBASEES_FINAL_OFFLINE_PLUGIN_TECHNICAL_PASS
+```
+
+Phase 9.9 完成了已安装 KingbaseES 插件通过真实 Workflow API 的技术链路。它不代表原始插件复现门禁、DM8 最终交付、公开再分发、开发过程文档、从零教程或最终项目交付已经完成。
+
+Phase 9.9 canonical report：
+
+`reports/documentation/2026-07-13/Phase09_KingbaseES/phase9_9_kingbasees_installed_workflow_end_to_end_gate.md`
+
+当前下一门禁：
+
+```text
+Base Plugin Reproduction Completion Gate
+```
+
 ## 6. Phase Closure Rules
 
 以后每个 Phase 的报告必须明确区分：
@@ -256,6 +340,7 @@ NEXT_PHASE
 
 只有在以下条件全部满足后，才可以声明项目最终完成：
 
+- 导师原始插件复现门禁通过，或所有排除项均有明确批准和迁移记录；
 - DM8 最终离线包完成；
 - KingbaseES 最终离线包完成；
 - 两者均通过真实 Dify 安装；
