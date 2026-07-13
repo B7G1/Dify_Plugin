@@ -1,0 +1,404 @@
+{
+  "suite": "tool_validation",
+  "generated_at": "2026-07-13T02:55:41.801085+00:00",
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "select_1",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "probe"
+        ],
+        "rows": [
+          {
+            "probe": 1
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 60,
+      "redaction_check": true
+    },
+    {
+      "case": "fixture_rows",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "id",
+          "label"
+        ],
+        "rows": [
+          {
+            "id": 1,
+            "label": "row-01"
+          },
+          {
+            "id": 2,
+            "label": "row-02"
+          },
+          {
+            "id": 3,
+            "label": "row-03"
+          },
+          {
+            "id": 4,
+            "label": "row-04"
+          },
+          {
+            "id": 5,
+            "label": "row-05"
+          },
+          {
+            "id": 6,
+            "label": "row-06"
+          },
+          {
+            "id": 7,
+            "label": "row-07"
+          },
+          {
+            "id": 8,
+            "label": "row-08"
+          },
+          {
+            "id": 9,
+            "label": "row-09"
+          },
+          {
+            "id": 10,
+            "label": "row-10"
+          },
+          {
+            "id": 11,
+            "label": "row-11"
+          },
+          {
+            "id": 12,
+            "label": "row-12"
+          }
+        ],
+        "row_count": 12,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 62,
+      "redaction_check": true
+    },
+    {
+      "case": "unicode",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "unicode_text"
+        ],
+        "rows": [
+          {
+            "unicode_text": "金仓只读验证"
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 59,
+      "redaction_check": true
+    },
+    {
+      "case": "null_numeric_date_time",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "nullable_text",
+          "amount",
+          "event_date",
+          "event_time"
+        ],
+        "rows": [
+          {
+            "nullable_text": null,
+            "amount": "2.50",
+            "event_date": "2026-07-02",
+            "event_time": "2026-07-02 12:34:56"
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 57,
+      "redaction_check": true
+    },
+    {
+      "case": "schema_qualified",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "total"
+        ],
+        "rows": [
+          {
+            "total": 12
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 60,
+      "redaction_check": true
+    },
+    {
+      "case": "default_max_rows",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          },
+          {
+            "id": 3
+          },
+          {
+            "id": 4
+          },
+          {
+            "id": 5
+          },
+          {
+            "id": 6
+          },
+          {
+            "id": 7
+          },
+          {
+            "id": 8
+          },
+          {
+            "id": 9
+          },
+          {
+            "id": 10
+          },
+          {
+            "id": 11
+          },
+          {
+            "id": 12
+          }
+        ],
+        "row_count": 12,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 57,
+      "redaction_check": true
+    },
+    {
+      "case": "custom_max_rows_truncation",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          },
+          {
+            "id": 3
+          },
+          {
+            "id": 4
+          },
+          {
+            "id": 5
+          }
+        ],
+        "row_count": 5,
+        "truncated": true,
+        "max_rows": 5,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 49,
+      "redaction_check": true
+    },
+    {
+      "case": "empty_result",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "id"
+        ],
+        "rows": [],
+        "row_count": 0,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 54,
+      "redaction_check": true
+    },
+    {
+      "case": "alias_column",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "fixture_label"
+        ],
+        "rows": [
+          {
+            "fixture_label": "row-01"
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 49,
+      "redaction_check": true
+    },
+    {
+      "case": "aggregate",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "total_amount"
+        ],
+        "rows": [
+          {
+            "total_amount": "84.00"
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 55,
+      "redaction_check": true
+    },
+    {
+      "case": "order_by",
+      "expected": "formal Tool returns verified content",
+      "actual": {
+        "success": true,
+        "database_type": "kingbasees",
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          {
+            "id": 12
+          },
+          {
+            "id": 11
+          },
+          {
+            "id": 10
+          }
+        ],
+        "row_count": 3,
+        "truncated": true,
+        "max_rows": 3,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 55,
+      "redaction_check": true
+    },
+    {
+      "case": "bad_authentication_redaction",
+      "expected": "safe Tool error",
+      "actual": {
+        "success": false,
+        "database_type": "kingbasees",
+        "columns": [],
+        "rows": [],
+        "row_count": 0,
+        "truncated": false,
+        "max_rows": 100,
+        "error": {
+          "type": "ConnectionFailedError",
+          "message": "Database connection failed while executing the query."
+        }
+      },
+      "status": "PASS",
+      "duration_ms": 21,
+      "redaction_check": true
+    },
+    {
+      "case": "unreachable_endpoint_redaction",
+      "expected": "safe Tool error",
+      "actual": {
+        "success": false,
+        "database_type": "kingbasees",
+        "columns": [],
+        "rows": [],
+        "row_count": 0,
+        "truncated": false,
+        "max_rows": 100,
+        "error": {
+          "type": "ConnectionFailedError",
+          "message": "Database connection failed while executing the query."
+        }
+      },
+      "status": "PASS",
+      "duration_ms": 7,
+      "redaction_check": true
+    }
+  ],
+  "summary": {
+    "pass": 13,
+    "fail": 0
+  },
+  "engine_dispose_calls": 23
+}

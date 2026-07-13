@@ -1,0 +1,8 @@
+{
+  "runtime": "dify-plugin_daemon-1",
+  "python": "3.12.3",
+  "sqlalchemy": "2.0.51",
+  "ksycopg2": "2.9.1 (dt dec kci3 ext lo64)(for Python3.12 Kingbase V9, compiled on Tue Jun 30 17:23:09 2026, commit for 1eab55b)",
+  "dependency_boundary": "CANDIDATE_RUNTIME_DEPENDENCY_OVERLAY / NOT_INSTALLED_PLUGIN_DEPENDENCY_CLOSURE",
+  "password_recorded": false
+}

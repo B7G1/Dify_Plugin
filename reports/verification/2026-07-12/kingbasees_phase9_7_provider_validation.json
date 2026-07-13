@@ -1,0 +1,184 @@
+{
+  "suite": "provider_validation",
+  "generated_at": "2026-07-13T02:55:41.148865+00:00",
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "valid_fixture_schema",
+      "expected": "credential validation succeeds",
+      "actual": "completed",
+      "status": "PASS",
+      "duration_ms": 67,
+      "redaction_check": true
+    },
+    {
+      "case": "valid_public_schema",
+      "expected": "credential validation succeeds",
+      "actual": "completed",
+      "status": "PASS",
+      "duration_ms": 70,
+      "redaction_check": true
+    },
+    {
+      "case": "valid_empty_schema",
+      "expected": "credential validation succeeds",
+      "actual": "completed",
+      "status": "PASS",
+      "duration_ms": 59,
+      "redaction_check": true
+    },
+    {
+      "case": "special_character_password",
+      "expected": "URL-safe special-character password succeeds",
+      "actual": "completed",
+      "status": "PASS",
+      "duration_ms": 73,
+      "redaction_check": true
+    },
+    {
+      "case": "explicit_connect_timeout",
+      "expected": "explicit timeout succeeds",
+      "actual": "completed",
+      "status": "PASS",
+      "duration_ms": 70,
+      "redaction_check": true
+    },
+    {
+      "case": "missing_host",
+      "expected": "validation rejects missing field",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Missing required connection parameter: host."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "missing_port",
+      "expected": "validation rejects missing field",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Missing required connection parameter: port."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "missing_database",
+      "expected": "validation rejects missing field",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Missing required connection parameter: database."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "missing_username",
+      "expected": "validation rejects missing field",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Missing required connection parameter: username."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "missing_password",
+      "expected": "validation rejects missing field",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Missing required connection parameter: password."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "invalid_port",
+      "expected": "validation rejects invalid port",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "port must be a whole number."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "wrong_password",
+      "expected": "safe validation failure",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Unable to connect to the database. Check database type, host, port, database name, and credentials."
+      },
+      "status": "PASS",
+      "duration_ms": 18,
+      "redaction_check": true
+    },
+    {
+      "case": "missing_user",
+      "expected": "safe validation failure",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Unable to connect to the database. Check database type, host, port, database name, and credentials."
+      },
+      "status": "PASS",
+      "duration_ms": 20,
+      "redaction_check": true
+    },
+    {
+      "case": "unreachable",
+      "expected": "safe validation failure",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Unable to connect to the database. Check database type, host, port, database name, and credentials."
+      },
+      "status": "PASS",
+      "duration_ms": 12,
+      "redaction_check": true
+    },
+    {
+      "case": "invalid_database",
+      "expected": "safe validation failure",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Unable to connect to the database. Check database type, host, port, database name, and credentials."
+      },
+      "status": "PASS",
+      "duration_ms": 21,
+      "redaction_check": true
+    },
+    {
+      "case": "invalid_schema",
+      "expected": "safe validation failure",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Database connection configuration could not be validated."
+      },
+      "status": "PASS",
+      "duration_ms": 56,
+      "redaction_check": true
+    },
+    {
+      "case": "unsupported_database_type",
+      "expected": "safe validation failure",
+      "actual": {
+        "error_type": "ToolProviderCredentialValidationError",
+        "message": "Unsupported database type. Available types are mysql, postgresql, dm, sqlserver, and kingbasees."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    }
+  ],
+  "summary": {
+    "pass": 17,
+    "fail": 0
+  },
+  "engine_dispose_calls": 10
+}

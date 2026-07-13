@@ -1,0 +1,157 @@
+{
+  "suite": "readonly_account",
+  "generated_at": "2026-07-13T02:55:41.891735+00:00",
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "insert",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "update",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "delete",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "create",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "alter",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "drop",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "truncate",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "multi_statement",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "comment_bypass",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "cte_write",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "procedure_call",
+      "expected": "common validator rejects SQL",
+      "actual": {
+        "error_type": "ReadOnlyViolationError",
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "database_permission_insert",
+      "expected": "database rejects read-only user write",
+      "actual": {
+        "error_type": "ProgrammingError",
+        "message": "(ksycopg2.errors.InsufficientPrivilege) permission denied for table sample_data\n\n[SQL: INSERT INTO phase97_fixture.sample_data (id, label) VALUES (99, 'forbidden')]\n(Background on this error at: https://sqlalche.me/e/20/f405)"
+      },
+      "status": "PASS",
+      "duration_ms": 48,
+      "redaction_check": true
+    },
+    {
+      "case": "database_permission_create",
+      "expected": "database rejects read-only user DDL",
+      "actual": {
+        "error_type": "ProgrammingError",
+        "message": "(ksycopg2.errors.InsufficientPrivilege) permission denied for schema phase97_fixture\nLINE 1: CREATE TABLE phase97_fixture.forbidden_table (id INTEGER)\n                     ^\n\n[SQL: CREATE TABLE phase97_fixture.forbidden_table (id INTEGER)]\n(Background on this error at: https://sqlalche.me/e/20/f405)"
+      },
+      "status": "PASS",
+      "duration_ms": 42,
+      "redaction_check": true
+    }
+  ],
+  "summary": {
+    "pass": 13,
+    "fail": 0
+  },
+  "role": "phase97_readonly",
+  "schema": "phase97_fixture",
+  "password_recorded": false
+}

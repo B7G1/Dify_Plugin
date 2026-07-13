@@ -1,0 +1,80 @@
+{
+  "suite": "targeted_regression",
+  "generated_at": "2026-07-13T02:55:41.953219+00:00",
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "provider_options",
+      "expected": "mysql/postgresql/dm preserved; sqlserver remains optional; kingbasees present",
+      "actual": "['mysql', 'postgresql', 'dm', 'sqlserver', 'kingbasees']",
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "postgresql_provider_real",
+      "expected": "real Provider validation succeeds",
+      "actual": "completed",
+      "status": "PASS",
+      "duration_ms": 34,
+      "redaction_check": true
+    },
+    {
+      "case": "postgresql_tool_real",
+      "expected": "real Tool SELECT 1 succeeds",
+      "actual": {
+        "success": true,
+        "database_type": "postgresql",
+        "columns": [
+          "probe"
+        ],
+        "rows": [
+          {
+            "probe": 1
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 100,
+        "error": null
+      },
+      "status": "PASS",
+      "duration_ms": 18,
+      "redaction_check": true
+    },
+    {
+      "case": "common_validator",
+      "expected": "SELECT accepted and DML rejected",
+      "actual": "(SqlValidationResult(sql='SELECT 1', statement_type='SELECT', tokens=('SELECT',)), ReadOnlyViolationError('Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.'))",
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    },
+    {
+      "case": "common_formatter",
+      "expected": "stable formatter contract",
+      "actual": {
+        "columns": [
+          "amount",
+          "when"
+        ],
+        "rows": [
+          {
+            "amount": "12.30",
+            "when": "2026-07-12"
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 1
+      },
+      "status": "PASS",
+      "duration_ms": 0,
+      "redaction_check": true
+    }
+  ],
+  "summary": {
+    "pass": 5,
+    "fail": 0
+  }
+}
