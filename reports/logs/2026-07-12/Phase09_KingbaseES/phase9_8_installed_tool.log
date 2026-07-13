@@ -1,0 +1,430 @@
+{
+  "suite": "kingbasees_phase9_8_installed_tool_validation",
+  "generated_at": "2026-07-13T03:34:31.564852+00:00",
+  "status": "PASS",
+  "summary": {
+    "pass": 14,
+    "fail": 0
+  },
+  "cases": [
+    {
+      "case": "select_1",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 54,
+        "generated_at": "2026-07-13T03:34:30.512Z",
+        "warning": null,
+        "columns": [
+          "probe"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 1,
+        "rows": [
+          {
+            "probe": 1
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 140,
+      "redaction_check": true
+    },
+    {
+      "case": "fixture",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 58,
+        "generated_at": "2026-07-13T03:34:30.612Z",
+        "warning": null,
+        "columns": [
+          "id",
+          "label"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 12,
+        "rows": [
+          {
+            "id": 1,
+            "label": "row-01"
+          },
+          {
+            "id": 2,
+            "label": "row-02"
+          },
+          {
+            "id": 3,
+            "label": "row-03"
+          },
+          {
+            "id": 4,
+            "label": "row-04"
+          },
+          {
+            "id": 5,
+            "label": "row-05"
+          },
+          {
+            "id": 6,
+            "label": "row-06"
+          },
+          {
+            "id": 7,
+            "label": "row-07"
+          },
+          {
+            "id": 8,
+            "label": "row-08"
+          },
+          {
+            "id": 9,
+            "label": "row-09"
+          },
+          {
+            "id": 10,
+            "label": "row-10"
+          },
+          {
+            "id": 11,
+            "label": "row-11"
+          },
+          {
+            "id": 12,
+            "label": "row-12"
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 96,
+      "redaction_check": true
+    },
+    {
+      "case": "unicode",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 68,
+        "generated_at": "2026-07-13T03:34:30.719Z",
+        "warning": null,
+        "columns": [
+          "unicode_text"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 1,
+        "rows": [
+          {
+            "unicode_text": "金仓只读验证"
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 108,
+      "redaction_check": true
+    },
+    {
+      "case": "types",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 64,
+        "generated_at": "2026-07-13T03:34:30.827Z",
+        "warning": null,
+        "columns": [
+          "nullable_text",
+          "amount",
+          "event_date",
+          "event_time"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 1,
+        "rows": [
+          {
+            "amount": "2.50",
+            "event_date": "2026-07-02",
+            "event_time": "2026-07-02 12:34:56",
+            "nullable_text": null
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 106,
+      "redaction_check": true
+    },
+    {
+      "case": "schema_read",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 56,
+        "generated_at": "2026-07-13T03:34:30.929Z",
+        "warning": null,
+        "columns": [
+          "total"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 1,
+        "rows": [
+          {
+            "total": 12
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 102,
+      "redaction_check": true
+    },
+    {
+      "case": "truncation",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 53,
+        "generated_at": "2026-07-13T03:34:31.027Z",
+        "warning": "Result was truncated to max_rows=5.",
+        "columns": [
+          "id"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 5,
+        "success": true,
+        "error": null,
+        "truncated": true,
+        "row_count": 5,
+        "rows": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          },
+          {
+            "id": 3
+          },
+          {
+            "id": 4
+          },
+          {
+            "id": 5
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 97,
+      "redaction_check": true
+    },
+    {
+      "case": "empty",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 53,
+        "generated_at": "2026-07-13T03:34:31.119Z",
+        "warning": null,
+        "columns": [
+          "id"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 0,
+        "rows": []
+      },
+      "status": "PASS",
+      "duration_ms": 107,
+      "redaction_check": true
+    },
+    {
+      "case": "aggregate",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 54,
+        "generated_at": "2026-07-13T03:34:31.232Z",
+        "warning": null,
+        "columns": [
+          "total"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 1,
+        "rows": [
+          {
+            "total": "84.00"
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 96,
+      "redaction_check": true
+    },
+    {
+      "case": "order_by",
+      "expected": "installed Tool returns verified content",
+      "actual": {
+        "execution_time_ms": 50,
+        "generated_at": "2026-07-13T03:34:31.317Z",
+        "warning": "Result was truncated to max_rows=3.",
+        "columns": [
+          "id"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 3,
+        "success": true,
+        "error": null,
+        "truncated": true,
+        "row_count": 3,
+        "rows": [
+          {
+            "id": 12
+          },
+          {
+            "id": 11
+          },
+          {
+            "id": 10
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 85,
+      "redaction_check": true
+    },
+    {
+      "case": "dml_rejection",
+      "expected": "installed Tool blocks unsafe SQL",
+      "actual": {
+        "execution_time_ms": 0,
+        "generated_at": "2026-07-13T03:34:31.354Z",
+        "warning": null,
+        "columns": [],
+        "database_type": null,
+        "max_rows": 100,
+        "success": false,
+        "error": {
+          "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+          "type": "ReadOnlyViolationError"
+        },
+        "truncated": false,
+        "row_count": 0,
+        "rows": []
+      },
+      "status": "PASS",
+      "duration_ms": 36,
+      "redaction_check": true
+    },
+    {
+      "case": "ddl_rejection",
+      "expected": "installed Tool blocks unsafe SQL",
+      "actual": {
+        "execution_time_ms": 0,
+        "generated_at": "2026-07-13T03:34:31.390Z",
+        "warning": null,
+        "columns": [],
+        "database_type": null,
+        "max_rows": 100,
+        "success": false,
+        "error": {
+          "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+          "type": "ReadOnlyViolationError"
+        },
+        "truncated": false,
+        "row_count": 0,
+        "rows": []
+      },
+      "status": "PASS",
+      "duration_ms": 35,
+      "redaction_check": true
+    },
+    {
+      "case": "multi_statement_rejection",
+      "expected": "installed Tool blocks unsafe SQL",
+      "actual": {
+        "execution_time_ms": 0,
+        "generated_at": "2026-07-13T03:34:31.423Z",
+        "warning": null,
+        "columns": [],
+        "database_type": null,
+        "max_rows": 100,
+        "success": false,
+        "error": {
+          "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+          "type": "ReadOnlyViolationError"
+        },
+        "truncated": false,
+        "row_count": 0,
+        "rows": []
+      },
+      "status": "PASS",
+      "duration_ms": 33,
+      "redaction_check": true
+    },
+    {
+      "case": "bad_auth_redaction",
+      "expected": "installed Tool returns safe authentication failure",
+      "actual": {
+        "execution_time_ms": 0,
+        "generated_at": "2026-07-13T03:34:31.469Z",
+        "warning": null,
+        "columns": [],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": false,
+        "error": {
+          "message": "Database connection failed while executing the query.",
+          "type": "ConnectionFailedError"
+        },
+        "truncated": false,
+        "row_count": 0,
+        "rows": []
+      },
+      "status": "PASS",
+      "duration_ms": 46,
+      "redaction_check": true
+    },
+    {
+      "case": "post_failure_cleanup",
+      "expected": "installed Tool remains usable after failed authentication",
+      "actual": {
+        "execution_time_ms": 56,
+        "generated_at": "2026-07-13T03:34:31.562Z",
+        "warning": null,
+        "columns": [
+          "probe"
+        ],
+        "database_type": "kingbasees",
+        "max_rows": 100,
+        "success": true,
+        "error": null,
+        "truncated": false,
+        "row_count": 1,
+        "rows": [
+          {
+            "probe": 1
+          }
+        ]
+      },
+      "status": "PASS",
+      "duration_ms": 92,
+      "redaction_check": true
+    }
+  ],
+  "active_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9"
+}

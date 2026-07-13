@@ -1,0 +1,90 @@
+{
+  "suite": "kingbasees_phase9_8_dify_installation",
+  "generated_at": "2026-07-13T03:32:19.187076+00:00",
+  "status": "PASS",
+  "tenant_id_recorded": false,
+  "decode_parameter_compatibility": "PluginUniqueIdentifier",
+  "before": [
+    {
+      "plugin_id": "li_zijun/db_query_extended",
+      "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@4d1e293d9c5df7a8614e7d5e086a6a8a856a7a76accf835bc18ab6736f84af47",
+      "version": "0.1.1",
+      "installation_id": "019f1d04-c3ab-7557-b652-54f7af314d93",
+      "source": "package"
+    }
+  ],
+  "candidate": {
+    "version": "0.1.1",
+    "plugin_checksum": "bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+    "package_sha256": "117206A0F0D50FDA0EA7C1895E82BA0151AE0DEE3583B3E914240A0D2985C389"
+  },
+  "upload_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+  "install_task": {
+    "id": "019f5988-55a8-72b0-b295-272ff9c12eb9",
+    "created_at": "2026-07-13T03:32:14.888185Z",
+    "updated_at": "2026-07-13T03:32:15.456516Z",
+    "status": "success",
+    "total_plugins": 1,
+    "completed_plugins": 1,
+    "plugins": [
+      {
+        "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+        "plugin_id": "li_zijun/db_query_extended",
+        "status": "success",
+        "message": "installed",
+        "icon": "f1441c071a96f87326f5eb2ae2bfc5a570e9260e7d2b74c2ac15df4037231c64.svg",
+        "labels": {
+          "en_US": "Extended Database Query",
+          "zh_Hans": "扩展数据库查询",
+          "pt_BR": "Extended Database Query",
+          "ja_JP": "Extended Database Query"
+        },
+        "source": null
+      }
+    ]
+  },
+  "upgrade_task": {
+    "id": "019f5988-5e31-75ea-be9a-666175b9452c",
+    "created_at": "2026-07-13T03:32:17.073402Z",
+    "updated_at": "2026-07-13T03:32:17.739095Z",
+    "status": "success",
+    "total_plugins": 1,
+    "completed_plugins": 1,
+    "plugins": [
+      {
+        "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+        "plugin_id": "li_zijun/db_query_extended",
+        "status": "success",
+        "message": "upgraded",
+        "icon": "f1441c071a96f87326f5eb2ae2bfc5a570e9260e7d2b74c2ac15df4037231c64.svg",
+        "labels": {
+          "en_US": "Extended Database Query",
+          "zh_Hans": "扩展数据库查询",
+          "pt_BR": "Extended Database Query",
+          "ja_JP": "Extended Database Query"
+        },
+        "source": null
+      }
+    ]
+  },
+  "after": [
+    {
+      "plugin_id": "li_zijun/db_query_extended",
+      "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+      "version": "0.1.1",
+      "installation_id": "019f1d04-c3ab-7557-b652-54f7af314d93",
+      "source": "package"
+    }
+  ],
+  "rollback": {
+    "previous_identifier": "li_zijun/db_query_extended:0.1.1@4d1e293d9c5df7a8614e7d5e086a6a8a856a7a76accf835bc18ab6736f84af47",
+    "previous_package_path": "release/db_query_extended/phase8_sqlserver_candidate/db_query_extended-0.1.1-sqlserver-candidate.difypkg",
+    "procedure": "Upload the preserved previous package through PluginService.upload_pkg, then PluginService.install_from_local_pkg with its returned identifier."
+  },
+  "checks": {
+    "candidate_checksum_match": true,
+    "install_task_success": true,
+    "upgrade_task_success": true,
+    "candidate_active": true
+  }
+}

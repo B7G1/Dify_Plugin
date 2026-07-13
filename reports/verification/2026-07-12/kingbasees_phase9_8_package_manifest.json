@@ -1,0 +1,798 @@
+{
+  "suite": "kingbasees_phase9_8_package_manifest",
+  "generated_at": "2026-07-13T03:21:13.590361+00:00",
+  "status": "PASS",
+  "package": "candidate.difypkg",
+  "size": 41232413,
+  "sha256": "117206A0F0D50FDA0EA7C1895E82BA0151AE0DEE3583B3E914240A0D2985C389",
+  "manifest_version": "0.1.1",
+  "entrypoint": "main",
+  "file_count": 77,
+  "wheel_count": 44,
+  "wheels": [
+    {
+      "filename": "annotated_types-0.7.0-py3-none-any.whl",
+      "package": "annotated-types",
+      "version": "0.7.0",
+      "size": 13643,
+      "sha256": "1F02E8B43A8FBBC3F3E0D4F0F4BFC8131BCB4EEBE8849B8E5C773F3A1C582A53",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "anyio-4.14.0-py3-none-any.whl",
+      "package": "anyio",
+      "version": "4.14.0",
+      "size": 123506,
+      "sha256": "DD9B7A2A9799ED6552FDE617B2C5DF02B7FDD7D88392FC48101E51BAE46164D9",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "blinker-1.9.0-py3-none-any.whl",
+      "package": "blinker",
+      "version": "1.9.0",
+      "size": 8458,
+      "sha256": "BA0EFAA9080B619FF2F3459D1D500C57BDDEA4A6B424B60A91141DB6FD2F08BC",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "certifi-2026.6.17-py3-none-any.whl",
+      "package": "certifi",
+      "version": "2026.6.17",
+      "size": 133289,
+      "sha256": "2227DCBAAFE0D2F59279D1762DDDDC37783ED4354594F194FFC31D20F41FC3DB",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "MPL-2.0",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "charset-normalizer",
+      "version": "3.4.7",
+      "size": 216589,
+      "sha256": "5649FD1C7BADE02F320A462FDEFD0B4BD3CE036065836D4F42E0DE958038E116",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "MIT",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "click-8.4.1-py3-none-any.whl",
+      "package": "click",
+      "version": "8.4.1",
+      "size": 116639,
+      "sha256": "482BE17C6991B8C19C5429A1E995D9B0EFDBB63172824C41F99965DC0ADE8EC2",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "dify_plugin-0.6.2-py3-none-any.whl",
+      "package": "dify_plugin",
+      "version": "0.6.2",
+      "size": 355533,
+      "sha256": "57F5D4A30D42B32D1483E43300D14012C4F155CFFCEE8C959BCD4A33620B5D47",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "Apache2.0",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "dmPython-2.5.32-cp312-cp312-linux_x86_64.whl",
+      "package": "dmPython",
+      "version": "2.5.32",
+      "size": 10771609,
+      "sha256": "1C4032B42B387D6A57D1752F024B595DDE774EE89E6FADCF28DBE28263529B75",
+      "python_tag": "cp312",
+      "platform_tag": "linux_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-linux_x86_64"
+      ],
+      "license": "Python Software Foundation License",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "dmsqlalchemy-2.0.12-py3-none-any.whl",
+      "package": "dmsqlalchemy",
+      "version": "2.0.12",
+      "size": 59252,
+      "sha256": "E20A9FA4120E681C9FF660AE8ABDCD51ECB6E86FAB6837924A5E86A8A94FDBB3",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "UNKNOWN",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "dpkt-1.9.8-py3-none-any.whl",
+      "package": "dpkt",
+      "version": "1.9.8",
+      "size": 194973,
+      "sha256": "4DA4D111D7BF67575B571F5C678C71BDDD2D8A01A3D57D489FAF0A92C748FBFD",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "BSD",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "flask-3.0.3-py3-none-any.whl",
+      "package": "Flask",
+      "version": "3.0.3",
+      "size": 101735,
+      "sha256": "34E815DFAA43340D1D15A5C3A02B8476004037EB4840B34910C6E21679D288F3",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "gevent-25.5.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "package": "gevent",
+      "version": "25.5.1",
+      "size": 2070583,
+      "sha256": "C1325ED44225C8309C0DD188BDBBBEE79E1DF8C11CECCAC226B861C7D52E4837",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux_2_17_x86_64.manylinux2014_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64"
+      ],
+      "license": "MIT",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "greenlet-3.5.2-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "greenlet",
+      "version": "3.5.2",
+      "size": 613749,
+      "sha256": "1F052FFF492C52FDFA99BD3B3C1389A53DE37DAE76A0562741417F0D018F02B3",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux_2_24_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_24_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "h11-0.16.0-py3-none-any.whl",
+      "package": "h11",
+      "version": "0.16.0",
+      "size": 37515,
+      "sha256": "63CF8BBE7522DE3BF65932FDA1D9C2772064FFB3DAE62D55932DA54B31CB6C86",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "MIT",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "httpcore-1.0.9-py3-none-any.whl",
+      "package": "httpcore",
+      "version": "1.0.9",
+      "size": 78784,
+      "sha256": "2D400746A40668FC9DEC9810239072B40B4484B640A8C38FD654A024C7A1BF55",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "httpx-0.28.1-py3-none-any.whl",
+      "package": "httpx",
+      "version": "0.28.1",
+      "size": 73517,
+      "sha256": "D909FCCCC110F8C7FAF814CA82A9A4D816BC5A6DBFEA25D6591D6985B8BA59AD",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "BSD-3-Clause",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "idna-3.18-py3-none-any.whl",
+      "package": "idna",
+      "version": "3.18",
+      "size": 65455,
+      "sha256": "7F952CBE720B688055E3F87DE14F5C3E5FDAA8BC3928985C4077CA689DE849A2",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "itsdangerous-2.2.0-py3-none-any.whl",
+      "package": "itsdangerous",
+      "version": "2.2.0",
+      "size": 16234,
+      "sha256": "C6242FC49E35958C8B15141343AA660DB5FC54D4F13A1DB01A3F5891B98700EF",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "jinja2-3.1.6-py3-none-any.whl",
+      "package": "Jinja2",
+      "version": "3.1.6",
+      "size": 134899,
+      "sha256": "85ECE4451F492D0C13C5DD7C13A64681A86AFAE63A5F347908DAF103CE6D2F67",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "ksycopg2-2.9.1-cp312-cp312-manylinux1_x86_64.whl",
+      "package": "ksycopg2",
+      "version": "2.9.1",
+      "size": 4423009,
+      "sha256": "59D2D19439FA0D8AE66A7972EF9EF1FE461E84389D50BC3E90C59ABB4962287A",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux1_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux1_x86_64"
+      ],
+      "license": "LGPL with exceptions",
+      "source": "Kingbase-maintained PyPI distribution",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "MarkupSafe",
+      "version": "3.0.3",
+      "size": 22947,
+      "sha256": "D6DD0BE5B5B189D31DB7CDA48B91D7E0A9795F31430B7F271219AB30F1D3AC9D",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "multidict",
+      "version": "6.7.1",
+      "size": 256322,
+      "sha256": "BFDE23EF6ED9DB7EAEE6C37DCEC08524CB43903C60B285B172B6C094711B3961",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "Apache License 2.0",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "packaging-26.2-py3-none-any.whl",
+      "package": "packaging",
+      "version": "26.2",
+      "size": 100195,
+      "sha256": "5FC45236B9446107FF2415CE77C807CEE2862CB6FAC22B8A73826D0693B0980E",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "propcache-0.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "propcache",
+      "version": "0.5.2",
+      "size": 61639,
+      "sha256": "6F328175A2CDE1F0FF2C4ED8CE968B9DCFB55F3A7153F39E2957ED994DA13476",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "Apache-2.0",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "psycopg2_binary-2.9.12-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "package": "psycopg2-binary",
+      "version": "2.9.12",
+      "size": 4274917,
+      "sha256": "9FE06D93E72F1C048E731A2E3E7854A5BFAA58FC736068DF90B352CEFE66F03F",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64"
+      ],
+      "license": "LGPL with exceptions",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "pydantic-2.13.4-py3-none-any.whl",
+      "package": "pydantic",
+      "version": "2.13.4",
+      "size": 472262,
+      "sha256": "45A282CDE31D808236FD7EA9D919B128653C8B38B393D1C4AB335C62924D9ABA",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "package": "pydantic_core",
+      "version": "2.46.4",
+      "size": 2094516,
+      "sha256": "926C9541B14B12B1681DCA8A0B75FEB510B06C6341B70A8E500C2FDCFF837CCE",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux_2_17_x86_64.manylinux2014_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "pydantic_settings-2.14.2-py3-none-any.whl",
+      "package": "pydantic-settings",
+      "version": "2.14.2",
+      "size": 61715,
+      "sha256": "A20C97B37910B6550D5EA50FBCC2D4187DEFE58CD57070B73863D069419C9440",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "pymssql-2.3.13-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "pymssql",
+      "version": "2.3.13",
+      "size": 3190567,
+      "sha256": "C0EA72641CB0F8BCE7AD8565DBDBDA4A7437AA58BCE045F2A3A788D71AF2E4BE",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux_2_27_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_27_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "GNU LESSER GENERAL PUBLIC LICENSE",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "pymysql-1.2.0-py3-none-any.whl",
+      "package": "PyMySQL",
+      "version": "1.2.0",
+      "size": 45716,
+      "sha256": "62169CE6D5510F08E140C5E7990EE884A9764024E4A9A27B2CC11F1099322AE0",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "python_dotenv-1.2.2-py3-none-any.whl",
+      "package": "python-dotenv",
+      "version": "1.2.2",
+      "size": 22101,
+      "sha256": "1D8214789A24DE455A8B8BD8AE6FE3C6B69A5E3D64AA8A8E5D68E694BBCB285A",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "BSD-3-Clause",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "PyYAML",
+      "version": "6.0.3",
+      "size": 807870,
+      "sha256": "BA1CC08A7CCDE2D2EC775841541641E4548226580AB850948CBFDA66A1BEFCDC",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "MIT",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "regex-2026.5.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "regex",
+      "version": "2026.5.9",
+      "size": 801239,
+      "sha256": "DD2810D22146B6D838ACC5EC15602CB6B47920AA4E33015DF3868EEDFD20BAB8",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "requests-2.32.5-py3-none-any.whl",
+      "package": "requests",
+      "version": "2.32.5",
+      "size": 64738,
+      "sha256": "2462F94637A34FD532264295E186976DB0F5D453D1CDD31473C85A6A161AFFB6",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "Apache-2.0",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "socksio-1.0.0-py3-none-any.whl",
+      "package": "socksio",
+      "version": "1.0.0",
+      "size": 12763,
+      "sha256": "95DC1F15F9B34E8D7B16F06D74B8CCF48F609AF32AB33C608D08761C5DCBB1F3",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "UNKNOWN",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "sqlalchemy-2.0.51-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "SQLAlchemy",
+      "version": "2.0.51",
+      "size": 3358470,
+      "sha256": "1D21CE524AB86C23046E992A5B81CB54C21079C6DF6E78B8FC77D77CAC70A6B9",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "MIT",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "tiktoken-0.8.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "package": "tiktoken",
+      "version": "0.8.0",
+      "size": 1175432,
+      "sha256": "D2908C0D043A7D03EBD80347266B0E58440BDEF5564F84F4D29FB235B5DF3B04",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux_2_17_x86_64.manylinux2014_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64"
+      ],
+      "license": "MIT License",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "typing_extensions-4.15.0-py3-none-any.whl",
+      "package": "typing_extensions",
+      "version": "4.15.0",
+      "size": 44614,
+      "sha256": "F0FA19C6845758AB08074A0CFA8B7AECB71C999CA73D62883BC25CC018C4E548",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "typing_inspection-0.4.2-py3-none-any.whl",
+      "package": "typing-inspection",
+      "version": "0.4.2",
+      "size": 14611,
+      "sha256": "4ED1CACBDC298C220F1BD249ED5287CAA16F34D44EF4E9C3D0CBAD5B521545E7",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "urllib3-2.7.0-py3-none-any.whl",
+      "package": "urllib3",
+      "version": "2.7.0",
+      "size": 131087,
+      "sha256": "9FB4C81EBBB1CE9531CCE37674BBC6F1360472BC18CA9A553EDE278EF7276897",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "werkzeug-3.0.6-py3-none-any.whl",
+      "package": "Werkzeug",
+      "version": "3.0.6",
+      "size": 227979,
+      "sha256": "1BC0C2310D2FBB07B1DD1105EBA2F7AF72F322E1E455F2F93C993BEE8C8A5F17",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "yarl-1.24.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "package": "yarl",
+      "version": "1.24.2",
+      "size": 105612,
+      "sha256": "7E7EBCDEF69DEC6C6451E616F32B622A6D4A2E92B445C992F7C8E5274A6BBC4C",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64",
+        "cp312-cp312-manylinux_2_28_x86_64"
+      ],
+      "license": "Apache-2.0",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "zope_event-6.2-py3-none-any.whl",
+      "package": "zope.event",
+      "version": "6.2",
+      "size": 6525,
+      "sha256": "5E755153AC4FAF64C10A4B6DD3307680166A3EDF65B38DF22DF592610F8FA874",
+      "python_tag": "py3",
+      "platform_tag": "any",
+      "wheel_tags": [
+        "py3-none-any"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    },
+    {
+      "filename": "zope_interface-8.5-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl",
+      "package": "zope.interface",
+      "version": "8.5",
+      "size": 270689,
+      "sha256": "5E970DABEA777A24B0B0BBF9DAE3AB75CE8B2D8E948EDF4875627034B21F3560",
+      "python_tag": "cp312",
+      "platform_tag": "manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64",
+      "wheel_tags": [
+        "cp312-cp312-manylinux_2_5_x86_64",
+        "cp312-cp312-manylinux1_x86_64",
+        "cp312-cp312-manylinux_2_17_x86_64",
+        "cp312-cp312-manylinux2014_x86_64"
+      ],
+      "license": "NOT_DECLARED",
+      "source": "existing project offline wheel library",
+      "required_by": "requirements.txt/offline dependency closure",
+      "included_in_package": true,
+      "verification_status": "PRESENT_AND_HASHED"
+    }
+  ],
+  "missing_required_paths": [],
+  "forbidden_names": [],
+  "secret_hits": [],
+  "checks": {
+    "required_paths": true,
+    "driver_pin": true,
+    "notice_status": true,
+    "manifest_version": true,
+    "forbidden_names_zero": true,
+    "secret_hits_zero": true
+  }
+}

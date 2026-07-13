@@ -1,0 +1,9 @@
+working_directory=E:\Dify_Plugin
+command=.\dify-plugin.exe plugin package .\db_query_extended -o db_query_extended\dist\phase9_8\db_query_extended-0.1.1-kingbasees-candidate.difypkg --max-size 100
+exit_code=0
+result=plugin packaged successfully
+package=db_query_extended-0.1.1-kingbasees-candidate.difypkg
+size=41232413
+sha256=117206A0F0D50FDA0EA7C1895E82BA0151AE0DEE3583B3E914240A0D2985C389
+plugin_checksum=bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9
+source_commit=73ed5f3

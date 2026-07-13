@@ -1,0 +1,10 @@
+2026-07-13T03:30:48Z local runtime starting plugin=li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9
+2026-07-13T03:30:49Z detected dependency file file=requirements.txt
+2026-07-13T03:30:49Z installing plugin dependencies method="uv pip install"
+2026-07-13T03:30:53Z pre-compiling installed ksycopg2 package
+2026-07-13T03:30:55Z pre-loaded the plugin
+2026-07-13T03:30:56Z local runtime scale up instance_nums=1
+2026-07-13T03:30:58Z Installed tool: db_query_extended
+2026-07-13T03:30:58Z local runtime ready plugin=li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9
+dependency_resolution_failure=NONE
+phase95_overlay=NOT_USED

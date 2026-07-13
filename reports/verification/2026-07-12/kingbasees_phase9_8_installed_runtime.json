@@ -1,0 +1,38 @@
+{
+  "suite": "kingbasees_phase9_8_installed_runtime",
+  "generated_at": "2026-07-13T03:35:13.139100+00:00",
+  "status": "PASS",
+  "installed_root": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+  "installed_checksum": "bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+  "python": "3.12.3 (main, Jan  8 2026, 11:30:50) [GCC 13.3.0]",
+  "ksycopg2_version": "2.9.1 (dt dec kci3 ext lo64)(for Python3.12 Kingbase V9, compiled on Tue Jun 30 17:23:09 2026, commit for 1eab55b)",
+  "sqlalchemy_version": "2.0.51",
+  "provider_options": [
+    "mysql",
+    "postgresql",
+    "dm",
+    "sqlserver",
+    "kingbasees"
+  ],
+  "module_paths": {
+    "ksycopg2": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9/.venv/lib/python3.12/site-packages/ksycopg2/__init__.py",
+    "sqlalchemy": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9/.venv/lib/python3.12/site-packages/sqlalchemy/__init__.py",
+    "kingbasees_adapter": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9/utils/adapters/kingbasees.py",
+    "provider_yaml": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9/provider/db_query_extended.yaml",
+    "tool_yaml": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9/tools/db_query_extended.yaml",
+    "libkci": "/app/storage/cwd/li_zijun/db_query_extended-0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9/.venv/lib/python3.12/site-packages/ksycopg2/libkci.so.5"
+  },
+  "checks": {
+    "installed_checksum_path": true,
+    "ksycopg2_installed_path": true,
+    "libkci_installed_path": true,
+    "sqlalchemy_2_0_51": true,
+    "no_phase95_overlay": true,
+    "pythonpath_has_no_probe_overlay": true,
+    "provider_schema": true,
+    "tool_schema": true,
+    "adapter_import_smoke": true,
+    "psycopg2_identity": true,
+    "postgresql_dialect_identity": true
+  }
+}

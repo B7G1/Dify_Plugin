@@ -1,0 +1,108 @@
+{
+  "suite": "kingbasees_phase9_8_installed_provider_validation",
+  "generated_at": "2026-07-13T03:34:30.377548+00:00",
+  "status": "PASS",
+  "summary": {
+    "pass": 9,
+    "fail": 0
+  },
+  "cases": [
+    {
+      "case": "valid_fixture",
+      "expected": "installed Provider validates",
+      "actual": true,
+      "status": "PASS",
+      "duration_ms": 108,
+      "redaction_check": true
+    },
+    {
+      "case": "valid_public",
+      "expected": "installed Provider validates",
+      "actual": true,
+      "status": "PASS",
+      "duration_ms": 113,
+      "redaction_check": true
+    },
+    {
+      "case": "valid_empty_schema",
+      "expected": "installed Provider validates",
+      "actual": true,
+      "status": "PASS",
+      "duration_ms": 89,
+      "redaction_check": true
+    },
+    {
+      "case": "explicit_timeout_special_password",
+      "expected": "installed Provider validates",
+      "actual": true,
+      "status": "PASS",
+      "duration_ms": 98,
+      "redaction_check": true
+    },
+    {
+      "case": "wrong_password",
+      "expected": "installed Provider returns safe failure",
+      "actual": {
+        "error_type": "PluginInvokeError",
+        "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ToolProviderCredentialValidationError\",\"message\":\"Unable to connect to the database. Check database type, host, port, database name, and credentials.\"}"
+      },
+      "status": "PASS",
+      "duration_ms": 53,
+      "redaction_check": true
+    },
+    {
+      "case": "unreachable",
+      "expected": "installed Provider returns safe failure",
+      "actual": {
+        "error_type": "PluginInvokeError",
+        "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ToolProviderCredentialValidationError\",\"message\":\"Unable to connect to the database. Check database type, host, port, database name, and credentials.\"}"
+      },
+      "status": "PASS",
+      "duration_ms": 43,
+      "redaction_check": true
+    },
+    {
+      "case": "invalid_database",
+      "expected": "installed Provider returns safe failure",
+      "actual": {
+        "error_type": "PluginInvokeError",
+        "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ToolProviderCredentialValidationError\",\"message\":\"Unable to connect to the database. Check database type, host, port, database name, and credentials.\"}"
+      },
+      "status": "PASS",
+      "duration_ms": 60,
+      "redaction_check": true
+    },
+    {
+      "case": "invalid_schema",
+      "expected": "installed Provider returns safe failure",
+      "actual": {
+        "error_type": "PluginInvokeError",
+        "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ToolProviderCredentialValidationError\",\"message\":\"Database connection configuration could not be validated.\"}"
+      },
+      "status": "PASS",
+      "duration_ms": 92,
+      "redaction_check": true
+    },
+    {
+      "case": "missing_host",
+      "expected": "installed Provider returns safe failure",
+      "actual": {
+        "error_type": "PluginInvokeError",
+        "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ToolProviderCredentialValidationError\",\"message\":\"Missing required connection parameter: host.\"}"
+      },
+      "status": "PASS",
+      "duration_ms": 42,
+      "redaction_check": true
+    }
+  ],
+  "active_identifier": "li_zijun/db_query_extended:0.1.1@bb60478dadf46594b3fdbad140b4ec3a21782899ec7a70e67ff9a1e6088430f9",
+  "schema_options": [
+    "mysql",
+    "postgresql",
+    "dm",
+    "sqlserver",
+    "kingbasees"
+  ],
+  "provider_schema_has_kingbasees": true,
+  "credential_persisted_encrypted": true
+}

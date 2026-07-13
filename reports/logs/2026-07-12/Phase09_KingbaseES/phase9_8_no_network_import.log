@@ -1,0 +1,199 @@
+{
+  "suite": "kingbasees_phase9_8_offline_dependency_closure",
+  "generated_at": "2026-07-13T03:21:51.226622+00:00",
+  "status": "PASS",
+  "network_mode": "none",
+  "install_mode": "pip --no-index --no-cache-dir --find-links",
+  "python": "3.12.3 (main, Jan  8 2026, 11:30:50) [GCC 13.3.0]",
+  "ksycopg2_module_path": "/phase98/site/ksycopg2/__init__.py",
+  "libkci_path": "/phase98/site/ksycopg2/libkci.so.5",
+  "installed_packages": [
+    [
+      "Flask",
+      "3.0.3"
+    ],
+    [
+      "Jinja2",
+      "3.1.6"
+    ],
+    [
+      "MarkupSafe",
+      "3.0.3"
+    ],
+    [
+      "PyMySQL",
+      "1.2.0"
+    ],
+    [
+      "PyYAML",
+      "6.0.3"
+    ],
+    [
+      "SQLAlchemy",
+      "2.0.51"
+    ],
+    [
+      "Werkzeug",
+      "3.0.6"
+    ],
+    [
+      "annotated-types",
+      "0.7.0"
+    ],
+    [
+      "anyio",
+      "4.14.0"
+    ],
+    [
+      "blinker",
+      "1.9.0"
+    ],
+    [
+      "certifi",
+      "2026.6.17"
+    ],
+    [
+      "charset-normalizer",
+      "3.4.7"
+    ],
+    [
+      "click",
+      "8.4.1"
+    ],
+    [
+      "dify_plugin",
+      "0.6.2"
+    ],
+    [
+      "dmPython",
+      "2.5.32"
+    ],
+    [
+      "dmsqlalchemy",
+      "2.0.12"
+    ],
+    [
+      "dpkt",
+      "1.9.8"
+    ],
+    [
+      "gevent",
+      "25.5.1"
+    ],
+    [
+      "greenlet",
+      "3.5.2"
+    ],
+    [
+      "h11",
+      "0.16.0"
+    ],
+    [
+      "httpcore",
+      "1.0.9"
+    ],
+    [
+      "httpx",
+      "0.28.1"
+    ],
+    [
+      "idna",
+      "3.18"
+    ],
+    [
+      "itsdangerous",
+      "2.2.0"
+    ],
+    [
+      "ksycopg2",
+      "2.9.1"
+    ],
+    [
+      "multidict",
+      "6.7.1"
+    ],
+    [
+      "packaging",
+      "26.2"
+    ],
+    [
+      "propcache",
+      "0.5.2"
+    ],
+    [
+      "psycopg2-binary",
+      "2.9.12"
+    ],
+    [
+      "pydantic",
+      "2.13.4"
+    ],
+    [
+      "pydantic-settings",
+      "2.14.2"
+    ],
+    [
+      "pydantic_core",
+      "2.46.4"
+    ],
+    [
+      "pymssql",
+      "2.3.13"
+    ],
+    [
+      "python-dotenv",
+      "1.2.2"
+    ],
+    [
+      "regex",
+      "2026.5.9"
+    ],
+    [
+      "requests",
+      "2.32.5"
+    ],
+    [
+      "socksio",
+      "1.0.0"
+    ],
+    [
+      "tiktoken",
+      "0.8.0"
+    ],
+    [
+      "typing-inspection",
+      "0.4.2"
+    ],
+    [
+      "typing_extensions",
+      "4.15.0"
+    ],
+    [
+      "urllib3",
+      "2.7.0"
+    ],
+    [
+      "yarl",
+      "1.24.2"
+    ],
+    [
+      "zope.event",
+      "6.2"
+    ],
+    [
+      "zope.interface",
+      "8.5"
+    ]
+  ],
+  "missing_dependency_count": 0,
+  "checks": {
+    "network_none": true,
+    "python312": true,
+    "ksycopg2_import": true,
+    "libkci_load": true,
+    "sqlalchemy_import": true,
+    "plugin_source_import": true,
+    "no_phase95_overlay": true,
+    "no_external_download": true
+  }
+}
