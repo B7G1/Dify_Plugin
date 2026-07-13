@@ -5,8 +5,9 @@ This directory is the single entry point for project reporting.
 Read in this order:
 
 1. [`REPORTING_STANDARD.md`](REPORTING_STANDARD.md) — mandatory policy for every report task.
-2. [`REPORT_MAP.md`](REPORT_MAP.md) — canonical report and evidence index.
-3. [`templates/PHASE_REPORT_TEMPLATE.md`](templates/PHASE_REPORT_TEMPLATE.md) — required metadata and audit sections for new phase reports.
+2. [`documentation/PROJECT_DELIVERY_CONTRACT.md`](documentation/PROJECT_DELIVERY_CONTRACT.md) — `NORMATIVE / PROJECT-WIDE`, updated 2026-07-13; defines the three final deliverables, preserves the Phase 9.8 boundary, and governs Phase 9.9 and later closure decisions.
+3. [`REPORT_MAP.md`](REPORT_MAP.md) — canonical phase-report and evidence index.
+4. [`templates/PHASE_REPORT_TEMPLATE.md`](templates/PHASE_REPORT_TEMPLATE.md) — required metadata and audit sections for new phase reports.
 
 ## Canonical taxonomy
 

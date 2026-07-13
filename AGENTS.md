@@ -6,6 +6,18 @@ Any task involving report creation, report cleanup, report reorganization, repor
 
 凡用户提出整理、生成、更新、归档、汇总、清理或补充报告，以及生成阶段或验收文档，执行者都必须先读取并严格遵守 `reports/REPORTING_STANDARD.md`。除非用户明确要求修改该规范本身，不得临时创建另一套目录、命名或归档体系。若临时要求与规范冲突，必须指出冲突，并优先保护唯一权威报告、机器证据完整性、日志可审计性、敏感信息安全和 Git 历史可追踪性。
 
+## Final Delivery Contract
+
+Before planning, implementing, validating, documenting, or closing any project phase, read:
+
+`reports/documentation/PROJECT_DELIVERY_CONTRACT.md`
+
+Phase-level PASS does not automatically mean that the final project delivery is complete.
+
+The core final database deliverables are DM8 and KingbaseES. SQL Server remains an optional compatibility-gate case unless the delivery contract is explicitly changed.
+
+Do not declare final completion until all required offline packages, installed runtime validation, Workflow/API validation, end-to-end evidence, development-history documentation, and from-zero reproduction documentation satisfy the delivery contract.
+
 ## 适用范围
 
 本仓库是 `Multi-Database Compatibility Engineering for a Dify Plugin Runtime`，不只是数据库查询插件。

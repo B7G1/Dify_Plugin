@@ -13,6 +13,14 @@
 - Supersedes: NOT_APPLICABLE
 - Security classification: INTERNAL / REDACTED / REDISTRIBUTION_REVIEW_PENDING
 
+## Final Delivery Contract Reference
+
+This Phase report is governed by:
+
+`reports/documentation/PROJECT_DELIVERY_CONTRACT.md`
+
+Phase 9.8 PASS is a packaging and installed Provider/Tool gate. It is not Workflow PASS, final KingbaseES end-to-end PASS, or final project delivery completion.
+
 ## Executive Summary
 
 Phase 9.8 is `PASS`.
