@@ -1,0 +1,58 @@
+{
+  "phase": "9.6",
+  "suite": "real_adapter",
+  "status": "PASS",
+  "python": "3.12.3",
+  "sqlalchemy": "2.0.51",
+  "ksycopg2": "2.9.1 (dt dec kci3 ext lo64)(for Python3.12 Kingbase V9, compiled on Tue Jun 30 17:23:09 2026, commit for 1eab55b)",
+  "date": "2026-07-12",
+  "entries": [
+    {
+      "name": "formal_adapter_queries",
+      "status": "PASS",
+      "detail": {
+        "version": "KingbaseES V009R001C010",
+        "search_path": "public",
+        "select_1": 1,
+        "unicode_literal": "金仓数据库",
+        "unicode_binding": "参数绑定",
+        "null": null,
+        "numeric": "42.50",
+        "date": "2026-07-13",
+        "timestamp": "2026-07-13 02:41:59.909998+00:00",
+        "schema_read": "kingbase",
+        "rollback": true,
+        "connection_closed": true,
+        "engine_disposed": true
+      }
+    },
+    {
+      "name": "public_database_utility",
+      "status": "PASS",
+      "detail": {
+        "columns": [
+          "value"
+        ],
+        "rows": [
+          {
+            "value": 1
+          }
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "max_rows": 1,
+        "execution_time_ms": 48
+      }
+    },
+    {
+      "name": "authentication_redaction",
+      "status": "PASS",
+      "detail": "Unable to connect to the database. Check database type, host, port, database name, and credentials."
+    },
+    {
+      "name": "unreachable_redaction",
+      "status": "PASS",
+      "detail": "Unable to connect to the database. Check database type, host, port, database name, and credentials."
+    }
+  ]
+}

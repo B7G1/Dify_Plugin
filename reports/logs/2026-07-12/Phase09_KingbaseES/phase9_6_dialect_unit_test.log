@@ -1,0 +1,11 @@
+Suite: dialect
+Status: PASS
+Checks: 6
+- KingbaseES V009R001C010 -> (9, 1, 10)
+- optional B0004 suffix and extra spaces -> (9, 1, 10)
+- unknown PostgreSQL-style version -> rejected
+- registry kingbasees.ksycopg2 -> idempotent PASS
+- import_dbapi -> ksycopg2; paramstyle pyformat
+- AUTOCOMMIT and READ COMMITTED behavior -> PASS
+- disconnect detection -> PASS
+- psycopg2 module identity unchanged; fake top-level package absent

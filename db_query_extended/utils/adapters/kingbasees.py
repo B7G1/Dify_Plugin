@@ -1,4 +1,4 @@
-"""KingbaseES SQLAlchemy adapter (runtime acceptance pending)."""
+"""KingbaseES adapter using the plugin-owned SQLAlchemy dialect."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ from typing import Any
 from sqlalchemy import URL, text
 
 from utils.adapters.base import DatabaseAdapter
+from utils.dialects.kingbasees import register_kingbasees_dialect
 from utils.drivers.kingbasees import SQLALCHEMY_DRIVER_NAME, require_kingbase_runtime
 
 
@@ -14,6 +15,7 @@ class KingbaseESAdapter(DatabaseAdapter):
     """Keep KingbaseES-specific connection and session behavior isolated."""
 
     def build_database_url(self, config: dict[str, Any]) -> URL:
+        register_kingbasees_dialect()
         return URL.create(
             SQLALCHEMY_DRIVER_NAME,
             username=config["username"],
@@ -48,4 +50,3 @@ class KingbaseESAdapter(DatabaseAdapter):
 
 
 Adapter = KingbaseESAdapter
-

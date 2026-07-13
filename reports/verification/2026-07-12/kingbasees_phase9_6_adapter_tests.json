@@ -1,0 +1,58 @@
+{
+  "phase": "9.6",
+  "suite": "adapter",
+  "status": "PASS",
+  "python": "3.12.3",
+  "sqlalchemy": "2.0.51",
+  "ksycopg2": "2.9.1 (dt dec kci3 ext lo64)(for Python3.12 Kingbase V9, compiled on Tue Jun 30 17:23:09 2026, commit for 1eab55b)",
+  "date": "2026-07-12",
+  "entries": [
+    {
+      "name": "lookup_and_url",
+      "status": "PASS",
+      "detail": {
+        "drivername": "kingbasees+ksycopg2",
+        "redacted": "kingbasees+ksycopg2://name%40example:***@host.example:54321/kingbase",
+        "dbapi_user_key": "user"
+      }
+    },
+    {
+      "name": "connect_and_engine_options",
+      "status": "PASS",
+      "detail": {
+        "pool_pre_ping": true,
+        "connect_args": {
+          "connect_timeout": 10,
+          "sslmode": "disable"
+        }
+      }
+    },
+    {
+      "name": "session_configuration",
+      "status": "PASS",
+      "detail": [
+        {
+          "timeout_value": "30000ms"
+        },
+        {
+          "schema": "public"
+        }
+      ]
+    },
+    {
+      "name": "existing_registry",
+      "status": "PASS",
+      "detail": {
+        "mysql": "mysql+pymysql",
+        "postgresql": "postgresql+psycopg2",
+        "sqlserver": "mssql+pymssql",
+        "dm": "DMAdapter"
+      }
+    },
+    {
+      "name": "readonly_contract",
+      "status": "PASS",
+      "detail": "shared validator unchanged: SELECT allowed; DML, DDL, and multi-statement blocked"
+    }
+  ]
+}

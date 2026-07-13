@@ -1,0 +1,61 @@
+{
+  "phase": "9.6",
+  "suite": "dialect",
+  "status": "PASS",
+  "python": "3.12.3",
+  "sqlalchemy": "2.0.51",
+  "ksycopg2": "2.9.1 (dt dec kci3 ext lo64)(for Python3.12 Kingbase V9, compiled on Tue Jun 30 17:23:09 2026, commit for 1eab55b)",
+  "date": "2026-07-12",
+  "entries": [
+    {
+      "name": "version_parser",
+      "status": "PASS",
+      "detail": {
+        "tuple": [
+          9,
+          1,
+          10
+        ],
+        "meaning": [
+          "major",
+          "release",
+          "component"
+        ]
+      }
+    },
+    {
+      "name": "registry",
+      "status": "PASS",
+      "detail": "idempotent kingbasees.ksycopg2 registration"
+    },
+    {
+      "name": "dbapi",
+      "status": "PASS",
+      "detail": {
+        "module": "ksycopg2",
+        "paramstyle": "pyformat"
+      }
+    },
+    {
+      "name": "isolation",
+      "status": "PASS",
+      "detail": {
+        "autocommit": true,
+        "read_committed": true
+      }
+    },
+    {
+      "name": "disconnect",
+      "status": "PASS",
+      "detail": "ksycopg2 exception and closed-state checks"
+    },
+    {
+      "name": "namespace_isolation",
+      "status": "PASS",
+      "detail": {
+        "psycopg2_before_is_after": true,
+        "fake_package": false
+      }
+    }
+  ]
+}

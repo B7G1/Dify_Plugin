@@ -1,0 +1,21 @@
+Suite: real_adapter
+Status: PASS
+Runtime: real dify-plugin_daemon-1 -> preserved dify-plugin-phase94-kingbase
+Credentials: transient container environment; password ***REDACTED***
+Formal URL: kingbasees+ksycopg2
+Server: KingbaseES V009R001C010
+search_path: public
+SELECT 1: 1
+Unicode literal: 金仓数据库
+Unicode named binding: 参数绑定
+NULL: PASS
+NUMERIC(10,2): 42.50
+CURRENT_DATE: PASS
+CURRENT_TIMESTAMP: PASS
+schema-qualified pg_catalog.pg_database read: kingbase
+transaction rollback: PASS
+connection close: PASS
+engine.dispose: PASS
+public database utility contract: columns/rows/row_count/truncated/max_rows PASS
+deliberate authentication failure redaction: PASS
+deliberate unreachable-host redaction: PASS

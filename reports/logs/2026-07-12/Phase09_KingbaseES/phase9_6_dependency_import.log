@@ -1,0 +1,8 @@
+Runtime: dify-plugin_daemon-1
+Python: 3.12.3
+SQLAlchemy: 2.0.51
+ksycopg2: 2.9.1
+ksycopg2 wheel SHA-256: 59D2D19439FA0D8AE66A7972EF9EF1FE461E84389D50BC3E90C59ABB4962287A
+Dependency source: Phase 9.5 isolated /tmp/kingbasees_phase95/site
+Formal product wheel packaging: NOT_PERFORMED
+Global runtime installation: NOT_PERFORMED

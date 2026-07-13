@@ -1,0 +1,29 @@
+{
+  "phase": "9.6",
+  "suite": "postgresql_regression",
+  "status": "PASS",
+  "python": "3.12.3",
+  "sqlalchemy": "2.0.51",
+  "ksycopg2": "2.9.1 (dt dec kci3 ext lo64)(for Python3.12 Kingbase V9, compiled on Tue Jun 30 17:23:09 2026, commit for 1eab55b)",
+  "date": "2026-07-12",
+  "entries": [
+    {
+      "name": "postgresql_identity",
+      "status": "PASS",
+      "detail": {
+        "psycopg2_identity_unchanged": true,
+        "postgresql_dialect_identity_unchanged": true,
+        "postgresql_url": "postgresql+psycopg2"
+      }
+    },
+    {
+      "name": "postgresql_real_select_1",
+      "status": "PASS",
+      "detail": {
+        "select_1": 1,
+        "connection_closed": true,
+        "engine_disposed": true
+      }
+    }
+  ]
+}

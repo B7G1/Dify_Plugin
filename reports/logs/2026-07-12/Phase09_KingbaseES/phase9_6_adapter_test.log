@@ -1,0 +1,10 @@
+Suite: adapter
+Status: PASS
+Checks: 5
+- dynamic Adapter lookup -> KingbaseESAdapter
+- URL -> kingbasees+ksycopg2://name%40example:***@host.example:54321/kingbase
+- SQLAlchemy username translated to ksycopg2 user key
+- connect_timeout, sslmode, pool_pre_ping -> PASS
+- statement timeout and search_path use bound parameters
+- MySQL/PostgreSQL/DM8/SQL Server adapter identities unchanged
+- shared read-only validator: SELECT PASS; DML, DDL, multi-statement BLOCKED

@@ -1,0 +1,9 @@
+Suite: postgresql_regression
+Status: PASS
+psycopg2 module identity before/after KingbaseES import: unchanged
+postgresql.psycopg2 dialect identity before/after: unchanged
+PostgreSQL Adapter URL: postgresql+psycopg2
+Real Dify PostgreSQL SELECT 1: 1
+PostgreSQL connection close: PASS
+PostgreSQL engine.dispose: PASS
+Credentials: transient container environment; password ***REDACTED***
