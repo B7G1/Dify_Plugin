@@ -5,7 +5,7 @@ identity:
     en_US: Extended Database Query
     zh_Hans: 扩展数据库查询
   description:
-    en_US: Configure a MySQL, PostgreSQL, SQL Server, DM8, or KingbaseES Preview connection for the read-only SQL query tool.
+    en_US: Configure a MySQL, PostgreSQL, SQL Server, DM8, or KingbaseES connection for the read-only SQL query tool.
     zh_Hans: 为只读 SQL 查询工具配置 MySQL、PostgreSQL、SQL Server、DM8 或 KingbaseES 预览连接。
   icon: icon.svg
 
@@ -33,7 +33,7 @@ credentials_for_provider:
           zh_Hans: SQL Server
       - value: kingbasees
         label:
-          en_US: KingbaseES (Preview)
+          en_US: KingbaseES
           zh_Hans: KingbaseES（预览）
     label:
       en_US: Database type
@@ -55,7 +55,7 @@ credentials_for_provider:
       en_US: Port
       zh_Hans: 端口
     help:
-      en_US: MySQL normally uses 3306; PostgreSQL 5432; SQL Server 1433; DM8 5236; KingbaseES 54321.
+      en_US: Enter the database server port explicitly. KingbaseES ports are deployment-specific; 54321 is only the local test mapping.
       zh_Hans: MySQL 通常使用 3306；PostgreSQL 使用 5432；SQL Server 使用 1433；DM8 使用 5236；KingbaseES 使用 54321。
   username:
     type: text-input
@@ -83,7 +83,7 @@ credentials_for_provider:
       en_US: Schema (optional)
       zh_Hans: Schema（可选）
     help:
-      en_US: Optional schema/search_path. KingbaseES local planning uses plugin_test.
+      en_US: Optional schema/search_path. The KingbaseES local integration fixture uses phase97_fixture.
       zh_Hans: 可选 schema/search_path；KingbaseES 本地规划值为 plugin_test。
   connection_timeout:
     type: text-input

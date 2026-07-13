@@ -43,6 +43,12 @@ class KingbaseESAdapter(DatabaseAdapter):
         )
         schema = config.get("schema")
         if schema:
+            exists = connection.execute(
+                text("SELECT 1 FROM information_schema.schemata WHERE schema_name = :schema"),
+                {"schema": schema},
+            ).scalar_one_or_none()
+            if exists is None:
+                raise ValueError("Configured schema does not exist.")
             connection.execute(
                 text("SELECT set_config('search_path', :schema, true)"),
                 {"schema": schema},

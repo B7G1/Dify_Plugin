@@ -1,4 +1,4 @@
-"""Read-only SQL query tool for the configured MySQL or PostgreSQL provider."""
+"""Read-only SQL query tool for the configured database provider."""
 
 import logging
 from collections.abc import Generator

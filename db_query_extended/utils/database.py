@@ -65,9 +65,12 @@ def build_engine_options(config: dict[str, Any]) -> dict[str, Any]:
 def verify_database_connection(config: dict[str, Any]) -> None:
     """Verify driver authentication and query readiness with SELECT 1."""
     engine = create_database_engine(config)
+    adapter = get_database_adapter(config["database_type"])
     try:
         with engine.connect() as connection:
-            connection.execute(text("SELECT 1"))
+            with connection.begin():
+                adapter.configure_session(connection, config, config["connection_timeout"])
+                connection.execute(text("SELECT 1"))
     except (OperationalError, DBAPIError) as exc:
         logger.warning("Database connection verification failed: %s", exc.__class__.__name__)
         raise ConnectionFailedError(

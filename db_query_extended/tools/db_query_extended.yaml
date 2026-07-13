@@ -6,7 +6,7 @@ identity:
     zh_Hans: 只读 SQL 查询
 description:
   human:
-    en_US: Execute exactly one read-only SQL statement against the configured MySQL or PostgreSQL database.
+    en_US: Execute exactly one read-only SQL statement against the configured database.
     zh_Hans: 针对已配置的 MySQL 或 PostgreSQL 数据库执行一条只读 SQL。
   llm: Execute one read-only SQL statement only. Allowed statements are SELECT and WITH. Reject INSERT, UPDATE, DELETE, DROP, ALTER, CREATE, TRUNCATE, CALL, EXEC, MERGE, COPY, LOAD DATA, transaction control, file operations, and multiple statements.
 parameters:

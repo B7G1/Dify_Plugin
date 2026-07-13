@@ -13,7 +13,7 @@ from utils.sql_validator import ReadOnlyValidator
 
 
 SUPPORTED_DATABASE_TYPES = {"mysql", "postgresql", "dm", "sqlserver", "kingbasees"}
-DEFAULT_PORTS = {"mysql": 3306, "postgresql": 5432, "dm": 5236, "sqlserver": 1433, "kingbasees": 54321}
+DEFAULT_PORTS = {"mysql": 3306, "postgresql": 5432, "dm": 5236, "sqlserver": 1433}
 MAX_ALLOWED_ROWS = 1_000
 MAX_ALLOWED_TIMEOUT = 120
 
@@ -39,9 +39,10 @@ def validate_connection_config(credentials: dict[str, Any]) -> dict[str, Any]:
         normalized[field] = str(value).strip()
     normalized["database"] = str(credentials.get("database") or "").strip()
 
-    normalized["port"] = _positive_int(
-        credentials.get("port") or DEFAULT_PORTS[database_type], "port", maximum=65535
-    )
+    port = credentials.get("port")
+    if database_type == "kingbasees" and not str(port or "").strip():
+        raise ParameterValidationError("Missing required connection parameter: port.")
+    normalized["port"] = _positive_int(port or DEFAULT_PORTS[database_type], "port", maximum=65535)
     normalized["connection_timeout"] = _positive_int(
         credentials.get("connection_timeout") or credentials.get("connect_timeout") or 10,
         "connection_timeout",
