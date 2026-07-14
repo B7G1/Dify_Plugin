@@ -62,7 +62,9 @@ def contract_tests() -> dict[str, Any]:
     record(checks, "default_markdown", lambda: _same(legacy["parameters"][-1]["default"], "markdown"))
     record(checks, "separate_modern_entry", lambda: _different(legacy["identity"]["name"], modern["identity"]["name"]))
     record(checks, "project_identity", lambda: _different(legacy["identity"]["author"], "junjiem"))
-    record(checks, "manifest_registers_both", lambda: _same(len(manifest["plugins"]["tools"]), 2))
+    record(checks, "manifest_registers_single_runtime_provider", lambda: _same(manifest["plugins"]["tools"], ["provider/db_query_extended.yaml"]))
+    provider = yaml.safe_load((PLUGIN / "provider" / "db_query_extended.yaml").read_text(encoding="utf-8"))
+    record(checks, "provider_registers_both_tools", lambda: _same(provider["tools"], ["tools/db_query_extended.yaml", "tools/legacy_database_query.yaml"]))
     return checks
 
 
@@ -123,7 +125,7 @@ def workflow_tests() -> dict[str, Any]:
         document = json.loads(output.read_text(encoding="utf-8"))
         node = document["graph"]["nodes"][0]["data"]
         record(checks, "bindings_and_mssql_preserved", lambda: (_same(node["inputs"], fixture["graph"]["nodes"][0]["data"]["inputs"]), _same(node["inputs"]["db_type"], "{{#db_type#}}")))
-        record(checks, "identity_rewritten_only", lambda: (_same((node["provider_id"], node["tool_name"]), ("legacy_database_query", "legacy_database_query")), _same(document["graph"]["nodes"][1], fixture["graph"]["nodes"][1])))
+        record(checks, "identity_rewritten_only", lambda: (_same((node["provider_id"], node["tool_name"]), ("db_query_extended", "legacy_database_query")), _same(document["graph"]["nodes"][1], fixture["graph"]["nodes"][1])))
         record(checks, "backup_and_secret_redaction", lambda: (_same(backup.read_text(encoding="utf-8"), source.read_text(encoding="utf-8")), _not_contains(json.dumps(migrated), SECRET)))
         again = _run(script, "--input", output, "--output", root / "again.json")
         record(checks, "idempotent", lambda: _same(again["status"], "NOOP"))
@@ -190,7 +192,7 @@ def main() -> int:
     existing = existing_regression()
     groups = {"contract_tests": contract, "formatter_tests": formatter, "security_tests": security, "mapping_tests": mapping, "workflow_migration_tests": workflow, "existing_regression": existing}
     failed = {group: {name: value for name, value in checks.items() if isinstance(value, str) and value.startswith("FAIL")} for group, checks in groups.items() if any(isinstance(value, str) and value.startswith("FAIL") for value in checks.values())}
-    payload = {"phase": "10.1", "status": "FAIL" if failed else "PASS", "starting_commit": "0700f82", "ending_commit": None, **groups, "modified_files": ["manifest.yaml", "provider/legacy_database_query.yaml", "provider/legacy_database_query.py", "tools/legacy_database_query.yaml", "tools/legacy_database_query.py", "utils/legacy.py", "utils/validation.py", "scripts/migrate_legacy_workflow.py"], "evidence_files": ["reports/verification/2026-07-13/phase10_1_final_gate.json", "reports/logs/2026-07-13/Phase10_Base_Reproduction/phase10_1_legacy_implementation_gate.log", "reports/logs/2026-07-13/Phase10_Base_Reproduction/phase10_1_existing_phase2_regression.log"], "allowed_claims": ["LEGACY_TOOL_IMPLEMENTED", "LEGACY_FORMATTERS_IMPLEMENTED", "WORKFLOW_MIGRATION_UTILITY_IMPLEMENTED"] if not failed else [], "forbidden_claims": ["ORIGINAL_BASE_PLUGIN_REPRODUCTION_CONFIRMED", "ORACLE_REPRODUCTION_PASS", "ORACLE11G_REPRODUCTION_PASS", "LEGACY_WORKFLOW_MIGRATION_PASS", "FINAL_PROJECT_DELIVERY_PASS"]}
+    payload = {"phase": "10.1", "status": "FAIL" if failed else "PASS", "starting_commit": "0700f82", "ending_commit": None, **groups, "modified_files": ["manifest.yaml", "provider/db_query_extended.yaml", "tools/legacy_database_query.yaml", "tools/legacy_database_query.py", "utils/legacy.py", "utils/validation.py", "scripts/migrate_legacy_workflow.py"], "evidence_files": ["reports/verification/2026-07-13/phase10_1_final_gate.json", "reports/logs/2026-07-13/Phase10_Base_Reproduction/phase10_1_legacy_implementation_gate.log", "reports/logs/2026-07-13/Phase10_Base_Reproduction/phase10_1_existing_phase2_regression.log"], "allowed_claims": ["LEGACY_TOOL_IMPLEMENTED", "LEGACY_FORMATTERS_IMPLEMENTED", "WORKFLOW_MIGRATION_UTILITY_IMPLEMENTED"] if not failed else [], "forbidden_claims": ["ORIGINAL_BASE_PLUGIN_REPRODUCTION_CONFIRMED", "ORACLE_REPRODUCTION_PASS", "ORACLE11G_REPRODUCTION_PASS", "LEGACY_WORKFLOW_MIGRATION_PASS", "FINAL_PROJECT_DELIVERY_PASS"]}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": payload["status"], "failed_groups": failed}, ensure_ascii=False))

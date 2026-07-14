@@ -14,7 +14,7 @@ import yaml
 
 
 OLD_PROVIDER, OLD_TOOL = "db_query", "sql_query"
-NEW_PROVIDER, NEW_TOOL = "legacy_database_query", "legacy_database_query"
+NEW_PROVIDER, NEW_TOOL = "db_query_extended", "legacy_database_query"
 PARAMETERS = ("db_type", "db_host", "db_port", "db_username", "db_password", "db_name", "db_properties", "query_sql", "output_format")
 
 

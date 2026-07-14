@@ -121,6 +121,7 @@ credentials_for_provider:
 
 tools:
   - tools/db_query_extended.yaml
+  - tools/legacy_database_query.yaml
 
 extra:
   python:
