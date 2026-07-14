@@ -1,0 +1,35 @@
+{
+  "suite": "phase10_0_oracle11g_route_decision",
+  "generated_at": "2026-07-13T20:18:09-05:00",
+  "status": "PASS",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "checks": [
+    {
+      "name": "original_thick_mode",
+      "status": "PASS",
+      "detail": "original code invokes thick-mode initialization"
+    },
+    {
+      "name": "blocker_recorded",
+      "status": "PASS",
+      "detail": "external-client blocker recorded"
+    }
+  ],
+  "unknown_fields": [],
+  "decision_status": "ORACLE11G_IMPLEMENTATION_ROUTE_CONDITIONAL",
+  "route": {
+    "status": "ORACLE11G_IMPLEMENTATION_ROUTE_CONDITIONAL",
+    "preferred": "SQLAlchemy oracle+oracledb using python-oracledb thick mode with compatible Instant Client",
+    "required_to_unblock": [
+      "Oracle 11g server",
+      "compatible Linux amd64 Instant Client",
+      "license/redistribution decision",
+      "offline wheel and native-library inspection",
+      "Dify plugin-daemon validation"
+    ]
+  }
+}

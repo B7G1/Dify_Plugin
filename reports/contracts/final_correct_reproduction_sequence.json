@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "contract": "FINAL_CORRECT_REPRODUCTION_SEQUENCE",
+  "extraction_date": "2026-07-13",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "validation_status": "FROZEN",
+  "unknown_fields": [],
+  "evidence_references": [
+    "reports/verification/2026-07-13/original_plugin_artifact_inventory.json"
+  ],
+  "source_files": [
+    "reports/documentation/PROJECT_DELIVERY_CONTRACT.md"
+  ],
+  "raw_values": {
+    "development_history_and_tutorial_are_distinct": true
+  },
+  "normalized": {
+    "steps": [
+      "verify reference package",
+      "read-only unpack",
+      "freeze UI/parameter/output/workflow contracts",
+      "confirm five original databases",
+      "confirm DM8 and KingbaseES extensions",
+      "design legacy tool + modern tool + shared core",
+      "prepare seven-database environments and dependencies",
+      "implement shared secure core",
+      "implement five original adapters",
+      "verify legacy UI/output/workflow",
+      "add DM8",
+      "add KingbaseES",
+      "collect offline dependencies",
+      "build final package",
+      "install and validate seven databases",
+      "produce delivery evidence"
+    ],
+    "tutorial_excluded_detours": [
+      "two-database-first implementation",
+      "incompatible parameter retrofit",
+      "modern-JSON-only retrofit",
+      "Markdown omission",
+      "SQL Server marked purely optional",
+      "extension completion claimed before base reproduction"
+    ]
+  }
+}

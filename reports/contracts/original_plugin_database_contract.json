@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "contract": "ORIGINAL_PLUGIN_DATABASE_CONTRACT",
+  "extraction_date": "2026-07-13",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "validation_status": "FROZEN",
+  "unknown_fields": [
+    {
+      "field": "Oracle server version and real connection",
+      "status": "NOT_TESTED"
+    },
+    {
+      "field": "Oracle11g Instant Client media/license/server",
+      "status": "BLOCKED"
+    }
+  ],
+  "evidence_references": [
+    "reports/verification/2026-07-13/original_plugin_artifact_inventory.json"
+  ],
+  "source_files": [
+    "requirements.txt",
+    "tools/db_util.py",
+    "tools/sql_query.yaml"
+  ],
+  "raw_values": {
+    "requirements": [
+      "--no-index --find-links=./wheels/",
+      "dify_plugin==0.2.1",
+      "sqlparse==0.5.3",
+      "tabulate==0.9.0",
+      "pandas==2.2.3",
+      "SQLAlchemy==2.0.35",
+      "PyMySQL==1.1.1",
+      "oracledb==2.2.1",
+      "psycopg2-binary==2.9.10",
+      "pymssql==2.3.4"
+    ],
+    "driver_branches_present": {
+      "mysql": true,
+      "oracle": true,
+      "oracle11g": true,
+      "postgresql": true,
+      "mssql": true
+    }
+  },
+  "normalized": {
+    "mandatory_original_scope": [
+      "mysql",
+      "oracle",
+      "oracle11g",
+      "postgresql",
+      "mssql"
+    ],
+    "extension_scope": [
+      "dm8",
+      "kingbasees"
+    ],
+    "out_of_scope": [
+      "sqlite",
+      "mariadb_specific",
+      "tidb",
+      "oceanbase",
+      "clickhouse",
+      "db2",
+      "duckdb",
+      "snowflake"
+    ],
+    "routes": {
+      "mysql": {
+        "driver": "PyMySQL==1.1.1",
+        "url": "mysql+pymysql",
+        "test_sql": "SELECT 1",
+        "runtime": "PASS"
+      },
+      "oracle": {
+        "driver": "oracledb==2.2.1",
+        "url": "oracle+oracledb",
+        "test_sql": "SELECT 1 FROM DUAL",
+        "runtime": "NOT_TESTED"
+      },
+      "oracle11g": {
+        "driver": "oracledb==2.2.1",
+        "url": "oracle+oracledb",
+        "test_sql": "SELECT 1 FROM DUAL",
+        "native_client": "oracledb.init_oracle_client()",
+        "runtime": "BLOCKED"
+      },
+      "postgresql": {
+        "driver": "psycopg2-binary==2.9.10",
+        "url": "postgresql+psycopg2",
+        "test_sql": "SELECT 1",
+        "runtime": "PASS"
+      },
+      "mssql": {
+        "driver": "pymssql==2.3.4",
+        "url": "mssql+pymssql",
+        "test_sql": "SELECT 1",
+        "runtime": "PASS"
+      }
+    },
+    "adapter_mapping_target": {
+      "mysql": "MySQLAdapter",
+      "postgresql": "PostgreSQLAdapter",
+      "mssql": "SQLServerAdapter",
+      "oracle": "OracleAdapter",
+      "oracle11g": "Oracle11gAdapter",
+      "dm8": "DM8Adapter",
+      "kingbasees": "KingbaseESAdapter"
+    },
+    "sqlserver_position": [
+      "ORIGINAL_BASE_PLUGIN_REQUIRED_DATABASE",
+      "OPTIONAL_MODERN_PROVIDER_COMPATIBILITY_PATH"
+    ],
+    "oracle_route_decisions": {
+      "oracle": {
+        "status": "ORACLE_IMPLEMENTATION_ROUTE_CONDITIONAL",
+        "preferred": "SQLAlchemy oracle+oracledb with python-oracledb thin where server compatibility is proven",
+        "candidates": [
+          "python-oracledb thin",
+          "python-oracledb thick",
+          "cx_Oracle",
+          "SQLAlchemy oracle+oracledb",
+          "SQLAlchemy oracle+cx_oracle",
+          "plugin-owned compatibility wrapper"
+        ],
+        "rejections_or_conditions": {
+          "cx_Oracle": "legacy driver; no selection without Python 3.12/offline evidence",
+          "wrapper": "adds maintenance and cannot substitute for a real DBAPI runtime"
+        }
+      },
+      "oracle11g": {
+        "status": "ORACLE11G_IMPLEMENTATION_ROUTE_CONDITIONAL",
+        "preferred": "SQLAlchemy oracle+oracledb using python-oracledb thick mode with compatible Instant Client",
+        "required_to_unblock": [
+          "Oracle 11g server",
+          "compatible Linux amd64 Instant Client",
+          "license/redistribution decision",
+          "offline wheel and native-library inspection",
+          "Dify plugin-daemon validation"
+        ]
+      },
+      "comparison_dimensions": [
+        "Python 3.12",
+        "Linux amd64",
+        "server compatibility",
+        "Instant Client",
+        "manylinux wheel",
+        "native .so/ldd",
+        "offline installation",
+        "Dify daemon",
+        "package size",
+        "license/redistribution",
+        "package inclusion",
+        "legacy behavior"
+      ]
+    }
+  }
+}

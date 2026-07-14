@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "contract": "ORIGINAL_PLUGIN_WORKFLOW_MIGRATION_CONTRACT",
+  "extraction_date": "2026-07-13",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "validation_status": "FROZEN",
+  "unknown_fields": [
+    {
+      "field": "original exported workflow DSL",
+      "status": "NOT_AVAILABLE",
+      "reason": "reference package was not installed or exported to avoid changing the active tenant"
+    }
+  ],
+  "evidence_references": [
+    "reports/verification/2026-07-13/original_plugin_artifact_inventory.json"
+  ],
+  "source_files": [
+    "tools/sql_query.yaml",
+    "provider/db_query.yaml"
+  ],
+  "raw_values": {
+    "provider": "db_query",
+    "tool": "sql_query",
+    "parameters": [
+      "db_type",
+      "db_host",
+      "db_port",
+      "db_username",
+      "db_password",
+      "db_name",
+      "db_properties",
+      "query_sql",
+      "output_format"
+    ]
+  },
+  "normalized": {
+    "migration_definition": "replace identity without losing the nine fields, bindings, downstream Markdown or records consumers, or mssql",
+    "strategies": [
+      {
+        "name": "legacy_compatible_tool",
+        "status": "RECOMMENDED",
+        "reason": "smallest user-facing compatibility surface"
+      },
+      {
+        "name": "workflow_migration_utility",
+        "status": "RECOMMENDED",
+        "reason": "preserves exported DSL bindings and downstream references"
+      },
+      {
+        "name": "in_place_reference_identity",
+        "status": "REJECTED",
+        "reason": "would impersonate the original publisher and conflicts with Dify installation identity"
+      }
+    ],
+    "future_passes": [
+      "MYSQL_LEGACY_WORKFLOW_MIGRATION_PASS",
+      "POSTGRESQL_LEGACY_WORKFLOW_MIGRATION_PASS",
+      "MSSQL_LEGACY_WORKFLOW_MIGRATION_PASS",
+      "ORACLE_LEGACY_WORKFLOW_MIGRATION_PASS",
+      "ORACLE11G_LEGACY_WORKFLOW_MIGRATION_PASS",
+      "DM8_LEGACY_STYLE_WORKFLOW_PASS",
+      "KINGBASEES_LEGACY_STYLE_WORKFLOW_PASS"
+    ]
+  }
+}

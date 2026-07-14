@@ -1,0 +1,23 @@
+{
+  "suite": "phase10_0_original_ui_contract_gate",
+  "generated_at": "2026-07-13T20:18:09-05:00",
+  "status": "PASS",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "checks": [
+    {
+      "name": "manifest_labels",
+      "status": "PASS",
+      "detail": "direct package label extraction"
+    },
+    {
+      "name": "tool_identity",
+      "status": "PASS",
+      "detail": "direct Tool identity extraction"
+    }
+  ],
+  "unknown_fields": []
+}

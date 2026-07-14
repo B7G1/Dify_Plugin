@@ -1,0 +1,484 @@
+{
+  "schema_version": "1.0",
+  "contract": "ORIGINAL_PLUGIN_PARAMETER_CONTRACT",
+  "extraction_date": "2026-07-13",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "validation_status": "FROZEN",
+  "unknown_fields": [
+    {
+      "field": "Dify runtime variable-binding widget behavior",
+      "status": "UNKNOWN",
+      "reason": "not encoded by the original YAML and no isolated Dify installation was performed"
+    }
+  ],
+  "evidence_references": [
+    "reports/verification/2026-07-13/original_plugin_artifact_inventory.json"
+  ],
+  "source_files": [
+    "tools/sql_query.yaml"
+  ],
+  "raw_values": {
+    "parameters": [
+      {
+        "name": "db_type",
+        "type": "select",
+        "required": true,
+        "options": [
+          {
+            "value": "mysql",
+            "label": {
+              "en_US": "MySQL",
+              "zh_Hans": "MySQL"
+            }
+          },
+          {
+            "value": "oracle",
+            "label": {
+              "en_US": "Oracle",
+              "zh_Hans": "Oracle"
+            }
+          },
+          {
+            "value": "oracle11g",
+            "label": {
+              "en_US": "Oracle11g",
+              "zh_Hans": "Oracle11g"
+            }
+          },
+          {
+            "value": "postgresql",
+            "label": {
+              "en_US": "PostgreSQL",
+              "zh_Hans": "PostgreSQL"
+            }
+          },
+          {
+            "value": "mssql",
+            "label": {
+              "en_US": "Microsoft SQL Server",
+              "zh_Hans": "Microsoft SQL Server"
+            }
+          }
+        ],
+        "default": "mysql",
+        "label": {
+          "en_US": "Database type",
+          "zh_Hans": "数据库类型"
+        },
+        "human_description": {
+          "en_US": "Used for selecting the database type, mysql, oracle, oracle11g, postgresql or mssql.",
+          "zh_Hans": "用于选择数据库类型，mysql、oracle、oracle11g、postgresql或mssql。"
+        },
+        "form": "llm"
+      },
+      {
+        "name": "db_host",
+        "type": "string",
+        "required": true,
+        "default": "localhost",
+        "label": {
+          "en_US": "Database Host",
+          "zh_Hans": "数据库地址"
+        },
+        "human_description": {
+          "en_US": "Database hostname or IP address (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的主机名或IP地址（原始字符串，非URL编码字符串）。"
+        },
+        "form": "llm"
+      },
+      {
+        "name": "db_port",
+        "type": "number",
+        "required": false,
+        "label": {
+          "en_US": "Port",
+          "zh_Hans": "端口"
+        },
+        "human_description": {
+          "en_US": "Database port.",
+          "zh_Hans": "数据库的端口。"
+        },
+        "form": "llm"
+      },
+      {
+        "name": "db_username",
+        "type": "string",
+        "required": true,
+        "label": {
+          "en_US": "Username",
+          "zh_Hans": "用户名"
+        },
+        "human_description": {
+          "en_US": "Database username (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的用户名（原始字符串，非URL编码字符串）。"
+        },
+        "form": "llm"
+      },
+      {
+        "name": "db_password",
+        "type": "secret-input",
+        "required": true,
+        "label": {
+          "en_US": "Password",
+          "zh_Hans": "密码"
+        },
+        "human_description": {
+          "en_US": "Database password (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的密码（原始字符串，非URL编码字符串）。"
+        },
+        "form": "llm"
+      },
+      {
+        "name": "db_name",
+        "type": "string",
+        "required": false,
+        "label": {
+          "en_US": "Database name",
+          "zh_Hans": "库名"
+        },
+        "human_description": {
+          "en_US": "Database name (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的名称（原始字符串，非URL编码字符串）。"
+        },
+        "form": "llm"
+      },
+      {
+        "name": "db_properties",
+        "type": "string",
+        "required": false,
+        "label": {
+          "en_US": "Database properties",
+          "zh_Hans": "数据库属性"
+        },
+        "human_description": {
+          "en_US": "Database properties, for example: alt_host=host1&alt_host=host2&ssl_cipher=%2Fpath%2Fto%2Fcrt",
+          "zh_Hans": "数据库属性，例如：alt_host=host1&alt_host=host2&ssl_cipher=%2Fpath%2Fto%2Fcrt"
+        },
+        "form": "llm"
+      },
+      {
+        "name": "query_sql",
+        "type": "string",
+        "required": true,
+        "label": {
+          "en_US": "Query SQL",
+          "zh_Hans": "SQL查询语句"
+        },
+        "human_description": {
+          "en_US": "SQL query statement, for example: select * from tbl_name",
+          "zh_Hans": "SQL查询语句，例如：select * from tbl_name"
+        },
+        "llm_description": "SQL query statement, for example: select * from tbl_name",
+        "form": "llm"
+      },
+      {
+        "name": "output_format",
+        "type": "select",
+        "required": true,
+        "label": {
+          "en_US": "Output format",
+          "zh_Hans": "输出格式"
+        },
+        "human_description": {
+          "en_US": "Used for selecting the output format, markdown or json.",
+          "zh_Hans": "用于选择输出格式，markdown或json。"
+        },
+        "options": [
+          {
+            "value": "markdown",
+            "label": {
+              "en_US": "MARKDOWN",
+              "zh_Hans": "MARKDOWN"
+            }
+          },
+          {
+            "value": "json",
+            "label": {
+              "en_US": "JSON",
+              "zh_Hans": "JSON"
+            }
+          }
+        ],
+        "default": "markdown",
+        "form": "form"
+      }
+    ]
+  },
+  "normalized": {
+    "parameter_order": [
+      "db_type",
+      "db_host",
+      "db_port",
+      "db_username",
+      "db_password",
+      "db_name",
+      "db_properties",
+      "query_sql",
+      "output_format"
+    ],
+    "parameters": [
+      {
+        "internal_name": "db_type",
+        "display_label": {
+          "en_US": "Database type",
+          "zh_Hans": "数据库类型"
+        },
+        "description": {
+          "en_US": "Used for selecting the database type, mysql, oracle, oracle11g, postgresql or mssql.",
+          "zh_Hans": "用于选择数据库类型，mysql、oracle、oracle11g、postgresql或mssql。"
+        },
+        "type": "select",
+        "form": "llm",
+        "required": true,
+        "default": "mysql",
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [
+          {
+            "value": "mysql",
+            "label": {
+              "en_US": "MySQL",
+              "zh_Hans": "MySQL"
+            }
+          },
+          {
+            "value": "oracle",
+            "label": {
+              "en_US": "Oracle",
+              "zh_Hans": "Oracle"
+            }
+          },
+          {
+            "value": "oracle11g",
+            "label": {
+              "en_US": "Oracle11g",
+              "zh_Hans": "Oracle11g"
+            }
+          },
+          {
+            "value": "postgresql",
+            "label": {
+              "en_US": "PostgreSQL",
+              "zh_Hans": "PostgreSQL"
+            }
+          },
+          {
+            "value": "mssql",
+            "label": {
+              "en_US": "Microsoft SQL Server",
+              "zh_Hans": "Microsoft SQL Server"
+            }
+          }
+        ],
+        "yaml_order": 1,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "db_host",
+        "display_label": {
+          "en_US": "Database Host",
+          "zh_Hans": "数据库地址"
+        },
+        "description": {
+          "en_US": "Database hostname or IP address (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的主机名或IP地址（原始字符串，非URL编码字符串）。"
+        },
+        "type": "string",
+        "form": "llm",
+        "required": true,
+        "default": "localhost",
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [],
+        "yaml_order": 2,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "db_port",
+        "display_label": {
+          "en_US": "Port",
+          "zh_Hans": "端口"
+        },
+        "description": {
+          "en_US": "Database port.",
+          "zh_Hans": "数据库的端口。"
+        },
+        "type": "number",
+        "form": "llm",
+        "required": false,
+        "default": null,
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [],
+        "yaml_order": 3,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "db_username",
+        "display_label": {
+          "en_US": "Username",
+          "zh_Hans": "用户名"
+        },
+        "description": {
+          "en_US": "Database username (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的用户名（原始字符串，非URL编码字符串）。"
+        },
+        "type": "string",
+        "form": "llm",
+        "required": true,
+        "default": null,
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [],
+        "yaml_order": 4,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "db_password",
+        "display_label": {
+          "en_US": "Password",
+          "zh_Hans": "密码"
+        },
+        "description": {
+          "en_US": "Database password (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的密码（原始字符串，非URL编码字符串）。"
+        },
+        "type": "secret-input",
+        "form": "llm",
+        "required": true,
+        "default": null,
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [],
+        "yaml_order": 5,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "db_name",
+        "display_label": {
+          "en_US": "Database name",
+          "zh_Hans": "库名"
+        },
+        "description": {
+          "en_US": "Database name (Original string, not URL-encoded string).",
+          "zh_Hans": "数据库的名称（原始字符串，非URL编码字符串）。"
+        },
+        "type": "string",
+        "form": "llm",
+        "required": false,
+        "default": null,
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [],
+        "yaml_order": 6,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "db_properties",
+        "display_label": {
+          "en_US": "Database properties",
+          "zh_Hans": "数据库属性"
+        },
+        "description": {
+          "en_US": "Database properties, for example: alt_host=host1&alt_host=host2&ssl_cipher=%2Fpath%2Fto%2Fcrt",
+          "zh_Hans": "数据库属性，例如：alt_host=host1&alt_host=host2&ssl_cipher=%2Fpath%2Fto%2Fcrt"
+        },
+        "type": "string",
+        "form": "llm",
+        "required": false,
+        "default": null,
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [],
+        "yaml_order": 7,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "query_sql",
+        "display_label": {
+          "en_US": "Query SQL",
+          "zh_Hans": "SQL查询语句"
+        },
+        "description": {
+          "en_US": "SQL query statement, for example: select * from tbl_name",
+          "zh_Hans": "SQL查询语句，例如：select * from tbl_name"
+        },
+        "type": "string",
+        "form": "llm",
+        "required": true,
+        "default": null,
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [],
+        "yaml_order": 8,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      },
+      {
+        "internal_name": "output_format",
+        "display_label": {
+          "en_US": "Output format",
+          "zh_Hans": "输出格式"
+        },
+        "description": {
+          "en_US": "Used for selecting the output format, markdown or json.",
+          "zh_Hans": "用于选择输出格式，markdown或json。"
+        },
+        "type": "select",
+        "form": "form",
+        "required": true,
+        "default": "markdown",
+        "placeholder": null,
+        "minimum": null,
+        "maximum": null,
+        "options": [
+          {
+            "value": "markdown",
+            "label": {
+              "en_US": "MARKDOWN",
+              "zh_Hans": "MARKDOWN"
+            }
+          },
+          {
+            "value": "json",
+            "label": {
+              "en_US": "JSON",
+              "zh_Hans": "JSON"
+            }
+          }
+        ],
+        "yaml_order": 9,
+        "workflow_visible": true,
+        "variable_binding": "UNKNOWN_FROM_STATIC_YAML",
+        "depends_on": []
+      }
+    ]
+  }
+}

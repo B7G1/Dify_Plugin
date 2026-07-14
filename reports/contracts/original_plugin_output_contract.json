@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "contract": "ORIGINAL_PLUGIN_OUTPUT_CONTRACT",
+  "extraction_date": "2026-07-13",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "validation_status": "FROZEN",
+  "unknown_fields": [
+    {
+      "field": "full original-runtime Markdown golden matrix",
+      "status": "PENDING_FIXTURE_CAPTURE",
+      "reason": "the audited isolated runtime captured SELECT 1 Markdown only; source-level formatter semantics are frozen without inventing unobserved output"
+    }
+  ],
+  "evidence_references": [
+    "reports/verification/2026-07-13/original_plugin_artifact_inventory.json",
+    "reports/verification/2026-07-13/original_plugin_runtime_probe.json"
+  ],
+  "source_files": [
+    "tools/sql_query.py",
+    "tools/db_util.py",
+    "requirements.txt"
+  ],
+  "raw_values": {
+    "format_dispatch": "json => create_json_message({records: records}); otherwise => tabulate(..., tablefmt=github)",
+    "normalization": {
+      "null": "pandas fillna('')",
+      "timestamp": "YYYY-MM-DD HH:MM:SS",
+      "date": "YYYY-MM-DD",
+      "integral_float": "int",
+      "json_envelope": {
+        "records": []
+      }
+    },
+    "requirements": [
+      "--no-index --find-links=./wheels/",
+      "dify_plugin==0.2.1",
+      "sqlparse==0.5.3",
+      "tabulate==0.9.0",
+      "pandas==2.2.3",
+      "SQLAlchemy==2.0.35",
+      "PyMySQL==1.1.1",
+      "oracledb==2.2.1",
+      "psycopg2-binary==2.9.10",
+      "pymssql==2.3.4"
+    ]
+  },
+  "normalized": {
+    "modes": [
+      "legacy_markdown",
+      "legacy_json_records",
+      "modern_structured_json"
+    ],
+    "legacy_markdown": {
+      "default": true,
+      "table_format": "github",
+      "exact_observed_golden": "|   probe |\\n|---------|\\n|       1 |",
+      "trailing_newline": false
+    },
+    "legacy_json_records": {
+      "top_level": [
+        "records"
+      ],
+      "row_shape": "object",
+      "null": "",
+      "empty": {
+        "records": []
+      },
+      "unicode": "preserved",
+      "date": "YYYY-MM-DD",
+      "timestamp": "YYYY-MM-DD HH:MM:SS"
+    },
+    "modern_structured_json": {
+      "required_keys": [
+        "columns",
+        "rows",
+        "row_count",
+        "truncated",
+        "max_rows",
+        "database_type",
+        "execution_time_ms"
+      ],
+      "null": null
+    },
+    "security_exception": "raw errors must not be reproduced"
+  }
+}

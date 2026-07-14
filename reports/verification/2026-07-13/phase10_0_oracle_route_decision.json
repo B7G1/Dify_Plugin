@@ -1,0 +1,40 @@
+{
+  "suite": "phase10_0_oracle_route_decision",
+  "generated_at": "2026-07-13T20:18:09-05:00",
+  "status": "PASS",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "checks": [
+    {
+      "name": "original_route",
+      "status": "PASS",
+      "detail": "python-oracledb route extracted"
+    },
+    {
+      "name": "oracle11g_thick_requirement",
+      "status": "PASS",
+      "detail": "native-client requirement extracted"
+    }
+  ],
+  "unknown_fields": [],
+  "decision_status": "ORACLE_IMPLEMENTATION_ROUTE_CONDITIONAL",
+  "route": {
+    "status": "ORACLE_IMPLEMENTATION_ROUTE_CONDITIONAL",
+    "preferred": "SQLAlchemy oracle+oracledb with python-oracledb thin where server compatibility is proven",
+    "candidates": [
+      "python-oracledb thin",
+      "python-oracledb thick",
+      "cx_Oracle",
+      "SQLAlchemy oracle+oracledb",
+      "SQLAlchemy oracle+cx_oracle",
+      "plugin-owned compatibility wrapper"
+    ],
+    "rejections_or_conditions": {
+      "cx_Oracle": "legacy driver; no selection without Python 3.12/offline evidence",
+      "wrapper": "adds maintenance and cannot substitute for a real DBAPI runtime"
+    }
+  }
+}

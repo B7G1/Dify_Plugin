@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "contract": "FINAL_REPRODUCTION_ARCHITECTURE",
+  "extraction_date": "2026-07-13",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "validation_status": "FROZEN",
+  "unknown_fields": [],
+  "evidence_references": [
+    "reports/verification/2026-07-13/original_plugin_artifact_inventory.json"
+  ],
+  "source_files": [
+    "db_query_extended/provider/db_query_extended.yaml",
+    "db_query_extended/tools/db_query_extended.yaml",
+    "db_query_extended/utils/adapters/__init__.py"
+  ],
+  "raw_values": {
+    "current_tool": "db_query_extended",
+    "current_provider": "db_query_extended"
+  },
+  "normalized": {
+    "legacy_compatible_tool": {
+      "parameters": [
+        "db_type",
+        "db_host",
+        "db_port",
+        "db_username",
+        "db_password",
+        "db_name",
+        "db_properties",
+        "query_sql",
+        "output_format"
+      ],
+      "inline_credentials": true,
+      "formats": [
+        "legacy_markdown",
+        "legacy_json_records"
+      ]
+    },
+    "modern_provider_tool": {
+      "credentials": "provider",
+      "parameters": [
+        "sql",
+        "max_rows",
+        "timeout_seconds",
+        "readonly",
+        "output_format"
+      ],
+      "format": "modern_structured_json"
+    },
+    "shared_secure_core": [
+      "credential normalization",
+      "secret redaction",
+      "read-only validator",
+      "connection lifecycle",
+      "adapter registry",
+      "dialect registration",
+      "result normalization",
+      "formatter modes"
+    ],
+    "security_boundary": {
+      "normal_read_query_parity": "REQUIRED",
+      "vulnerability_parity": "FORBIDDEN",
+      "forbidden_regressions": [
+        "credentialed URL logging",
+        "raw database errors",
+        "CTE DELETE",
+        "SELECT INTO",
+        "INTO OUTFILE",
+        "FOR UPDATE",
+        "multi-statement",
+        "connection leak"
+      ]
+    }
+  }
+}

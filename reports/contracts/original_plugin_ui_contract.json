@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "contract": "ORIGINAL_PLUGIN_UI_CONTRACT",
+  "extraction_date": "2026-07-13",
+  "source_artifact": {
+    "artifact": "junjiem-db_query_0.0.11-offline(1).difypkg",
+    "local_path": "LOCAL_ONLY / NOT_TRACKED_BY_GIT",
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560"
+  },
+  "validation_status": "FROZEN",
+  "unknown_fields": [
+    {
+      "field": "installed_Dify_node_selector_rendering",
+      "status": "UNKNOWN",
+      "reason": "original package was not installed into a disposable tenant during the audit"
+    }
+  ],
+  "evidence_references": [
+    "reports/verification/2026-07-13/original_plugin_artifact_inventory.json"
+  ],
+  "source_files": [
+    "manifest.yaml",
+    "provider/db_query.yaml",
+    "tools/sql_query.yaml"
+  ],
+  "raw_values": {
+    "manifest": {
+      "name": "db_query",
+      "author": "junjiem",
+      "label": {
+        "en_US": "Database Query",
+        "zh_Hans": "数据库查询"
+      },
+      "description": {
+        "en_US": "Database Query Utils.",
+        "zh_Hans": "数据库查询工具。"
+      },
+      "icon": "icon.svg",
+      "version": "0.0.11"
+    },
+    "provider_identity": {
+      "name": "db_query",
+      "author": "junjiem",
+      "label": {
+        "en_US": "Database Query",
+        "zh_Hans": "数据库查询"
+      },
+      "description": {
+        "en_US": "Database Query Utils.",
+        "zh_Hans": "数据库查询工具。"
+      },
+      "icon": "icon.svg",
+      "tags": [
+        "search",
+        "utilities"
+      ]
+    },
+    "tool_identity": {
+      "name": "sql_query",
+      "author": "junjiem",
+      "label": {
+        "en_US": "SQL Query",
+        "zh_Hans": "SQL查询"
+      }
+    },
+    "tool_description": {
+      "human": {
+        "en_US": "A tool for Database SQL query.",
+        "zh_Hans": "数据库SQL查询工具。"
+      },
+      "llm": "A tool for executing SQL query. Input should be a search query."
+    }
+  },
+  "normalized": {
+    "package_identity": {
+      "must_remain_project_owned": [
+        "author",
+        "name",
+        "version",
+        "notice"
+      ],
+      "reference_identity_not_to_be_impersonated": true
+    },
+    "ui_contract": {
+      "plugin_label": {
+        "en_US": "Database Query",
+        "zh_Hans": "数据库查询"
+      },
+      "plugin_description": {
+        "en_US": "Database Query Utils.",
+        "zh_Hans": "数据库查询工具。"
+      },
+      "icon": "icon.svg",
+      "tool_label": {
+        "en_US": "SQL Query",
+        "zh_Hans": "SQL查询"
+      },
+      "tool_description": {
+        "en_US": "A tool for Database SQL query.",
+        "zh_Hans": "数据库SQL查询工具。"
+      },
+      "node_selector_identity": {
+        "provider": "db_query",
+        "tool": "sql_query"
+      }
+    }
+  }
+}
