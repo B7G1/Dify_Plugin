@@ -20,7 +20,7 @@ MAX_ALLOWED_TIMEOUT = 120
 _READ_ONLY_VALIDATOR = ReadOnlyValidator()
 
 
-def validate_connection_config(credentials: dict[str, Any]) -> dict[str, Any]:
+def validate_connection_config(credentials: dict[str, Any], *, require_database: bool = True) -> dict[str, Any]:
     """Validate and normalize provider credentials without logging secrets."""
     database_type = str(credentials.get("database_type", "")).strip().lower()
     if database_type not in SUPPORTED_DATABASE_TYPES:
@@ -30,7 +30,7 @@ def validate_connection_config(credentials: dict[str, Any]) -> dict[str, Any]:
 
     normalized = {"database_type": database_type}
     required_fields = ("host", "username", "password")
-    if database_type != "dm":
+    if require_database and database_type != "dm":
         required_fields += ("database",)
     for field in required_fields:
         value = credentials.get(field)
