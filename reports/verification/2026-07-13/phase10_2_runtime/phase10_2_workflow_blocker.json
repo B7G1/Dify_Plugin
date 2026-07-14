@@ -1,0 +1,50 @@
+{
+  "suite": "phase10_2_real_workflow_prerequisite_probe",
+  "generated_at": "2026-07-14T02:20:15.679850+00:00",
+  "status": "BLOCKED",
+  "workflows": [
+    {
+      "name": "KingbaseES Phase 9.9 Installed Workflow Gate",
+      "workflow_present": true,
+      "graph_length": 7635,
+      "contains_original_provider_db_query": false,
+      "contains_original_tool_sql_query": false,
+      "contains_current_provider_marker": true
+    },
+    {
+      "name": "DM8前端测试",
+      "workflow_present": true,
+      "graph_length": 7695,
+      "contains_original_provider_db_query": false,
+      "contains_original_tool_sql_query": false,
+      "contains_current_provider_marker": true
+    },
+    {
+      "name": "DM8 Readonly SQL Acceptance",
+      "workflow_present": true,
+      "graph_length": 7573,
+      "contains_original_provider_db_query": false,
+      "contains_original_tool_sql_query": false,
+      "contains_current_provider_marker": true
+    }
+  ],
+  "legacy_dsl_present": false,
+  "console": {
+    "reachable": false,
+    "error_type": "URLError"
+  },
+  "workflow_api": {
+    "reachable": false,
+    "error_type": "URLError"
+  },
+  "not_run": [
+    "real_legacy_dsl_migration",
+    "workflow_import",
+    "workflow_publish",
+    "six_database_format_workflow_runs"
+  ],
+  "blockers": [
+    "No historical Dify Workflow with original provider_id=db_query and tool_name=sql_query is available; synthetic DSL is prohibited.",
+    "Dify api/nginx containers are unavailable because Docker Desktop WSL bind-mount sources are missing."
+  ]
+}

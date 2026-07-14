@@ -1,0 +1,24 @@
+{
+  "fixture_kind": "raw_installed_legacy_tool_output",
+  "captured_at": "2026-07-14T02:17:10.862854+00:00",
+  "database": "mysql",
+  "query_id": "mysql_table_read",
+  "query_sha256": "f6bc5daaa3472671b118601cf85a7845b6ead96895c6daa03973ddbaa6757d1c",
+  "output_format": "markdown",
+  "runtime": "Dify ToolManager -> installed plugin-daemon Tool",
+  "source_commit": "7b688be",
+  "plugin_checksum": "a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+  "package_sha256": "244b82ee270001303f6f0c9f4b07d80148bddd289808203eeedb005f89271055",
+  "encoding": "utf-8",
+  "line_ending": "LF",
+  "status": "PASS",
+  "checks": {
+    "message_type": true,
+    "table_read": true
+  },
+  "output": {
+    "message_type": "text",
+    "output": "| id  | username     | email                   | department  |\n|-----|--------------|-------------------------|-------------|\n| 1   | 张伟           | zhang.wei@example.com   | Engineering |\n| 2   | 李娜           | li.na@example.com       | Product     |\n| 3   | Alice Smith  | alice.smith@example.com | Engineering |\n| 4   | Bob O'Connor | bob.oconnor@example.com | Sales       |\n| 5   | 王小明          |                         | Support     |"
+  },
+  "error": null
+}

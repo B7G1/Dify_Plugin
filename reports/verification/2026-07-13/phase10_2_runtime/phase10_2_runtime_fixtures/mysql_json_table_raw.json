@@ -1,0 +1,59 @@
+{
+  "fixture_kind": "raw_installed_legacy_tool_output",
+  "captured_at": "2026-07-14T02:17:11.114198+00:00",
+  "database": "mysql",
+  "query_id": "mysql_table_read",
+  "query_sha256": "f6bc5daaa3472671b118601cf85a7845b6ead96895c6daa03973ddbaa6757d1c",
+  "output_format": "json",
+  "runtime": "Dify ToolManager -> installed plugin-daemon Tool",
+  "source_commit": "7b688be",
+  "plugin_checksum": "a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+  "package_sha256": "244b82ee270001303f6f0c9f4b07d80148bddd289808203eeedb005f89271055",
+  "encoding": "utf-8",
+  "line_ending": "LF",
+  "status": "PASS",
+  "checks": {
+    "message_type": true,
+    "records_only": true,
+    "table_read": true,
+    "legacy_null": true
+  },
+  "output": {
+    "message_type": "json",
+    "output": {
+      "records": [
+        {
+          "department": "Engineering",
+          "email": "zhang.wei@example.com",
+          "id": 1,
+          "username": "张伟"
+        },
+        {
+          "department": "Product",
+          "email": "li.na@example.com",
+          "id": 2,
+          "username": "李娜"
+        },
+        {
+          "department": "Engineering",
+          "email": "alice.smith@example.com",
+          "id": 3,
+          "username": "Alice Smith"
+        },
+        {
+          "department": "Sales",
+          "email": "bob.oconnor@example.com",
+          "id": 4,
+          "username": "Bob O'Connor"
+        },
+        {
+          "department": "Support",
+          "email": "",
+          "id": 5,
+          "username": "王小明"
+        }
+      ]
+    }
+  },
+  "error": null
+}

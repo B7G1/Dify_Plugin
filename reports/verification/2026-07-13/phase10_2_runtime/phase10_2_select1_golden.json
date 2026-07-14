@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "contract": "original_select_1_markdown",
+  "cases": [
+    {
+      "database": "mysql",
+      "status": "PASS",
+      "expected": "|   probe |\n|---------|\n|       1 |",
+      "actual": {
+        "message_type": "text",
+        "output": "|   probe |\n|---------|\n|       1 |"
+      },
+      "error": null
+    },
+    {
+      "database": "postgresql",
+      "status": "PASS",
+      "expected": "|   probe |\n|---------|\n|       1 |",
+      "actual": {
+        "message_type": "text",
+        "output": "|   probe |\n|---------|\n|       1 |"
+      },
+      "error": null
+    },
+    {
+      "database": "mssql",
+      "status": "PASS",
+      "expected": "|   probe |\n|---------|\n|       1 |",
+      "actual": {
+        "message_type": "text",
+        "output": "|   probe |\n|---------|\n|       1 |"
+      },
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "suite": "phase10_2_installed_legacy_runtime",
+  "generated_at": "2026-07-14T02:17:12.439154+00:00",
+  "status": "PASS",
+  "source_starting_commit": "8ef7306",
+  "source_commit": "7b688be",
+  "candidate": {
+    "package_sha256": "244b82ee270001303f6f0c9f4b07d80148bddd289808203eeedb005f89271055",
+    "plugin_checksum": "a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec"
+  },
+  "active_identifier": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+  "gates": {
+    "installation": "PASS",
+    "legacy_runtime_fixtures": "PASS",
+    "select1_golden": "PASS",
+    "schema_security_modern_regression": "PASS"
+  },
+  "workflow": {
+    "status": "BLOCKED",
+    "reason": "Dify api/nginx containers cannot start because Docker Desktop WSL bind-mount sources are missing."
+  },
+  "allowed_conclusions": [
+    "LEGACY_INSTALLED_TOOL_RUNTIME_THREE_DATABASE_PASS"
+  ],
+  "not_proven": [
+    "LEGACY_WORKFLOW_MIGRATION_PASS",
+    "PHASE_10_2_PASS",
+    "ORACLE_REPRODUCTION_PASS",
+    "ORACLE11G_REPRODUCTION_PASS",
+    "DM8_FINAL_DELIVERY_PASS",
+    "KINGBASEES_FINAL_DELIVERY_PASS",
+    "FINAL_PROJECT_DELIVERY_PASS"
+  ]
+}

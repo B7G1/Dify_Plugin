@@ -1,0 +1,59 @@
+{
+  "fixture_kind": "raw_installed_legacy_tool_output",
+  "captured_at": "2026-07-14T02:17:11.677112+00:00",
+  "database": "mssql",
+  "query_id": "mssql_table_read",
+  "query_sha256": "443c5013f5f388d53fd722d92637f90b62b3860b3ad846b0c3aeb0bd50ad16d0",
+  "output_format": "json",
+  "runtime": "Dify ToolManager -> installed plugin-daemon Tool",
+  "source_commit": "7b688be",
+  "plugin_checksum": "a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+  "package_sha256": "244b82ee270001303f6f0c9f4b07d80148bddd289808203eeedb005f89271055",
+  "encoding": "utf-8",
+  "line_ending": "LF",
+  "status": "PASS",
+  "checks": {
+    "message_type": true,
+    "records_only": true,
+    "table_read": true,
+    "legacy_null": true
+  },
+  "output": {
+    "message_type": "json",
+    "output": {
+      "records": [
+        {
+          "department": "Engineering",
+          "display_name": "Alice",
+          "id": 1,
+          "username": "alice"
+        },
+        {
+          "department": "研发部",
+          "display_name": "张伟",
+          "id": 2,
+          "username": "zhang_wei"
+        },
+        {
+          "department": "财务部",
+          "display_name": "李娜",
+          "id": 3,
+          "username": "li_na"
+        },
+        {
+          "department": "",
+          "display_name": "测试用户🚀",
+          "id": 4,
+          "username": "emoji_user"
+        },
+        {
+          "department": "Quality",
+          "display_name": "只读账号测试",
+          "id": 5,
+          "username": "readonly"
+        }
+      ]
+    }
+  },
+  "error": null
+}

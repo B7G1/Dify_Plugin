@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "generated_at": "2026-07-14T02:17:10.860924+00:00",
+  "tenant_id_recorded": false,
+  "candidate": {
+    "checksum": "a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+    "package_sha256": "244b82ee270001303f6f0c9f4b07d80148bddd289808203eeedb005f89271055"
+  },
+  "install_status": "already_active",
+  "upgrade_status": "not_required",
+  "before": [
+    {
+      "plugin_id": "li_zijun/db_query_extended",
+      "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "version": "0.1.1",
+      "installation_id": "019f1d04-c3ab-7557-b652-54f7af314d93",
+      "source": "package"
+    }
+  ],
+  "after": [
+    {
+      "plugin_id": "li_zijun/db_query_extended",
+      "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "version": "0.1.1",
+      "installation_id": "019f1d04-c3ab-7557-b652-54f7af314d93",
+      "source": "package"
+    }
+  ],
+  "active_identifier": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec"
+}

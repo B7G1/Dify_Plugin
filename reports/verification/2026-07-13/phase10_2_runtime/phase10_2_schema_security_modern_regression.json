@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "schema_checks": {
+    "legacy_provider_present": true,
+    "modern_provider_present": true,
+    "distinct_tool_identities": true,
+    "legacy_parameter_order": true
+  },
+  "security_checks": {
+    "dml_blocked": true,
+    "no_secret_in_error": true
+  },
+  "modern_checks": {
+    "modern_postgresql_select1": true,
+    "modern_response_preserved": true
+  },
+  "security_output": {
+    "message_type": "json",
+    "output": {
+      "error": {
+        "message": "Only one read-only SELECT or WITH statement is allowed. DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked.",
+        "type": "ReadOnlyViolationError"
+      }
+    }
+  }
+}

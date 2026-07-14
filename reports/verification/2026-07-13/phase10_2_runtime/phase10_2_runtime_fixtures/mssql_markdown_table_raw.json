@@ -1,0 +1,24 @@
+{
+  "fixture_kind": "raw_installed_legacy_tool_output",
+  "captured_at": "2026-07-14T02:17:11.509558+00:00",
+  "database": "mssql",
+  "query_id": "mssql_table_read",
+  "query_sha256": "443c5013f5f388d53fd722d92637f90b62b3860b3ad846b0c3aeb0bd50ad16d0",
+  "output_format": "markdown",
+  "runtime": "Dify ToolManager -> installed plugin-daemon Tool",
+  "source_commit": "7b688be",
+  "plugin_checksum": "a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+  "package_sha256": "244b82ee270001303f6f0c9f4b07d80148bddd289808203eeedb005f89271055",
+  "encoding": "utf-8",
+  "line_ending": "LF",
+  "status": "PASS",
+  "checks": {
+    "message_type": true,
+    "table_read": true
+  },
+  "output": {
+    "message_type": "text",
+    "output": "| id  | username   | display_name | department  |\n|-----|------------|--------------|-------------|\n| 1   | alice      | Alice        | Engineering |\n| 2   | zhang_wei  | 张伟           | 研发部         |\n| 3   | li_na      | 李娜           | 财务部         |\n| 4   | emoji_user | 测试用户🚀        |             |\n| 5   | readonly   | 只读账号测试       | Quality     |"
+  },
+  "error": null
+}
