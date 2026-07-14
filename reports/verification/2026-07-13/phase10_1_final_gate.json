@@ -1,0 +1,88 @@
+{
+  "phase": "10.1",
+  "status": "PASS",
+  "starting_commit": "0700f82",
+  "ending_commit": null,
+  "contract_tests": {
+    "nine_parameters_and_order": "PASS",
+    "frozen_parameter_yaml": "PASS",
+    "db_type_options": "PASS",
+    "default_markdown": "PASS",
+    "separate_modern_entry": "PASS",
+    "project_identity": "PASS",
+    "manifest_registers_both": "PASS"
+  },
+  "formatter_tests": {
+    "select_one_markdown_golden": "PASS",
+    "records_object_and_null": "PASS",
+    "modern_null_preserved": "PASS",
+    "formatter_does_not_mutate_normalized": "PASS",
+    "empty_records": "PASS",
+    "markdown_escaping": "PASS",
+    "duplicate_column_blocked": "PASS",
+    "existing_modern_formatter": "PASS"
+  },
+  "security_tests": {
+    "secret_not_in_validation_error": "PASS",
+    "blocked_cte_delete": "PASS",
+    "blocked_select_into": "PASS",
+    "blocked_outfile": "PASS",
+    "blocked_for_update": "PASS",
+    "blocked_multi_statement": "PASS",
+    "legacy_tool_markdown_invocation": "PASS",
+    "legacy_tool_json_invocation": "PASS",
+    "legacy_tool_safe_rejection": "PASS"
+  },
+  "mapping_tests": {
+    "mysql_mapping": "PASS",
+    "postgresql_mapping": "PASS",
+    "mssql_internal_mapping": "PASS",
+    "oracle_controlled": "PASS",
+    "oracle11g_controlled": "PASS",
+    "unknown_controlled": "PASS"
+  },
+  "workflow_migration_tests": {
+    "dry_run_unchanged": "PASS",
+    "bindings_and_mssql_preserved": "PASS",
+    "identity_rewritten_only": "PASS",
+    "backup_and_secret_redaction": "PASS",
+    "idempotent": "PASS",
+    "unknown_dsl_blocked": "PASS"
+  },
+  "existing_regression": {
+    "phase2_matrix": "PASS",
+    "summary": {
+      "pass": 76,
+      "fail": 0,
+      "skip": 1
+    },
+    "workflow": "SKIP_BY_MISSING_API_ENV"
+  },
+  "modified_files": [
+    "manifest.yaml",
+    "provider/legacy_database_query.yaml",
+    "provider/legacy_database_query.py",
+    "tools/legacy_database_query.yaml",
+    "tools/legacy_database_query.py",
+    "utils/legacy.py",
+    "utils/validation.py",
+    "scripts/migrate_legacy_workflow.py"
+  ],
+  "evidence_files": [
+    "reports/verification/2026-07-13/phase10_1_final_gate.json",
+    "reports/logs/2026-07-13/Phase10_Base_Reproduction/phase10_1_legacy_implementation_gate.log",
+    "reports/logs/2026-07-13/Phase10_Base_Reproduction/phase10_1_existing_phase2_regression.log"
+  ],
+  "allowed_claims": [
+    "LEGACY_TOOL_IMPLEMENTED",
+    "LEGACY_FORMATTERS_IMPLEMENTED",
+    "WORKFLOW_MIGRATION_UTILITY_IMPLEMENTED"
+  ],
+  "forbidden_claims": [
+    "ORIGINAL_BASE_PLUGIN_REPRODUCTION_CONFIRMED",
+    "ORACLE_REPRODUCTION_PASS",
+    "ORACLE11G_REPRODUCTION_PASS",
+    "LEGACY_WORKFLOW_MIGRATION_PASS",
+    "FINAL_PROJECT_DELIVERY_PASS"
+  ]
+}
