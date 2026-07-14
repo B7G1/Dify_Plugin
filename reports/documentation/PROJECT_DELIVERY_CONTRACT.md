@@ -41,6 +41,23 @@ Canonical audit：
 
 `reports/documentation/2026-07-13/Original_Plugin_Audit/original_plugin_reproduction_gap_audit.md`
 
+### 1.2 Original-Plugin Parity and Tutorial Route (Normative)
+
+The mandatory original-plugin reproduction scope is, in this exact legacy option order: **MySQL**, **Oracle**, **Oracle11g**, **PostgreSQL**, and **Microsoft SQL Server / `mssql`**. DM8 and KingbaseES are required extensions after that baseline; they do not replace any of the five original databases. `mssql` is both an original required database and an optional modern-provider compatibility path. It must not be silently renamed to `sqlserver` in a legacy Workflow contract.
+
+Before the original-base reproduction gate can pass, the implementation must provide and verify all six forms of parity:
+
+- 查询功能等价
+- 用户参数等价
+- 输出格式等价
+- Workflow 可迁移
+- UI contract 等价
+- 可安装、可查询 runtime 等价
+
+These requirements apply to normal read queries and user-visible behavior. The following 安全强化 is mandatory and is not a parity regression: do not reproduce credentialed-URL/password logging, raw database-error disclosure, dangerous SQL acceptance (including CTE DML, `SELECT INTO`, `INTO OUTFILE`, `FOR UPDATE`, or multi-statements), or connection leaks. A normal permitted read query, parameter, output, or UI behavior may not be rejected or changed merely by claiming 安全强化.
+
+Development-process documentation records the actual history, including wrong turns and later corrections. The from-zero tutorial starts from the final correct requirements and architecture: verify and read-only unpack the reference artifact, freeze UI/parameter/output/Workflow contracts, then build the legacy-compatible Tool, modern Tool, and shared secure core. 教程不得要求复现者重走历史返工路径.
+
 ## 2. Final Deliverable 1 — Offline Installable Plugins
 
 最终必须形成 DM8 与 KingbaseES 两套可离线安装并经过真实验证的插件交付物。每套交付物必须包含：
