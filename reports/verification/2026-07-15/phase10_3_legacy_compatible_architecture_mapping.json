@@ -1,0 +1,120 @@
+{
+  "suite": "phase10_3_legacy_architecture_gate",
+  "generated_at": "2026-07-15T02:44:18.197304+00:00",
+  "status": "PASS",
+  "scope": "static architecture freeze only; no database, installed plugin, or Workflow was invoked",
+  "checks": [
+    {
+      "name": "two_distinct_tool_entries",
+      "status": "PASS",
+      "detail": "one provider exposes two named Tool contracts"
+    },
+    {
+      "name": "legacy_identity",
+      "status": "PASS",
+      "detail": "Legacy technical Tool name is frozen"
+    },
+    {
+      "name": "modern_identity",
+      "status": "PASS",
+      "detail": "Modern technical Tool name is frozen"
+    },
+    {
+      "name": "legacy_nine_parameter_order",
+      "status": "PASS",
+      "detail": "Legacy UI remains the original nine-field order"
+    },
+    {
+      "name": "legacy_five_database_values",
+      "status": "PASS",
+      "detail": "Legacy declarations preserve five original database values"
+    },
+    {
+      "name": "modern_parameter_contract",
+      "status": "PASS",
+      "detail": "Modern Tool remains credential-backed and separate"
+    },
+    {
+      "name": "mssql_to_sqlserver",
+      "status": "PASS",
+      "detail": "Legacy mssql maps to the internal sqlserver adapter key"
+    },
+    {
+      "name": "oracle_controlled_unsupported",
+      "status": "PASS",
+      "detail": "Oracle declarations are explicit controlled unsupported paths"
+    },
+    {
+      "name": "shared_execution_core",
+      "status": "PASS",
+      "detail": "both paths call the same execution core after their own mapping"
+    },
+    {
+      "name": "output_contract_isolation",
+      "status": "PASS",
+      "detail": "Legacy records and modern structured envelopes are independent"
+    },
+    {
+      "name": "legacy_properties_boundary",
+      "status": "PASS",
+      "detail": "Legacy properties are parsed before only mapped fields enter internal config"
+    },
+    {
+      "name": "json_dsl_execution_persistence",
+      "status": "PASS",
+      "detail": "passed JSON DSL persists json under tool_parameters"
+    }
+  ],
+  "frozen_routes": {
+    "legacy": "legacy_database_query -> legacy mapper -> legacy SQL policy -> shared execution core -> legacy formatter",
+    "modern": "db_query_extended -> provider credential mapper -> modern read-only policy -> shared execution core -> modern structured formatter",
+    "shared_core": "utils.database.execute_read_only_query -> adapter registry -> normalized result"
+  },
+  "legacy_database_mapping": {
+    "mysql": {
+      "internal_key": "mysql",
+      "status": "IMPLEMENTED"
+    },
+    "postgresql": {
+      "internal_key": "postgresql",
+      "status": "IMPLEMENTED"
+    },
+    "mssql": {
+      "internal_key": "sqlserver",
+      "status": "IMPLEMENTED"
+    },
+    "oracle": {
+      "internal_key": null,
+      "status": "UNSUPPORTED_DECLARED_LEGACY"
+    },
+    "oracle11g": {
+      "internal_key": null,
+      "status": "UNSUPPORTED_DECLARED_LEGACY"
+    }
+  },
+  "phase10_4_required_changes": [
+    "Preserve original Legacy SQL acceptance as exactly one SELECT statement; do not silently inherit broader modern policy.",
+    "Preserve the Legacy runtime exception path with sanitized text instead of returning a new structured Legacy error envelope.",
+    "Reject unsupported or duplicate db_properties explicitly; do not silently discard them. Only schema, charset, and ssl_mode map to internal config."
+  ],
+  "phase10_4_verification_matrix": [
+    "nine_parameter_order",
+    "legacy_to_internal_mapping",
+    "mssql_to_sqlserver",
+    "oracle_and_oracle11g_controlled_unsupported",
+    "legacy_markdown_github_table",
+    "legacy_json_records_only",
+    "modern_structured_envelope_unchanged",
+    "json_tool_parameters_persistence",
+    "legacy_and_modern_isolation",
+    "sanitized_legacy_exception_path"
+  ],
+  "not_proven": [
+    "ORACLE_RUNTIME_PASS",
+    "ORACLE11G_RUNTIME_PASS",
+    "DM8_NEW_RUNTIME_PASS",
+    "KINGBASEES_NEW_RUNTIME_PASS",
+    "PHASE_10_4_IMPLEMENTATION_PASS",
+    "FINAL_PROJECT_DELIVERY_PASS"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "suite": "phase10_3_report_structure_validation",
+  "generated_at": "2026-07-15T02:45:00Z",
+  "status": "PASS",
+  "scope": "Phase 10.3 legacy-compatible architecture mapping",
+  "canonical_human_report": "reports/documentation/2026-07-15/Phase10_Base_Reproduction/phase10_3_legacy_compatible_architecture_mapping.md",
+  "machine_evidence": "reports/verification/2026-07-15/phase10_3_legacy_compatible_architecture_mapping.json",
+  "checks": {
+    "canonical_report_exists": "PASS",
+    "one_phase10_3_report_map_entry": "PASS",
+    "report_map_link_target_exists": "PASS",
+    "machine_evidence_json_parse": "PASS",
+    "sensitive_pattern_scan": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "security": "No API key, password, token, authorization header, connection string, or database result retained."
+}
