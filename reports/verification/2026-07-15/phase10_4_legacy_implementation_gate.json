@@ -1,0 +1,125 @@
+{
+  "suite": "phase10_4_legacy_implementation_gate",
+  "generated_at": "2026-07-15T03:05:03.514230+00:00",
+  "status": "PASS",
+  "scope": "credential-free unit/static verification; no database, Dify installation, Workflow, or API key was invoked",
+  "checks": [
+    {
+      "name": "legacy_select",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_leading_comment_select",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_terminal_semicolon",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_two_selects_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_select_delete_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_select_into_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_with_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_non_select_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "properties_empty",
+      "status": "PASS"
+    },
+    {
+      "name": "properties_allowed",
+      "status": "PASS"
+    },
+    {
+      "name": "properties_unknown_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "properties_duplicate_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "properties_malformed_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "properties_connection_overrides_blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "mssql_to_sqlserver",
+      "status": "PASS"
+    },
+    {
+      "name": "oracle_controlled_unsupported",
+      "status": "PASS"
+    },
+    {
+      "name": "oracle11g_controlled_unsupported",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_markdown",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_json_records_only",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_json_empty",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_error_uses_exception_path",
+      "status": "PASS"
+    },
+    {
+      "name": "modern_tool_schema_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "modern_provider_schema_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "modern_envelope_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_schema_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "json_dsl_persistence_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "allowed_conclusions": [
+    "PHASE_10_4_LEGACY_POLICY_IMPLEMENTED",
+    "PHASE_10_4_PROPERTIES_POLICY_IMPLEMENTED",
+    "PHASE_10_4_LEGACY_SANITIZED_EXCEPTION_CODE_PATH_IMPLEMENTED"
+  ],
+  "not_proven": [
+    "DIFY_PLUGIN_INVOKE_ERROR_RUNTIME_PASS",
+    "ORACLE_RUNTIME_PASS",
+    "ORACLE11G_RUNTIME_PASS",
+    "DM8_NEW_RUNTIME_PASS",
+    "KINGBASEES_NEW_RUNTIME_PASS",
+    "FINAL_PROJECT_DELIVERY_PASS"
+  ]
+}

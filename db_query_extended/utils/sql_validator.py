@@ -20,6 +20,7 @@ from utils.errors import ParameterValidationError, ReadOnlyViolationError
 MAX_SQL_LENGTH = 100_000
 
 ALLOWED_START_KEYWORDS = {"SELECT", "WITH"}
+LEGACY_ALLOWED_START_KEYWORDS = {"SELECT"}
 FORBIDDEN_KEYWORDS = {
     "INSERT",
     "UPDATE",
@@ -56,6 +57,7 @@ READ_ONLY_ERROR = (
     "Only one read-only SELECT or WITH statement is allowed. "
     "DDL, DML, procedure calls, file operations, comments-based bypasses, and multiple statements are blocked."
 )
+LEGACY_SELECT_ERROR = "Only one SELECT statement is allowed for the legacy tool."
 
 
 @dataclass(frozen=True)
@@ -105,6 +107,28 @@ class ReadOnlyValidator:
         # already rejected globally, require that a SELECT exists after WITH.
         if "SELECT" not in tokens[1:]:
             raise ReadOnlyViolationError(READ_ONLY_ERROR)
+
+
+class LegacySingleSelectValidator:
+    """Preserve the original Tool's single-SELECT boundary before execution."""
+
+    def validate(self, sql: str) -> SqlValidationResult:
+        if sql is None or not str(sql).strip():
+            raise ParameterValidationError("SQL must not be empty.")
+
+        normalized_sql = str(sql).strip()
+        if len(normalized_sql) > MAX_SQL_LENGTH:
+            raise ParameterValidationError(f"SQL length must not exceed {MAX_SQL_LENGTH} characters.")
+
+        # Original sqlparse handling accepts one terminal semicolon. Retain that
+        # compatibility without allowing a separator anywhere else.
+        token_sql = normalized_sql[:-1].rstrip() if normalized_sql.endswith(";") else normalized_sql
+        tokens, semicolon_count = _lex_sql(token_sql)
+        if not tokens or semicolon_count or tokens[0] not in LEGACY_ALLOWED_START_KEYWORDS:
+            raise ReadOnlyViolationError(LEGACY_SELECT_ERROR)
+        if FORBIDDEN_KEYWORDS.intersection(tokens):
+            raise ReadOnlyViolationError(LEGACY_SELECT_ERROR)
+        return SqlValidationResult(sql=normalized_sql, statement_type="SELECT", tokens=tuple(tokens))
 
 
 def _lex_sql(sql: str) -> tuple[list[str], int]:

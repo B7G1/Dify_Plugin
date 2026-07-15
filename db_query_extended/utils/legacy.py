@@ -9,7 +9,7 @@ from typing import Any
 from urllib.parse import parse_qsl
 
 from utils.errors import ParameterValidationError, UnsupportedDatabaseTypeError
-from utils.sql_validator import ReadOnlyValidator
+from utils.sql_validator import LegacySingleSelectValidator
 from utils.validation import validate_connection_config
 
 
@@ -21,7 +21,30 @@ LEGACY_TO_INTERNAL = {"mysql": "mysql", "postgresql": "postgresql", "mssql": "sq
 LEGACY_MAX_ROWS = 1_000
 LEGACY_TIMEOUT_SECONDS = 30
 SELECT_ONE_GOLDEN = "|   probe |\n|---------|\n|       1 |"
-_READ_ONLY_VALIDATOR = ReadOnlyValidator()
+_LEGACY_SINGLE_SELECT_VALIDATOR = LegacySingleSelectValidator()
+_LEGACY_PROPERTY_KEYS = {"schema", "charset", "ssl_mode"}
+
+
+def parse_legacy_properties(value: Any) -> dict[str, str]:
+    """Parse the small legacy property surface without accepting URL fragments."""
+    raw = str(value or "")
+    if not raw:
+        return {}
+
+    parsed: dict[str, str] = {}
+    for pair in raw.split("&"):
+        if not pair or pair.count("=") != 1:
+            raise ParameterValidationError("Invalid db_properties pair.")
+        items = parse_qsl(pair, keep_blank_values=True, strict_parsing=True)
+        if len(items) != 1 or not items[0][0] or not items[0][1].strip():
+            raise ParameterValidationError("Invalid db_properties pair.")
+        key, property_value = items[0]
+        if key in parsed:
+            raise ParameterValidationError(f"Duplicate db_properties key: {key}.")
+        if key not in _LEGACY_PROPERTY_KEYS:
+            raise ParameterValidationError(f"Unsupported db_properties key: {key}.")
+        parsed[key] = property_value.strip()
+    return parsed
 
 
 class FormatterMode(str, Enum):
@@ -43,7 +66,7 @@ def validate_legacy_parameters(parameters: Mapping[str, Any]) -> dict[str, Any]:
     output_format = str(parameters.get("output_format") or "markdown").strip().lower()
     if output_format not in {"markdown", "json"}:
         raise ParameterValidationError("output_format must be markdown or json.")
-    properties = dict(parse_qsl(str(parameters.get("db_properties") or ""), keep_blank_values=True))
+    properties = parse_legacy_properties(parameters.get("db_properties"))
     config = validate_connection_config(
         {
             "database_type": LEGACY_TO_INTERNAL[database_type],
@@ -71,7 +94,7 @@ def validate_legacy_parameters(parameters: Mapping[str, Any]) -> dict[str, Any]:
 def run_legacy_query(parameters: Mapping[str, Any], execute) -> dict[str, Any] | str:  # type: ignore[no-untyped-def]
     """Run the common validation/execution path with the legacy presentation mode."""
     request = validate_legacy_parameters(parameters)
-    _READ_ONLY_VALIDATOR.validate(request["sql"])
+    _LEGACY_SINGLE_SELECT_VALIDATOR.validate(request["sql"])
     result = execute(request["config"], request["sql"], request["max_rows"], request["timeout_seconds"])
     mode = FormatterMode.LEGACY_MARKDOWN if request["output_format"] == "markdown" else FormatterMode.LEGACY_JSON_RECORDS
     return format_result(mode, result)

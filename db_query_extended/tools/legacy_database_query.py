@@ -21,12 +21,10 @@ class LegacyDatabaseQueryTool(Tool):
             payload = run_legacy_query(tool_parameters, execute_read_only_query)
         except DatabaseQueryError as exc:
             logger.warning("Legacy Tool rejected request: %s", exc.__class__.__name__)
-            yield self.create_json_message({"error": {"type": exc.__class__.__name__, "message": str(exc)}})
-            return
+            raise
         except Exception as exc:
             logger.error("Legacy Tool failed: %s", exc.__class__.__name__)
-            yield self.create_json_message({"error": {"type": "DatabaseQueryError", "message": "The query request could not be completed."}})
-            return
+            raise DatabaseQueryError("The query request could not be completed.") from exc
         if isinstance(payload, str):
             yield self.create_text_message(payload)
         else:
