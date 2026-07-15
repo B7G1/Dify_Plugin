@@ -125,7 +125,7 @@ def workflow_tests() -> dict[str, Any]:
         document = json.loads(output.read_text(encoding="utf-8"))
         node = document["graph"]["nodes"][0]["data"]
         record(checks, "bindings_and_mssql_preserved", lambda: (_same(node["inputs"], fixture["graph"]["nodes"][0]["data"]["inputs"]), _same(node["inputs"]["db_type"], "{{#db_type#}}")))
-        record(checks, "identity_rewritten_only", lambda: (_same((node["provider_id"], node["tool_name"]), ("db_query_extended", "legacy_database_query")), _same(document["graph"]["nodes"][1], fixture["graph"]["nodes"][1])))
+        record(checks, "identity_rewritten_only", lambda: (_same((node["provider_id"], node["tool_name"]), ("li_zijun/db_query_extended/db_query_extended", "legacy_database_query")), _same(document["graph"]["nodes"][1], fixture["graph"]["nodes"][1])))
         record(checks, "backup_and_secret_redaction", lambda: (_same(backup.read_text(encoding="utf-8"), source.read_text(encoding="utf-8")), _not_contains(json.dumps(migrated), SECRET)))
         again = _run(script, "--input", output, "--output", root / "again.json")
         record(checks, "idempotent", lambda: _same(again["status"], "NOOP"))

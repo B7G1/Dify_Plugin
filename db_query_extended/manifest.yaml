@@ -1,4 +1,4 @@
-version: 0.1.1
+version: 0.1.3
 type: plugin
 author: li_zijun
 name: db_query_extended
@@ -19,7 +19,7 @@ plugins:
   tools:
     - provider/db_query_extended.yaml
 meta:
-  version: 0.1.1
+  version: 0.1.3
   arch:
     - amd64
   runner:

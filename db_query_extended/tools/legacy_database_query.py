@@ -30,4 +30,6 @@ class LegacyDatabaseQueryTool(Tool):
         if isinstance(payload, str):
             yield self.create_text_message(payload)
         else:
+            if isinstance(payload, dict) and isinstance(payload.get("records"), list):
+                yield self.create_variable_message("result", payload)
             yield self.create_json_message(payload)

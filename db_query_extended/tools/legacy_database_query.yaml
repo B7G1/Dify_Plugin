@@ -9,6 +9,16 @@ description:
     en_US: A tool for Database SQL query.
     zh_Hans: 数据库SQL查询工具。
   llm: A tool for executing SQL query. Input should be a search query.
+output_schema:
+  type: object
+  properties:
+    result:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            type: object
 parameters:
   - name: db_type
     type: select

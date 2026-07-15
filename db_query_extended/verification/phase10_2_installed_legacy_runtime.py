@@ -48,6 +48,7 @@ class Gate:
         self.args = args
         self.output_dir = args.output_dir
         self.package = args.package
+        self.expected_version = args.expected_version
         self.expected_checksum = args.expected_checksum.lower()
         self.package_sha256 = args.package_sha256.lower()
         self.secrets: list[str] = [value for value in (os.getenv("PHASE10_2_MYSQL_PASSWORD"), os.getenv("PHASE10_2_POSTGRESQL_PASSWORD")) if value]
@@ -97,7 +98,7 @@ class Gate:
         PluginInstaller.decode_plugin_from_identifier = decode_with_daemon_parameter
         self.tenant_id, self.user_id = self.context_ids()
         before = [plugin for plugin in PluginService.list(self.tenant_id) if plugin.plugin_id == PLUGIN_ID]
-        expected_identifier = f"{PLUGIN_ID}:0.1.1@{self.expected_checksum}"
+        expected_identifier = f"{PLUGIN_ID}:{self.expected_version}@{self.expected_checksum}"
         active_before = next((plugin for plugin in before if plugin.plugin_unique_identifier == expected_identifier), None)
         if active_before is not None:
             self.active_identifier = expected_identifier
@@ -178,10 +179,10 @@ class Gate:
             password = os.getenv(f"PHASE10_2_{database.upper()}_PASSWORD")
             if not password:
                 raise RuntimeError(f"PHASE10_2_{database.upper()}_PASSWORD is required for the local {database} fixture.")
-            return {"db_type": database, "db_host": "host.docker.internal", "db_port": 3306 if database == "mysql" else 5432, "db_username": "plugin_test_user", "db_password": password, "db_name": "plugin_test", "db_properties": "charset=utf8mb4" if database == "mysql" else "ssl_mode=disable"}
+            return {"db_type": database, "db_host": "host.docker.internal", "db_port": 3306 if database == "mysql" else 5432, "db_username": "plugin_test_user", "db_password": password, "db_name": "plugin_test", "db_properties": "charset=utf8mb4" if database == "mysql" else "sslmode=disable"}
         source = self.decrypted_credential("sqlserver")
         return {
-            "db_type": "postgresql" if database == "postgresql" else "mssql",
+            "db_type": "mssql",
             "db_host": source["host"], "db_port": source.get("port"),
             "db_username": source["username"], "db_password": source["password"],
             "db_name": source.get("database", ""),
@@ -199,15 +200,20 @@ class Gate:
 
     def invoke_legacy(self, parameters: dict[str, Any]) -> dict[str, Any]:
         messages = list(self.legacy_tool().invoke(user_id=self.user_id, tool_parameters=parameters))
-        if len(messages) != 1:
-            raise AssertionError("Legacy Tool returned an unexpected message count.")
-        raw = model(messages[0])
-        message = raw.get("message", {})
-        if "text" in message:
-            return {"message_type": "text", "output": message["text"]}
-        if "json_object" in message:
-            return {"message_type": "json", "output": message["json_object"]}
-        return {"message_type": "unknown", "output": raw}
+        json_output, variables = None, {}
+        for item in messages:
+            raw = model(item)
+            message = raw.get("message", {})
+            if "text" in message:
+                return {"message_type": "text", "output": message["text"], "message_count": len(messages)}
+            if "json_object" in message:
+                json_output = message["json_object"]
+            variable_name = message.get("variable_name") if isinstance(message, dict) else None
+            if variable_name:
+                variables[variable_name] = message.get("variable_value")
+        if json_output is not None:
+            return {"message_type": "json", "output": json_output, "variables": variables, "message_count": len(messages)}
+        return {"message_type": "unknown", "output": [model(item) for item in messages], "message_count": len(messages)}
 
     def database_query(self, database: str) -> str:
         if database == "mssql":
@@ -227,7 +233,7 @@ class Gate:
                         checks = {"message_type": output["message_type"] == "text", "table_read": isinstance(output["output"], str) and "|" in output["output"]}
                     else:
                         records = output.get("output", {}).get("records") if isinstance(output.get("output"), dict) else None
-                        checks = {"message_type": output["message_type"] == "json", "records_only": isinstance(output.get("output"), dict) and set(output["output"]) == {"records"}, "table_read": isinstance(records, list) and bool(records), "legacy_null": isinstance(records, list) and any("" in row.values() for row in records)}
+                        checks = {"message_type": output["message_type"] == "json", "records_only": isinstance(output.get("output"), dict) and set(output["output"]) == {"records"}, "result_variable_exposed": output.get("variables", {}).get("result") == output.get("output"), "table_read": isinstance(records, list) and bool(records), "legacy_null": isinstance(records, list) and any("" in row.values() for row in records)}
                     status = "PASS" if all(checks.values()) else "FAIL"
                     error = None
                 except Exception as exc:  # noqa: BLE001
@@ -259,7 +265,7 @@ class Gate:
         for database in ("mysql", "postgresql", "mssql"):
             try:
                 output = self.invoke_legacy({**self.legacy_parameters(database), "query_sql": "SELECT 1 AS probe", "output_format": "markdown"})
-                status = "PASS" if output == {"message_type": "text", "output": SELECT_ONE_GOLDEN} else "FAIL"
+                status = "PASS" if output.get("message_type") == "text" and output.get("output") == SELECT_ONE_GOLDEN else "FAIL"
                 error = None
             except Exception as exc:  # noqa: BLE001
                 output, status, error = None, "FAIL", str(exc)
@@ -326,6 +332,7 @@ class Gate:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--package", type=Path, required=True)
+    parser.add_argument("--expected-version", required=True)
     parser.add_argument("--expected-checksum", required=True)
     parser.add_argument("--package-sha256", required=True)
     parser.add_argument("--source-commit", required=True)

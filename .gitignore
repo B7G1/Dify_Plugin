@@ -48,3 +48,6 @@ staged.txt
 *.pfx
 credentials*.json
 secrets*.json
+
+# Local Dify Workflow API credentials
+api.env

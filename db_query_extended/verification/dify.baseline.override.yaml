@@ -12,15 +12,22 @@ services:
       - dify_app_storage:/app/api/storage
 
   api:
+    environment:
+      # The audited original offline plugin package is 73 MiB; retain a 100 MiB limit for its controlled installation path.
+      PLUGIN_MAX_PACKAGE_SIZE: ${PLUGIN_MAX_PACKAGE_SIZE:-104857600}
     volumes:
       - dify_app_storage:/app/api/storage
       - /home/zli2759/projects/dify-dm/api/core/plugin/impl/plugin.py:/app/api/core/plugin/impl/plugin.py:ro
 
   worker:
+    environment:
+      PLUGIN_MAX_PACKAGE_SIZE: ${PLUGIN_MAX_PACKAGE_SIZE:-104857600}
     volumes:
       - dify_app_storage:/app/api/storage
 
   worker_beat:
+    environment:
+      PLUGIN_MAX_PACKAGE_SIZE: ${PLUGIN_MAX_PACKAGE_SIZE:-104857600}
     volumes:
       - dify_app_storage:/app/api/storage
 
@@ -28,6 +35,7 @@ services:
     environment:
       DM_HOME: /opt/dm8
       LD_LIBRARY_PATH: /opt/dm8/bin:/opt/dm8/bin/dependencies:/opt/dm8/bin/external_crypto_libs
+      MAX_PLUGIN_PACKAGE_SIZE: ${PLUGIN_MAX_PACKAGE_SIZE:-104857600}
     volumes:
       - /home/zli2759/dm8-install-tmp/DMInstall/source:/opt/dm8:ro
 
