@@ -1,0 +1,536 @@
+{
+  "suite": "phase10_5_installed_legacy_tool_runtime_gate",
+  "generated_at": "2026-07-15T03:32:21.451001+00:00",
+  "status": "PASS",
+  "scope": "candidate package -> Dify PluginService/PluginInstaller -> ToolManager -> installed plugin-daemon Legacy Tool; no Workflow or API key action",
+  "source_commit": "bb72f1c",
+  "candidate": {
+    "package_sha256": "a6a91d8974252853109d72e61295f3955869fe72f730f207081b7d0cdac11eda",
+    "plugin_checksum": "975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf"
+  },
+  "active_identifier": "li_zijun/db_query_extended:0.1.3@975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf",
+  "gates": {
+    "candidate_installation": "PASS",
+    "three_database_success_contracts": "PASS",
+    "legacy_single_select_policy": "PASS",
+    "strict_db_properties": "PASS",
+    "sanitized_plugin_exception": "PASS"
+  },
+  "installation": {
+    "status": "PASS",
+    "generated_at": "2026-07-15T03:32:19.905066+00:00",
+    "tenant_id_recorded": false,
+    "candidate": {
+      "checksum": "975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf",
+      "package_sha256": "a6a91d8974252853109d72e61295f3955869fe72f730f207081b7d0cdac11eda"
+    },
+    "install_status": "already_active",
+    "upgrade_status": "not_required",
+    "before": [
+      {
+        "plugin_id": "li_zijun/db_query_extended",
+        "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.3@975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf",
+        "version": "0.1.3",
+        "installation_id": "019f1d04-c3ab-7557-b652-54f7af314d93",
+        "source": "package"
+      }
+    ],
+    "after": [
+      {
+        "plugin_id": "li_zijun/db_query_extended",
+        "plugin_unique_identifier": "li_zijun/db_query_extended:0.1.3@975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf",
+        "version": "0.1.3",
+        "installation_id": "019f1d04-c3ab-7557-b652-54f7af314d93",
+        "source": "package"
+      }
+    ],
+    "active_identifier": "li_zijun/db_query_extended:0.1.3@975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf"
+  },
+  "success_contracts": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "mysql_markdown_select_1_terminal_semicolon",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "markdown",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "text_message": true,
+          "github_table": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "text",
+            "output": "|   probe |\n|---------|\n|       1 |",
+            "message_count": 1
+          }
+        }
+      },
+      {
+        "name": "mysql_json_select_1_terminal_semicolon",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "json_message": true,
+          "records_only": true,
+          "records_value": true,
+          "result_variable": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "json",
+            "output": {
+              "records": [
+                {
+                  "probe": 1
+                }
+              ]
+            },
+            "variables": {
+              "result": {
+                "records": [
+                  {
+                    "probe": 1
+                  }
+                ]
+              }
+            },
+            "message_count": 2
+          }
+        }
+      },
+      {
+        "name": "postgresql_markdown_select_1_terminal_semicolon",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "markdown",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "text_message": true,
+          "github_table": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "text",
+            "output": "|   probe |\n|---------|\n|       1 |",
+            "message_count": 1
+          }
+        }
+      },
+      {
+        "name": "postgresql_json_select_1_terminal_semicolon",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "json_message": true,
+          "records_only": true,
+          "records_value": true,
+          "result_variable": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "json",
+            "output": {
+              "records": [
+                {
+                  "probe": 1
+                }
+              ]
+            },
+            "variables": {
+              "result": {
+                "records": [
+                  {
+                    "probe": 1
+                  }
+                ]
+              }
+            },
+            "message_count": 2
+          }
+        }
+      },
+      {
+        "name": "mssql_markdown_select_1_terminal_semicolon",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "markdown",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "text_message": true,
+          "github_table": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "text",
+            "output": "|   probe |\n|---------|\n|       1 |",
+            "message_count": 1
+          }
+        }
+      },
+      {
+        "name": "mssql_json_select_1_terminal_semicolon",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "json_message": true,
+          "records_only": true,
+          "records_value": true,
+          "result_variable": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "json",
+            "output": {
+              "records": [
+                {
+                  "probe": 1
+                }
+              ]
+            },
+            "variables": {
+              "result": {
+                "records": [
+                  {
+                    "probe": 1
+                  }
+                ]
+              }
+            },
+            "message_count": 2
+          }
+        }
+      }
+    ]
+  },
+  "legacy_policy": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "terminal_semicolon_allowed",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "markdown",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "text_message": true,
+          "github_table": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "text",
+            "output": "|   probe |\n|---------|\n|       1 |",
+            "message_count": 1
+          }
+        }
+      },
+      {
+        "name": "leading_comment_allowed",
+        "query_sha256": "8eaf7e0080c3363f4cbea7f90dec9a5b9eadebd5e07333a441430852c467eda5",
+        "output_format": "markdown",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "text_message": true,
+          "github_table": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "text",
+            "output": "|   probe |\n|---------|\n|       1 |",
+            "message_count": 1
+          }
+        }
+      },
+      {
+        "name": "two_selects_rejected",
+        "query_sha256": "706663be04d8cbe6023f2354f0af9e5f9f3314533d90dec6e2f90994e93289df",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ReadOnlyViolationError\",\"message\":\"Only one SELECT statement is allowed for the legacy tool.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "select_delete_rejected",
+        "query_sha256": "0a01bfee4c7c2dbf5d3638283d89c3de0ce00322797da033762dd0ec2b5df331",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ReadOnlyViolationError\",\"message\":\"Only one SELECT statement is allowed for the legacy tool.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "with_rejected",
+        "query_sha256": "d930e8be2d6a4ce253539d58e2fed5f6a8c5df0977b860f206088d1ef6f54a15",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ReadOnlyViolationError\",\"message\":\"Only one SELECT statement is allowed for the legacy tool.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "select_into_rejected",
+        "query_sha256": "62341b280d63125acdfa318539c7819812c8d686f56c2fa0914ae7094b6ed474",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ReadOnlyViolationError\",\"message\":\"Only one SELECT statement is allowed for the legacy tool.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "delete_rejected",
+        "query_sha256": "851b188938123b96f8de830fdf12ddc654171682a5a12c132059f491b43d5296",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ReadOnlyViolationError\",\"message\":\"Only one SELECT statement is allowed for the legacy tool.\"}",
+          "redaction_check": true
+        }
+      }
+    ]
+  },
+  "db_properties": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "schema_public_allowed",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "returned": true,
+          "json_message": true,
+          "records_only": true,
+          "records_value": true,
+          "result_variable": true
+        },
+        "actual": {
+          "outcome": "returned",
+          "output": {
+            "message_type": "json",
+            "output": {
+              "records": [
+                {
+                  "probe": 1
+                }
+              ]
+            },
+            "variables": {
+              "result": {
+                "records": [
+                  {
+                    "probe": 1
+                  }
+                ]
+              }
+            },
+            "message_count": 2
+          }
+        }
+      },
+      {
+        "name": "duplicate_rejected",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ParameterValidationError\",\"message\":\"Duplicate db_properties key: schema.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "unknown_rejected",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ParameterValidationError\",\"message\":\"Unsupported db_properties key: unknown.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "host_override_rejected",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ParameterValidationError\",\"message\":\"Unsupported db_properties key: host.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "password_override_rejected",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ParameterValidationError\",\"message\":\"Unsupported db_properties key: password.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "missing_value_rejected",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ParameterValidationError\",\"message\":\"Invalid db_properties pair.\"}",
+          "redaction_check": true
+        }
+      },
+      {
+        "name": "missing_key_rejected",
+        "query_sha256": "a22325b9be9385cd93390953d26a3a7e9b87517b02299aa9c89f9e45c9c28471",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"ParameterValidationError\",\"message\":\"Invalid db_properties pair.\"}",
+          "redaction_check": true
+        }
+      }
+    ]
+  },
+  "exception_path": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "known_sql_error_is_plugin_exception",
+        "query_sha256": "4dae90715cc5ad9262c1bcb90e0bddca970e1b45fef61267313969847e10e096",
+        "output_format": "json",
+        "status": "PASS",
+        "checks": {
+          "exception_path": true,
+          "dify_plugin_wrapper": true,
+          "expected_safe_message": true,
+          "redacted": true,
+          "no_legacy_json_error": true
+        },
+        "actual": {
+          "outcome": "exception",
+          "exception_type": "PluginInvokeError",
+          "message": "req_id:  PluginInvokeError: {\"args\":{},\"error_type\":\"SqlExecutionError\",\"message\":\"SQL execution failed. Check SQL syntax and referenced database objects.\"}",
+          "redaction_check": true
+        }
+      }
+    ]
+  },
+  "allowed_conclusions": [
+    "PHASE_10_5_INSTALLED_LEGACY_TOOL_RUNTIME_PASS"
+  ],
+  "not_proven": [
+    "LEGACY_WORKFLOW_REIMPORT_OR_PUBLISH_PASS",
+    "ORACLE_RUNTIME_PASS",
+    "ORACLE11G_RUNTIME_PASS",
+    "DM8_NEW_RUNTIME_PASS",
+    "KINGBASEES_NEW_RUNTIME_PASS",
+    "FINAL_PROJECT_DELIVERY_PASS"
+  ]
+}

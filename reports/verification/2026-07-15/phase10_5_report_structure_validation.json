@@ -1,0 +1,24 @@
+{
+  "suite": "phase10_5_report_structure_validation",
+  "generated_at": "2026-07-15T03:32:21.451001+00:00",
+  "status": "PASS",
+  "scope": "Phase 10.5 canonical report, machine evidence, report-map link, sensitive-pattern scan, and scoped diff validation",
+  "checks": {
+    "canonical_report_exists": "PASS",
+    "machine_evidence_exists_and_parses": "PASS",
+    "report_map_link_present": "PASS",
+    "runtime_evidence_top_level_pass": "PASS",
+    "runtime_evidence_five_gates_pass": "PASS",
+    "runtime_evidence_all_21_cases_pass": "PASS",
+    "candidate_active_identifier_matches_checksum": "PASS",
+    "no_workflow_success_claim": "PASS",
+    "sensitive_pattern_scan": "PASS",
+    "scoped_git_diff_check": "PASS"
+  },
+  "not_checked": [
+    "whole-worktree cleanliness",
+    "unrelated protected dirty files",
+    "Workflow execution or publication"
+  ],
+  "security": "No credential, API key, token, complete database URL, or authorization value retained."
+}
