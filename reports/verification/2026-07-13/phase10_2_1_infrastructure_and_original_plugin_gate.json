@@ -1,0 +1,125 @@
+{
+  "suite": "phase10_2_1_infrastructure_and_original_plugin_gate",
+  "generated_at": "2026-07-15T01:45:00Z",
+  "status": "PASS",
+  "gates": {
+    "persistent_data_preserved": "PASS",
+    "dify_console_api_and_nginx_recovered": "PASS",
+    "original_package_sha256": "PASS",
+    "original_plugin_real_install": "PASS",
+    "original_provider_tool_identity": "PASS",
+    "runtime_generated_legacy_dsl": "PASS",
+    "migration_dry_run": "PASS",
+    "migration_import_publish": "PASS",
+    "workflow_api_six_run_matrix": "PASS",
+    "records_variable_candidate_runtime": "PASS",
+    "records_variable_workflow_reimport": "PASS"
+  },
+  "persistent_state": {
+    "postgres_volume": "dify_postgres_data_v1",
+    "weaviate_volume": "dify_weaviate_data_v1",
+    "api_storage_volume": "dify_app_storage",
+    "accounts": 1,
+    "tenants": 1,
+    "system_identifier_preserved": true
+  },
+  "infrastructure_root_causes": [
+    "api and nginx retained stale Docker Desktop WSL bind-mount cache sources after their real source files remained present.",
+    "nginx retained an obsolete api upstream after api recreation and required its own stateless recreation."
+  ],
+  "recovery": {
+    "data_migration": "NOT_USED",
+    "volume_deletion": "NOT_USED",
+    "container_recreated": ["api", "worker", "worker_beat", "plugin_daemon", "nginx"],
+    "console_ping_http": 200,
+    "console_setup": "finished"
+  },
+  "original_package": {
+    "sha256": "6619DB2611D25C685F8CA4F565F86E972A0EBD25894464EF911AEA09C77F1560",
+    "plugin_unique_identifier": "junjiem/db_query:0.0.11@3fbbfae03c44ef1cafaa9dcc0a65245fba82dcc208d94569a7597e58cca7d4fb",
+    "provider_id": "db_query",
+    "tool_name": "sql_query",
+    "parameter_names": ["db_type", "db_host", "db_port", "db_username", "db_password", "db_name", "db_properties", "query_sql", "output_format"],
+    "legacy_mssql_value_preserved": true
+  },
+  "runtime_generated_legacy_dsl": {
+    "location": "LOCAL_ONLY secure temporary directory; not retained in repository",
+    "markdown_sha256": "E05C7DC2956E61D39713968FC7D6CD453531C0E0CAD5FF7EE4611EA7122C008D",
+    "json_sha256": "5009218BD8CF01ADAA8302814EE4A2920805311D212F1AF9FFFAB5CE09028560",
+    "tool_node_id": "1784014225605",
+    "provider_id": "junjiem/db_query/db_query",
+    "plugin_unique_identifier": "junjiem/db_query:0.0.11@3fbbfae03c44ef1cafaa9dcc0a65245fba82dcc208d94569a7597e58cca7d4fb",
+    "tool_name": "sql_query",
+    "parameter_names": ["db_type", "db_host", "db_port", "db_username", "db_password", "db_name", "db_properties", "query_sql", "output_format"],
+    "downstream_outputs": {"markdown": "text", "json": "json Array[Object]"},
+    "credential_scan": "PASS: only empty db_password schema/default fields; no credential values"
+  },
+  "migration_dry_run": {
+    "script": "db_query_extended/scripts/migrate_legacy_workflow.py",
+    "dify_1_13_wrapper_supported": "workflow.graph.nodes",
+    "source_identity": "junjiem/db_query/db_query/sql_query",
+    "target_identity": "li_zijun/db_query_extended/db_query_extended/legacy_database_query",
+    "changed_node_ids": ["1784014225605"],
+    "markdown_result": "MIGRATED",
+    "json_result": "MIGRATED",
+    "self_check": "PASS: bindings, mssql parameter, idempotence, and unknown DSL block"
+  },
+  "migration_import_publish": {
+    "markdown_app_id": "fc4a7930-d263-40ff-9769-b4bd21e6da0f",
+    "json_app_id": "55203df5-9e26-410d-8683-1dae5a973bc9",
+    "candidate_version": "0.1.3",
+    "imported_tool": "li_zijun/db_query_extended/db_query_extended/legacy_database_query",
+    "markdown_test_run": "PASS",
+    "json_test_run": "PASS",
+    "publish": "PASS",
+    "evidence": "user-operated Dify UI screenshots; no credentials retained"
+  },
+  "records_variable_candidate": {
+    "active_plugin_unique_identifier": "li_zijun/db_query_extended:0.1.3@da9482ea6ef228311cac1e8f33efa59464c3aa25dbebf55da9c9c642a7a6078f",
+    "package_sha256": "CE6E0750BCEFE6412D70C41833247250191616300328F6DA6D3A19C0E597A442",
+    "installed_runtime_gates": {
+      "installation": "PASS",
+      "legacy_runtime_fixtures": "PASS",
+      "select1_golden": "PASS",
+      "schema_security_modern_regression": "PASS"
+    },
+    "migration_exports": {
+      "markdown": {"selector": "text", "status": "published_and_api_verified"},
+      "json": {"selector": "result", "explicit_tool_parameter": "output_format=json", "template_serialization": "tojson", "sha256": "C5AA0D8975DA75DC318B11C516D7EAEA5FE95632E850DE8364E5BC209E798586"}
+    },
+    "workflow_status": "PASS: user imported and published final v0.1.3 Markdown and JSON DSLs; both app-scoped API keys were validated without retention."
+  },
+  "workflow_api_matrix": {
+    "endpoint": "http://localhost/v1/workflows/run",
+    "response_mode": "blocking",
+    "postgresql_markdown": {"http_status": 200, "status": "succeeded", "output": "Markdown table containing probe=1"},
+    "postgresql_json": {"http_status": 200, "status": "succeeded", "output": "JSON payload contains records=[{\"probe\":1}]"},
+    "mysql_markdown": {"http_status": 200, "status": "succeeded", "output": "Markdown table containing probe=1"},
+    "mysql_json": {"http_status": 200, "status": "succeeded", "output": "JSON payload contains records=[{\"probe\":1}]"},
+    "sqlserver_markdown": {"http_status": 200, "status": "succeeded", "output": "Markdown table containing probe=1; existing encrypted Dify Provider credential used in-process without disclosure"},
+    "sqlserver_json": {"http_status": 200, "status": "succeeded", "output": "JSON payload contains records=[{\"probe\":1}]; existing encrypted Dify Provider credential used in-process without disclosure"}
+  },
+  "configuration_change": {
+    "file": "db_query_extended/verification/dify.baseline.override.yaml",
+    "reason": "The audited original offline package is approximately 73 MiB while the configured plugin maximum was 50 MiB.",
+    "effective_limit_bytes": 104857600
+  },
+  "ui_handoff": {
+    "resolution": "PASS: user-operated visible Dify UI added the installed original Tool, bound the nine parameters, executed PostgreSQL markdown and JSON paths successfully, and exported both DSL files.",
+    "automation_scope": "The in-app browser remained unable to operate React Flow controls; this limitation did not affect the user-operated evidence."
+  },
+  "allowed_conclusions": [
+    "DIFY_INFRASTRUCTURE_RECOVERED_WITH_PERSISTENT_DATA_PRESERVED",
+    "ORIGINAL_LEGACY_PLUGIN_REAL_INSTALL_PASS",
+    "ORIGINAL_PROVIDER_TOOL_IDENTITY_CONFIRMED",
+    "RUNTIME_GENERATED_GENUINE_LEGACY_DSL_PASS",
+    "LEGACY_WORKFLOW_MIGRATION_DRY_RUN_PASS",
+    "LEGACY_INSTALLED_TOOL_RUNTIME_THREE_DATABASE_PASS",
+    "LEGACY_WORKFLOW_MIGRATION_RUNTIME_PASS",
+    "SIX_WORKFLOW_API_RUNS_PASS",
+    "PHASE_10_2_1_PASS"
+  ],
+  "not_proven": [
+    "FINAL_PROJECT_DELIVERY_PASS"
+  ]
+}
