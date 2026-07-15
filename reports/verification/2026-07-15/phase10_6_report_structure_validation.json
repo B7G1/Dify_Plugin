@@ -1,0 +1,23 @@
+{
+  "suite": "phase10_6_report_structure_validation",
+  "generated_at": "2026-07-15T04:32:16+00:00",
+  "status": "PASS",
+  "scope": "Phase 10.6 canonical report, machine evidence, report-map link, sensitive-pattern scan, and scoped diff validation",
+  "checks": {
+    "canonical_report_exists": "PASS",
+    "machine_evidence_exists_and_parses": "PASS",
+    "runtime_evidence_status_is_partial": "PASS",
+    "active_candidate_matches_phase10_5": "PASS",
+    "six_workflow_api_calls_succeeded": "PASS",
+    "published_workflow_snapshot_mismatch_recorded": "PASS",
+    "negative_cases_pass": "PASS",
+    "sensitive_pattern_scan": "PASS",
+    "scoped_git_diff_check": "PASS"
+  },
+  "not_checked": [
+    "whole-worktree cleanliness",
+    "unrelated protected dirty files",
+    "Workflow mutation, import, or publication"
+  ],
+  "security": "No API key, authorization value, cookie, database password, or complete database URL retained."
+}

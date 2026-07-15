@@ -1,0 +1,275 @@
+{
+  "phase": "Phase 10.6 — Legacy Workflow End-to-End Non-Regression Gate",
+  "status": "PARTIAL",
+  "date": "2026-07-15T04:32:06.098326+00:00",
+  "source_commit": "bb72f1c",
+  "phase10_5_evidence_commit": "2a2e1aac418e15f5375abc77061d3e30a5499c09",
+  "candidate_package_sha256": "a6a91d8974252853109d72e61295f3955869fe72f730f207081b7d0cdac11eda",
+  "active_plugin_checksum": "975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf",
+  "active_plugin_identifier": "li_zijun/db_query_extended:0.1.3@975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf",
+  "workflow_scope": "existing published Phase 10.2.1 Markdown and JSON Workflows only",
+  "database_scope": [
+    "postgresql",
+    "mysql",
+    "mssql"
+  ],
+  "successful_case_count": 0,
+  "workflow_api_succeeded_case_count": 6,
+  "failed_case_count": 6,
+  "markdown_cases": [
+    {
+      "database_type": "postgresql",
+      "workflow_format": "markdown",
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "result_type": "str",
+      "result_shape": "github_markdown_table",
+      "probe_value": 1,
+      "legacy_contract_pass": true,
+      "modern_envelope_absent": true,
+      "template_output_mapping": true,
+      "elapsed_ms": 526.821,
+      "checks": {
+        "http_success": true,
+        "workflow_succeeded": true,
+        "tool_called": true,
+        "active_legacy_tool": false,
+        "template_called": true,
+        "output_called": true,
+        "result_string": true,
+        "legacy_contract": true,
+        "modern_envelope_absent": true
+      },
+      "status": "FAIL"
+    },
+    {
+      "database_type": "mysql",
+      "workflow_format": "markdown",
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "result_type": "str",
+      "result_shape": "github_markdown_table",
+      "probe_value": 1,
+      "legacy_contract_pass": true,
+      "modern_envelope_absent": true,
+      "template_output_mapping": true,
+      "elapsed_ms": 521.993,
+      "checks": {
+        "http_success": true,
+        "workflow_succeeded": true,
+        "tool_called": true,
+        "active_legacy_tool": false,
+        "template_called": true,
+        "output_called": true,
+        "result_string": true,
+        "legacy_contract": true,
+        "modern_envelope_absent": true
+      },
+      "status": "FAIL"
+    },
+    {
+      "database_type": "mssql",
+      "workflow_format": "markdown",
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "result_type": "str",
+      "result_shape": "github_markdown_table",
+      "probe_value": 1,
+      "legacy_contract_pass": true,
+      "modern_envelope_absent": true,
+      "template_output_mapping": true,
+      "elapsed_ms": 519.011,
+      "checks": {
+        "http_success": true,
+        "workflow_succeeded": true,
+        "tool_called": true,
+        "active_legacy_tool": false,
+        "template_called": true,
+        "output_called": true,
+        "result_string": true,
+        "legacy_contract": true,
+        "modern_envelope_absent": true
+      },
+      "status": "FAIL"
+    }
+  ],
+  "json_cases": [
+    {
+      "database_type": "postgresql",
+      "workflow_format": "json",
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "result_type": "list",
+      "result_shape": "unexpected",
+      "probe_value": null,
+      "legacy_contract_pass": false,
+      "modern_envelope_absent": true,
+      "template_output_mapping": true,
+      "elapsed_ms": 390.286,
+      "checks": {
+        "http_success": true,
+        "workflow_succeeded": true,
+        "tool_called": true,
+        "active_legacy_tool": false,
+        "template_called": true,
+        "output_called": true,
+        "result_string": false,
+        "legacy_contract": false,
+        "modern_envelope_absent": true
+      },
+      "status": "FAIL"
+    },
+    {
+      "database_type": "mysql",
+      "workflow_format": "json",
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "result_type": "list",
+      "result_shape": "unexpected",
+      "probe_value": null,
+      "legacy_contract_pass": false,
+      "modern_envelope_absent": true,
+      "template_output_mapping": true,
+      "elapsed_ms": 484.299,
+      "checks": {
+        "http_success": true,
+        "workflow_succeeded": true,
+        "tool_called": true,
+        "active_legacy_tool": false,
+        "template_called": true,
+        "output_called": true,
+        "result_string": false,
+        "legacy_contract": false,
+        "modern_envelope_absent": true
+      },
+      "status": "FAIL"
+    },
+    {
+      "database_type": "mssql",
+      "workflow_format": "json",
+      "http_status": 200,
+      "workflow_status": "succeeded",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "result_type": "list",
+      "result_shape": "unexpected",
+      "probe_value": null,
+      "legacy_contract_pass": false,
+      "modern_envelope_absent": true,
+      "template_output_mapping": true,
+      "elapsed_ms": 461.205,
+      "checks": {
+        "http_success": true,
+        "workflow_succeeded": true,
+        "tool_called": true,
+        "active_legacy_tool": false,
+        "template_called": true,
+        "output_called": true,
+        "result_string": false,
+        "legacy_contract": false,
+        "modern_envelope_absent": true
+      },
+      "status": "FAIL"
+    }
+  ],
+  "negative_cases": [
+    {
+      "case_name": "multi_statement_rejected",
+      "workflow_format": "markdown",
+      "database_type": "postgresql",
+      "http_status": 200,
+      "expected_failure": true,
+      "observed_failure": true,
+      "failure_stage": "PluginInvokeError / Workflow exception chain",
+      "workflow_status": "failed",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "sanitized": true,
+      "success_payload_absent": true,
+      "sensitive_scan_pass": true,
+      "elapsed_ms": 156.111,
+      "checks": {
+        "workflow_failed": true,
+        "tool_exception_chain": true,
+        "success_payload_absent": true,
+        "modern_error_envelope_absent": true,
+        "sensitive_scan_pass": true
+      },
+      "status": "PASS"
+    },
+    {
+      "case_name": "missing_table_rejected",
+      "workflow_format": "markdown",
+      "database_type": "postgresql",
+      "http_status": 200,
+      "expected_failure": true,
+      "observed_failure": true,
+      "failure_stage": "PluginInvokeError / Workflow exception chain",
+      "workflow_status": "failed",
+      "tool_identity": "li_zijun/db_query_extended:0.1.1@a528b17bd19f6e3aeed58e8db92f6b25c2ddb372c2bb8d0398bc0447da7293ec",
+      "sanitized": true,
+      "success_payload_absent": true,
+      "sensitive_scan_pass": true,
+      "elapsed_ms": 181.259,
+      "checks": {
+        "workflow_failed": true,
+        "tool_exception_chain": true,
+        "success_payload_absent": true,
+        "modern_error_envelope_absent": true,
+        "sensitive_scan_pass": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "workflow_mutated": false,
+  "workflow_published": false,
+  "api_key_changed": false,
+  "sensitive_values_retained": false,
+  "checks": {
+    "active_plugin_identifier": "li_zijun/db_query_extended:0.1.3@975d378099f6f817bda07eb6351bcbc9ec535d6bdb5ec3b33e40ab6b65cd14cf",
+    "workflow_apps": {
+      "markdown": {
+        "app_id": "502b5f09-93ef-40a7-bff6-d25c99a21de1",
+        "workflow_id": "96146b12-6532-4ae3-bc9e-8c15fe186a48",
+        "name": "Phase 10.2.1 Original Legacy Markdown",
+        "api_key": {
+          "source": "existing Dify app token",
+          "present": true,
+          "length": 28
+        }
+      },
+      "json": {
+        "app_id": "905f1d4a-44ba-4bcd-90f2-e5a43742dd5a",
+        "workflow_id": "88ce31f7-715b-4853-bd25-8983416e9770",
+        "name": "Phase 10.2.1 Original Legacy JSON",
+        "api_key": {
+          "source": "existing Dify app token",
+          "present": true,
+          "length": 28
+        }
+      }
+    },
+    "workflow_mutated": false,
+    "workflow_imported": false,
+    "workflow_published": false,
+    "api_key_changed": false
+  },
+  "failures": [
+    "markdown_postgresql",
+    "markdown_mysql",
+    "markdown_mssql",
+    "json_postgresql",
+    "json_mysql",
+    "json_mssql"
+  ],
+  "not_proven": [
+    "ORACLE_RUNTIME_PASS",
+    "ORACLE11G_RUNTIME_PASS",
+    "DM8_NEW_RUNTIME_PASS",
+    "KINGBASEES_NEW_RUNTIME_PASS",
+    "FINAL_PROJECT_DELIVERY_PASS"
+  ]
+}
